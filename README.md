@@ -1,4 +1,4 @@
-TestGit
+LUSET
 =====
 
-Sample Test Git
+Land Use Suitability Evaluation Tool
