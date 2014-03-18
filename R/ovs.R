@@ -1,3 +1,12 @@
+#' Overall Suitability
+#' 
+#' @description
+#' This functions calculates the overall suitability using the for
+#' methods, namely minimum, maximum, exponent, and average.
+#' 
+#' @param
+#' dat - the data file in data.frame class.
+#' method - the method to be used: minimum, maximum, exponent or average
 ovs <- function(dat, method = 'minimum') {
   nLU <- nrow(dat[[1]])
   ovsVal <- matrix(NA, nrow = nLU, ncol = length(dat))
