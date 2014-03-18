@@ -7,5 +7,5 @@ Land evaluation entails matching the demand on land use (i.e. the crop
 requirements) and the supply (i.e. what a particular LU can offer).
 
 ## Authors
-*[Al-Ahmadgaid B. Asaad](https://github.com/alstat) `alstatr.blogspot.com`
-*Arnold R. Salvacion `r-nold.blogspot.com`
+* [Al-Ahmadgaid B. Asaad](https://github.com/alstat) `alstatr.blogspot.com`
+* Arnold R. Salvacion `r-nold.blogspot.com`
