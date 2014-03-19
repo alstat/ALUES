@@ -16,7 +16,5 @@ Description: The Land Use Suitability Evaluation Tool (LUSET) is a
 License: GPL-2
 Depends:
     Rcpp (>= 0.10.6)
-Imports:
-    reshape2,
 LazyData: true
 LinkingTo: Rcpp
