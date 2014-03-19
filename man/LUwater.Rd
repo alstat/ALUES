@@ -1,6 +1,6 @@
 \docType{data}
-\name{water}
-\alias{water}
+\name{LUwater}
+\alias{LUwater}
 \title{water}
 \format{A data frame with 79 rows and 7 columns}
 \source{

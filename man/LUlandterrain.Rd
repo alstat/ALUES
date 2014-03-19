@@ -1,7 +1,7 @@
 \docType{data}
-\name{temperature}
-\alias{temperature}
-\title{temperature}
+\name{LUlandterrain}
+\alias{LUlandterrain}
+\title{landterrain}
 \format{A data frame with 79 rows and 7 columns}
 \source{
 \href{http://countrystat.bas.gov.ph/}{Philippine Bureau of

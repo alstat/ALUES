@@ -15,8 +15,7 @@
 #' }
 #' 
 #' @docType data
-#' @source \href{http://countrystat.bas.gov.ph/}{Philippine Bureau of Agricultural Statistics}
 #' @keywords dataset
 #' @format A data frame with 79 rows and 7 columns
-#' @name temperature
+#' @name LUtemp
 NULL

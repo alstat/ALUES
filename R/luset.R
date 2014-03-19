@@ -16,6 +16,7 @@
 #' Arnold R. Salvacion
 #' 
 #' @name luset-package
+#' @import reshape2
 #' @docType package
 #' @export ovs
 NULL

@@ -1,12 +1,8 @@
 \docType{data}
-\name{landterrain}
-\alias{landterrain}
-\title{landterrain}
+\name{LUtemp}
+\alias{LUtemp}
+\title{temperature}
 \format{A data frame with 79 rows and 7 columns}
-\source{
-\href{http://countrystat.bas.gov.ph/}{Philippine Bureau of
-Agricultural Statistics}
-}
 \description{
 A dataset containing the volume of palay production in
 Cordillera Administrative Region (CAR) of the Philippines,
