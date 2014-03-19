@@ -1,4 +1,4 @@
-#' temperature
+#' Temperature
 #' 
 #' A dataset containing the volume of palay production in Cordillera
 #' Administrative Region (CAR) of the Philippines, from 1994 - 2013
@@ -17,5 +17,5 @@
 #' @docType data
 #' @keywords dataset
 #' @format A data frame with 79 rows and 7 columns
-#' @name LUtemp
+#' @name Temperature
 NULL
