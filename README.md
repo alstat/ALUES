@@ -6,6 +6,12 @@ The Land Use Suitability Evaluation Tool (LUSET) is a utility for assessing land
 Land evaluation entails matching the demand on land use (i.e. the crop
 requirements) and the supply (i.e. what a particular LU can offer).
 
+## Installation
+This package is currently under development here on github and not yet on CRAN, to install this run the following:
+```{coffee}
+library(devtools)
+install_github(repo = 'LUSET', username = 'alstat')
+```
 ## Authors
 * [Al-Ahmadgaid B. Asaad](https://github.com/alstat) `alstatr.blogspot.com`
 * Arnold R. Salvacion `r-nold.blogspot.com`
