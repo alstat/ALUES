@@ -1,23 +1,20 @@
 \docType{data}
 \name{LandTerrain}
 \alias{LandTerrain}
-\title{LandTerrain}
-\format{A data frame with 79 rows and 7 columns}
-\source{
-\href{http://countrystat.bas.gov.ph/}{Philippine Bureau of
-Agricultural Statistics}
-}
+\title{Land and Terrain Chracteristics}
+\format{A data frame with 2928 rows and 10 columns}
 \description{
-A dataset containing the volume of palay production in
-Cordillera Administrative Region (CAR) of the Philippines,
-from 1994 - 2013 quarterly.
+A dataset containing 2928 Land Units on 10 factors.
 }
 \details{
-\itemize{ \item Year - the time variable in quarterly.
-\item Apayao - spatial locations 1.  \item Abra - spatial
-location 2.  \item Kalinga - spatial location 3.  \item
-Mt.Province - spatial location 4.  \item Ifugao - spatial
-location 5.  \item Benguet - spatial location 6. }
+\itemize{ \item SlopeD - Slope (degree, 6 classes); \item
+CFragm - Coarse fragment (Vol.%); \item SoilDpt - Soil
+depth (cm); \item SoilTe - 12 classes of soil texture (Soil
+Taxonomy); \item CECc - Apparent CEC Clay (cmol (+)/kg
+clay); \item SumBCs - Sum of basic caions (cmol (+)/kg
+soil); \item pHH20 - pH H2O; \item BS - Base Saturation
+(%); \item OC - Organic carbon (%); \item Flood - Flooding;
+}
 }
 \keyword{dataset}
 

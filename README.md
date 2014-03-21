@@ -14,5 +14,5 @@ install_github(repo = 'LUSET', username = 'alstat')
 ```
 The development was done in Ubuntu Linux operating system, and the above codes works fine; but if you are using other platforms (Windows or Mac), do let us know if there are issues by submitting [here](https://github.com/alstat/LUSET/issues).
 ## Authors
-* [Al-Ahmadgaid B. Asaad](https://github.com/alstat) `alstatr.blogspot.com`
 * Arnold R. Salvacion `r-nold.blogspot.com`
+* [Al-Ahmadgaid B. Asaad](https://github.com/alstat) `alstatr.blogspot.com`
