@@ -1,4 +1,4 @@
-ABOUT
+About
 =====
 
 The Land Use Suitability Evaluation Tool (LUSET) is a utility for assessing land suitability for multiple crops. Land evaluation involves matching the qualities of the land with its use or intended use. The basic unit for evaluation is the land unit (LU).
