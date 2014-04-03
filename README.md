@@ -1,6 +1,5 @@
 About
 =====
-
 Agricultural Land Use Evaluation System (ALUES) is an R package that evaluates land suitability for
 different crop production. The package is based on the Food and Agriculture Organization (FAO) and the
 International Rice Research Institute (IRRI) methodology for land evaluation. Development of ALUES is
