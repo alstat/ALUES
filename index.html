@@ -106,12 +106,12 @@ uses fuzzy logic approach to evaluate land suitability of a particular area base
 <li><code>landSuit</code></li>
 <li><code>ovs</code></li>
 </ul><h2>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>ExampleS</h2>
 
-<p>Compute the suitability scores of the land units on Soya crop.</p>
-
-<h3>
-<a name="solution" class="anchor" href="#solution"><span class="octicon octicon-link"></span></a>Solution</h3>
+<ol>
+<li>
+<p>Compute the suitability scores and class of the land units on Soya crop terrain requirements.
+<strong>Solution</strong></p>
 
 <div class="highlight highlight-coffee"><pre><span class="nx">library</span><span class="p">(</span><span class="nx">ALUES</span><span class="p">)</span>
 <span class="nx">x</span> <span class="o">&lt;-</span> <span class="nx">LandTerrain</span>
@@ -123,16 +123,16 @@ uses fuzzy logic approach to evaluate land suitability of a particular area base
 <span class="nx">head</span><span class="p">(</span><span class="nx">SoyaTerrainSuit$score</span><span class="p">,</span> <span class="nv">n = </span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># OUTPUT</span>
-          <span class="nx">Flood</span> <span class="nx">SlopeD</span>
- <span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">6</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">7</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">8</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
- <span class="p">[</span><span class="mi">9</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
+         <span class="nx">Flood</span> <span class="nx">SlopeD</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="mf">0.7500000</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">6</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">7</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">8</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
+<span class="p">[</span><span class="mi">9</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
 <span class="p">[</span><span class="mi">10</span><span class="p">,]</span> <span class="mf">0.7777778</span>      <span class="mi">0</span>
 
 <span class="c1"># Extract the suitability class of first 10 land units</span>
@@ -140,17 +140,60 @@ uses fuzzy logic approach to evaluate land suitability of a particular area base
 
 <span class="c1"># OUTPUT</span>
       <span class="nx">Flood</span> <span class="nx">SlopeD</span>
- <span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">6</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">7</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">8</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
- <span class="p">[</span><span class="mi">9</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="s">"N"</span>   <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">6</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">7</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">8</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
+<span class="p">[</span><span class="mi">9</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>   
 <span class="p">[</span><span class="mi">10</span><span class="p">,]</span> <span class="s">"S3"</span>  <span class="s">"N"</span>  
 </pre></div>
+</li>
+<li>
+<p>Compute the suitability scores and class of the land units on Soya crop soil requirements.</p>
+
+<div class="highlight highlight-coffee"><pre><span class="nx">x</span> <span class="o">&lt;-</span> <span class="nx">LandTerrain</span>
+<span class="nx">y</span> <span class="o">&lt;-</span> <span class="nx">SoyaSoilCR</span>
+
+<span class="nx">SoyaTerrainSuit</span> <span class="o">&lt;-</span> <span class="nx">landSuit</span><span class="p">(</span><span class="nv">x = </span><span class="nx">x</span><span class="p">,</span> <span class="nv">y = </span><span class="nx">y</span><span class="p">,</span> <span class="nv">mf = </span><span class="s">'Triangular'</span><span class="p">)</span>
+
+<span class="c1"># Extract the suitability score of first 10 land units</span>
+<span class="nx">head</span><span class="p">(</span><span class="nx">SoyaTerrainSuit$score</span><span class="p">,</span> <span class="nv">n = </span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># OUTPUT</span>
+         <span class="nx">CFragm</span>   <span class="nx">SoilDpt</span>   <span class="nx">CECc</span>        <span class="nx">BS</span>    <span class="nx">SumBCs</span>         <span class="nx">OC</span>    <span class="nx">SoilTe</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="mf">0.08333333</span> <span class="mf">0.6969697</span> <span class="mf">0.8375</span> <span class="mf">0.0000000</span> <span class="mf">0.4166667</span> <span class="mf">0.06666667</span> <span class="mf">0.3333333</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="mf">0.08333333</span> <span class="mf">0.6969697</span> <span class="mf">0.8375</span> <span class="mf">0.0000000</span> <span class="mf">0.4166667</span> <span class="mf">0.06666667</span> <span class="mf">0.3333333</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="mf">0.08333333</span> <span class="mf">0.6969697</span> <span class="mf">0.8375</span> <span class="mf">0.0000000</span> <span class="mf">0.4166667</span> <span class="mf">0.06666667</span> <span class="mf">0.3333333</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="mf">0.08333333</span> <span class="mf">0.6969697</span> <span class="mf">0.8375</span> <span class="mf">0.0000000</span> <span class="mf">0.4166667</span> <span class="mf">0.06666667</span> <span class="mf">0.3333333</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="mf">0.08333333</span> <span class="mf">0.6969697</span> <span class="mf">0.8375</span> <span class="mf">0.0000000</span> <span class="mf">0.4166667</span> <span class="mf">0.06666667</span> <span class="mf">0.3333333</span>
+<span class="p">[</span><span class="mi">6</span><span class="p">,]</span> <span class="mf">0.16666667</span> <span class="mf">0.4545455</span> <span class="mf">0.7625</span> <span class="mf">0.3456954</span> <span class="mf">0.4875000</span> <span class="mf">0.32000000</span> <span class="mf">0.9047619</span>
+<span class="p">[</span><span class="mi">7</span><span class="p">,]</span> <span class="mf">0.16666667</span> <span class="mf">0.4545455</span> <span class="mf">0.7625</span> <span class="mf">0.3456954</span> <span class="mf">0.4875000</span> <span class="mf">0.32000000</span> <span class="mf">0.9047619</span>
+<span class="p">[</span><span class="mi">8</span><span class="p">,]</span> <span class="mf">0.16666667</span> <span class="mf">0.4545455</span> <span class="mf">0.7625</span> <span class="mf">0.3456954</span> <span class="mf">0.4875000</span> <span class="mf">0.32000000</span> <span class="mf">0.9047619</span>
+<span class="p">[</span><span class="mi">9</span><span class="p">,]</span> <span class="mf">0.16666667</span> <span class="mf">0.4545455</span> <span class="mf">0.7625</span> <span class="mf">0.3456954</span> <span class="mf">0.4875000</span> <span class="mf">0.32000000</span> <span class="mf">0.9047619</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,]</span> <span class="mf">0.16666667</span> <span class="mf">0.4545455</span> <span class="mf">0.7625</span> <span class="mf">0.3456954</span> <span class="mf">0.4875000</span> <span class="mf">0.32000000</span> <span class="mf">0.9047619</span>
+
+<span class="c1"># Extract the suitability class of first 10 land units</span>
+<span class="nx">head</span><span class="p">(</span><span class="nx">SoyaTerrainSuit$class</span><span class="p">,</span> <span class="nv">n = </span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># OUTPUT</span>
+     <span class="nx">CFragm</span> <span class="nx">SoilDpt</span> <span class="nx">CECc</span> <span class="nx">BS</span>   <span class="nx">SumBCs</span> <span class="nx">OC</span>   <span class="nx">SoilTe</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S3"</span>    <span class="s">"N"</span>  <span class="s">"N"</span>  <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S1"</span>  
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S3"</span>    <span class="s">"N"</span>  <span class="s">"N"</span>  <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S1"</span>  
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S3"</span>    <span class="s">"N"</span>  <span class="s">"N"</span>  <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S1"</span>  
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S3"</span>    <span class="s">"N"</span>  <span class="s">"N"</span>  <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S1"</span>  
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S3"</span>    <span class="s">"N"</span>  <span class="s">"N"</span>  <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S1"</span>  
+<span class="p">[</span><span class="mi">6</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S1"</span>    <span class="s">"N"</span>  <span class="s">"S1"</span> <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S3"</span>  
+<span class="p">[</span><span class="mi">7</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S1"</span>    <span class="s">"N"</span>  <span class="s">"S1"</span> <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S3"</span>  
+<span class="p">[</span><span class="mi">8</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S1"</span>    <span class="s">"N"</span>  <span class="s">"S1"</span> <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S3"</span>  
+<span class="p">[</span><span class="mi">9</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S1"</span>    <span class="s">"N"</span>  <span class="s">"S1"</span> <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S3"</span>  
+<span class="p">[</span><span class="mi">10</span><span class="p">,]</span> <span class="s">"S1"</span>   <span class="s">"S1"</span>    <span class="s">"N"</span>  <span class="s">"S1"</span> <span class="s">"S1"</span>   <span class="s">"S1"</span> <span class="s">"S3"</span> 
+</pre></div>
+</li>
+</ol>
       </section>
 
     </div>
