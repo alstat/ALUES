@@ -94,7 +94,7 @@ landSuit <- function (x, y, mf = 'triangular', min = NULL, interval = 'fixed') {
                 suiClass[i, j] <- 'S1'
             }
           }
-        } else if (reqScore[1] < reqScore[3]){
+        } else if (reqScore[1] < reqScore[3]) {
           if ((!is.null(min)) && (min == 'average')) {
             Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3])) / 2) 
           } else if (is.numeric(min)){
@@ -177,10 +177,123 @@ landSuit <- function (x, y, mf = 'triangular', min = NULL, interval = 'fixed') {
             }
           }
         }
-      } 
-      #else if (n3 == 6) {
-      #  warning('Six suitability class is still under construction.')
-      #}
+      } else if (n3 == 6) {
+        if ((!is.null(min)) && (min == 'average')) {
+          Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 2)
+        } else if (is.numeric(min)){
+          if (length(min) == 1)
+            Min <- min
+          else if (length(min) > 1) {
+            if (length(min) == ncol(x))
+              Min <- min[f1[complete.cases(f1)][j]]
+            else if (length(min) != ncol(x))
+              stop('min length should be equal to the number of factors in x.')
+          }
+        } else if (is.null(min)) {
+          Min <- 0
+        }
+        Max <- reqScore[3] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 2)
+        Mid <- mean(reqScore[3:4])
+        for (i in 1:nrow(LU)) {
+          if ((LU[i, j] <= Min) || (LU[i, j] >= Max)) {
+            score[i, j] <- 0; suiClass[i, j] <- 'N'
+          } else if ((LU[i, j] > Min) && (LU[i, j] <= Mid)) {
+            score[i, j] <- (LU[i, j] - Min) / (Mid - Min)
+            if (interval == 'fixed')
+              l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.75; l5 = 1
+            if (is.numeric(interval)) {
+              if (length(interval) != 5)
+                stop('interval should have 5 limits, run ?landSuit for more.')
+              else
+                l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]
+            }
+            if ((score[i, j] >= l1) && (score[i, j] < l2))
+              suiClass[i, j] <- 'N'
+            else if ((score[i, j] >= l2) && (score[i, j] < l3))
+              suiClass[i, j] <- 'S3'
+            else if ((score[i, j] >= l3) && (score[i, j] < l4))
+              suiClass[i, j] <- 'S2'
+            else if ((score[i, j] >= l4) && (score[i, j] <= l5))
+              suiClass[i, j] <- 'S1'
+          } else if ((LU[i, j] > Mid) && (LU[i, j] < Max)) {
+            score[i, j] <- (Max - LU[i, j]) / (Max - Mid)
+            if (interval == 'fixed')
+              l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.75; l5 = 1
+            if (is.numeric(interval)) {
+              if (length(interval) != 5)
+                stop('interval should have 5 limits, run ?landSuit for more.')
+              else
+                l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]
+            }
+            if ((score[i, j] >= l1) && (score[i, j] < l2))
+              suiClass[i, j] <- 'N'
+            else if ((score[i, j] >= l2) && (score[i, j] < l3))
+              suiClass[i, j] <- 'S3'
+            else if ((score[i, j] >= l3) && (score[i, j] < l4))
+              suiClass[i, j] <- 'S2'
+            else if ((score[i, j] >= l4) && (score[i, j] <= l5))
+              suiClass[i, j] <- 'S1'
+          } 
+        }
+      } else if (n3 == 5) {
+        if ((!is.null(min)) && (min == 'average')) {
+          Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 2)
+        } else if (is.numeric(min)){
+          if (length(min) == 1)
+            Min <- min
+          else if (length(min) > 1) {
+            if (length(min) == ncol(x))
+              Min <- min[f1[complete.cases(f1)][j]]
+            else if (length(min) != ncol(x))
+              stop('min length should be equal to the number of factors in x.')
+          }
+        } else if (is.null(min)) {
+          Min <- 0
+        }
+        Max <- reqScore[3] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 2)
+        Mid <- mean(reqScore[3:4])
+        for (i in 1:nrow(LU)) {
+          if ((LU[i, j] <= Min) || (LU[i, j] >= Max)) {
+            score[i, j] <- 0; suiClass[i, j] <- 'N'
+          } else if ((LU[i, j] > Min) && (LU[i, j] <= Mid)) {
+            score[i, j] <- (LU[i, j] - Min) / (Mid - Min)
+            if (interval == 'fixed')
+              l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.75; l5 = 1
+            if (is.numeric(interval)) {
+              if (length(interval) != 5)
+                stop('interval should have 5 limits, run ?landSuit for more.')
+              else
+                l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]
+            }
+            if ((score[i, j] >= l1) && (score[i, j] < l2))
+              suiClass[i, j] <- 'N'
+            else if ((score[i, j] >= l2) && (score[i, j] < l3))
+              suiClass[i, j] <- 'S3'
+            else if ((score[i, j] >= l3) && (score[i, j] < l4))
+              suiClass[i, j] <- 'S2'
+            else if ((score[i, j] >= l4) && (score[i, j] <= l5))
+              suiClass[i, j] <- 'S1'
+          } else if ((LU[i, j] > Mid) && (LU[i, j] < Max)) {
+            score[i, j] <- (Max - LU[i, j]) / (Max - Mid)
+            if (interval == 'fixed')
+              l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.75; l5 = 1
+            if (is.numeric(interval)) {
+              if (length(interval) != 5)
+                stop('interval should have 5 limits, run ?landSuit for more.')
+              else
+                l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]
+            }
+            if ((score[i, j] >= l1) && (score[i, j] < l2))
+              suiClass[i, j] <- 'N'
+            else if ((score[i, j] >= l2) && (score[i, j] < l3))
+              suiClass[i, j] <- 'S3'
+            else if ((score[i, j] >= l3) && (score[i, j] < l4))
+              suiClass[i, j] <- 'S2'
+            else if ((score[i, j] >= l4) && (score[i, j] <= l5))
+              suiClass[i, j] <- 'S1'
+          } 
+        }
+      }
     } else if (mf == 'trapezoidal') {
       stop('trapezoidal membership function is still under construction.')
     }
