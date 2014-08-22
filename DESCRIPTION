@@ -27,7 +27,9 @@ Description: an R package that evaluates land suitability
     Finally, ALUES utilizes the power of Rcpp library for efficient
     computation.
 License: GPL-2
-Depends:
-    Rcpp (>= 0.10.6)
 LazyData: true
 LinkingTo: Rcpp
+Depends:
+    Rcpp (>= 0.10.6)
+Imports:
+    Rcpp
