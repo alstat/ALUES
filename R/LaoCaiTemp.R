@@ -1,9 +1,10 @@
-#' Monthly average rainfall, mm and irrigation status
+#' Temperature Chracteristics of Lao Cai, Vietnam
 #' 
-#' A dataset containing 2928 Land Units on 13 factors.
+#' A dataset containing the temperature characteristics of the land units
+#' in Lao Cai, Vietnam.
 #' 
 #' \itemize{
-#'  \item Jan -January;
+#'  \item Jan - January;
 #'  \item Feb - February;
 #'  \item Mar - March;
 #'  \item Apr - April;
@@ -15,11 +16,10 @@
 #'  \item Oct - October;
 #'  \item Nov - November;
 #'  \item Dec - December;
-#'  \item Irrigation - Irrigation;
 #' }
 #' 
 #' @docType data
 #' @keywords dataset
-#' @format A data frame with 2928 rows and 13 columns
-#' @name Water
+#' @format A data frame with 2928 rows and 12 columns
+#' @name LaoCaiTemp
 NULL

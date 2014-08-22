@@ -27,7 +27,7 @@
 #' Al-Ahmadgaid Bahauddin Asaad <alstated@@gmail.com>\\
 #' 
 #' @import Rcpp
-#' @export landSuit
 #' @docType package
+#' @useDynLib ALUES
 #' @name ALUES-package
 NULL

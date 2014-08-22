@@ -1,9 +1,12 @@
-#' Monthly average temperature , in Celsius
+#' Water Chracteristics of Marinduque, Philippines
 #' 
-#' A dataset containing 2928 Land Units on 12 factors.
+#' A dataset containing the water characteristics of the land units in
+#' Marinduque, Philippines.
 #' 
 #' \itemize{
-#'  \item Jan -January;
+#'  \item X - Latitude of Land Units;
+#'  \item Y - Longitude of Land Units;
+#'  \item Jan - January;
 #'  \item Feb - February;
 #'  \item Mar - March;
 #'  \item Apr - April;
@@ -19,6 +22,6 @@
 #' 
 #' @docType data
 #' @keywords dataset
-#' @format A data frame with 2928 rows and 12 columns
-#' @name Temperature
+#' @format A data frame with 881 rows and 14 columns
+#' @name MarinduqueWater
 NULL

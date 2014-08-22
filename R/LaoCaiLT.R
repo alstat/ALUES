@@ -1,6 +1,7 @@
-#' Land and Terrain Chracteristics
+#' Land and Terrain Chracteristics of Lao Cai, Vietnam
 #' 
-#' A dataset containing 2928 Land Units on 10 factors.
+#' A dataset containing the land and terrain characteristics of the land units in
+#' Lao Cai, Vietnam.
 #' 
 #' \itemize{
 #'  \item SlopeD - Slope (degree, 6 classes);
@@ -18,5 +19,5 @@
 #' @docType data
 #' @keywords dataset
 #' @format A data frame with 2928 rows and 10 columns
-#' @name LandTerrain
+#' @name LaoCaiLT
 NULL
