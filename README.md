@@ -20,7 +20,7 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
 
 ## Authors
 * [Arnold R. Salvacion](https://github.com/arsalvacion)
- * email: alstated@gmail.com
+ * email: arsalvacion@gmail.com
  * blog: http://r-nold.blogspot.com/
 * [Al-Ahmadgaid B. Asaad](https://github.com/alstat) (Maintainer)
  * email: alstated@gmail.com
