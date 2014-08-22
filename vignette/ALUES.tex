@@ -202,8 +202,6 @@ The package has two functions:
 \item \verb|suitability| - computes the suitability scores and classes of the land units base on the requirements of the crop.
 \item \verb|overall_suit| - computes the overall suitability of the land units, using the suitability scores obtained from the \verb|suitability| function.
 \end{enumerate}
-\section{Methodology}
-The details on both functions will be discussed in the following subsections.
 \subsection{Suitability}
 In this section, we will get into the details of the \verb|suitability| function.
 \subsubsection*{Usage}
@@ -823,7 +821,7 @@ Thus the function simply divides the interval of the suitability class into thre
 \begin{itemize}[leftmargin=\dimexpr\linewidth-11.8cm-\rightmargin\relax]
 \item[\texttt{x}] a data frame consisting the suitability scores of a given characteristics (terrain, soil, water and temperature) for a given crop (e.g. coconut, cassava, etc.);
 \item[\texttt{method}] the method for computing the overall suitability, which includes the minimum, maximum, sum, product, average, exponential and gamma. If \verb|NULL|, minimum is used.
-\item[\texttt{interval}] if \verb|NULL|, the interval used are the following: 0-25\% (Not suitable, N), 25\%-50\% (Marginally Suitable, S3), 50\%-75\% (Moderately Suitable, S2), and 75\%-100\% (Highly Suitable, S1).
+\item[\texttt{interval}] if \verb|NULL|, the interval used are the following: 0-0.25 (Not suitable, N), 0.25-0.50 (Marginally Suitable, S3), 0.50-0.75 (Moderately Suitable, S2), and 0.75-1 (Highly Suitable, S1).
 \item[\texttt{output}] the output to be returned, either the scores or class. If \verb|NULL|, both are returned.
 \end{itemize}
 \section{Demonstration}
