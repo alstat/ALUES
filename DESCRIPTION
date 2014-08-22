@@ -3,8 +3,8 @@ Type: Package
 Title: Agricultural Land Use Evaluation System
 Version: 0.1.1
 Date: 2013-03-18
-Author: Arnold R. Salvacion
-    Al-Ahmadgaid B. Asaad <alstated@gmail.com>
+Author: Arnold R. Salvacion <arsalvacion@gmail.com>
+        Al-Ahmadgaid B. Asaad <alstated@gmail.com>
 Maintainer: Al-Ahmadgaid B. Asaad <alstated@gmail.com>
 Description: Agricultural Land Use Evaluation System (ALUES) is an R package 
              that evaluates land suitability for different crop production. 
