@@ -386,7 +386,7 @@ If a given factor has a weight, then the function will compute the corresponding
 \begin{table}[!h]
 \begin{tabular}{r|ccc}
 \toprule
-Suitability&\multicolumn{3}{|c}{Factor Weight}\\
+Suitability&\multicolumn{3}{|c}{Factor Weights}\\
 \midrule
 Class&1&2&3\\
 \midrule
