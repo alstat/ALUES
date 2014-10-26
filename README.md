@@ -6,7 +6,7 @@ International Rice Research Institute ([IRRI](http://irri.org/)) methodology for
 inspired by similar tool for land evaluation, Land Use Suitability Evaluation Tool (LUSET). The package
 uses fuzzy logic approach to evaluate land suitability of a particular area based on inputs such as rainfall,
 temperature, topography, and soil properties. The membership functions used for fuzzy modeling are the
-following: Triangular, Trapezoidal and Gaussian. The methods for computing the overall suitability of a particular area are also included, and these are the Minimum, Maximum, Product, Sum, Average, Exponential and Gamma. Finally, ALUES utilizes the power of Rcpp library for efficient computation.
+following: Triangular, Trapezoidal and Gaussian. The methods for computing the overall suitability of a particular area are also included, and these are the Minimum, Maximum, Product, Sum, Average, Exponential and Gamma. Finally, ALUES uses the power of Rcpp library for efficient computation.
 
 ## Installation
 The package is not yet on CRAN, and is currently under development on github. To install it, run the following:
