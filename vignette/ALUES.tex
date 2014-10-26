@@ -100,7 +100,7 @@ International Rice Research Institute (IRRI) methodology for land evaluation. De
 inspired by similar tool for land evaluation, Land Use Suitability Evaluation Tool (LUSET). The package
 uses fuzzy logic approach to evaluate land suitability of a particular area based on inputs such as rainfall,
 temperature, topography, and soil properties. The membership functions used for fuzzy modeling are the
-following: Triangular, Trapezoidal and Gaussian. The methods for computing the overall suitability of a particular area are also included, and these are the Minimum, Maximum, Product, Sum, Average, Exponential and Gamma. Finally, ALUES utilizes the power of Rcpp library for efficient computation.
+following: Triangular, Trapezoidal and Gaussian. The methods for computing the overall suitability of a particular area are also included, and these are the Minimum, Maximum, Product, Sum, Average, Exponential and Gamma. Finally, ALUES uses the power of Rcpp library for efficient computation.
 \section{Installation}
 The package is not yet on CRAN, and is currently under development on github. To install it, run the following:
 \begin{knitrout}
@@ -376,7 +376,7 @@ To illustrate this, we will test the land units of Marinduque for the required w
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-We will test first the land units for water, and thus we have the following water requirements for rainfed bunded rice,
+We will test first the land units for water, and here are the following water requirements for rainfed bunded rice,
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -499,7 +499,7 @@ By default, \verb|min = 0| for all factors. This can be assigned to any positive
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Now let's try different minimums for factors, we will utilize the following:
+Now let's try different minimums for factors, we will use the following:
 \begin{table}[h]
 \begin{tabular}{l|cccc}
 \toprule
@@ -571,7 +571,7 @@ By default \verb|max = 'average'|, and just like \verb|min|, \verb|max| can be a
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-For different maximum value on every factor, we will utilize the following and ommit the first two factors in \verb|MarinduqueLT| like what we did in the previous section.
+For different maximum value on every factor, we will use the following and ommit the first two factors in \verb|MarinduqueLT| like what we did in the previous section.
 \begin{table}[h]
 \begin{tabular}{l|cccc}
 \toprule
@@ -1041,7 +1041,7 @@ Let's assume we are interested on the land units in Lao Cai, Vietnam, for cultiv
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Finally, we will take the overall suitability from these characteristics using the \verb|"maximum"| method.
+Finally, take the overall suitability from these characteristics using the \verb|"maximum"| method.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
