@@ -25,6 +25,3 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
 * [Al-Ahmadgaid B. Asaad](https://github.com/alstat) (Maintainer)
  * email: alstated@gmail.com
  * blog: http://alstatr.blogspot.com/
-
----
-*Caution*: This package is under development.
