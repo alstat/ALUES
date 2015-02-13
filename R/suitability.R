@@ -8,8 +8,9 @@
 #' @param y a data frame consisting the requirements of a given 
 #'          characteristics (terrain, soil, water and temperature) for a 
 #'          given crop (e.g. coconut, cassava, etc.);
-#' @param mf membership function, currently available is \code{"triangular"} 
-#'           fuzzy model.
+#' @param mf membership function with default assigned to \code{"triangular"} 
+#'           fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
+#'           \code{"gaussian"}.
 #' @param sow.month sowing month of the crop. Takes integers from 1 to 12 
 #'                  (inclusive), representing the twelve months of a year. 
 #'                  So if sets to 1, the function assumes sowing month on 
@@ -22,16 +23,16 @@
 #'            to the number of factors in \code{x}. However, if set to \code{"average"},
 #'            then \code{min} is computed from different conditions:
 #'            
-#'            If for example, using \code{ALUES::COCONUTSoil} (coconut terrain requirements), 
+#'            If for example, using \code{ALUES::COCONUTSoilCR} (coconut terrain requirements), 
 #'            as shown below,
 #'            
-#'                 Code   S3   S2    S1 S1.1 S2.1 S3.1 Weight.class    
-#'            1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA
-#'            2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA
-#'            3      BS 19.9 19.9  20.0   NA   NA   NA           NA
-#'            4  SumBCs  1.5  1.5   1.6   NA   NA   NA           NA
-#'            5      OC  0.7  0.7   0.8   NA   NA   NA           NA
-#'            6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA
+#'            \code{     Code   S3   S2    S1 S1.1 S2.1 S3.1 Weight.class}\cr
+#'            \code{1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA}\cr
+#'            \code{2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA}\cr
+#'            \code{3      BS 19.9 19.9  20.0   NA   NA   NA           NA}\cr
+#'            \code{4  SumBCs  1.5  1.5   1.6   NA   NA   NA           NA}\cr
+#'            \code{5      OC  0.7  0.7   0.8   NA   NA   NA           NA}\cr
+#'            \code{6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA}
 #'            
 #' @param max maximum value for factors. Default is to \code{"average"}, check on
 #'              the details for this option. Assignment on maximum can also be done by
@@ -42,18 +43,20 @@
 #' @param interval domains for every suitability class (S1, S2, S3). If fixed, the
 #'              interval would be 0 to 25\% for N (Not Suitable), 25\% to 50\% for S3 (Marginally Suitable),
 #'              50\% to 75\% for S2 (Moderately Suitable), and 75\% to 100\% for (Highly Suitable).
+#' @param sigma If \code{mf = "gaussian"}, then sigma represents the constant sigma in the
+#'              gaussian formula, which is often times referred as the variance.
 #' @details
 #' There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 #' For triangular case, 
 #' 
 #' @examples
 #' library(ALUES)
-#' x <- LandTerrain
-#' y <- COCONUTSoil
+#' x <- LaoCaiLT
+#' y <- COCONUTSoilCR
 #' 
 #' coconut_tersuit <- suitability(x = x, y = y)
 #' lapply(coconut_tersuit, function(x) head(x, n = 10))
-suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, max = "average", interval = "fixed", sigma = NULL) {
+suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, max = "average", interval = NULL, sigma = NULL) {
   n1 <- length(names(x))
   n2 <- nrow(y)
   f1 <- f2 <- numeric()
@@ -124,14 +127,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
   colnames(suiClass) <- colnames(LU)
   k <- 1
   
-  if (interval == "fixed") {
+  if (is.null(interval)) {
     l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.75; l5 = 1; bias <- 0
-  } else if (is.numeric(interval)) {
+  } else if (is.numeric(interval) && !is.null(interval)) {
     if (length(interval) != 5)
       stop("interval should have 5 limits, run ?landSuit for more.")
     else
       l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]; bias <- 0
-  } else if (interval == "unbias") {
+  } else if (!is.null(interval) && interval == "unbias") {
     l1 = l2 = l3 = l4 = l5 = NA
     bias <- 1
   }
@@ -384,9 +387,11 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
   }
   names(minVals) <- names(maxVals) <- names(x)[f1[complete.cases(f1)]]
   
-  return(list("Actual Factors Evaluated" = names(minVals), 
-              "Suitability Score" = as.data.frame(score), 
-              "Suitability Class" = as.data.frame(suiClass), 
-              "Factors' Minimum Values" = minVals, 
-              "Factors' Maximum Values" = maxVals))
+  outf <- list("Actual Factors Evaluated" = names(minVals), 
+               "Suitability Score" = as.data.frame(score), 
+               "Suitability Class" = as.data.frame(suiClass), 
+               "Factors' Minimum Values" = minVals, 
+               "Factors' Maximum Values" = maxVals)
+  class(outf) <- "suitability"
+  return(outf)
 }

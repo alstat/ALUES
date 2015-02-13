@@ -8,7 +8,7 @@
 #'  \item Lon - Longitude of Land Units;
 #'  \item CECc - Apparent CEC Clay (cmol (+)/kg clay);
 #'  \item pHH20 - pH H2O;
-#'  \item CFragm - Coarse fragment (Vol.%);
+#'  \item CFragm - Coarse fragment (Vol.\%);
 #'  \item SoilTe - 12 classes of soil texture (Soil Taxonomy);
 #' }
 #' 

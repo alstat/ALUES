@@ -12,14 +12,14 @@ Lao Cai, Vietnam.
 \details{
 \itemize{
  \item SlopeD - Slope (degree, 6 classes);
- \item CFragm - Coarse fragment (Vol.%);
+ \item CFragm - Coarse fragment (Vol.\%);
  \item SoilDpt - Soil depth (cm);
  \item SoilTe - 12 classes of soil texture (Soil Taxonomy);
  \item CECc - Apparent CEC Clay (cmol (+)/kg clay);
  \item SumBCs - Sum of basic caions (cmol (+)/kg soil);
  \item pHH20 - pH H2O;
- \item BS - Base Saturation (%);
- \item OC - Organic carbon (%);
+ \item BS - Base Saturation (\%);
+ \item OC - Organic carbon (\%);
  \item Flood - Flooding;
 }
 }

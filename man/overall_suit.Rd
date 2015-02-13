@@ -4,24 +4,21 @@
 \alias{overall_suit}
 \title{Overall Suitability Scores/Class of the Land Units}
 \usage{
-overall_suit(x, method = c("minimum", "maximum", "sum", "product", "mean",
-  "exponential"), interval = NULL, output = NULL)
+overall_suit(x, method = NULL, interval = NULL, output = NULL)
 }
 \arguments{
-\item{x}{a data frame consisting the suitability scores of a given characteristics
-(terrain, soil, water and temperature) for a
-given crop (e.g. coconut, cassava, etc.);}
+\item{x}{an object of class suitability.}
 
 \item{method}{the method for computing the overall suitability, which includes the
 \code{"minimum"}, \code{"maximum"}, \code{"sum"}, \code{"product"}, and
 \code{"average"}.}
 
-\item{interval}{if \code{NULL}, the interval used are the following: 0-25% (Not
-suitable, N), 25%-50% (Marginally Suitable, S3), 50%-75% (Moderately Suitable, S2), and
-75%-100% (Highly Suitable, S1). But users can assign a custom intervals by specificying
+\item{interval}{if \code{NULL}, the interval used are the following: 0 - 25\% (Not
+suitable, N), 25\% - 50\% (Marginally Suitable, S3), 50\% - 75\% (Moderately Suitable, S2), and
+75\% - 100\% (Highly Suitable, S1). But users can assign a custom intervals by specificying
 the values of the end points of the intervals.}
 
-\item{output}{the output to be returned, either the scores or class. If \code{NULL},
+\item{output}{the output to be returned, either the \code{"scores"} or \code{"class"}. If \code{NULL},
        both are returned.}
 }
 \description{
@@ -32,9 +29,14 @@ library(ALUES)
 x <- LaoCaiLT
 y <- COCONUTSoilCR
 
+# Compute the suitability of the land units of the Lao Cai land
+# terrain characteristics using the
 coconut_tersuit <- suitability(x = x, y = y)
+
+# Return the first 10 of the observations
 lapply(coconut_tersuit, function(x) head(x, n = 10))
 
-head(overall_suit(coconut_tersuit[[2]]))
+# Compute the overall suitability of the characteristics
+head(overall_suit(coconut_tersuit))
 }
 

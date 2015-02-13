@@ -27,7 +27,7 @@
 #' 
 #' Al-Ahmadgaid Bahauddin Asaad <alstated@@gmail.com>
 #' 
-#' @import Rcpp ggmap
+#' @import Rcpp ggmap reshape2
 #' @docType package
 #' @useDynLib ALUES
 #' @name ALUES-package

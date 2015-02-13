@@ -5,7 +5,7 @@
 \title{Suitability Scores/Class of the Land Units}
 \usage{
 suitability(x, y, mf = "triangular", sow.month = NULL, min = NULL,
-  max = "average", interval = "fixed", sigma = NULL)
+  max = "average", interval = NULL, sigma = NULL)
 }
 \arguments{
 \item{x}{a data frame consisting the properties of the land units;}
@@ -14,8 +14,9 @@ suitability(x, y, mf = "triangular", sow.month = NULL, min = NULL,
 characteristics (terrain, soil, water and temperature) for a
 given crop (e.g. coconut, cassava, etc.);}
 
-\item{mf}{membership function, currently available is \code{"triangular"}
-fuzzy model.}
+\item{mf}{membership function with default assigned to \code{"triangular"}
+fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
+\code{"gaussian"}.}
 
 \item{sow.month}{sowing month of the crop. Takes integers from 1 to 12
 (inclusive), representing the twelve months of a year.
@@ -30,16 +31,16 @@ January.}
            to the number of factors in \code{x}. However, if set to \code{"average"},
            then \code{min} is computed from different conditions:
 
-           If for example, using \code{ALUES::COCONUTSoil} (coconut terrain requirements),
+           If for example, using \code{ALUES::COCONUTSoilCR} (coconut terrain requirements),
            as shown below,
 
-                Code   S3   S2    S1 S1.1 S2.1 S3.1 Weight.class
-           1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA
-           2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA
-           3      BS 19.9 19.9  20.0   NA   NA   NA           NA
-           4  SumBCs  1.5  1.5   1.6   NA   NA   NA           NA
-           5      OC  0.7  0.7   0.8   NA   NA   NA           NA
-           6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA}
+           \code{     Code   S3   S2    S1 S1.1 S2.1 S3.1 Weight.class}\cr
+           \code{1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA}\cr
+           \code{2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA}\cr
+           \code{3      BS 19.9 19.9  20.0   NA   NA   NA           NA}\cr
+           \code{4  SumBCs  1.5  1.5   1.6   NA   NA   NA           NA}\cr
+           \code{5      OC  0.7  0.7   0.8   NA   NA   NA           NA}\cr
+           \code{6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA}}
 
 \item{max}{maximum value for factors. Default is to \code{"average"}, check on
 the details for this option. Assignment on maximum can also be done by
@@ -51,6 +52,9 @@ If set to \code{"average"}, check on details below for more.}
 \item{interval}{domains for every suitability class (S1, S2, S3). If fixed, the
 interval would be 0 to 25\% for N (Not Suitable), 25\% to 50\% for S3 (Marginally Suitable),
 50\% to 75\% for S2 (Moderately Suitable), and 75\% to 100\% for (Highly Suitable).}
+
+\item{sigma}{If \code{mf = "gaussian"}, then sigma represents the constant sigma in the
+gaussian formula, which is often times referred as the variance.}
 }
 \description{
 This function calculates the suitability scores and class of the land units.
@@ -61,8 +65,8 @@ For triangular case,
 }
 \examples{
 library(ALUES)
-x <- LandTerrain
-y <- COCONUTSoil
+x <- LaoCaiLT
+y <- COCONUTSoilCR
 
 coconut_tersuit <- suitability(x = x, y = y)
 lapply(coconut_tersuit, function(x) head(x, n = 10))

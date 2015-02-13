@@ -1,43 +1,8 @@
-#' Overall Suitability Scores/Class of the Land Units
-#' @export
-#' 
-#' @description
-#' This function computes the overall suitability scores and class of the land units.
-#' 
-#' @param x an object of class suitability.
-#' @param method the method for computing the overall suitability, which includes the
-#'        \code{"minimum"}, \code{"maximum"}, \code{"sum"}, \code{"product"}, and
-#'        \code{"average"}.
-#' @param interval if \code{NULL}, the interval used are the following: 0 - 25\% (Not
-#'        suitable, N), 25\% - 50\% (Marginally Suitable, S3), 50\% - 75\% (Moderately Suitable, S2), and
-#'        75\% - 100\% (Highly Suitable, S1). But users can assign a custom intervals by specificying
-#'        the values of the end points of the intervals.
-#' @param output the output to be returned, either the \code{"scores"} or \code{"class"}. If \code{NULL},
-#'        both are returned.
-#' 
-#' @examples
-#' library(ALUES)
-#' x <- LaoCaiLT
-#' y <- COCONUTSoilCR
-#' 
-#' # Compute the suitability of the land units of the Lao Cai land
-#' # terrain characteristics using the 
-#' coconut_tersuit <- suitability(x = x, y = y)
-#' 
-#' # Return the first 10 of the observations
-#' lapply(coconut_tersuit, function(x) head(x, n = 10))
-#' 
-#' # Compute the overall suitability of the characteristics
-#' head(overall_suit(coconut_tersuit))
-overall_suit <- function(x, method = NULL, interval = NULL, output = NULL) {
-  if (class(x) != "suitability") 
-    stop("x should be an object of class suitability.")
-  
-  if (ncol(x[[2L]]) == 1L) {
-    return (data.frame(x[[2L]], x[[3L]]))
+overall <- function(x, y, method = NULL, interval = NULL, output = NULL) {  
+  if (ncol(x) == 1L) {
+    return (data.frame(x, y[[3L]]))
   }
   
-  x <- x[[2L]]
   if (!is.character(method) && !is.null(method)) { 
     stop("method should be character, please choose either: 'minimum', 'maximum', 'sum', 'product', 'average'.")
   }
@@ -74,7 +39,7 @@ overall_suit <- function(x, method = NULL, interval = NULL, output = NULL) {
     if ((x >= l4) && (x <= l5))
       return("S1")    
   }
-
+  
   suitClass <- sapply(suitScore, sclassFun)
   
   if (is.null(output))
