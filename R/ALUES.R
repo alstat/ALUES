@@ -24,9 +24,10 @@
 #' 
 #' @author 
 #' Arnold Salvacion <arsalvacion@@gmail.com>
-#' Al-Ahmadgaid Bahauddin Asaad <alstated@@gmail.com>\\
 #' 
-#' @import Rcpp
+#' Al-Ahmadgaid Bahauddin Asaad <alstated@@gmail.com>
+#' 
+#' @import Rcpp ggmap
 #' @docType package
 #' @useDynLib ALUES
 #' @name ALUES-package

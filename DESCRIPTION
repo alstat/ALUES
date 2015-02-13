@@ -25,6 +25,6 @@ License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
 Depends:
-    Rcpp (>= 0.10.6)
+    Rcpp (>= 0.10.6), ggmap (>= 2.3)
 Imports:
-    Rcpp
+    Rcpp, ggmap

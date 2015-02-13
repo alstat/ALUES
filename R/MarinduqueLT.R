@@ -4,8 +4,8 @@
 #' Marinduque, Philippines.
 #' 
 #' \itemize{
-#'  \item X - Latitude of Land Units;
-#'  \item Y - Longitude of Land Units;
+#'  \item Lat - Latitude of Land Units;
+#'  \item Lon - Longitude of Land Units;
 #'  \item CECc - Apparent CEC Clay (cmol (+)/kg clay);
 #'  \item pHH20 - pH H2O;
 #'  \item CFragm - Coarse fragment (Vol.%);
