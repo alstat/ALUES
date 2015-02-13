@@ -118,7 +118,7 @@ List case_d(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
           } else if ((score(i, w) >= l3) && (score(i, w) < l4)) {
             score(i, w) = wt * ((l4 - l3) / 3) + l3;
             suiClass(i, w) = "S2";
-          } else if ((score(i, w) == l4)) {
+          } else if (score(i, w) == l4) {
             score(i, w) = 1;
             suiClass(i, w) = "S1";
           }
