@@ -14,7 +14,8 @@ map_suit(x, y, location, suit = NULL, ovsuit = FALSE, method = NULL,
 
 \item{y}{a data frame consisting the properties of the land units;}
 
-\item{location}{location of the land units, an address, longitude/latitude pair (in that order), or left/bottom/right/top bounding box}
+\item{location}{location of the land units, an address, longitude/latitude pair (in that order),
+argument of the \code{\link{get_map}} function.}
 
 \item{suit}{suitability type to be overlayed on the map, either \code{"scores"} or
 \code{"class"} of the land units. If \code{NULL}, scores of the suitability are mapped.}
@@ -23,13 +24,18 @@ map_suit(x, y, location, suit = NULL, ovsuit = FALSE, method = NULL,
 
 \item{method,interval}{arguments of the \code{\link{overall_suit}}.}
 
-\item{char}{characteristics to be mapped. If \code{NULL}, all characteristics are mapped.}
+\item{char}{characteristic(s)/factor(s) of the land units to be mapped. If \code{NULL},
+all factors are plotted. So for the first factor of the land units
+assign \code{char = 1}, for first two factors of the land units, assign
+\code{char = 1:2} or \code{char = c(1, 2)}, and so on. Note that, the number of
+factors depends on the number of characteristics in the crop requirements that
+matches with the characteristics of the land units.}
 
 \item{cols}{number of columns in the layout of the map.}
 
-\item{size}{size of the point overlayed in the map.}
+\item{size}{size of the points overlayed in the map.}
 
-\item{alpha}{transparency of the point overlayed in the map.}
+\item{alpha}{transparency of the points overlayed in the map.}
 
 \item{extent}{argument of the \code{\link{get_map}} function.}
 
@@ -40,10 +46,14 @@ function.}
 
 \item{padding,darken}{}
 
-\item{...}{further argument for the \code{\link{get_map}} function.}
+\item{...}{further argument of the \code{\link{get_map}} function.}
 }
 \description{
 This function maps the scores and class of the suitability for all land units.
+}
+\details{
+The function depends on the ggmap package, thus themes of the map can be configured
+using the \code{\link{theme}} function of the ggplot package.
 }
 \examples{
 library(ALUES)
@@ -71,5 +81,8 @@ map_suit(x = rice_watsuit, y = x, suit = "class",
 # Map suitability scores with overall suitability
 map_suit(x = rice_watsuit, y = x, suit = "scores",
   ovsuit = TRUE, location = c(121.999659, 13.378625), zoom = 11)
+}
+\seealso{
+\code{\link{suitability}}, \code{\link{overall_suit}}.
 }
 

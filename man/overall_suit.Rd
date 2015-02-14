@@ -9,16 +9,18 @@ overall_suit(x, method = NULL, interval = NULL, output = NULL)
 \arguments{
 \item{x}{an object of class suitability.}
 
-\item{method}{the method for computing the overall suitability, which includes the
+\item{method}{the method for computing the overall suitability, choices are:
 \code{"minimum"}, \code{"maximum"}, \code{"sum"}, \code{"product"}, and
-\code{"average"}.}
+\code{"average"}. If \code{NULL}, method is set to \code{"minimum"}.}
 
-\item{interval}{if \code{NULL}, the interval used are the following: 0 - 25\% (Not
+\item{interval}{if \code{NULL}, the interval of the suitability class are the following: 0\% - 25\% (Not
 suitable, N), 25\% - 50\% (Marginally Suitable, S3), 50\% - 75\% (Moderately Suitable, S2), and
-75\% - 100\% (Highly Suitable, S1). But users can assign a custom intervals by specificying
-the values of the end points of the intervals.}
+75\% - 100\% (Highly Suitable, S1). But users can assign custom intervals by specifying
+the values of the end points of the intervals. Say for intervals: 0\% - 20\% (Not
+suitable, N), 20\% - 50\% (Marginally Suitable, S3), 50\% - 80\% (Moderately Suitable, S2), and
+80\% - 100\% (Highly Suitable, S1), is equivalent to \code{interval = c(0, 0.2, 0.5, 0.8, 1)}.}
 
-\item{output}{the output to be returned, either the \code{"scores"} or \code{"class"}. If \code{NULL},
+\item{output}{the output to be returned, either \code{"scores"} or \code{"class"}. If \code{NULL},
        both are returned.}
 }
 \description{
@@ -38,5 +40,8 @@ lapply(coconut_tersuit, function(x) head(x, n = 10))
 
 # Compute the overall suitability of the characteristics
 head(overall_suit(coconut_tersuit))
+}
+\seealso{
+\code{\link{suitability}}
 }
 
