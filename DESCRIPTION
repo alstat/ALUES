@@ -25,6 +25,6 @@ License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
 Depends:
-    Rcpp (>= 0.10.6), ggmap (>= 2.3), reshape2 (>= 1.4.1)
+    Rcpp (>= 0.10.6), raster (>= 2.3-40), ggplot2 (>= 1.0.1), reshape2 (>= 1.4.1)
 Imports:
-    Rcpp, ggmap, reshape2
+    Rcpp, raster, ggplot2, reshape2

@@ -4,83 +4,132 @@
 \alias{map_suit}
 \title{Mapping Suitability Scores and Class}
 \usage{
-map_suit(x, y, location, suit = NULL, ovsuit = FALSE, method = NULL,
-  interval = NULL, char = NULL, cols = 2, size = 4, alpha = 1,
-  extent = "panel", base_layer, maprange = FALSE, padding = 0.02,
-  darken = c(0, "black"), ...)
+map_suit(x, y, country = "PHL", province, suit = NULL, ovsuit = FALSE,
+  ovs_arg = list(method = "minimum", interval = NULL), char = NULL,
+  fill = "#FFF7BC", shadow = "#9ECAE1", ncol = 2, size = 3, alpha = 1,
+  text_opts = list(alpha = 1, angle = 0, colour = "black", family = "sans",
+  fontface = 1, lineheight = 1, size = 4), labels = list(title = "", xlab =
+  "", ylab = ""), plot_theme = NULL, plot_theme_opts = list(base_size = 12,
+  base_family = "sans"), ...)
 }
 \arguments{
 \item{x}{an object of class suitability;}
 
 \item{y}{a data frame consisting the properties of the land units;}
 
-\item{location}{location of the land units, an address, longitude/latitude pair (in that order),
-argument of the \code{\link{get_map}} function.}
+\item{country}{geographical location of the land units. Specifically,
+the country's ISO code where it is located.}
 
-\item{suit}{suitability type to be overlayed on the map, either \code{"scores"} or
+\item{province}{lower-level subdivision of the geographical location of the land units.}
+
+\item{suit}{suitability type to be overlayed on the map, either \code{"score"} or
 \code{"class"} of the land units. If \code{NULL}, scores of the suitability are mapped.}
 
-\item{ovsuit}{if \code{TRUE}, the overall suitability of the land units are included in the map.}
+\item{ovsuit}{if \code{TRUE}, the overall suitability of the land units is included in the map.}
 
-\item{method,interval}{arguments of the \code{\link{overall_suit}}.}
+\item{ovs_arg}{a list object containing two entries namely, \code{method} and \code{interval},
+which are arguments of the \code{\link{overall_suit}} function.}
 
 \item{char}{characteristic(s)/factor(s) of the land units to be mapped. If \code{NULL},
-all factors are plotted. So for the first factor of the land units
-assign \code{char = 1}, for first two factors of the land units, assign
-\code{char = 1:2} or \code{char = c(1, 2)}, and so on. Note that, the number of
-factors depends on the number of characteristics in the crop requirements that
+all factors are plotted. So for the first factor of the land units,
+assign \code{char = 1}; for first two factors of the land units, assign
+\code{char = 1:2} or \code{char = c(1, 2)}; and so on. Note that, the number of
+factors depend on the number of characteristics in the crop requirements that
 matches with the characteristics of the land units.}
 
-\item{cols}{number of columns in the layout of the map.}
+\item{fill}{color of the map.}
+
+\item{shadow}{color of the drop shadow of the map}
+
+\item{ncol}{number of columns in the layout of the map.}
 
 \item{size}{size of the points overlayed in the map.}
 
 \item{alpha}{transparency of the points overlayed in the map.}
 
-\item{extent}{argument of the \code{\link{get_map}} function.}
+\item{text_opts}{a list object containing the options for configuring the style of the names of the
+regions in the map.}
 
-\item{base_layer,}{}
+\item{labels}{a list object containing the title and axes labels.}
 
-\item{maprange,}{arguments of the \code{\link{ggmap}}
-function.}
+\item{plot_theme}{theme of the ggplot, if set \code{NULL}, the plot will have a default
+ggplot theme. Other options are \code{"bw"}, \code{"gray"}, \code{"linedraw"},
+\code{"light"}, \code{"light"}, \code{"minimal"}, and \code{"classic"}.}
 
-\item{padding,darken}{}
+\item{plot_theme_opts}{a list object with two entries (\code{base_size} - size
+of the font in the plot, and \code{base_family} - font family). These are
+options of the \code{plot_theme}. Say if \code{plot_theme="bw"}, then
+the plot will have a black and white theme, in which the size of the font
+in the plot is defined by the \code{base_size} entry of the list of
+\code{plot_theme_opts}, and the same goes to the font family in the plot,
+is defined by the \code{base_family} entry of the list of \code{plot_theme_opts}}
 
-\item{...}{further argument of the \code{\link{get_map}} function.}
+\item{...}{further arguments of the \code{\link{theme}} function of \code{ggplot2}.
+       If \code{plot_theme} argument is not \code{NULL}, then these further arguments
+       for the \code{\link{theme}} function of the ggplot2 will not take effect.}
 }
 \description{
-This function maps the scores and class of the suitability for all land units.
+Maps the scores and classes of the suitability for all land units.
 }
 \details{
-The function depends on the ggmap package, thus themes of the map can be configured
-using the \code{\link{theme}} function of the ggplot package.
+The function depends on ggplot2 package, thus themes of the map can be configured
+using the \code{\link{theme}} function, and other operations in ggplot2.
 }
 \examples{
 library(ALUES)
-x <- MarinduqueLT
-y <- COCONUTSoilCR
-coconut_tersuit <- suitability(x = x, y = y, interval = "unbias")
+# Compute the suitability of the Soil and Terrain characteristics of the
+# land units in Marinduque province for soil of coconut.
+coconut_tersuit <- suitability(x = MarinduqueLT, y = COCONUTSoilCR,
+  interval = "unbias")
 
-# Map suitability class
-map_suit(x = coconut_tersuit, y = x, suit = "class",
-  location = c(121.999659, 13.378625), zoom = 11)
+# Map the suitability score of the land units
+map_suit(x = coconut_tersuit, y = MarinduqueLT,
+  country = "PHL", province = "Marinduque",
+  suit = "score")
 
-x <- MarinduqueWater
-y <- RICEBRWaterCR
-rice_watsuit <- suitability(x = x, y = y,
+# Map the suitability class of the land units
+map_suit(x = coconut_tersuit, y = MarinduqueLT,
+  country = "PHL", province = "Marinduque",
+  suit = "class")
+
+# Compute the suitability of the Water Characteristics of the
+# land units in Marinduque province for Rainfed Bunded Rice
+rice_watsuit <- suitability(x = MarinduqueWater, y = RICEBRWaterCR,
   interval = "unbias", sow.month = 1)
 
-# Map suitability scores
-map_suit(x = rice_watsuit, y = x, suit = "scores",
-  location = c(121.999659, 13.378625), zoom = 11)
+# Map the suitability scores of the land units
+map_suit(x = rice_watsuit, y = MarinduqueWater,
+  country = "PHL", province = "Marinduque")
 
-# Map suitability class
-map_suit(x = rice_watsuit, y = x, suit = "class",
-  location = c(121.999659, 13.378625), zoom = 11)
+# Map the suitability class of the land units
+map_suit(x = rice_watsuit, y = MarinduqueWater,
+  country = "PHL", province = "Marinduque",
+  suit = "class")
 
-# Map suitability scores with overall suitability
-map_suit(x = rice_watsuit, y = x, suit = "scores",
-  ovsuit = TRUE, location = c(121.999659, 13.378625), zoom = 11)
+# Map the suitability class of the land units along with
+# the overall suitability
+map_suit(x = rice_watsuit, y = MarinduqueWater,
+  country = "PHL", province = "Marinduque",
+  suit = "class", ovsuit = TRUE, ncol = 3)
+
+# ... - further option for theme function of ggplot2 can be use
+# to personalize the design of the plot
+map_suit(x = coconut_tersuit, y = MarinduqueLT, country = "PHL",
+  province = "Marinduque", suit = "score",
+  strip.text = element_text(size = 20, colour = "red", family = "serif",
+  lineheight = 3),
+  strip.background = element_rect(fill = "#FFBD2F"))
+
+# Using plot_theme option
+# Map the suitability score of the land units
+map_suit(x = coconut_tersuit, y = MarinduqueLT, country = "PHL",
+  province = "Marinduque",
+  suit = "score", plot_theme = "classic",
+  plot_theme_opts = list(base_size = 20, base_family = "serif"))
+
+# Above code is equivalent to the following code
+p <- map_suit(x = coconut_tersuit, y = MarinduqueLT, country = "PHL", province = "Marinduque", suit = "score")
+p + theme_classic(base_size = 20, base_family = "serif")
 }
 \seealso{
 \code{\link{suitability}}, \code{\link{overall_suit}}.
