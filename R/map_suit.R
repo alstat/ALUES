@@ -151,7 +151,7 @@ map_suit <- function (x, y, country = "PHL", province, suit = NULL, ovsuit = FAL
     }
     p1 <- ggplot() + geom_polygon(data = prov, aes(long + 0.008, lat - 0.005, group = group), fill = shadow) + 
       geom_polygon(data = prov, aes(long, lat, group = group), colour = "grey10", fill = fill) +
-      geom_point(aes(x = Lat, y = Lon, colour = value), data = d_map, size = size, alpha = alpha) + 
+      geom_tile(aes(x = Lat, y = Lon, fill = value), data = d_map, size = size, alpha = alpha) + 
       facet_wrap(~ Var2, ncol = ncol) + 
       geom_polygon(data = prov, aes(long, lat, group = group), colour = "#4E4E4C", alpha = 0) +
       geom_text(data = munic_coord, aes(x = X1, y = X2, label = label), alpha = text_opts$alpha,
@@ -159,7 +159,7 @@ map_suit <- function (x, y, country = "PHL", province, suit = NULL, ovsuit = FAL
                 fontface = text_opts$fontface,
                 lineheight = text_opts$lineheight, size = text_opts$size) +
       coord_equal() + ggtitle(as.character(labels$title)) + xlab(as.character(labels$xlab)) + ylab(as.character(labels$ylab)) +
-      scale_colour_gradientn(name = "Scores", colours = c("red","yellow","#10E31E")) +
+      #scale_colour_gradientn(name = "Scores", colours = c("red","yellow","#10E31E")) +
       theme(axis.text.y = element_text(angle = 90, hjust = 0.5), ...)
     if (!is.null(plot_theme) && plot_theme == "bw") {
       p1 + theme_bw(base_size = plot_theme_opts$base_size, base_family = plot_theme_opts$base_family)
@@ -204,7 +204,7 @@ map_suit <- function (x, y, country = "PHL", province, suit = NULL, ovsuit = FAL
     }
     p1 <- ggplot() + geom_polygon(data = prov, aes(long + 0.008, lat - 0.005, group = group), fill = shadow) + 
       geom_polygon(data = prov, aes(long, lat, group = group), colour = "grey10", fill = fill) +
-      geom_point(aes(x = Lat, y = Lon, colour = value), data = d_map, size = size, alpha = alpha) + 
+      geom_tile(aes(x = Lat, y = Lon, fill = value), data = d_map, size = size, alpha = alpha) + 
       facet_wrap(~ Var2, ncol = ncol) + 
       geom_polygon(data = prov, aes(long, lat, group = group), colour = "#4E4E4C", alpha = 0) +
       geom_text(data = munic_coord, aes(x = X1, y = X2, label = label), alpha = text_opts$alpha,
