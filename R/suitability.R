@@ -47,7 +47,8 @@
 #'              gaussian formula, which is often times referred as the variance.
 #' @details
 #' There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
-#' For triangular case, 
+#' For triangular case. If a given factor has values equal for all suitabilities, then the class will 
+#' trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with single tone domain \{0\}.
 #' 
 #' @examples
 #' library(ALUES)
@@ -62,7 +63,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
   f1 <- f2 <- numeric()
   
   if (is.numeric(sow.month)) {
-    f3 <- f4 <- numeric()
+    f3 <- f4 <- typ <- numeric()
     month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
     
@@ -75,29 +76,43 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     for (i in 1:nrow(y)) {
       for (j in 1:length(wmav)) {
         if (as.character(y[i, 1]) == wmav[j]) {
-          f3[i] <- j; f4[i] <- i
+          f3[i] <- j; f4[i] <- i; typ <- 0
         } else if (as.character(y[i, 1]) == tmav[j]) {
-          f3[i] <- j; f4[i] <- i
+          f3[i] <- j; f4[i] <- i; typ <- 1
         }
       }
     }
     
     f3 <- f3[complete.cases(f3)]
+    if (typ == 0) {
+      idx <- as.numeric(unlist(strsplit(wmav[f3], "WmAv"))[2])
+    } else {
+      idx <- as.numeric(unlist(strsplit(tmav[f3], "TmAv"))[2]) 
+    }
     
-    idx <- as.numeric(unlist(strsplit(tmav[f3], "TmAv"))[2])
-    
-    if (idx > 1)
-      sow.month <- month[sow.month + idx - 1]
-    else
+    if (idx > 1) {
+      sow.month <- month[sow.month + idx - 1] 
+    } else {
       sow.month <- month[sow.month]
+    }
     
     y <- as.matrix(y)
     for (i in 1:12) {
       if (sow.month == month[i]) {
-        if ((i + length(f3) - 1) > 12)
-          y[f3, 1] <- c(rev(rev(month)[1:(length(f3) - ((i + length(f3) - 1) - 12))]), month[1:((i + length(f3) - 1) - 12)])
-        else
-          y[f3, 1] <- month[i:(i + length(f3) - 1)] 
+        if ((i + length(f3) - 1) > 12) {
+          if (typ == 0) {
+            y[y[,1] %in% wmav[f3], 1] <- c(rev(rev(month)[1:(length(f3) - ((i + length(f3) - 1) - 12))]), month[1:((i + length(f3) - 1) - 12)]) 
+          } else {
+            y[y[,1] %in% tmav[f3], 1] <- c(rev(rev(month)[1:(length(f3) - ((i + length(f3) - 1) - 12))]), month[1:((i + length(f3) - 1) - 12)]) 
+          }
+        } else {
+          if (typ == 0) {
+            y[y[,1] %in% wmav[f3], 1] <- month[i:(i + length(f3) - 1)]  
+          } else {
+            y[y[,1] %in% tmav[f3], 1] <- month[i:(i + length(f3) - 1)]  
+          }
+        }
+        
       }
     }
     
@@ -130,10 +145,11 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
   if (is.null(interval)) {
     l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.75; l5 = 1; bias <- 0
   } else if (is.numeric(interval) && !is.null(interval)) {
-    if (length(interval) != 5)
-      stop("interval should have 5 limits, run ?landSuit for more.")
-    else
-      l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]; bias <- 0
+    if (length(interval) != 5) {
+      stop("interval should have 5 limits, run ?suitability for more.") 
+    } else {
+      l1 = interval[1]; l2 = interval[2]; l3 = interval[3]; l4 = interval[4]; l5 = interval[5]; bias <- 0 
+    }
   } else if (!is.null(interval) && interval == "unbias") {
     l1 = l2 = l3 = l4 = l5 = NA
     bias <- 1
@@ -176,13 +192,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         if ((!is.null(min)) && (min == "average")) {
           Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3])) / 2)
         } else if (is.numeric(min)){
-          if (length(min) == 1)
+          if (length(min) == 1) {
             Min <- min
-          else if (length(min) > 1) {
-            if (length(min) == ncol(x))
+          } else if (length(min) > 1) {
+            if (length(min) == ncol(x)) {
               Min <- min[f1[complete.cases(f1)][j]]
-            else if (length(min) != ncol(x))
+            } else if (length(min) != ncol(x)) {
               stop("min length should be equal to the number of factors in x.")
+            }
           }
         } else if (is.null(min)) {
           Min <- 0
@@ -190,13 +207,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         if (max == "average" && (!is.numeric(max))) {
           Max <- reqScore[3] + ((diff(reqScore[1:2]) + diff(reqScore[2:3])) / 2)
         } else if (is.numeric(max)) {
-          if (length(max) == 1)
+          if (length(max) == 1) {
             Max <- max
-          else if (length(max) > 1) {
-            if (length(max) == ncol(x))
+          } else if (length(max) > 1) {
+            if (length(max) == ncol(x)) {
               Max <- max[f1[complete.cases(f1)][j]] 
-            else if (length(max) != ncol(x))
+            } else if (length(max) != ncol(x)) {
               stop("max length should be equal to the number of factors in x.")
+            }
           }            
         }
         output <- case_a(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, mfNum = mfNum,
@@ -207,13 +225,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         if ((!is.null(min)) && (min == "average")) {
           Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3])) / 2)
         } else if (is.numeric(min)) {
-          if (length(min) == 1)
+          if (length(min) == 1) {
             Min <- min
-          else if (length(min) > 1) {
-            if (length(min) == ncol(x))
+          } else if (length(min) > 1) {
+            if (length(min) == ncol(x)) {
               Min <- min[f1[complete.cases(f1)][j]]
-            else if (length(min) != ncol(x))
+            } else if (length(min) != ncol(x)) {
               stop("min length should be equal to the number of factors in x.")
+            }
           }
         } else if (is.null(min)) {
           Min <- 0
@@ -221,14 +240,15 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         if (max == "average"  && (!is.numeric(max))) {
           Max <- reqScore[3] + ((diff(reqScore[1:2]) + diff(reqScore[2:3])) / 2)
         } else if (is.numeric(max)) {
-          if (length(max) == 1)
+          if (length(max) == 1) {
             Max <- max
-          else if (length(max) > 1) {
-            if (length(max) == ncol(x))
+          } else if (length(max) > 1) {
+            if (length(max) == ncol(x)) {
               Max <- max[f1[complete.cases(f1)][j]] 
-            else if (length(max) != ncol(x))
+            } else if (length(max) != ncol(x)) {
               stop("max length should be equal to the number of factors in x.")
-          }            
+            }
+          }
         }
         output <- case_b(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, mfNum = mfNum,
                          bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
@@ -240,14 +260,15 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           Min <- 0
           warning(paste("min is set to zero for factor", colnames(score)[j],
                         "since all suitability class intervals are equal."))
-        } else if (is.numeric(min)){
-          if (length(min) == 1)
+        } else if (is.numeric(min)) {
+          if (length(min) == 1) {
             Min <- min
-          else if (length(min) > 1) {
-            if (length(min) == ncol(x))
+          } else if (length(min) > 1) {
+            if (length(min) == ncol(x)) {
               Min <- min[f1[complete.cases(f1)][j]]
-            else if (length(min) != ncol(x))
+            } else if (length(min) != ncol(x)) {
               stop("min length should be equal to the number of factors in x.")
+            }
           }
         } else if (is.null(min)) {
           Min <- 0
@@ -258,13 +279,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           warning(paste("max is set to", reqScore[3], "for factor", colnames(score)[j],
                         "since all suitability class intervals are equal."))
         } else if (is.numeric(max)) {
-          if (length(max) == 1)
+          if (length(max) == 1) {
             Max <- max
-          else if (length(max) > 1) {
-            if (length(max) == ncol(x))
+          } else if (length(max) > 1) {
+            if (length(max) == ncol(x)) {
               Max <- max[f1[complete.cases(f1)][j]] 
-            else if (length(max) != ncol(x))
+            } else if (length(max) != ncol(x)) {
               stop("max length should be equal to the number of factors in x.")
+            }
           }            
         }
         output <- case_b(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, mfNum = mfNum,
@@ -275,13 +297,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       if ((!is.null(min)) && (min == "average")) {
         Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
       } else if (is.numeric(min)){
-        if (length(min) == 1)
+        if (length(min) == 1) {
           Min <- min
-        else if (length(min) > 1) {
-          if (length(min) == ncol(x))
+        } else if (length(min) > 1) {
+          if (length(min) == ncol(x)) {
             Min <- min[f1[complete.cases(f1)][j]]
-          else if (length(min) != ncol(x))
+          } else if (length(min) != ncol(x)) {
             stop("min length should be equal to the number of factors in x.")
+          }
         }
       } else if (is.null(min)) {
         Min <- 0
@@ -290,13 +313,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       if (max == "average" && (!is.numeric(max))) {
         Max <- reqScore[6] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
       } else if (is.numeric(max)) {
-        if (length(max) == 1)
+        if (length(max) == 1) {
           Max <- max
-        else if (length(max) > 1) {
-          if (length(max) == ncol(x))
+        } else if (length(max) > 1) {
+          if (length(max) == ncol(x)) {
             Max <- max[f1[complete.cases(f1)][j]] 
-          else if (length(max) != ncol(x))
+          } else if (length(max) != ncol(x)) {
             stop("max length should be equal to the number of factors in x.")
+          }
         }            
       }
       output <- case_c(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, Mid = Mid, mfNum = mfNum,
@@ -307,13 +331,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       if ((!is.null(min)) && (min == "average")) {
         Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5])) / 4)
       } else if (is.numeric(min)) {
-        if (length(min) == 1)
+        if (length(min) == 1) {
           Min <- min
-        else if (length(min) > 1) {
-          if (length(min) == ncol(x))
+        } else if (length(min) > 1) {
+          if (length(min) == ncol(x)) {
             Min <- min[f1[complete.cases(f1)][j]]
-          else if (length(min) != ncol(x))
+          } else if (length(min) != ncol(x)) {
             stop("min length should be equal to the number of factors in x.")
+          }
         }
       } else if (is.null(min)) {
         Min <- 0
@@ -322,37 +347,38 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       if (max == "average" && (!is.numeric(max))) {
         Max <- reqScore[5]
         warning(paste("max is set to", reqScore[5], "for factor", colnames(score)[j],
-                      "since there is a missing value on S3 class above optimum, run ?landSuit for more."))
+                      "since there is a missing value on S3 class above optimum, run ?suitability for more."))
       } else if (is.numeric(max)) {
-        if (length(max) == 1){
+        if (length(max) == 1) {
           Max <- reqScore[5]
           warning(paste("max is set to", reqScore[5], "for factor", colnames(score)[j],
-                        "since there is a missing value on S3 class above optimum, run ?landSuit for more.")) 
-        }
-        else if (length(max) > 1) {
-          if (length(max) == ncol(x)){
+                        "since there is a missing value on S3 class above optimum, run ?suitability for more.")) 
+        } else if (length(max) > 1) {
+          if (length(max) == ncol(x)) {
             Max <- reqScore[5]
             warning(paste("max is set to", reqScore[5], "for factor", colnames(score)[j],
-                          "since there is a missing value on S3 class above optimum, run ?landSuit for more.")) 
+                          "since there is a missing value on S3 class above optimum, run ?suitability for more.")) 
           }
-          else if (length(max) != ncol(x))
+          else if (length(max) != ncol(x)) {
             stop("max length should be equal to the number of factors in x.")
+          }
         }            
       }
       output <- case_d(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, Mid = Mid, mfNum = mfNum,
-                       wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], d = reqScore[4], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                       bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], d = reqScore[4], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
       score <- output[[1]]; suiClass <- output[[2]]
     } else if (n3 == 4) {
       if ((!is.null(min)) && (min == "average")) {
         Min <- reqScore[1] - ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4])) / 3)
       } else if (is.numeric(min)){
-        if (length(min) == 1)
+        if (length(min) == 1) {
           Min <- min
-        else if (length(min) > 1) {
-          if (length(min) == ncol(x))
+        } else if (length(min) > 1) {
+          if (length(min) == ncol(x)) {
             Min <- min[f1[complete.cases(f1)][j]]
-          else if (length(min) != ncol(x))
+          } else if (length(min) != ncol(x)) {
             stop("min length should be equal to the number of factors in x.")
+          }
         }
       } else if (is.null(min)) {
         Min <- 0
@@ -361,25 +387,25 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       if (max == "average" && (!is.numeric(max))) {
         Max <- reqScore[4]
         warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
-                      "since there is a missing value on S3 class above optimum, run ?landSuit for more."))
+                      "since there is a missing value on S3 class above optimum, run ?suitability for more."))
       } else if (is.numeric(max)) {
-        if (length(max) == 1){
+        if (length(max) == 1) {
           Max <- reqScore[4]
           warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
-                        "since there is a missing value on S3 class above optimum, run ?landSuit for more.")) 
+                        "since there is a missing value on S3 class above optimum, run ?suitability for more.")) 
         }
         else if (length(max) > 1) {
-          if (length(max) == ncol(x)){
+          if (length(max) == ncol(x)) {
             Max <- reqScore[4]
             warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
-                          "since there is a missing value on S3 class above optimum, run ?landSuit for more.")) 
+                          "since there is a missing value on S3 class above optimum, run ?suitability for more.")) 
           }
           else if (length(max) != ncol(x))
             stop("max length should be equal to the number of factors in x.")
         }            
       }
       output <- case_e(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, Mid = Mid, mfNum = mfNum,
-                       wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                       bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
       score <- output[[1]]; suiClass <- output[[2]]
     }
     k <- k + 1
