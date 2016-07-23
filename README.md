@@ -19,9 +19,10 @@ install_github(repo = 'ALUES', username = 'alstat')
 We want to hear some feedbacks, so if you have any suggestion or issues regarding this package, please do submit it [here](https://github.com/alstat/ALUES/issues).
 
 ## Authors
-* [Arnold R. Salvacion](https://github.com/arsalvacion)
- * email: arsalvacion@gmail.com
- * blog: http://r-nold.blogspot.com/
 * [Al-Ahmadgaid B. Asaad](https://github.com/alstat) (Maintainer)
  * email: alstated@gmail.com
  * blog: http://alstatr.blogspot.com/
+* [Arnold R. Salvacion](https://github.com/arsalvacion)
+ * email: arsalvacion@gmail.com
+ * blog: http://r-nold.blogspot.com/
+
