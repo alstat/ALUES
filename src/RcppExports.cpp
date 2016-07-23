@@ -9,166 +9,146 @@ using namespace Rcpp;
 List case_a(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, double Min, double Max, double mfNum, double bias, double wt, int j, double a, double b, double c, double l1, double l2, double l3, double l4, double l5, double sigma);
 RcppExport SEXP ALUES_case_a(SEXP dfSEXP, SEXP scoreSEXP, SEXP suiClassSEXP, SEXP MinSEXP, SEXP MaxSEXP, SEXP mfNumSEXP, SEXP biasSEXP, SEXP wtSEXP, SEXP jSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP l1SEXP, SEXP l2SEXP, SEXP l3SEXP, SEXP l4SEXP, SEXP l5SEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP );
-        Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP );
-        Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP );
-        Rcpp::traits::input_parameter< double >::type Min(MinSEXP );
-        Rcpp::traits::input_parameter< double >::type Max(MaxSEXP );
-        Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP );
-        Rcpp::traits::input_parameter< double >::type bias(biasSEXP );
-        Rcpp::traits::input_parameter< double >::type wt(wtSEXP );
-        Rcpp::traits::input_parameter< int >::type j(jSEXP );
-        Rcpp::traits::input_parameter< double >::type a(aSEXP );
-        Rcpp::traits::input_parameter< double >::type b(bSEXP );
-        Rcpp::traits::input_parameter< double >::type c(cSEXP );
-        Rcpp::traits::input_parameter< double >::type l1(l1SEXP );
-        Rcpp::traits::input_parameter< double >::type l2(l2SEXP );
-        Rcpp::traits::input_parameter< double >::type l3(l3SEXP );
-        Rcpp::traits::input_parameter< double >::type l4(l4SEXP );
-        Rcpp::traits::input_parameter< double >::type l5(l5SEXP );
-        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        List __result = case_a(df, score, suiClass, Min, Max, mfNum, bias, wt, j, a, b, c, l1, l2, l3, l4, l5, sigma);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP);
+    Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP);
+    Rcpp::traits::input_parameter< double >::type Min(MinSEXP);
+    Rcpp::traits::input_parameter< double >::type Max(MaxSEXP);
+    Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP);
+    Rcpp::traits::input_parameter< double >::type bias(biasSEXP);
+    Rcpp::traits::input_parameter< double >::type wt(wtSEXP);
+    Rcpp::traits::input_parameter< int >::type j(jSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type l1(l1SEXP);
+    Rcpp::traits::input_parameter< double >::type l2(l2SEXP);
+    Rcpp::traits::input_parameter< double >::type l3(l3SEXP);
+    Rcpp::traits::input_parameter< double >::type l4(l4SEXP);
+    Rcpp::traits::input_parameter< double >::type l5(l5SEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    __result = Rcpp::wrap(case_a(df, score, suiClass, Min, Max, mfNum, bias, wt, j, a, b, c, l1, l2, l3, l4, l5, sigma));
+    return __result;
 END_RCPP
 }
 // case_b
 List case_b(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, double Min, double Max, double mfNum, double bias, double wt, int j, double a, double b, double c, double l1, double l2, double l3, double l4, double l5, double sigma);
 RcppExport SEXP ALUES_case_b(SEXP dfSEXP, SEXP scoreSEXP, SEXP suiClassSEXP, SEXP MinSEXP, SEXP MaxSEXP, SEXP mfNumSEXP, SEXP biasSEXP, SEXP wtSEXP, SEXP jSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP l1SEXP, SEXP l2SEXP, SEXP l3SEXP, SEXP l4SEXP, SEXP l5SEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP );
-        Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP );
-        Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP );
-        Rcpp::traits::input_parameter< double >::type Min(MinSEXP );
-        Rcpp::traits::input_parameter< double >::type Max(MaxSEXP );
-        Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP );
-        Rcpp::traits::input_parameter< double >::type bias(biasSEXP );
-        Rcpp::traits::input_parameter< double >::type wt(wtSEXP );
-        Rcpp::traits::input_parameter< int >::type j(jSEXP );
-        Rcpp::traits::input_parameter< double >::type a(aSEXP );
-        Rcpp::traits::input_parameter< double >::type b(bSEXP );
-        Rcpp::traits::input_parameter< double >::type c(cSEXP );
-        Rcpp::traits::input_parameter< double >::type l1(l1SEXP );
-        Rcpp::traits::input_parameter< double >::type l2(l2SEXP );
-        Rcpp::traits::input_parameter< double >::type l3(l3SEXP );
-        Rcpp::traits::input_parameter< double >::type l4(l4SEXP );
-        Rcpp::traits::input_parameter< double >::type l5(l5SEXP );
-        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        List __result = case_b(df, score, suiClass, Min, Max, mfNum, bias, wt, j, a, b, c, l1, l2, l3, l4, l5, sigma);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP);
+    Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP);
+    Rcpp::traits::input_parameter< double >::type Min(MinSEXP);
+    Rcpp::traits::input_parameter< double >::type Max(MaxSEXP);
+    Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP);
+    Rcpp::traits::input_parameter< double >::type bias(biasSEXP);
+    Rcpp::traits::input_parameter< double >::type wt(wtSEXP);
+    Rcpp::traits::input_parameter< int >::type j(jSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type l1(l1SEXP);
+    Rcpp::traits::input_parameter< double >::type l2(l2SEXP);
+    Rcpp::traits::input_parameter< double >::type l3(l3SEXP);
+    Rcpp::traits::input_parameter< double >::type l4(l4SEXP);
+    Rcpp::traits::input_parameter< double >::type l5(l5SEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    __result = Rcpp::wrap(case_b(df, score, suiClass, Min, Max, mfNum, bias, wt, j, a, b, c, l1, l2, l3, l4, l5, sigma));
+    return __result;
 END_RCPP
 }
 // case_c
 List case_c(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, double Min, double Max, double Mid, double mfNum, double bias, double wt, int j, double a, double b, double c, double d, double e, double f, double l1, double l2, double l3, double l4, double l5, double sigma);
 RcppExport SEXP ALUES_case_c(SEXP dfSEXP, SEXP scoreSEXP, SEXP suiClassSEXP, SEXP MinSEXP, SEXP MaxSEXP, SEXP MidSEXP, SEXP mfNumSEXP, SEXP biasSEXP, SEXP wtSEXP, SEXP jSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP dSEXP, SEXP eSEXP, SEXP fSEXP, SEXP l1SEXP, SEXP l2SEXP, SEXP l3SEXP, SEXP l4SEXP, SEXP l5SEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP );
-        Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP );
-        Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP );
-        Rcpp::traits::input_parameter< double >::type Min(MinSEXP );
-        Rcpp::traits::input_parameter< double >::type Max(MaxSEXP );
-        Rcpp::traits::input_parameter< double >::type Mid(MidSEXP );
-        Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP );
-        Rcpp::traits::input_parameter< double >::type bias(biasSEXP );
-        Rcpp::traits::input_parameter< double >::type wt(wtSEXP );
-        Rcpp::traits::input_parameter< int >::type j(jSEXP );
-        Rcpp::traits::input_parameter< double >::type a(aSEXP );
-        Rcpp::traits::input_parameter< double >::type b(bSEXP );
-        Rcpp::traits::input_parameter< double >::type c(cSEXP );
-        Rcpp::traits::input_parameter< double >::type d(dSEXP );
-        Rcpp::traits::input_parameter< double >::type e(eSEXP );
-        Rcpp::traits::input_parameter< double >::type f(fSEXP );
-        Rcpp::traits::input_parameter< double >::type l1(l1SEXP );
-        Rcpp::traits::input_parameter< double >::type l2(l2SEXP );
-        Rcpp::traits::input_parameter< double >::type l3(l3SEXP );
-        Rcpp::traits::input_parameter< double >::type l4(l4SEXP );
-        Rcpp::traits::input_parameter< double >::type l5(l5SEXP );
-        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        List __result = case_c(df, score, suiClass, Min, Max, Mid, mfNum, bias, wt, j, a, b, c, d, e, f, l1, l2, l3, l4, l5, sigma);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP);
+    Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP);
+    Rcpp::traits::input_parameter< double >::type Min(MinSEXP);
+    Rcpp::traits::input_parameter< double >::type Max(MaxSEXP);
+    Rcpp::traits::input_parameter< double >::type Mid(MidSEXP);
+    Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP);
+    Rcpp::traits::input_parameter< double >::type bias(biasSEXP);
+    Rcpp::traits::input_parameter< double >::type wt(wtSEXP);
+    Rcpp::traits::input_parameter< int >::type j(jSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type d(dSEXP);
+    Rcpp::traits::input_parameter< double >::type e(eSEXP);
+    Rcpp::traits::input_parameter< double >::type f(fSEXP);
+    Rcpp::traits::input_parameter< double >::type l1(l1SEXP);
+    Rcpp::traits::input_parameter< double >::type l2(l2SEXP);
+    Rcpp::traits::input_parameter< double >::type l3(l3SEXP);
+    Rcpp::traits::input_parameter< double >::type l4(l4SEXP);
+    Rcpp::traits::input_parameter< double >::type l5(l5SEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    __result = Rcpp::wrap(case_c(df, score, suiClass, Min, Max, Mid, mfNum, bias, wt, j, a, b, c, d, e, f, l1, l2, l3, l4, l5, sigma));
+    return __result;
 END_RCPP
 }
 // case_d
 List case_d(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, double Min, double Max, double Mid, double mfNum, double bias, double wt, int j, double a, double b, double c, double d, double l1, double l2, double l3, double l4, double l5, double sigma);
 RcppExport SEXP ALUES_case_d(SEXP dfSEXP, SEXP scoreSEXP, SEXP suiClassSEXP, SEXP MinSEXP, SEXP MaxSEXP, SEXP MidSEXP, SEXP mfNumSEXP, SEXP biasSEXP, SEXP wtSEXP, SEXP jSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP dSEXP, SEXP l1SEXP, SEXP l2SEXP, SEXP l3SEXP, SEXP l4SEXP, SEXP l5SEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP );
-        Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP );
-        Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP );
-        Rcpp::traits::input_parameter< double >::type Min(MinSEXP );
-        Rcpp::traits::input_parameter< double >::type Max(MaxSEXP );
-        Rcpp::traits::input_parameter< double >::type Mid(MidSEXP );
-        Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP );
-        Rcpp::traits::input_parameter< double >::type bias(biasSEXP );
-        Rcpp::traits::input_parameter< double >::type wt(wtSEXP );
-        Rcpp::traits::input_parameter< int >::type j(jSEXP );
-        Rcpp::traits::input_parameter< double >::type a(aSEXP );
-        Rcpp::traits::input_parameter< double >::type b(bSEXP );
-        Rcpp::traits::input_parameter< double >::type c(cSEXP );
-        Rcpp::traits::input_parameter< double >::type d(dSEXP );
-        Rcpp::traits::input_parameter< double >::type l1(l1SEXP );
-        Rcpp::traits::input_parameter< double >::type l2(l2SEXP );
-        Rcpp::traits::input_parameter< double >::type l3(l3SEXP );
-        Rcpp::traits::input_parameter< double >::type l4(l4SEXP );
-        Rcpp::traits::input_parameter< double >::type l5(l5SEXP );
-        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        List __result = case_d(df, score, suiClass, Min, Max, Mid, mfNum, bias, wt, j, a, b, c, d, l1, l2, l3, l4, l5, sigma);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP);
+    Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP);
+    Rcpp::traits::input_parameter< double >::type Min(MinSEXP);
+    Rcpp::traits::input_parameter< double >::type Max(MaxSEXP);
+    Rcpp::traits::input_parameter< double >::type Mid(MidSEXP);
+    Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP);
+    Rcpp::traits::input_parameter< double >::type bias(biasSEXP);
+    Rcpp::traits::input_parameter< double >::type wt(wtSEXP);
+    Rcpp::traits::input_parameter< int >::type j(jSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type d(dSEXP);
+    Rcpp::traits::input_parameter< double >::type l1(l1SEXP);
+    Rcpp::traits::input_parameter< double >::type l2(l2SEXP);
+    Rcpp::traits::input_parameter< double >::type l3(l3SEXP);
+    Rcpp::traits::input_parameter< double >::type l4(l4SEXP);
+    Rcpp::traits::input_parameter< double >::type l5(l5SEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    __result = Rcpp::wrap(case_d(df, score, suiClass, Min, Max, Mid, mfNum, bias, wt, j, a, b, c, d, l1, l2, l3, l4, l5, sigma));
+    return __result;
 END_RCPP
 }
 // case_e
 List case_e(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, double Min, double Max, double Mid, double mfNum, double bias, double wt, int j, double a, double b, double c, double l1, double l2, double l3, double l4, double l5, double sigma);
 RcppExport SEXP ALUES_case_e(SEXP dfSEXP, SEXP scoreSEXP, SEXP suiClassSEXP, SEXP MinSEXP, SEXP MaxSEXP, SEXP MidSEXP, SEXP mfNumSEXP, SEXP biasSEXP, SEXP wtSEXP, SEXP jSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP l1SEXP, SEXP l2SEXP, SEXP l3SEXP, SEXP l4SEXP, SEXP l5SEXP, SEXP sigmaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP );
-        Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP );
-        Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP );
-        Rcpp::traits::input_parameter< double >::type Min(MinSEXP );
-        Rcpp::traits::input_parameter< double >::type Max(MaxSEXP );
-        Rcpp::traits::input_parameter< double >::type Mid(MidSEXP );
-        Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP );
-        Rcpp::traits::input_parameter< double >::type bias(biasSEXP );
-        Rcpp::traits::input_parameter< double >::type wt(wtSEXP );
-        Rcpp::traits::input_parameter< int >::type j(jSEXP );
-        Rcpp::traits::input_parameter< double >::type a(aSEXP );
-        Rcpp::traits::input_parameter< double >::type b(bSEXP );
-        Rcpp::traits::input_parameter< double >::type c(cSEXP );
-        Rcpp::traits::input_parameter< double >::type l1(l1SEXP );
-        Rcpp::traits::input_parameter< double >::type l2(l2SEXP );
-        Rcpp::traits::input_parameter< double >::type l3(l3SEXP );
-        Rcpp::traits::input_parameter< double >::type l4(l4SEXP );
-        Rcpp::traits::input_parameter< double >::type l5(l5SEXP );
-        Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP );
-        List __result = case_e(df, score, suiClass, Min, Max, Mid, mfNum, bias, wt, j, a, b, c, l1, l2, l3, l4, l5, sigma);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type score(scoreSEXP);
+    Rcpp::traits::input_parameter< CharacterMatrix >::type suiClass(suiClassSEXP);
+    Rcpp::traits::input_parameter< double >::type Min(MinSEXP);
+    Rcpp::traits::input_parameter< double >::type Max(MaxSEXP);
+    Rcpp::traits::input_parameter< double >::type Mid(MidSEXP);
+    Rcpp::traits::input_parameter< double >::type mfNum(mfNumSEXP);
+    Rcpp::traits::input_parameter< double >::type bias(biasSEXP);
+    Rcpp::traits::input_parameter< double >::type wt(wtSEXP);
+    Rcpp::traits::input_parameter< int >::type j(jSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type l1(l1SEXP);
+    Rcpp::traits::input_parameter< double >::type l2(l2SEXP);
+    Rcpp::traits::input_parameter< double >::type l3(l3SEXP);
+    Rcpp::traits::input_parameter< double >::type l4(l4SEXP);
+    Rcpp::traits::input_parameter< double >::type l5(l5SEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    __result = Rcpp::wrap(case_e(df, score, suiClass, Min, Max, Mid, mfNum, bias, wt, j, a, b, c, l1, l2, l3, l4, l5, sigma));
+    return __result;
 END_RCPP
 }
