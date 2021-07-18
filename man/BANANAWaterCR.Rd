@@ -4,7 +4,9 @@
 \name{BANANAWaterCR}
 \alias{BANANAWaterCR}
 \title{Banana Water Requirement for Land Evaluation}
-\format{A data frame with 2 rows and 8 columns}
+\format{
+A data frame with 2 rows and 8 columns
+}
 \description{
 A dataset containing the water characteristics of the crop requirements for farming Banana.
 }
@@ -17,8 +19,7 @@ The following are the factors for evaluation:
 }
 \seealso{
 \itemize{
- \item Yen, B. T., Pheng, K. S., and Hoanh, C. T. (2006). \emph{LUSET: Land Use Suitability Evaluation Tool User’s Guide}. International Rice Research Institute.
+ \item Yen, B. T., Pheng, K. S., and Hoanh, C. T. (2006). \emph{LUSET: Land Use Suitability Evaluation Tool User's Guide}. International Rice Research Institute.
  }
 }
 \keyword{dataset}
-

@@ -24,14 +24,10 @@ Description: Agricultural Land Use Evaluation System (ALUES) is an R package
 License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
+Encoding: UTF-8
 Depends:
     Rcpp (>= 0.10.6),
     raster (>= 2.3-40),
     ggplot2 (>= 1.0.1),
     reshape2 (>= 1.4.1)
-Imports:
-    Rcpp,
-    raster,
-    ggplot2,
-    reshape2
-RoxygenNote: 5.0.1
+RoxygenNote: 7.1.1

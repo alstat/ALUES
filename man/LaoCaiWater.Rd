@@ -4,7 +4,9 @@
 \name{LaoCaiWater}
 \alias{LaoCaiWater}
 \title{Water Chracteristics of Lao Cai, Vietnam}
-\format{A data frame with 2928 rows and 12 columns}
+\format{
+A data frame with 2928 rows and 12 columns
+}
 \description{
 A dataset containing the water chracteristics of the land units in Lao Cai, Vietnam.
 }
@@ -25,4 +27,3 @@ A dataset containing the water chracteristics of the land units in Lao Cai, Viet
 }
 }
 \keyword{dataset}
-

@@ -29,7 +29,7 @@ This function computes the overall suitability scores and class of the land unit
 \examples{
 library(ALUES)
 x <- LaoCaiLT
-y <- COCONUTSoilCR
+y <- COCONUTSoil
 
 # Compute the suitability of the land units of the Lao Cai land
 # terrain characteristics using the 
@@ -44,4 +44,3 @@ head(overall_suit(coconut_tersuit))
 \seealso{
 \code{\link{suitability}}
 }
-

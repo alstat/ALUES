@@ -4,7 +4,9 @@
 \name{MarinduqueLT}
 \alias{MarinduqueLT}
 \title{Land and Terrain Chracteristics of Marinduque, Philippines}
-\format{A data frame with 881 rows and 6 columns}
+\format{
+A data frame with 881 rows and 6 columns
+}
 \description{
 A dataset containing the land and terrain characteristics of the land units in
 Marinduque, Philippines.
@@ -20,4 +22,3 @@ Marinduque, Philippines.
 }
 }
 \keyword{dataset}
-

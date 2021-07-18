@@ -23,7 +23,7 @@
 #' @examples
 #' library(ALUES)
 #' x <- LaoCaiLT
-#' y <- COCONUTSoilCR
+#' y <- COCONUTSoil
 #' 
 #' # Compute the suitability of the land units of the Lao Cai land
 #' # terrain characteristics using the 
