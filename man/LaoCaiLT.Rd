@@ -4,7 +4,9 @@
 \name{LaoCaiLT}
 \alias{LaoCaiLT}
 \title{Land and Terrain Chracteristics of Lao Cai, Vietnam}
-\format{A data frame with 2928 rows and 10 columns}
+\format{
+A data frame with 2928 rows and 10 columns
+}
 \description{
 A dataset containing the land and terrain characteristics of the land units in
 Lao Cai, Vietnam.
@@ -24,4 +26,3 @@ Lao Cai, Vietnam.
 }
 }
 \keyword{dataset}
-

@@ -53,7 +53,7 @@
 #' @examples
 #' library(ALUES)
 #' x <- LaoCaiLT
-#' y <- COCONUTSoilCR
+#' y <- COCONUTSoil
 #' 
 #' coconut_tersuit <- suitability(x = x, y = y)
 #' lapply(coconut_tersuit, function(x) head(x, n = 10))
@@ -83,7 +83,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       }
     }
     
-    f3 <- f3[complete.cases(f3)]
+    f3 <- f3[stats::complete.cases(f3)]
     if (typ == 0) {
       idx <- as.numeric(unlist(strsplit(wmav[f3], "WmAv"))[2])
     } else {
@@ -127,9 +127,9 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     }
   }
   
-  LU <- as.matrix(x[, f1[complete.cases(f1)]])
-  CR <- as.matrix(y[f2[complete.cases(f1)], ])
-  colnames(LU) <- names(x)[f1[complete.cases(f1)]]
+  LU <- as.matrix(x[, f1[stats::complete.cases(f1)]])
+  CR <- as.matrix(y[f2[stats::complete.cases(f1)], ])
+  colnames(LU) <- names(x)[f1[stats::complete.cases(f1)]]
   
   if (ncol(LU) == 0) {
     warning("For water characteristic, make sure to input sowing month (sow.month), say 1, w/c implies January")
@@ -178,10 +178,10 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     rScore <- rev(as.numeric(CR[k, -1]))
     if (is.na(rScore[1])) {
       wt <- 0
-      reqScore <- rev(rScore[complete.cases(rScore)])
+      reqScore <- rev(rScore[stats::complete.cases(rScore)])
     } else {
       wt <- rScore[1]
-      reqScore <- rev(rScore[complete.cases(rScore)][-1])
+      reqScore <- rev(rScore[stats::complete.cases(rScore)][-1])
     }
     
     n3 <- length(reqScore)
@@ -196,7 +196,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
             Min <- min
           } else if (length(min) > 1) {
             if (length(min) == ncol(x)) {
-              Min <- min[f1[complete.cases(f1)][j]]
+              Min <- min[f1[stats::complete.cases(f1)][j]]
             } else if (length(min) != ncol(x)) {
               stop("min length should be equal to the number of factors in x.")
             }
@@ -211,7 +211,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
             Max <- max
           } else if (length(max) > 1) {
             if (length(max) == ncol(x)) {
-              Max <- max[f1[complete.cases(f1)][j]] 
+              Max <- max[f1[stats::complete.cases(f1)][j]] 
             } else if (length(max) != ncol(x)) {
               stop("max length should be equal to the number of factors in x.")
             }
@@ -229,7 +229,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
             Min <- min
           } else if (length(min) > 1) {
             if (length(min) == ncol(x)) {
-              Min <- min[f1[complete.cases(f1)][j]]
+              Min <- min[f1[stats::complete.cases(f1)][j]]
             } else if (length(min) != ncol(x)) {
               stop("min length should be equal to the number of factors in x.")
             }
@@ -244,7 +244,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
             Max <- max
           } else if (length(max) > 1) {
             if (length(max) == ncol(x)) {
-              Max <- max[f1[complete.cases(f1)][j]] 
+              Max <- max[f1[stats::complete.cases(f1)][j]] 
             } else if (length(max) != ncol(x)) {
               stop("max length should be equal to the number of factors in x.")
             }
@@ -265,7 +265,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
             Min <- min
           } else if (length(min) > 1) {
             if (length(min) == ncol(x)) {
-              Min <- min[f1[complete.cases(f1)][j]]
+              Min <- min[f1[stats::complete.cases(f1)][j]]
             } else if (length(min) != ncol(x)) {
               stop("min length should be equal to the number of factors in x.")
             }
@@ -283,7 +283,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
             Max <- max
           } else if (length(max) > 1) {
             if (length(max) == ncol(x)) {
-              Max <- max[f1[complete.cases(f1)][j]] 
+              Max <- max[f1[stats::complete.cases(f1)][j]] 
             } else if (length(max) != ncol(x)) {
               stop("max length should be equal to the number of factors in x.")
             }
@@ -301,7 +301,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           Min <- min
         } else if (length(min) > 1) {
           if (length(min) == ncol(x)) {
-            Min <- min[f1[complete.cases(f1)][j]]
+            Min <- min[f1[stats::complete.cases(f1)][j]]
           } else if (length(min) != ncol(x)) {
             stop("min length should be equal to the number of factors in x.")
           }
@@ -317,7 +317,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           Max <- max
         } else if (length(max) > 1) {
           if (length(max) == ncol(x)) {
-            Max <- max[f1[complete.cases(f1)][j]] 
+            Max <- max[f1[stats::complete.cases(f1)][j]] 
           } else if (length(max) != ncol(x)) {
             stop("max length should be equal to the number of factors in x.")
           }
@@ -335,7 +335,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           Min <- min
         } else if (length(min) > 1) {
           if (length(min) == ncol(x)) {
-            Min <- min[f1[complete.cases(f1)][j]]
+            Min <- min[f1[stats::complete.cases(f1)][j]]
           } else if (length(min) != ncol(x)) {
             stop("min length should be equal to the number of factors in x.")
           }
@@ -375,7 +375,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           Min <- min
         } else if (length(min) > 1) {
           if (length(min) == ncol(x)) {
-            Min <- min[f1[complete.cases(f1)][j]]
+            Min <- min[f1[stats::complete.cases(f1)][j]]
           } else if (length(min) != ncol(x)) {
             stop("min length should be equal to the number of factors in x.")
           }
@@ -411,7 +411,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     k <- k + 1
     minVals[j] <- Min; maxVals[j] <- Max
   }
-  names(minVals) <- names(maxVals) <- names(x)[f1[complete.cases(f1)]]
+  names(minVals) <- names(maxVals) <- names(x)[f1[stats::complete.cases(f1)]]
   
   outf <- list("Actual Factors Evaluated" = names(minVals), 
                "Suitability Score" = as.data.frame(score), 

@@ -4,7 +4,9 @@
 \name{MarinduqueWater}
 \alias{MarinduqueWater}
 \title{Water Chracteristics of Marinduque, Philippines}
-\format{A data frame with 881 rows and 14 columns}
+\format{
+A data frame with 881 rows and 14 columns
+}
 \description{
 A dataset containing the water characteristics of the land units in
 Marinduque, Philippines.
@@ -28,4 +30,3 @@ Marinduque, Philippines.
 }
 }
 \keyword{dataset}
-

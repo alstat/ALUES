@@ -23,9 +23,9 @@
 #' the power of Rcpp library for efficient computation.
 #' 
 #' @author 
-#' Arnold Salvacion <arsalvacion@@gmail.com>
+#' Al-Ahmadgaid B. Asaad <alahmadgaid@@gmail.com>
+#' Arnold R. Salvacion <arsalvacion@@gmail.com>
 #' 
-#' Al-Ahmadgaid Bahauddin Asaad <alstated@@gmail.com>
 #' 
 #' @import Rcpp raster ggplot2 reshape2
 #' @docType package
