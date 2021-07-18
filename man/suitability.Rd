@@ -39,10 +39,10 @@ to vector of \code{min}s, the length of this vector should be equal
 to the number of factors in \code{x}. However, if set to \code{"average"},
 then \code{min} is computed from different conditions:
 
-If for example, using \code{ALUES::COCONUTSoilCR} (coconut terrain requirements), 
+If for example, using \code{ALUES::COCONUTSoil} (coconut terrain requirements), 
 as shown below,
 
-\code{     Code   S3   S2    S1 S1.1 S2.1 S3.1 Weight.class}\cr
+\code{     code s3_a s2_a  s1_a s1_b s2_b s3_b          wts}\cr
 \code{1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA}\cr
 \code{2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA}\cr
 \code{3      BS 19.9 19.9  20.0   NA   NA   NA           NA}\cr

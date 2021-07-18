@@ -3,7 +3,4 @@
 export(overall_suit)
 export(suitability)
 import(Rcpp)
-import(ggplot2)
-import(raster)
-import(reshape2)
 useDynLib(ALUES)

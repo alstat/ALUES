@@ -27,7 +27,7 @@
 #' Arnold R. Salvacion <arsalvacion@@gmail.com>
 #' 
 #' 
-#' @import Rcpp raster ggplot2 reshape2
+#' @import Rcpp
 #' @docType package
 #' @useDynLib ALUES
 #' @name ALUES-package
