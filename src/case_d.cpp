@@ -97,11 +97,11 @@ List case_d(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
     // Gaussian
     if (mfNum == 3) {
       if (df(i, w) <= Mid) {
-        score(i, w) = exp((-1 / 2) * pow(((df(i, w) - Mid) / sigma), 2)); 
+        score(i, w) = exp(- pow(((df(i, w) - Mid) / sigma), 2)/2.0); 
         if (bias == 1) {
-          l1 = 0; l2 = exp((-1 / 2) * pow(((a - Mid) / sigma), 2));
-          l3 = exp((-1 / 2) * pow(((b - Mid) / sigma), 2));
-          l4 = exp((-1 / 2) * pow(((c - Mid) / sigma), 2));
+          l1 = 0; l2 = exp(- pow(((a - Mid) / sigma), 2)/2.0);
+          l3 = exp(- pow(((b - Mid) / sigma), 2)/2.0);
+          l4 = exp(- pow(((c - Mid) / sigma), 2)/2.0);
           l5 = 1;
         }
         if ((score(i, w) >= l1) && (score(i, w) < l2)) {
@@ -116,10 +116,10 @@ List case_d(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
           suiClass(i, w) = "NA";
         }
       } else if (df(i, w) > Mid) {
-        score(i, w) = exp(-(1 / 2) * pow(((df(i, w) - Mid) / sigma), 2));
+        score(i, w) = exp(-(1 / 2) * pow(((df(i, w) - Mid) / sigma), 2)/2.0);
         if (bias == 1) {
-          l3 = exp(-(1 / 2) * pow(((Max - Mid) / sigma), 2));
-          l4 = exp(-(1 / 2) * pow(((d - Mid) / sigma), 2));
+          l3 = exp(-(1 / 2) * pow(((Max - Mid) / sigma), 2)/2.0);
+          l4 = exp(-(1 / 2) * pow(((d - Mid) / sigma), 2)/2.0);
           l5 = 1;
         }
         if ((score(i, w) >= l3) && (score(i, w) < l4)) {
