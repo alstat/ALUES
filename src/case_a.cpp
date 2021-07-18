@@ -1,8 +1,5 @@
 #include <Rcpp.h>
-#include <math.h>
-#include <iostream>
 using namespace Rcpp;
-using namespace std;
 
 // Below is a simple example of exporting a C++ function to R. You can
 // source this function into an R session using the Rcpp::sourceCpp 
