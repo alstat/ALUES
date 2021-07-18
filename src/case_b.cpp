@@ -71,11 +71,11 @@ List case_b(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
       if (df(i, w) > Max) {
         score(i, w) = 0; suiClass(i, w) = "N";
       } else if (df(i, w) <= Max) {
-        score(i, w) = exp((- 1 / 2) * pow(((df(i, w) - Max) / sigma), 2));
+        score(i, w) = exp(-pow(((df(i, w) - Max) / sigma), 2)/2.0);
         if (bias == 1) {
-          l1 = 0; l2 = exp((- 1 / 2) * pow(((a - Max) / sigma), 2));
-          l3 = exp((- 1 / 2) * pow(((b - Max) / sigma), 2));
-          l4 = exp((- 1 / 2) * pow(((c - Max) / sigma), 2));
+          l1 = 0; l2 = exp(-pow(((a - Max) / sigma), 2)/2.0);
+          l3 = exp(-pow(((b - Max) / sigma), 2)/2.0);
+          l4 = exp(-pow(((c - Max) / sigma), 2)/2.0);
           l5 = 1;
         }
         if ((score(i, w) >= l1) && (score(i, w) < l2)) {
