@@ -1,9 +1,9 @@
 Package: ALUES
 Type: Package
 Title: Agricultural Land Use Evaluation System
-Version: 0.1.1
-Date: 2013-03-18
-Author: Al-Ahmadgaid B. Asaad <alstated@gmail.com>
+Version: 0.2.1
+Date: 2020-06-18
+Author: Al-Ahmadgaid B. Asaad <alahmadgaid@gmail.com>
         Arnold R. Salvacion <arsalvacion@gmail.com>
 Maintainer: Al-Ahmadgaid B. Asaad <alstated@gmail.com>
 Description: Agricultural Land Use Evaluation System (ALUES) is an R package
@@ -26,8 +26,5 @@ LazyData: true
 LinkingTo: Rcpp
 Encoding: UTF-8
 Depends:
-    Rcpp (>= 0.10.6),
-    raster (>= 2.3-40),
-    ggplot2 (>= 1.0.1),
-    reshape2 (>= 1.4.1)
+    Rcpp (>= 0.10.6)
 RoxygenNote: 7.1.1

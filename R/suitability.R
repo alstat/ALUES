@@ -23,10 +23,10 @@
 #'            to the number of factors in \code{x}. However, if set to \code{"average"},
 #'            then \code{min} is computed from different conditions:
 #'            
-#'            If for example, using \code{ALUES::COCONUTSoilCR} (coconut terrain requirements), 
+#'            If for example, using \code{ALUES::COCONUTSoil} (coconut terrain requirements), 
 #'            as shown below,
 #'            
-#'            \code{     Code   S3   S2    S1 S1.1 S2.1 S3.1 Weight.class}\cr
+#'            \code{     code s3_a s2_a  s1_a s1_b s2_b s3_b          wts}\cr
 #'            \code{1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA}\cr
 #'            \code{2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA}\cr
 #'            \code{3      BS 19.9 19.9  20.0   NA   NA   NA           NA}\cr
@@ -119,6 +119,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     y <- as.data.frame(y)
   }
   
+  # extract intersecting parameters between x and y
   for (i in 1:n2) {
     for (j in 1:n1) {
       if (as.character(y[i, 1]) == names(x)[j]) {
@@ -127,6 +128,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     }
   }
   
+  # update x and y to only intersecting parameters
   LU <- as.matrix(x[, f1[stats::complete.cases(f1)]])
   CR <- as.matrix(y[f2[stats::complete.cases(f1)], ])
   colnames(LU) <- names(x)[f1[stats::complete.cases(f1)]]
@@ -136,6 +138,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     stop("No factor(s) to be evaluated, since none matches with the crop requirements.")
   }
   
+  # define empty matrix for score and class
   score <- matrix(NA, nrow = nrow(LU), ncol = ncol(LU))
   suiClass <- matrix(character(), nrow = nrow(LU), ncol = ncol(LU))
   colnames(score) <- colnames(LU)
@@ -175,16 +178,15 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
   
   minVals <- maxVals <- numeric()
   for(j in 1:ncol(LU)){
-    rScore <- rev(as.numeric(CR[k, -1]))
-    if (is.na(rScore[1])) {
-      wt <- 0
-      reqScore <- rev(rScore[stats::complete.cases(rScore)])
-    } else {
-      wt <- rScore[1]
-      reqScore <- rev(rScore[stats::complete.cases(rScore)][-1])
-    }
-    
+    rScore <- rev(as.numeric(CR[k, -1][1:6]))
+    reqScore <- rev(rScore[stats::complete.cases(rScore)])
     n3 <- length(reqScore)
+
+    # if parameter has no entry, skip
+    if (n3 == 0) {
+      k <- k + 1
+      next
+    }
     
     if (n3 == 3) {
       if (reqScore[1] > reqScore[3]) {
@@ -218,7 +220,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           }            
         }
         output <- case_a(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, mfNum = mfNum,
-                         bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                         bias = bias, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
         score <- output[[1]]; suiClass <- output[[2]]
         
       } else if (reqScore[1] < reqScore[3]) {
@@ -251,7 +253,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           }
         }
         output <- case_b(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, mfNum = mfNum,
-                         bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                         bias = bias, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
         score <- output[[1]]; suiClass <- output[[2]]
       } else if ((reqScore[1] == reqScore[2]) &&
                    (reqScore[1] == reqScore[3]) &&
@@ -290,7 +292,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
           }            
         }
         output <- case_b(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, mfNum = mfNum,
-                         bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                         bias = bias, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
         score <- output[[1]]; suiClass <- output[[2]]
       }
     } else if (n3 == 6) {
@@ -324,7 +326,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         }            
       }
       output <- case_c(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, Mid = Mid, mfNum = mfNum,
-                       bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], d = reqScore[4], e = reqScore[5], f = reqScore[6], 
+                       bias = bias, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], d = reqScore[4], e = reqScore[5], f = reqScore[6], 
                        l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
       score <- output[[1]]; suiClass <- output[[2]]
     } else if (n3 == 5) {
@@ -365,7 +367,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         }            
       }
       output <- case_d(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, Mid = Mid, mfNum = mfNum,
-                       bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], d = reqScore[4], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                       bias = bias, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], d = reqScore[4], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
       score <- output[[1]]; suiClass <- output[[2]]
     } else if (n3 == 4) {
       if ((!is.null(min)) && (min == "average")) {
@@ -405,7 +407,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
         }            
       }
       output <- case_e(df = as.matrix(LU), score = score, suiClass = suiClass, Min = Min, Max = Max, Mid = Mid, mfNum = mfNum,
-                       bias = bias, wt = wt, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
+                       bias = bias, j = j, a = reqScore[1], b = reqScore[2], c = reqScore[3], l1 = l1, l2 = l2, l3 = l3, l4 = l4, l5 = l5, sigma = sigma)
       score <- output[[1]]; suiClass <- output[[2]]
     }
     k <- k + 1
