@@ -389,18 +389,18 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
       if (max == "average" && (!is.numeric(max))) {
         Max <- reqScore[4]
         warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
-                      "since there is a missing value on S3 class above optimum, run ?suitability for more."))
+                      "since there is a missing value on S2 class above optimum, run ?suitability for more."))
       } else if (is.numeric(max)) {
         if (length(max) == 1) {
           Max <- reqScore[4]
           warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
-                        "since there is a missing value on S3 class above optimum, run ?suitability for more.")) 
+                        "since there is a missing value on S2 class above optimum, run ?suitability for more.")) 
         }
         else if (length(max) > 1) {
           if (length(max) == ncol(x)) {
             Max <- reqScore[4]
             warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
-                          "since there is a missing value on S3 class above optimum, run ?suitability for more.")) 
+                          "since there is a missing value on S2 class above optimum, run ?suitability for more.")) 
           }
           else if (length(max) != ncol(x))
             stop("max length should be equal to the number of factors in x.")

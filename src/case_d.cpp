@@ -76,9 +76,6 @@ List case_d(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
       } else if ((df(i, w) >= c) && (df(i, w) <= d)) {
         score(i, w) = 1; suiClass(i, w) = "S1";
       } else if ((df(i, w) > d) && (df(i, w) <= Max)) {
-        if (bias == 0) {
-          l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.74; l5 = 1;
-        }
         if (bias == 1) {
           l3 = 0; l4 = 1;
         }
