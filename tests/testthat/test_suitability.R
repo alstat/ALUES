@@ -93,6 +93,86 @@ left_gau <- function() {
 }
 test_that("Left Face Gaussian", expect_equal(suit$`Suitability Score`[1,"OC"], left_gau()))
 
+# ------------------------------
+# CASE C
+# ------------------------------
+# Full Triangular
+suit <- suitability(MarinduqueLT, SAFFLOWERSoil)
+full_tri <- function () {
+  x <- MarinduqueLT[6,"pHH2O"]; Min <- 0
+  reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
+  if (x > Max) {
+    return(0)
+  }
+}
+test_that("Full Triangular", expect_equal(suit$`Suitability Score`["pHH2O"][6,], full_tri()))
 
+MarinduqueLTNew <- tail(MarinduqueLT)
+MarinduqueLTNew[1, "pHH2O"] <- 7.6
+MarinduqueLTNew[2, "pHH2O"] <- 5.6
+suit <- suitability(MarinduqueLTNew, SAFFLOWERSoil)
+full_tri <- function (r) {
+  x <- MarinduqueLTNew[r,"pHH2O"]; Min <- 0
+  reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[6] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  if (x > Max) {
+    return(0)
+  } else if (x > Mid) {
+    (Max - x) / (Max - Mid)
+  } else if (x <= Mid) {
+    (x - Min) / (Mid - Min)
+  }
+}
+test_that("Full Triangular", expect_equal(suit$`Suitability Score`["pHH2O"][1,], full_tri(1)))
+test_that("Full Triangular", expect_equal(suit$`Suitability Score`["pHH2O"][2,], full_tri(2)))
 
+# Full Trapezoidal
+suit <- suitability(MarinduqueLT, SAFFLOWERSoil, mf="trapezoidal")
+full_tra <- function () {
+  x <- MarinduqueLT[6,"pHH2O"]; Min <- 0
+  reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
+  if (x > Max) {
+    return(0)
+  }
+}
+test_that("Full Trapezoidal", expect_equal(suit$`Suitability Score`["pHH2O"][6,], full_tra()))
 
+suit <- suitability(MarinduqueLTNew, SAFFLOWERSoil, mf="trapezoidal")
+full_tra <- function (r) {
+  x <- MarinduqueLTNew[r,"pHH2O"]; Min <- 0
+  reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[6] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  if (x > Max) {
+    return(0)
+  } else if (x > reqScore[4]) {
+    (Max - x) / (Max - reqScore[4])
+  } else if (x <= reqScore[3]) {
+    (x - Min) / (reqScore[3] - Min)
+  }
+}
+test_that("Full Trapezoidal", expect_equal(suit$`Suitability Score`["pHH2O"][1,], full_tra(1)))
+test_that("Full Trapezoidal", expect_equal(suit$`Suitability Score`["pHH2O"][2,], full_tra(2)))
+
+# Full Gaussian
+suit <- suitability(MarinduqueLTNew, SAFFLOWERSoil[6,], mf="gaussian")
+full_gau <- function (r) {
+  x <- MarinduqueLTNew[r,"pHH2O"]; Min <- 0; sigma <- 1
+  reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[6] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  exp((-1 / 2) * (((x - Mid) / sigma)^2))
+}
+test_that("Full Trapezoidal", expect_equal(suit$`Suitability Score`["pHH2O"][1,], full_gau(1)))
+test_that("Full Trapezoidal", expect_equal(suit$`Suitability Score`["pHH2O"][2,], full_gau(2)))

@@ -99,7 +99,7 @@ List case_e(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
           suiClass(i, w) = "NA";
         }
       } else if (df(i, w) > Mid) {
-        score(i, w) = exp(-(1 / 2) * pow(((df(i, w) - Mid) / sigma), 2)/2.0);
+        score(i, w) = exp(- pow(((df(i, w) - Mid) / sigma), 2)/2.0); 
         if (bias == 1) {
           l4 = exp(-(1 / 2) * pow(((Max - Mid) / sigma), 2)/2.0);
           l5 = 1;
