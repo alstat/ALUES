@@ -1,4 +1,4 @@
 library(testthat)
-library(tester)
+library(ALUES)
 
-test_check("tester")
+test_check("ALUES")
