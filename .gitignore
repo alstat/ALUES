@@ -48,3 +48,7 @@ docs/
 
 # translation temp files
 po/*~
+docs
+.Rproj.user
+.Rdata
+.DS_Store
