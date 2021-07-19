@@ -1,5 +1,7 @@
 #include <Rcpp.h>
+#include <iostream>
 using namespace Rcpp;
+using namespace std;
 
 // Below is a simple example of exporting a C++ function to R. You can
 // source this function into an R session using the Rcpp::sourceCpp 
@@ -120,7 +122,7 @@ List case_c(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
           suiClass(i, w) = "NA";
         }
       } else if (df(i, w) > Mid) {
-        score(i, w) = exp(-(1 / 2) * pow(((df(i, w) - Mid) / sigma), 2)/2.0);
+        score(i, w) = exp(- pow(((df(i, w) - Mid) / sigma), 2)/2.0); 
         if (bias == 1) {
           l1 = 0; l2 = exp(-(1 / 2) * pow(((f - Mid) / sigma), 2)/2.0);
           l3 = exp(-(1 / 2) * pow(((e - Mid) / sigma), 2)/2.0);
