@@ -27,4 +27,6 @@ LinkingTo: Rcpp
 Encoding: UTF-8
 Depends:
     Rcpp (>= 0.10.6)
+Suggests:
+    testthat, tester
 RoxygenNote: 7.1.1

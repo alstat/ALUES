@@ -55,9 +55,7 @@ List case_e(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
         score(i, w) = 0; suiClass(i, w) = "N";
       } else if ((df(i, w) >= Min) && (df(i, w) < c)) {
         score(i, w) = (df(i, w) - Min) / (c - Min);
-        if (bias == 0) {
-          l1 = 0; l2 = 0.25; l3 = 0.5; l4 = 0.74; l5 = 1;
-        } else if (bias == 1) {
+        if (bias == 1) {
           l1 = 0; l2 = (a - Min) / (c - Min); l3 = (b - Min) / (c - Min);  l4 = l5 = 1;
         }
         if ((score(i, w) >= l1) && (score(i, w) < l2)) {
