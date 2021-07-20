@@ -1,4 +1,6 @@
 #include <Rcpp.h>
+#include <iostream>
+using namespace std;
 using namespace Rcpp;
 
 // Below is a simple example of exporting a C++ function to R. You can
@@ -115,8 +117,8 @@ List case_d(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
       } else if (df(i, w) > Mid) {
         score(i, w) = exp(- pow(((df(i, w) - Mid) / sigma), 2)/2.0); 
         if (bias == 1) {
-          l3 = exp(-(1 / 2) * pow(((Max - Mid) / sigma), 2)/2.0);
-          l4 = exp(-(1 / 2) * pow(((d - Mid) / sigma), 2)/2.0);
+          l3 = exp(- pow(((Max - Mid) / sigma), 2)/2.0);
+          l4 = exp(- pow(((d - Mid) / sigma), 2)/2.0);
           l5 = 1;
         }
         if ((score(i, w) >= l3) && (score(i, w) < l4)) {

@@ -124,9 +124,9 @@ List case_c(NumericMatrix df, NumericMatrix score, CharacterMatrix suiClass, dou
       } else if (df(i, w) > Mid) {
         score(i, w) = exp(- pow(((df(i, w) - Mid) / sigma), 2)/2.0); 
         if (bias == 1) {
-          l1 = 0; l2 = exp(-(1 / 2) * pow(((f - Mid) / sigma), 2)/2.0);
-          l3 = exp(-(1 / 2) * pow(((e - Mid) / sigma), 2)/2.0);
-          l4 = exp(-(1 / 2) * pow(((d - Mid) / sigma), 2)/2.0);
+          l1 = 0; l2 = exp(- pow(((f - Mid) / sigma), 2)/2.0);
+          l3 = exp(- pow(((e - Mid) / sigma), 2)/2.0);
+          l4 = exp(- pow(((d - Mid) / sigma), 2)/2.0);
           l5 = 1;
         }
         if ((score(i, w) >= l1) && (score(i, w) < l2)) {

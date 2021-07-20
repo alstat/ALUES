@@ -32,6 +32,7 @@ LazyData: true
 LinkingTo: Rcpp
 Encoding: UTF-8
 Depends:
+    R (>= 3.5.0),
     Rcpp (>= 0.10.6)
 Suggests:
     testthat, markdown, knitr
