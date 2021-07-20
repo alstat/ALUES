@@ -2,6 +2,7 @@
 [![R-CMD-check](https://github.com/alstat/ALUES/workflows/R-CMD-check/badge.svg)](https://github.com/alstat/ALUES/actions)
 [![codecov](https://codecov.io/gh/alstat/ALUES/branch/master/graph/badge.svg?token=UE1J3JZK48)](https://codecov.io/gh/alstat/ALUES)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://alstat.github.io/ALUES)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/alstat/ALUES/blob/master/LICENSE.md)
 <!-- badges: end -->
   
 About
