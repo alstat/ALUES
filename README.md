@@ -1,3 +1,8 @@
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/alstat/ALUES/workflows/R-CMD-check/badge.svg)](https://github.com/alstat/ALUES/actions)
+[![R-CMD-check](https://github.com/alstat/ALUES/workflows/R-CMD-check/badge.svg)](https://github.com/alstat/ALUES/actions)
+<!-- badges: end -->
+  
 About
 =====
 Agricultural Land Use Evaluation System (ALUES) is an R package that evaluates land suitability for
@@ -23,6 +28,7 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
     * email: alahmadgaid@gmail.com
     * website: https://al-asaad.github.io/
 <br><br>
+
 2. [Arnold R. Salvacion](https://github.com/arsalvacion)
     * email: arsalvacion@gmail.com
     * blog: http://r-nold.blogspot.com/

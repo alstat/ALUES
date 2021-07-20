@@ -1,0 +1,22 @@
+reference:
+- title: "Terrain Characteristics"
+  desc: "R data for Terrain characterics for different crops."
+- contents:
+  - ends_with("Terrain")
+- title: "Soil Characteristics"
+  desc: "R data for Soil characterics for different crops."
+- contents:
+  - ends_with("Soil")
+- title: "Water Characteristics"
+  desc: "R data for Water characterics for different crops."
+- contents:
+  - ends_with("Water")
+- title: "Temperature Characteristics"
+  desc: "R data for Temperature characterics for different crops."
+- contents:
+  - ends_with("Temp")
+- title: "Suitability Scoring Functions"
+  desc: "Functions for computing suitability scores and classes."
+- contents:
+  - suitability
+  - overall_suit
