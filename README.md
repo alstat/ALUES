@@ -1,12 +1,12 @@
+# ALUES
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/alstat/ALUES/workflows/R-CMD-check/badge.svg)](https://github.com/alstat/ALUES/actions)
 [![codecov](https://codecov.io/gh/alstat/ALUES/branch/master/graph/badge.svg?token=UE1J3JZK48)](https://codecov.io/gh/alstat/ALUES)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://alstat.github.io/ALUES)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/alstat/ALUES/blob/master/LICENSE.md)
 <!-- badges: end -->
-  
-About
-=====
+
 Agricultural Land Use Evaluation System (ALUES) is an R package that evaluates land suitability for
 different crops production. The package is based on the Food and Agriculture Organization ([FAO](http://www.fao.org/home/en/)) and the
 International Rice Research Institute ([IRRI](http://irri.org/)) methodology for land evaluation. Development of ALUES is
@@ -17,6 +17,7 @@ following: _Triangular_, _Trapezoidal_ and _Gaussian_. The methods for computing
 
 ## Installation
 The package is not yet on CRAN, and is currently under development on github. To install it, run the following:
+
 ```{r}
 install.packages("devtools")
 
