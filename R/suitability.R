@@ -40,9 +40,11 @@
 #'              since the maximum value for all factors then is set to 55. But for heterogeneous. For  \code{max}
 #'              on every factor, simply concatenate the different \code{max} for each factor. 
 #'              If set to \code{"average"}, check on details below for more.
-#' @param interval domains for every suitability class (S1, S2, S3). If fixed, the
+#' @param interval domains for every suitability class (S1, S2, S3). If fixed (\code{NULL}), the
 #'              interval would be 0 to 25\% for N (Not Suitable), 25\% to 50\% for S3 (Marginally Suitable),
-#'              50\% to 75\% for S2 (Moderately Suitable), and 75\% to 100\% for (Highly Suitable).
+#'              50\% to 75\% for S2 (Moderately Suitable), and 75\% to 100\% for (Highly Suitable). If \code{"unbias"},
+#'              the package will take into account the shape of the membership function, and provide the 
+#'              appropriate suitability class intervals.
 #' @param sigma If \code{mf = "gaussian"}, then sigma represents the constant sigma in the
 #'              gaussian formula, which is often times referred as the variance.
 #' @details
