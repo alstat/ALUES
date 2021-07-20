@@ -23,20 +23,17 @@ test_that("Expecting Warning", expect_warning(suitability(LaoCaiLT, ALFALFASoil)
 # ------------------------------
 # Right Face Triangular MF
 
-# bias intervals
-l0 <- 0; l2 <- 0.25; l3 <- 0.5; l4 <- 0.75; l5 <- 1
-
-suit <- suitability(head(LaoCaiLT), SOYASoil, interval="unbias")
-suit <- suitability(head(LaoCaiLT), SOYASoil)
-suit
-right_tri <- function () {
-  x <- LaoCaiLT[6,"CFragm"]; Min <- 0
+LaoCaiLT2 <- LaoCaiLT[5:6,]
+suit <- suitability(LaoCaiLT2, SOYASoil, interval="unbias")
+right_tri <- function (r) {
+  x <- LaoCaiLT2[r,"CFragm"]; Min <- 0
   reqScore <- as.numeric(SOYASoil[1,2:7])
   clnScore <- rev(reqScore[complete.cases(reqScore)])
   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
   score <- (Max - x) / (Max - Min)
   
-  if ((score >= l0) && (score < l2)) {
+  l1 = 0; l2 = (Max - clnScore[3]) / (Max - Min); l3 = (Max - clnScore[2]) / (Max - Min); l4 = (Max - clnScore[1]) / (Max - Min); l5 = 1;
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -49,51 +46,134 @@ right_tri <- function () {
   }
   return(list("score" = score, "class" = class_))
 }
-test_that("Case A: Triangular", expect_equal(suit$`Suitability Score`["CFragm"][6,], right_tri()[["score"]]))
-test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][6,], right_tri()[["class"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Score`["CFragm"][1,], right_tri(1)[["score"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][1,], right_tri(1)[["class"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Score`["CFragm"][2,], right_tri(2)[["score"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][2,], right_tri(2)[["class"]]))
 
-# # Right Face Trapezoidal MF
-# suit <- suitability(LaoCaiLT, SOYASoil, mf="trapezoidal")
-# right_tra <- function () {
-#   x <- LaoCaiLT[6,"CFragm"]; Min <- 0
-#   reqScore <- as.numeric(SOYASoil[1,2:7])
-#   clnScore <- rev(reqScore[complete.cases(reqScore)])
-#   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
-#   if (x < clnScore[1]) {
-#     return(1)
-#   }
-#   
-# }
-# test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Score`["CFragm"][6,], right_tra()))
-# 
-# # Right Face Gaussian MF
-# suit <- suitability(LaoCaiLT[5:6,], SOYASoil[1:3,], mf="gaussian")
-# right_gau<- function () {
-#   x <- LaoCaiLT[5:6,"CFragm"]; sigma <- 1
-#   reqScore <- as.numeric(SOYASoil[1,2:7])
-#   clnScore <- rev(reqScore[complete.cases(reqScore)])
-#   Min <- 0
-#   score <- exp((-1 / 2) * `^`(((x - Min) / sigma), 2))
-#   class_ <- c()
-#   for (i in 1:length(score)) {
-#     if ((score[i] >= l0) && (score[i] < l2)) {
-#       class_[i] <- "N"
-#     } else if ((score[i] >= l2) && (score[i] < l3)) {
-#       class_[i] <- "S3"
-#     } else if ((score[i] >= l3) && (score[i] < l4)) {
-#       class_[i] <- "S2"
-#     } else if ((score[i] >= l4) && (score[i] <= l5)) {
-#       class_[i] <- "S1"
-#     } else {
-#       class_[i] <- "NA"
-#     }    
-#   }
-#   
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case A: Gaussian", expect_equal(as.numeric(suit$`Suitability Score`[,"CFragm"]), right_gau()[["score"]]))
-# test_that("Case A: Gaussian", expect_equal(as.character(suit$`Suitability Class`[,"CFragm"]), right_gau()[["class"]]))
-# 
+
+LaoCaiLT3 <- LaoCaiLT[5:6,]
+LaoCaiLT3[1,2] <- 80
+suit <- suitability(LaoCaiLT3, SOYASoil, interval="unbias")
+right_tri <- function (r) {
+  x <- LaoCaiLT3[r,"CFragm"]; Min <- 0
+  reqScore <- as.numeric(SOYASoil[1,2:7])
+  clnScore <- rev(reqScore[complete.cases(reqScore)])
+  Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
+  
+  score <- (Max - x) / (Max - Min)
+  
+  l1 = 0; l2 = (Max - clnScore[3]) / (Max - Min); l3 = (Max - clnScore[2]) / (Max - Min); l4 = (Max - clnScore[1]) / (Max - Min); l5 = 1;
+  if ((score < Min) || (score > Max)) {
+    class_ <- "N"; score <- 0
+  }
+  
+  if ((score >= l1) && (score < l2)) {
+    class_ <- "N"
+  } else if ((score >= l2) && (score < l3)) {
+    class_ <- "S3"
+  } else if ((score >= l3) && (score < l4)) {
+    class_ <- "S2"
+  } else if ((score >= l4) && (score <= l5)) {
+    class_ <- "S1"
+  } else {
+    class_ <- "NA"
+  }
+  return(list("score" = score, "class" = class_))
+}
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Score`["CFragm"][1,], right_tri(1)[["score"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][1,], right_tri(1)[["class"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Score`["CFragm"][2,], right_tri(2)[["score"]]))
+test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][2,], right_tri(2)[["class"]]))
+
+# Right Face Trapezoidal MF
+LaoCaiLT3 <- LaoCaiLT[5:6,]
+LaoCaiLT3[1,2] <- 80
+suit <- suitability(LaoCaiLT3, SOYASoil, mf="trapezoidal", interval="unbias")
+right_tra <- function (r) {
+  x <- LaoCaiLT3[r,"CFragm"]; Min <- 0
+  reqScore <- as.numeric(SOYASoil[1,2:7])
+  clnScore <- rev(reqScore[complete.cases(reqScore)])
+  Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
+  if ((x >= Min) && (x < clnScore[1])) {
+    score <- 1; class_ <- "S1"
+  } else if ((x < Min) || (x > Max)) {
+    score <- 0; class_ <- "N"
+  }
+  return(list("score" = score, "class" = class_))
+}
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Score`["CFragm"][1,], right_tra(1)[["score"]]))
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Class`["CFragm"][1,], right_tra(1)[["class"]]))
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Score`["CFragm"][2,], right_tra(2)[["score"]]))
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Class`["CFragm"][2,], right_tra(2)[["class"]]))
+
+LaoCaiLT3 <- LaoCaiLT[5:6,]
+LaoCaiLT3[1,2] <- 80
+LaoCaiLT3[2,2] <- 25
+suit <- suitability(LaoCaiLT3, SOYASoil, mf="trapezoidal", interval="unbias")
+right_tra <- function (r) {
+  x <- LaoCaiLT3[r,"CFragm"]; Min <- 0
+  reqScore <- as.numeric(SOYASoil[1,2:7])
+  clnScore <- rev(reqScore[complete.cases(reqScore)])
+  Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
+  if ((x >= Min) && (x < clnScore[1])) {
+    score <- 1; class_ <- "S1"
+  } else if ((x < Min) || (x > Max)) {
+    score <- 0; class_ <- "N"
+  } else if ((x > clnScore[1]) && (x <= Max)) {
+    score <- (Max - x) / (Max - clnScore[1])
+    l1 = 0; l2 = (Max - clnScore[3]) / (Max - clnScore[1]); l3 = (Max - clnScore[2]) / (Max - clnScore[1]); l4 = (Max - clnScore[1]) / (Max - clnScore[1]); l5 = 1;
+    if ((score >= l1) && (score < l2)) {
+      class_ <- "N"
+    } else if ((score >= l2) && (score < l3)) {
+      class_ <- "S3"
+    } else if ((score >= l3) && (score < l4)) {
+      class_ <- "S2"
+    } else if ((score >= l4) && (score <= l5)) {
+      class_ <- "S1"
+    } else {
+      class_ <- "NA"
+    }
+  }
+  return(list("score" = score, "class" = class_))
+}
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Score`["CFragm"][1,], right_tra(1)[["score"]]))
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Class`["CFragm"][1,], right_tra(1)[["class"]]))
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Score`["CFragm"][2,], right_tra(2)[["score"]]))
+test_that("Case A: Trapezoidal", expect_equal(suit$`Suitability Class`["CFragm"][2,], right_tra(2)[["class"]]))
+
+# Right Face Gaussian MF
+suit <- suitability(LaoCaiLT3, SOYASoil[1:3,], mf="gaussian", interval="unbias")
+right_gau<- function (r) {
+  x <- LaoCaiLT3[r,"CFragm"]; sigma <- 1
+  reqScore <- as.numeric(SOYASoil[1,2:7])
+  clnScore <- rev(reqScore[complete.cases(reqScore)])
+  Min <- 0
+  score <- exp((-1 / 2) * `^`(((x - Min) / sigma), 2))
+  
+  l1 <- 0; l2 <- exp((-1 / 2) * `^`(((clnScore[3] - Min) / sigma), 2))
+  l3 <- exp((-1 / 2) * `^`(((clnScore[2] - Min) / sigma), 2))
+  l4 <- exp((-1 / 2) * `^`(((clnScore[1] - Min) / sigma), 2))
+  l5 <- 1
+  if ((score >= l1) && (score < l2)) {
+    class_ <- "N"
+  } else if ((score >= l2) && (score < l3)) {
+    class_ <- "S3"
+  } else if ((score >= l3) && (score < l4)) {
+    class_ <- "S2"
+  } else if ((score >= l4) && (score <= l5)) {
+    class_ <- "S1"
+  } else {
+    class_ <- "NA"
+  }
+
+  return(list("score" = score, "class" = class_))
+}
+test_that("Case A: Gaussian", expect_equal(suit$`Suitability Score`["CFragm"][1,], right_gau(1)[["score"]]))
+test_that("Case A: Gaussian", expect_equal(suit$`Suitability Class`["CFragm"][1,], right_gau(1)[["class"]]))
+test_that("Case A: Gaussian", expect_equal(suit$`Suitability Score`["CFragm"][2,], right_gau(2)[["score"]]))
+test_that("Case A: Gaussian", expect_equal(suit$`Suitability Class`["CFragm"][2,], right_gau(2)[["class"]]))
+
 # # ------------------------------
 # # CASE B
 # # ------------------------------
@@ -106,7 +186,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
 #   Min <- 0
 #   score <- (x - Min) / (Max - Min)
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -130,7 +210,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   clnScore <- reqScore[complete.cases(reqScore)]
 #   Min <- 0
 #   score <- (x - Min) / (clnScore[length(clnScore)] - Min)
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -154,7 +234,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   clnScore <- reqScore[complete.cases(reqScore)]
 #   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
 #   score <- exp((-1 / 2) * (((x - Max) / sigma)^2))
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -204,7 +284,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   } else if (x <= Mid) {
 #     score <- (x - Min) / (Mid - Min)
 #   }
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -251,7 +331,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     score <- (x - Min) / (reqScore[3] - Min)
 #   }
 #   
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -279,7 +359,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   Mid <- mean(reqScore[3:4])
 #   Min <- 0
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -318,7 +398,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   } else if (x <= Mid) {
 #     score <- (x - Min) / (Mid - Min)
 #   }
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -360,7 +440,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     }
 #   } else if (x <= Mid) {
 #     score <- (x - Min) / (Mid - Min)
-#     if ((score >= l0) && (score < l2)) {
+#     if ((score >= l1) && (score < l2)) {
 #       class_ <- "N"
 #     } else if ((score >= l2) && (score < l3)) {
 #       class_ <- "S3"
@@ -399,7 +479,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     score <- 1
 #   }
 #   
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -435,7 +515,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     score <- 1
 #   }
 #   
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -476,7 +556,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     }
 #   } else if (x <= reqScore[3]) {
 #     score <- (x - Min) / (reqScore[3] - Min)
-#     if ((score >= l0) && (score < l2)) {
+#     if ((score >= l1) && (score < l2)) {
 #       class_ <- "N"
 #     } else if ((score >= l2) && (score < l3)) {
 #       class_ <- "S3"
@@ -508,7 +588,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   Mid <- mean(reqScore[3:4])
 #   Min <- 0
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -535,7 +615,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   Mid <- mean(reqScore[3:4])
 #   Min <- 0
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -612,7 +692,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     }
 #   } else if ((x > Min) && (x <= Mid)) {
 #     score <- (x - Min) / (Mid - Min)
-#     if ((score >= l0) && (score < l2)) {
+#     if ((score >= l1) && (score < l2)) {
 #       class_ <- "N"
 #     } else if ((score >= l2) && (score < l3)) {
 #       class_ <- "S3"
@@ -647,7 +727,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     score <- (Max - x) / (Max - reqScore[4])
 #   } else if (x <= reqScore[3]) {
 #     score <- (x - Min) / (reqScore[3] - Min)
-#     if ((score >= l0) && (score < l2)) {
+#     if ((score >= l1) && (score < l2)) {
 #       class_ <- "N"
 #     } else if ((score >= l2) && (score < l3)) {
 #       class_ <- "S3"
@@ -688,7 +768,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #     score <- (Max - x) / (Max - reqScore[4])
 #   } else if (x <= reqScore[3]) {
 #     score <- (x - Min) / (reqScore[3] - Min)
-#     if ((score >= l0) && (score < l2)) {
+#     if ((score >= l1) && (score < l2)) {
 #       class_ <- "N"
 #     } else if ((score >= l2) && (score < l3)) {
 #       class_ <- "S3"
@@ -721,7 +801,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   Mid <- mean(reqScore[3:4])
 #   Min <- 0
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"
@@ -748,7 +828,7 @@ test_that("Case A: Triangular", expect_equal(suit$`Suitability Class`["CFragm"][
 #   Mid <- mean(reqScore[3:4])
 #   Min <- 0
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l0) && (score < l2)) {
+#   if ((score >= l1) && (score < l2)) {
 #     class_ <- "N"
 #   } else if ((score >= l2) && (score < l3)) {
 #     class_ <- "S3"

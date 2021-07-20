@@ -24,7 +24,7 @@ test_that("Expecting Warning", expect_warning(suitability(LaoCaiLT, ALFALFASoil)
 # Right Face Triangular MF
 
 # bias intervals
-l0 <- 0; l2 <- 0.25; l3 <- 0.5; l4 <- 0.75; l5 <- 1
+l1 <- 0; l2 <- 0.25; l3 <- 0.5; l4 <- 0.75; l5 <- 1
 
 suit <- suitability(LaoCaiLT, SOYASoil)
 right_tri <- function () {
@@ -33,7 +33,7 @@ right_tri <- function () {
   clnScore <- rev(reqScore[complete.cases(reqScore)])
   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
   score <- (Max - x) / (Max - Min)
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -73,7 +73,7 @@ right_gau<- function () {
   score <- exp((-1 / 2) * `^`(((x - Min) / sigma), 2))
   class_ <- c()
   for (i in 1:length(score)) {
-    if ((score[i] >= l0) && (score[i] < l2)) {
+    if ((score[i] >= l1) && (score[i] < l2)) {
       class_[i] <- "N"
     } else if ((score[i] >= l2) && (score[i] < l3)) {
       class_[i] <- "S3"
@@ -103,7 +103,7 @@ left_tri <- function() {
   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
   Min <- 0
   score <- (x - Min) / (Max - Min)
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -127,7 +127,7 @@ left_tra <- function() {
   clnScore <- reqScore[complete.cases(reqScore)]
   Min <- 0
   score <- (x - Min) / (clnScore[length(clnScore)] - Min)
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -151,7 +151,7 @@ left_gau <- function() {
   clnScore <- reqScore[complete.cases(reqScore)]
   Max <- clnScore[length(clnScore)] + ((diff(clnScore[1:2]) + diff(clnScore[2:3])) / 2)
   score <- exp((-1 / 2) * (((x - Max) / sigma)^2))
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -201,7 +201,7 @@ full_tri <- function (r) {
   } else if (x <= Mid) {
     score <- (x - Min) / (Mid - Min)
   }
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -248,7 +248,7 @@ full_tra <- function (r) {
     score <- (x - Min) / (reqScore[3] - Min)
   }
   
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -276,7 +276,7 @@ full_gau <- function (r) {
   Mid <- mean(reqScore[3:4])
   Min <- 0
   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -315,7 +315,7 @@ full_tri <- function (r) {
   } else if (x <= Mid) {
     score <- (x - Min) / (Mid - Min)
   }
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -357,7 +357,7 @@ full_tri <- function (r) {
     }
   } else if (x <= Mid) {
     score <- (x - Min) / (Mid - Min)
-    if ((score >= l0) && (score < l2)) {
+    if ((score >= l1) && (score < l2)) {
       class_ <- "N"
     } else if ((score >= l2) && (score < l3)) {
       class_ <- "S3"
@@ -396,7 +396,7 @@ full_tra <- function (r) {
     score <- 1
   }
   
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -432,7 +432,7 @@ full_tra <- function (r) {
     score <- 1
   }
   
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -473,7 +473,7 @@ full_tra <- function (r) {
     }
   } else if (x <= reqScore[3]) {
     score <- (x - Min) / (reqScore[3] - Min)
-    if ((score >= l0) && (score < l2)) {
+    if ((score >= l1) && (score < l2)) {
       class_ <- "N"
     } else if ((score >= l2) && (score < l3)) {
       class_ <- "S3"
@@ -505,7 +505,7 @@ full_gau <- function (r) {
   Mid <- mean(reqScore[3:4])
   Min <- 0
   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -532,7 +532,7 @@ full_gau <- function (r) {
   Mid <- mean(reqScore[3:4])
   Min <- 0
   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -609,7 +609,7 @@ full_tri <- function (r) {
     }
   } else if ((x > Min) && (x <= Mid)) {
     score <- (x - Min) / (Mid - Min)
-    if ((score >= l0) && (score < l2)) {
+    if ((score >= l1) && (score < l2)) {
       class_ <- "N"
     } else if ((score >= l2) && (score < l3)) {
       class_ <- "S3"
@@ -644,7 +644,7 @@ full_tra <- function (r) {
     score <- (Max - x) / (Max - reqScore[4])
   } else if (x <= reqScore[3]) {
     score <- (x - Min) / (reqScore[3] - Min)
-    if ((score >= l0) && (score < l2)) {
+    if ((score >= l1) && (score < l2)) {
       class_ <- "N"
     } else if ((score >= l2) && (score < l3)) {
       class_ <- "S3"
@@ -685,7 +685,7 @@ full_tra <- function (r) {
     score <- (Max - x) / (Max - reqScore[4])
   } else if (x <= reqScore[3]) {
     score <- (x - Min) / (reqScore[3] - Min)
-    if ((score >= l0) && (score < l2)) {
+    if ((score >= l1) && (score < l2)) {
       class_ <- "N"
     } else if ((score >= l2) && (score < l3)) {
       class_ <- "S3"
@@ -718,7 +718,7 @@ full_gau <- function (r) {
   Mid <- mean(reqScore[3:4])
   Min <- 0
   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
@@ -745,7 +745,7 @@ full_gau <- function (r) {
   Mid <- mean(reqScore[3:4])
   Min <- 0
   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-  if ((score >= l0) && (score < l2)) {
+  if ((score >= l1) && (score < l2)) {
     class_ <- "N"
   } else if ((score >= l2) && (score < l3)) {
     class_ <- "S3"
