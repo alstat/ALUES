@@ -31,3 +31,5 @@ Suggests:
     testthat, markdown, knitr
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+URL: https://github.com/alstat/ALUES
+BugReports: https://github.com/alstat/ALUES/issues
