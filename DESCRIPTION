@@ -21,12 +21,13 @@ Description: Agricultural Land Use Evaluation System (ALUES) is an R package
     area are also included, and these are the Minimum, Maximum, Product,
     Sum, Average, Exponential and Gamma. Finally, ALUES utilizes the
     power of Rcpp library for efficient computation.
-License: GPL-2
+License: MIT + file LICENSE
 LazyData: true
 LinkingTo: Rcpp
 Encoding: UTF-8
 Depends:
     Rcpp (>= 0.10.6)
 Suggests:
-    testthat
+    testthat, markdown, knitr
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr

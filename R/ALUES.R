@@ -22,9 +22,8 @@
 #' Sum, Average, Exponential and Gamma. Finally, ALUES utilizes 
 #' the power of Rcpp library for efficient computation.
 #' 
-#' @author 
-#' Al-Ahmadgaid B. Asaad <alahmadgaid@@gmail.com>
-#' Arnold R. Salvacion <arsalvacion@@gmail.com>
+#' @author Al-Ahmadgaid B. Asaad <alahmadgaid@@gmail.com> (maintainer)
+#' @author Arnold R. Salvacion <arsalvacion@@gmail.com>
 #' 
 #' 
 #' @import Rcpp
