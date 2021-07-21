@@ -1,4 +1,4 @@
-# ALUES
+# ALUES <img src="logo.svg" align="right" width="100"/>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/alstat/ALUES/workflows/R-CMD-check/badge.svg)](https://github.com/alstat/ALUES/actions)

@@ -1,5 +1,4 @@
-# Agricultural Land Use Evaluation System (ALUES)
-
+# Agricultural Land Use Evaluation System (ALUES) 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/alstat/ALUES/workflows/R-CMD-check/badge.svg)](https://github.com/alstat/ALUES/actions)
 [![codecov](https://codecov.io/gh/alstat/ALUES/branch/master/graph/badge.svg?token=UE1J3JZK48)](https://codecov.io/gh/alstat/ALUES)
@@ -25,3 +24,7 @@ library(devtools)
 install_github("alstat/ALUES")
 ```
 We want to hear some feedbacks, so if you have any suggestion or issues regarding this package, please do submit it [here](https://github.com/alstat/ALUES/issues).
+<br>
+<br>
+<br>
+<img src="logo.svg" align="left" width="100"/>

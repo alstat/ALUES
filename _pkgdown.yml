@@ -32,3 +32,8 @@ reference:
   desc: "R data for Temperature characterics for different crops."
 - contents:
   - ends_with("Temp")
+template:
+  opengraph:
+    image:
+      src: logo.svg
+      alt: "ALUES logo"

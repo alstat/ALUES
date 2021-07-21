@@ -8,6 +8,13 @@
 
 <title>Suitability Scores/Class of the Land Units — suitability • ALUES</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,8 @@
 
 <meta property="og:title" content="Suitability Scores/Class of the Land Units — suitability" />
 <meta property="og:description" content="This function calculates the suitability scores and class of the land units." />
+<meta property="og:image" content="/logo.svg" />
+<meta property="og:image:alt" content="ALUES logo" />
 
 
 
@@ -196,9 +205,11 @@ If set to <code>"average"</code>, check on details below for more.</p></td>
     </tr>
     <tr>
       <th>interval</th>
-      <td><p>domains for every suitability class (S1, S2, S3). If fixed, the
+      <td><p>domains for every suitability class (S1, S2, S3). If fixed (<code>NULL</code>), the
 interval would be 0 to 25% for N (Not Suitable), 25% to 50% for S3 (Marginally Suitable),
-50% to 75% for S2 (Moderately Suitable), and 75% to 100% for (Highly Suitable).</p></td>
+50% to 75% for S2 (Moderately Suitable), and 75% to 100% for (Highly Suitable). If <code>"unbias"</code>,
+the package will take into account the shape of the membership function, and provide the 
+appropriate suitability class intervals.</p></td>
     </tr>
     <tr>
       <th>sigma</th>
