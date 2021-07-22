@@ -8,7 +8,7 @@ suitability(
   x,
   y,
   mf = "triangular",
-  sow.month = NULL,
+  sow_month = NULL,
   min = NULL,
   max = "average",
   interval = NULL,
@@ -26,7 +26,7 @@ given crop (e.g. coconut, cassava, etc.);}
 fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
 \code{"gaussian"}.}
 
-\item{sow.month}{sowing month of the crop. Takes integers from 1 to 12 
+\item{sow_month}{sowing month of the crop. Takes integers from 1 to 12 
 (inclusive), representing the twelve months of a year. 
 So if sets to 1, the function assumes sowing month on 
 January.}

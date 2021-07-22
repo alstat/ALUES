@@ -11,7 +11,7 @@
 #' @param mf membership function with default assigned to \code{"triangular"} 
 #'           fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
 #'           \code{"gaussian"}.
-#' @param sow.month sowing month of the crop. Takes integers from 1 to 12 
+#' @param sow_month sowing month of the crop. Takes integers from 1 to 12 
 #'                  (inclusive), representing the twelve months of a year. 
 #'                  So if sets to 1, the function assumes sowing month on 
 #'                  January.
@@ -59,12 +59,12 @@
 #' 
 #' coconut_tersuit <- suitability(x = x, y = y)
 #' lapply(coconut_tersuit, function(x) head(x, n = 10))
-suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, max = "average", interval = NULL, sigma = NULL) {
+suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, max = "average", interval = NULL, sigma = NULL) {
   n1 <- length(names(x))
   n2 <- nrow(y)
   f1 <- f2 <- numeric()
   
-  if (is.numeric(sow.month)) {
+  if (is.numeric(sow_month)) {
     f3 <- f4 <- typ <- numeric()
     month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
@@ -93,14 +93,14 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
     }
     
     if (idx > 1) {
-      sow.month <- month[sow.month + idx - 1] 
+      sow_month <- month[sow_month + idx - 1] 
     } else {
-      sow.month <- month[sow.month]
+      sow_month <- month[sow_month]
     }
     
     y <- as.matrix(y)
     for (i in 1:12) {
-      if (sow.month == month[i]) {
+      if (sow_month == month[i]) {
         if ((i + length(f3) - 1) > 12) {
           if (typ == 0) {
             y[y[,1] %in% wmav[f3], 1] <- c(rev(rev(month)[1:(length(f3) - ((i + length(f3) - 1) - 12))]), month[1:((i + length(f3) - 1) - 12)]) 
@@ -136,7 +136,7 @@ suitability <- function (x, y, mf = "triangular", sow.month = NULL, min = NULL, 
   colnames(LU) <- names(x)[f1[stats::complete.cases(f1)]]
   
   if (ncol(LU) == 0) {
-    warning("For water characteristic, make sure to input sowing month (sow.month), say 1, w/c implies January")
+    warning("For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January")
     stop("No factor(s) to be evaluated, since none matches with the crop requirements.")
   }
   

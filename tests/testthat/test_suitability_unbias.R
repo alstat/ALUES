@@ -355,6 +355,27 @@ test_that("Case C: Gaussian", expect_equal(suit$`Suitability Class`["pHH2O"][1,]
 test_that("Case C: Gaussian", expect_equal(suit$`Suitability Score`["pHH2O"][2,], full_gau(2)[["score"]]))
 test_that("Case C: Gaussian", expect_equal(suit$`Suitability Class`["pHH2O"][2,], full_gau(2)[["class"]]))
 
+
+# Full Gaussian
+MarinduqueLTNew[1, "pHH2O"] <- 7.3
+MarinduqueLTNew[2, "pHH2O"] <- 6.8
+suit <- suitability(MarinduqueLTNew, SAFFLOWERSoil[6,], mf="gaussian", interval = "unbias")
+full_gau <- function (r) {
+  x <- MarinduqueLTNew[r,"pHH2O"]; Min <- 0; sigma <- 1
+  reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[6] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
+
+  return(score)
+}
+test_that("Case C: Gaussian", expect_equal(suit$`Suitability Score`["pHH2O"][1,], full_gau(1)))
+test_that("Case C: Gaussian", expect_equal(suit$`Suitability Class`["pHH2O"][1,], "S2"))
+test_that("Case C: Gaussian", expect_equal(suit$`Suitability Score`["pHH2O"][2,], full_gau(2)))
+test_that("Case C: Gaussian", expect_equal(suit$`Suitability Class`["pHH2O"][2,], "S1"))
+
 # # ------------------------------
 # # CASE D
 # # ------------------------------
@@ -624,215 +645,150 @@ test_that("Case D: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,
 test_that("Case D: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)[["score"]]))
 test_that("Case D: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_gau(2)[["class"]]))
 
-# # ------------------------------
-# # CASE E
-# # ------------------------------
-# # Triangular
-# MarinduqueLTNew <- MarinduqueLT[7:8,]
-# BAMBOOSoil[3, 6] <- NA
-# BAMBOOSoil[3, 5] <- 9.0
-# BAMBOOSoilNew <- BAMBOOSoil
-# suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew)
-# full_tri <- function (r) {
-#   x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0
-#   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
-#   clnScore <- reqScore[complete.cases(reqScore)]
-#   
-#   Max <- reqScore[4]
-#   Mid <- mean(reqScore[3:4])
-#   Min <- 0
-#   if (x > Max) {
-#     score <- 0
-#   } else if (x > Mid) {
-#     score <- (Max - x) / (Max - Mid)
-#   } else if (x <= Mid) {
-#     score <- (x - Min) / (Mid - Min)
-#   }
-#   if ((score >= l4) && (score <= l5)) {
-#     class_ <- "S1"
-#   } else {
-#     class_ <- "N"
-#   }
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tri(1)[["score"]]))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_tri(1)[["class"]]))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tri(2)[["score"]]))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_tri(2)[["class"]]))
-# 
-# # Triangular
-# MarinduqueLTNew2 <- MarinduqueLT[7:8,]
-# MarinduqueLTNew2[1, 6] <- 5
-# suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew)
-# full_tri <- function (r) {
-#   x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0
-#   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
-#   clnScore <- reqScore[complete.cases(reqScore)]
-#   
-#   Max <- reqScore[4]
-#   Mid <- mean(reqScore[3:4])
-#   Min <- 0
-#   if (x > Max) {
-#     score <- 0
-#   } else if (x > Mid) {
-#     score <- (Max - x) / (Max - Mid)
-#     if ((score >= l4) && (score <= l5)) {
-#       class_ <- "S1"
-#     } else {
-#       class_ <- "N"
-#     }
-#   } else if ((x > Min) && (x <= Mid)) {
-#     score <- (x - Min) / (Mid - Min)
-#     if ((score >= l1) && (score < l2)) {
-#       class_ <- "N"
-#     } else if ((score >= l2) && (score < l3)) {
-#       class_ <- "S3"
-#     } else if ((score >= l3) && (score < l4)) {
-#       class_ <- "S2"
-#     } else if ((score >= l4) && (score <= l5)) {
-#       class_ <- "S1"
-#     } else {
-#       class_ <- "NA"
-#     }
-#   }
-#  
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tri(1)[["score"]]))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_tri(1)[["class"]]))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tri(2)[["score"]]))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_tri(2)[["class"]]))
-# 
-# # Trapezoidal
-# suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="trapezoidal")
-# full_tra <- function (r) {
-#   x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0
-#   reqScore <- as.numeric(BAMBOOSoil[3,2:7])
-#   clnScore <- reqScore[complete.cases(reqScore)]
-#   Max <- reqScore[4]
-#   Mid <- mean(reqScore[3:4])
-#   Min <- 0
-#   if (x > Max) {
-#     score <- 0
-#   } else if (x > reqScore[4]) {
-#     score <- (Max - x) / (Max - reqScore[4])
-#   } else if (x <= reqScore[3]) {
-#     score <- (x - Min) / (reqScore[3] - Min)
-#     if ((score >= l1) && (score < l2)) {
-#       class_ <- "N"
-#     } else if ((score >= l2) && (score < l3)) {
-#       class_ <- "S3"
-#     } else if ((score >= l3) && (score < l4)) {
-#       class_ <- "S2"
-#     } else if ((score >= l4) && (score <= l5)) {
-#       class_ <- "S1"
-#     } else {
-#       class_ <- "NA"
-#     }
-#   } else if ((x > reqScore[3]) && (x <= reqScore[4])) {
-#     score <- 1
-#   }
-#   
-#   if ((score >= l4) && (score <= l5)) {
-#     class_ <- "S1"
-#   } else {
-#     class_ <- "N"
-#   }
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tra(1)[["score"]]))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_tra(1)[["class"]]))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tra(2)[["score"]]))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_tra(2)[["class"]]))
-# 
-# suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="trapezoidal")
-# full_tra <- function (r) {
-#   x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0
-#   reqScore <- as.numeric(BAMBOOSoil[3,2:7])
-#   clnScore <- reqScore[complete.cases(reqScore)]
-#   Max <- reqScore[4]
-#   Mid <- mean(reqScore[3:4])
-#   Min <- 0
-#   if (x > Max) {
-#     score <- 0
-#   } else if (x > reqScore[4]) {
-#     score <- (Max - x) / (Max - reqScore[4])
-#   } else if (x <= reqScore[3]) {
-#     score <- (x - Min) / (reqScore[3] - Min)
-#     if ((score >= l1) && (score < l2)) {
-#       class_ <- "N"
-#     } else if ((score >= l2) && (score < l3)) {
-#       class_ <- "S3"
-#     } else if ((score >= l3) && (score < l4)) {
-#       class_ <- "S2"
-#     } else if ((score >= l4) && (score <= l5)) {
-#       class_ <- "S1"
-#     } else {
-#       class_ <- "NA"
-#     }
-#   } else if ((x > reqScore[3]) && (x <= reqScore[4])) {
-#     score <- 1; class_ = "S1"
-#   }
-#   
-#   
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tra(1)[["score"]]))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_tra(1)[["class"]]))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tra(2)[["score"]]))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_tra(2)[["class"]]))
-# 
-# # Gaussian
-# suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="gaussian")
-# full_gau <- function (r) {
-#   x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0; sigma <- 1
-#   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
-#   clnScore <- reqScore[complete.cases(reqScore)]
-#   Max <- reqScore[4]
-#   Mid <- mean(reqScore[3:4])
-#   Min <- 0
-#   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l1) && (score < l2)) {
-#     class_ <- "N"
-#   } else if ((score >= l2) && (score < l3)) {
-#     class_ <- "S3"
-#   } else if ((score >= l3) && (score < l4)) {
-#     class_ <- "S2"
-#   } else if ((score >= l4) && (score <= l5)) {
-#     class_ <- "S1"
-#   } else {
-#     class_ <- "NA"
-#   }
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_gau(1)[["score"]]))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_gau(1)[["class"]]))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)[["score"]]))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_gau(2)[["class"]]))
-# 
-# suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="gaussian")
-# full_gau <- function (r) {
-#   x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0; sigma <- 1
-#   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
-#   clnScore <- reqScore[complete.cases(reqScore)]
-#   Max <- reqScore[4]
-#   Mid <- mean(reqScore[3:4])
-#   Min <- 0
-#   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
-#   if ((score >= l1) && (score < l2)) {
-#     class_ <- "N"
-#   } else if ((score >= l2) && (score < l3)) {
-#     class_ <- "S3"
-#   } else if ((score >= l3) && (score < l4)) {
-#     class_ <- "S2"
-#   } else if ((score >= l4) && (score <= l5)) {
-#     class_ <- "S1"
-#   } else {
-#     class_ <- "NA"
-#   }
-#   return(list("score" = score, "class" = class_))
-# }
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_gau(1)[["score"]]))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_gau(1)[["class"]]))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)[["score"]]))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_gau(2)[["class"]]))
+# ------------------------------
+# CASE E
+# ------------------------------
+# Triangular
+MarinduqueLTNew <- MarinduqueLT[7:8,]
+BAMBOOSoil[3, 6] <- NA
+BAMBOOSoil[3, 5] <- 9.0
+BAMBOOSoilNew <- BAMBOOSoil
+suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, interval="unbias")
+r = 1
+full_tri <- function (r) {
+  x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0
+  reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+
+  Max <- reqScore[4]
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  if (x > Max) {
+    score <- 0
+  } else if (x > Mid) {
+    score <- (Max - x) / (Max - Mid)
+  } else if (x <= Mid) {
+    score <- (x - Min) / (Mid - Min)
+  }
+  return(score)
+}
+
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "N"))
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tri(1)))
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tri(2)))
+
+# Triangular
+MarinduqueLTNew2 <- MarinduqueLT[7:8,]
+MarinduqueLTNew2[1, 6] <- 5
+suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, interval="unbias")
+full_tri <- function (r) {
+  x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0
+  reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+
+  Max <- reqScore[4]
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  if (x > Max) {
+    score <- 0
+  } else if (x > Mid) {
+    score <- (Max - x) / (Max - Mid)
+  } else if ((x > Min) && (x <= Mid)) {
+    score <- (x - Min) / (Mid - Min)
+  }
+
+  return(score)
+}
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tri(1)))
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "S2"))
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tri(2)))
+test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+
+# Trapezoidal
+suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="trapezoidal", interval="unbias")
+full_tra <- function (r) {
+  x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0
+  reqScore <- as.numeric(BAMBOOSoil[3,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[4]
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  if (x > Max) {
+    score <- 0
+  } else if (x > reqScore[4]) {
+    score <- (Max - x) / (Max - reqScore[4])
+  } else if (x <= reqScore[3]) {
+    score <- (x - Min) / (reqScore[3] - Min)
+  } else if ((x > reqScore[3]) && (x <= reqScore[4])) {
+    score <- 1
+  }
+
+  return(score)
+}
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tra(1)))
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "N"))
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tra(2)))
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+
+MarinduqueLTNew2 <- MarinduqueLT[7:8,]
+MarinduqueLTNew2[1, 6] <- 5
+
+suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="trapezoidal", interval="unbias")
+full_tra <- function (r) {
+  x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0
+  reqScore <- as.numeric(BAMBOOSoil[3,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[4]
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  if (x > Max) {
+    score <- 0
+  } else if (x > reqScore[4]) {
+    score <- (Max - x) / (Max - reqScore[4])
+  } else if (x <= reqScore[3]) {
+    score <- (x - Min) / (reqScore[3] - Min)
+  } else if ((x > reqScore[3]) && (x <= reqScore[4])) {
+    score <- 1; class_ = "S1"
+  }
+
+
+  return(score)
+}
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tra(1)))
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "S2"))
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tra(2)))
+test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+
+# Gaussian
+suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="gaussian", interval="unbias")
+full_gau <- function (r) {
+  x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0; sigma <- 1
+  reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[4]
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
+  return(score)
+}
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_gau(1)))
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "N"))
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)))
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+
+suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="gaussian", interval="unbias")
+full_gau <- function (r) {
+  x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0; sigma <- 1
+  reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
+  clnScore <- reqScore[complete.cases(reqScore)]
+  Max <- reqScore[4]
+  Mid <- mean(reqScore[3:4])
+  Min <- 0
+  score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
+  return(score)
+}
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_gau(1)))
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "S2"))
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)))
+test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
