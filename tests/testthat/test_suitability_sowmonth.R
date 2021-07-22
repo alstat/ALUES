@@ -1,14 +1,28 @@
 library(testthat)
 library(ALUES)
 
+# Water
 x1 <- LaoCaiWater
 y1 <- RICEIWWater
 
 suit <- suitability(x1, y1, interval = "unbias", sow_month = 3)
 test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Mar", "Apr", "May", "Jun")))
 
-# library(testthat)
+suit <- suitability(x1, y1, interval = "unbias", sow_month = 11)
+test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Nov", "Dec", "Jan", "Feb")))
 
+# Temperature
+x1 <- LaoCaiTemp
+y1 <- BARLEYTemp
+
+suit <- suitability(x1, y1, interval = "unbias", sow_month = 6)
+test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Jul", "Aug", "Sep")))
+
+suit <- suitability(x1, y1, interval = "unbias", sow_month = 11)
+test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Dec", "Jan", "Feb")))
+
+# library(testthat)
+# Water
 
 # library(ALUES)
 # 

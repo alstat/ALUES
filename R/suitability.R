@@ -421,7 +421,8 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
                "Suitability Score" = as.data.frame(score), 
                "Suitability Class" = as.data.frame(suiClass), 
                "Factors' Minimum Values" = minVals, 
-               "Factors' Maximum Values" = maxVals)
+               "Factors' Maximum Values" = maxVals,
+               "Factors' Weights" = as.numeric(y[,"wts"]))
   class(outf) <- "suitability"
   return(outf)
 }
