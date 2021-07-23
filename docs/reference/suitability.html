@@ -142,7 +142,7 @@
   <span class='va'>x</span>,
   <span class='va'>y</span>,
   mf <span class='op'>=</span> <span class='st'>"triangular"</span>,
-  sow.month <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sow_month <span class='op'>=</span> <span class='cn'>NULL</span>,
   min <span class='op'>=</span> <span class='cn'>NULL</span>,
   max <span class='op'>=</span> <span class='st'>"average"</span>,
   interval <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -169,7 +169,7 @@ fuzzy model. Other fuzzy models included are <code>"trapezoidal"</code> and
 <code>"gaussian"</code>.</p></td>
     </tr>
     <tr>
-      <th>sow.month</th>
+      <th>sow_month</th>
       <td><p>sowing month of the crop. Takes integers from 1 to 12 
 (inclusive), representing the twelve months of a year. 
 So if sets to 1, the function assumes sowing month on 
@@ -267,6 +267,9 @@ trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) 
 #&gt; $`Factors' Maximum Values`
 #&gt;  CFragm SoilDpt      BS  SumBCs      OC 
 #&gt;   75.00  125.00   20.05    1.65    0.85 
+#&gt; 
+#&gt; $`Factors' Weights`
+#&gt; [1] NA NA NA NA NA NA
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

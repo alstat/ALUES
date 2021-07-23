@@ -1,3 +1,13 @@
+suit <- suitability(MarinduqueLT, BANANASoil)
+wts <- as.numeric(BANANATerrain[,8])
+
+
+suit <- suitability(MarinduqueLT, ALFALFASoil)
+wts <- as.numeric(BANANATerrain[,8])
+
+wts[is.na(wts)] <- max(wts, na.rm = TRUE) + 1
+(sum(wts) - wts)/sum(wts)
+
 library(testthat)
 library(ALUES)
 
