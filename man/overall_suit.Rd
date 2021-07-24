@@ -10,7 +10,7 @@ overall_suit(suit, method = NULL, interval = NULL)
 \item{suit}{an object of class suitability.}
 
 \item{method}{the method for computing the overall suitability, choices are:
-\code{"minimum"}, \code{"maximum"}, \code{"sum"}, \code{"product"}, and
+\code{"minimum"}, \code{"maximum"}, and
 \code{"average"}. If \code{NULL}, method is set to \code{"minimum"}.}
 
 \item{interval}{if \code{NULL}, the interval of the suitability class are the following: 0\% - 25\% (Not
