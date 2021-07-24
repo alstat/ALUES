@@ -20,16 +20,10 @@ test_that("Overall Minimum", expect_equal(min(suit$`Suitability Score`[1,], na.r
 test_that("Overall Maximum", expect_equal(max(suit$`Suitability Score`[1,], na.rm=TRUE), overall_suit(suit, method="maximum")[1,1]))
 test_that("Overall Average", expect_equal(mean(as.numeric(suit$`Suitability Score`[1,]), na.rm=TRUE), overall_suit(suit, method="average")[1,1]))
 
-# Show class only
+# Interval tests
 suit <- suitability(MarinduqueLT, ALFALFASoil, interval="unbias")
 test_that("Expecting for overall", expect_error(overall_suit(suit, interval=c(0,2))))
 test_that("Expecting for overall", expect_error(overall_suit(suit, interval=c(0,0.5,0.6,0.7,0.9))))
 test_that("Expecting for overall", expect_error(overall_suit(suit, interval=c(0,0.5,0.6,0.7,1.2))))
 test_that("Expecting for overall", expect_error(overall_suit(suit, interval=c(0.2,0.5,0.6,0.7,1.2))))
 test_that("Expecting for overall", expect_error(overall_suit(suit, interval=c(-0.1,0.5,0.6,0.7,1.2))))
-
-# suit
-# min(suit$`Suitability Score`[1,])
-# max(suit$`Suitability Score`[1,])
-# mean(suit[[1L]])
-# overall_suit(suit, method="product")

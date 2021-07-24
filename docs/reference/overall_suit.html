@@ -138,13 +138,13 @@
     <p>This function computes the overall suitability scores and class of the land units.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>overall_suit</span><span class='op'>(</span><span class='va'>x</span>, method <span class='op'>=</span> <span class='cn'>NULL</span>, interval <span class='op'>=</span> <span class='cn'>NULL</span>, output <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>overall_suit</span><span class='op'>(</span><span class='va'>suit</span>, method <span class='op'>=</span> <span class='cn'>NULL</span>, interval <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>suit</th>
       <td><p>an object of class suitability.</p></td>
     </tr>
     <tr>
@@ -161,11 +161,6 @@ suitable, N), 25% - 50% (Marginally Suitable, S3), 50% - 75% (Moderately Suitabl
 the values of the end points of the intervals. Say for intervals: 0% - 20% (Not
 suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitable, S2), and
 80% - 100% (Highly Suitable, S1), is equivalent to <code>interval = c(0, 0.2, 0.5, 0.8, 1)</code>.</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>the output to be returned, either <code>"scores"</code> or <code>"class"</code>. If <code>NULL</code>,
-both are returned.</p></td>
     </tr>
     </table>
 
@@ -222,11 +217,17 @@ both are returned.</p></td>
 #&gt;   75.00  125.00   20.05    1.65    0.85 
 #&gt; 
 #&gt; $`Factors' Weights`
-#&gt; [1] NA NA NA NA NA NA
+#&gt; [1] NA NA NA NA NA
 #&gt; </div><div class='input'>
 <span class='co'># Compute the overall suitability of the characteristics</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>overall_suit</span><span class='op'>(</span><span class='va'>coconut_tersuit</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in overall_suit(coconut_tersuit): object 'x' not found</span></div></pre>
+</div><div class='output co'>#&gt;   Scores Class
+#&gt; 1      0     N
+#&gt; 2      0     N
+#&gt; 3      0     N
+#&gt; 4      0     N
+#&gt; 5      0     N
+#&gt; 6      0     N</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

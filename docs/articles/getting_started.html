@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2021-07-23</h4>
+            <h4 class="date">2021-07-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/getting_started.Rmd"><code>vignettes/getting_started.Rmd</code></a></small>
       <div class="hidden name"><code>getting_started.Rmd</code></div>
@@ -130,7 +130,7 @@
 ##   ..- attr(*, "names")= chr [1:4] "CFragm" "CECc" "pHH2O" "SoilTe"
 ##  $ Factors' Maximum Values : Named num [1:4] 75 16 8.94 12.5
 ##   ..- attr(*, "names")= chr [1:4] "CFragm" "CECc" "pHH2O" "SoilTe"
-##  $ Factors' Weights        : num [1:12] 3 2 3 3 3 3 3 3 2 3 ...
+##  $ Factors' Weights        : num [1:4] 3 3 3 2
 ##  - attr(*, "class")= chr "suitability"</code></pre>
 <p>In the output above, the suitability_of_LUs object contains a list of 5, and these are: (a) Actual Factors Evaluated, (b) Suitability Score, (c) Suitability Class, (d) Factors’ Minimum Values, and (e) Factors’ Maximum Values. To view the first five observations for each list, execute the following code:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -165,7 +165,7 @@
 ##  75.00  16.00   8.94  12.50 
 ## 
 ## $`Factors' Weights`
-## [1] 3 2 3 3 3 3</code></pre>
+## [1] 3 3 3 2</code></pre>
 <p>The output shows that there are only three factors evaluated namely: CFragm, CECc and SoilTe. Now suppose the membership function is changed from triangular (default) to Gaussian with unbiased interval for the suitability class, and further suppose the land units is taken from the Lao Cai province of Vietnam, then this is done as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">LaoCaiLT</span>
@@ -214,7 +214,7 @@
 ##   75.00  125.00   16.00   42.55    4.60    8.94    1.90   12.50 
 ## 
 ## $`Factors' Weights`
-##  [1] 3 3 3 3 3 3 2 3 3 2</code></pre>
+## [1] 3 2 3 3 3 3 2 2</code></pre>
 </div>
   </div>
 
