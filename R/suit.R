@@ -81,7 +81,7 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
       warning("Defaulting to 'potato', other options for potato: 'potatosw'")
       crop <- toupper("potato")
     } else {
-      stop(paste("Input crop='", crop, "' is not available in the database, see docs for ALUES.", sep=""))
+      stop(paste("Input crop='", crop, "' is not available in the database, see docs for list of ALUES data.", sep=""))
     }
   }
   
