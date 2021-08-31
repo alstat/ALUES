@@ -1,6 +1,6 @@
 #' Sunflower water requirement for land evaluation
     #' 
-    #' A dataset containing the water characteristics of the crop requirements for farming Banana.
+    #' A dataset containing the water characteristics of the crop requirements for farming Sunflower.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

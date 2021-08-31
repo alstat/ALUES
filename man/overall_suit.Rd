@@ -30,13 +30,13 @@ y <- COCONUTSoil
 
 # Compute the suitability of the land units of the Lao Cai land
 # terrain characteristics using the 
-coconut_tersuit <- suitability(x = x, y = y)
+# coconut_tersuit <- suitability(x = x, y = y)
 
 # Return the first 10 of the observations
-lapply(coconut_tersuit, function(x) head(x, n = 10))
+# lapply(coconut_tersuit, function(x) head(x, n = 10))
 
 # Compute the overall suitability of the characteristics
-head(overall_suit(coconut_tersuit))
+# head(overall_suit(coconut_tersuit))
 }
 \seealso{
 \code{\link{suitability}}

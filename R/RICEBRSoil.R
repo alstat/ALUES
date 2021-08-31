@@ -1,6 +1,6 @@
 #' RiceBR soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming Banana.
+    #' A dataset containing the soil characteristics of the crop requirements for farming RiceBR.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

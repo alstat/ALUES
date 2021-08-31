@@ -8,7 +8,7 @@
 A data frame with 1 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming Banana.
+A dataset containing the water characteristics of the crop requirements for farming Plum.
 }
 \details{
 The following are the factors for evaluation: 

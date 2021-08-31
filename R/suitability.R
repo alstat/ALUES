@@ -1,5 +1,4 @@
 #' Suitability Scores/Class of the Land Units
-#' @export
 #' 
 #' @description
 #' This function calculates the suitability scores and class of the land units.
@@ -51,14 +50,6 @@
 #' There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 #' For triangular case. If a given factor has values equal for all suitabilities, then the class will 
 #' trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with single tone domain \{0\}.
-#' 
-#' @examples
-#' library(ALUES)
-#' x <- LaoCaiLT
-#' y <- COCONUTSoil
-#' 
-#' coconut_tersuit <- suitability(x = x, y = y)
-#' lapply(coconut_tersuit, function(x) head(x, n = 10))
 suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, max = "average", interval = NULL, sigma = NULL) {
   n1 <- length(names(x))
   n2 <- nrow(y)

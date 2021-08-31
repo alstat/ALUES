@@ -16,30 +16,3 @@ knitr::opts_chunk$set(echo = TRUE)
 
 In this illustration, the overall suitability of the Marinduque province is assessed for farming
 banana.
-
-```{r}
-library(ALUES)
-x <- MarinduqueLT
-y <- BANANASoil
-suitability_of_LUs <- suitability(x, y)
-```
-
-Line 1 in the code above simply loads the package to the workspace. Line 2 assigns the data frame `MarinduqueLT`, containing the land and terrain characteristics of the units in the Marinduque province to the variable `x`. Line 3 assigns the crop requirements for the soil characteristics of the land units to the variable `y`. And line 4 evaluates the suitability scores and classes of the land units. The output returns a warning since the CECc factor in the soil requirement has the same values across all suitability classes as seen in Table 6. So the function assumes the maximum point at the domain of the membership function as 16. The output of the above code is a list with structure extracted through the `str` function as shown below.
-
-```{r}
-str(suitability_of_LUs)
-```
-
-In the output above, the suitability_of_LUs object contains a list of 5, and these are: (a) Actual Factors Evaluated, (b) Suitability Score, (c) Suitability Class, (d) Factors’ Minimum Values, and (e) Factors’ Maximum Values. To view the first five observations for each list, execute the following code:
-```{r}
-lapply(suitability_of_LUs, head)
-```
-The output shows that there are only three factors evaluated namely: CFragm, CECc and SoilTe. Now suppose the membership function is changed from triangular (default) to Gaussian with unbiased interval for the suitability class, and further suppose the land units is taken from the Lao Cai province of Vietnam, then this is done as follows:
-```{r}
-x <- LaoCaiLT
-suitability_of_LUs <- suitability(x, y, mf="gaussian", interval="unbias")
-```
-So that the suitability of the last ten land units in the Lao Cai province is summarized by running the following codes:
-```{r}
-lapply(suitability_of_LUs, function(x) tail(x, 10))
-```

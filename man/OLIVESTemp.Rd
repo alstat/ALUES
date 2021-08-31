@@ -8,7 +8,7 @@
 A data frame with 2 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming Banana.
+A dataset containing the temp characteristics of the crop requirements for farming Olives.
 }
 \details{
 The following are the factors for evaluation: 

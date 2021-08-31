@@ -8,7 +8,7 @@
 A data frame with 5 rows and 8 columns
 }
 \description{
-A dataset containing the terrain characteristics of the crop requirements for farming Banana.
+A dataset containing the terrain characteristics of the crop requirements for farming Cocoa.
 }
 \details{
 The following are the factors for evaluation: 

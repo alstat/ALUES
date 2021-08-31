@@ -1,6 +1,6 @@
 #' Mango temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming Banana.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Mango.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

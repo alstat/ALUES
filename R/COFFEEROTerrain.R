@@ -1,6 +1,6 @@
 #' CoffeeRo terrain requirement for land evaluation
     #' 
-    #' A dataset containing the terrain characteristics of the crop requirements for farming Banana.
+    #' A dataset containing the terrain characteristics of the crop requirements for farming CoffeeRo.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 
