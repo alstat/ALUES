@@ -7,7 +7,7 @@
 #' @param crop a string for the name of the crop;
 #' @param terrain a data frame for the terrain characteristics of the input land units;
 #' @param water a data frame for the water characteristics of the input land units;
-#' @param temp a data frame for the temp characteristics of the input land units;
+#' @param temp a data frame for the temperature characteristics of the input land units;
 #' @param mf membership function with default assigned to \code{"triangular"} 
 #'           fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
 #'           \code{"gaussian"}.
