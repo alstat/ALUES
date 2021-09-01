@@ -762,31 +762,3 @@ test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,
 test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], full_gau(1)[["class"]]))
 test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)[["score"]]))
 test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], full_gau(2)[["class"]]))
-
-out <- suit("ricebr", water=MarinduqueWater, sow_month=1)
-test_that("suit: water", expect_equal(names(out), "water"))
-test_that("suit: water", expect_equal(out[["water"]][["Crop Evaluated"]], "RICEBRWater"))
-
-out <- suit("ricebr", temp=MarinduqueTemp, sow_month=1)
-test_that("suit: temp", expect_equal(names(out), "temp"))
-test_that("suit: temp", expect_equal(out[["temp"]][["Crop Evaluated"]], "RICEBRTemp"))
-
-out <- suit("ricebr", water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
-test_that("suit: water", expect_equal(names(out), c("water", "temp")))
-test_that("suit: water", expect_equal(out[["temp"]][["Crop Evaluated"]], "RICEBRTemp"))
-test_that("suit: water", expect_equal(out[["water"]][["Crop Evaluated"]], "RICEBRWater"))
-
-out <- suit("coconut", terrain=LaoCaiLT)
-test_that("suit: terrain", expect_equal(names(out), c("terrain", "soil")))
-test_that("suit: terrain", expect_equal(out[["terrain"]][["Crop Evaluated"]], "COCONUTTerrain"))
-test_that("suit: terrain", expect_equal(out[["soil"]][["Crop Evaluated"]], "COCONUTSoil"))
-
-test_that("suit: error", expect_warning(suit("rice", water=LaoCaiWater, sow_month=1)))
-test_that("suit: error", expect_error(suit("ricebr")))
-test_that("suit: error", expect_warning(suit("coffee", terrain=LaoCaiLT)))
-test_that("suit: error", expect_warning(suit("potato", terrain=LaoCaiLT)))
-test_that("suit: error", expect_error(suit("sdfa", terrain=LaoCaiLT)))
-test_that("suit: error", expect_error(suit("ricebr", water=MarinduqueWater)))
-test_that("suit: error", expect_error(suit("ricebr", temp=MarinduqueTemp)))
-test_that("suit: error", expect_error(suit("coconut", water=LaoCaiWater, sow_month=1)))
-test_that("suit: error", expect_error(suit("coconut", terrain=LaoCaiLT, mf="sdf")))

@@ -1,0 +1,50 @@
+library(testthat)
+library(ALUES)
+
+out <- suit("ricebr", water=MarinduqueWater, sow_month=1)
+test_that("suit: water", expect_equal(names(out), "water"))
+test_that("suit: water", expect_equal(out[["water"]][["Crop Evaluated"]], "RICEBRWater"))
+
+out <- suit("ricebr", temp=MarinduqueTemp, sow_month=1)
+test_that("suit: temp", expect_equal(names(out), "temp"))
+test_that("suit: temp", expect_equal(out[["temp"]][["Crop Evaluated"]], "RICEBRTemp"))
+
+out <- suit("ricebr", water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
+test_that("suit: water and temp", expect_equal(names(out), c("water", "temp")))
+test_that("suit: water and temp", expect_equal(out[["temp"]][["Crop Evaluated"]], "RICEBRTemp"))
+test_that("suit: water and temp", expect_equal(out[["water"]][["Crop Evaluated"]], "RICEBRWater"))
+
+out <- suit("coconut", terrain=LaoCaiLT)
+test_that("suit: terrain", expect_equal(names(out), c("terrain", "soil")))
+test_that("suit: terrain", expect_equal(out[["terrain"]][["Crop Evaluated"]], "COCONUTTerrain"))
+test_that("suit: terrain", expect_equal(out[["soil"]][["Crop Evaluated"]], "COCONUTSoil"))
+
+out <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
+test_that("suit: terrain, water and temp", expect_equal(names(out), c("terrain", "soil", "water", "temp")))
+# test_that("suit: terrain, water and temp", expect_equal(out[["terrain"]], "No factor(s) to be evaluated, since none matches with the crop requirements."))
+test_that("suit: terrain, water and temp", expect_equal(out[["soil"]]$`Crop Evaluated`, "RICEBRSoil"))
+test_that("suit: terrain, water and temp", expect_equal(out[["water"]]$`Crop Evaluated`, "RICEBRWater"))
+test_that("suit: terrain, water and temp", expect_equal(out[["temp"]]$`Crop Evaluated`, "RICEBRTemp"))
+
+out <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, sow_month=1)
+test_that("suit: terrain, water and temp", expect_equal(names(out), c("terrain", "soil", "water")))
+# test_that("suit: terrain, water and temp", expect_equal(out[["terrain"]], "No factor(s) to be evaluated, since none matches with the crop requirements."))
+test_that("suit: terrain, water and temp", expect_equal(out[["soil"]]$`Crop Evaluated`, "RICEBRSoil"))
+test_that("suit: terrain, water and temp", expect_equal(out[["water"]]$`Crop Evaluated`, "RICEBRWater"))
+
+out <- suit("ricebr", terrain=MarinduqueLT, temp=MarinduqueTemp, sow_month=1)
+test_that("suit: terrain, water and temp", expect_equal(names(out), c("terrain", "soil", "temp")))
+# test_that("suit: terrain, water and temp", expect_equal(out[["terrain"]], "No factor(s) to be evaluated, since none matches with the crop requirements."))
+test_that("suit: terrain, water and temp", expect_equal(out[["soil"]]$`Crop Evaluated`, "RICEBRSoil"))
+test_that("suit: terrain, water and temp", expect_equal(out[["temp"]]$`Crop Evaluated`, "RICEBRTemp"))
+
+test_that("suit: error", expect_warning(suit("rice", water=LaoCaiWater, sow_month=1)))
+test_that("suit: error", expect_error(suit("ricebr")))
+test_that("suit: error", expect_warning(suit("coffee", terrain=LaoCaiLT)))
+test_that("suit: error", expect_warning(suit("potato", terrain=LaoCaiLT)))
+test_that("suit: error", expect_error(suit("sdfa", terrain=LaoCaiLT)))
+test_that("suit: error", expect_error(suit("ricebr", water=MarinduqueWater)))
+test_that("suit: error", expect_error(suit("ricebr", temp=MarinduqueTemp)))
+test_that("suit: error", expect_error(suit("coconut", water=LaoCaiWater, sow_month=1)))
+# test_that("suit: error", expect_error(suit("coconut", terrain=LaoCaiLT, mf="sdf")))
+
