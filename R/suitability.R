@@ -72,6 +72,20 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
           f3[i] <- j; f4[i] <- i; typ <- 0
         } else if (as.character(y[i, 1]) == tmav[j]) {
           f3[i] <- j; f4[i] <- i; typ <- 1
+        } else {
+          if (j < length(wmav)) {
+            next
+          } else {
+            if (i < nrow(y)) {
+              break
+            } else {
+              if (length(f3) == 0 && length(f4) == 0) {
+                stop("No factor(s) to be evaluated, since none matches with the crop requirements.")  
+              } else {
+                break
+              }
+            }
+          }
         }
       }
     }
@@ -157,6 +171,8 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
     mfNum <- 2
   } else if (mf == "gaussian") {
     mfNum <- 3
+  } else {
+    stop(paste("Unrecognized mf='", mf, "', please choose either 'triangular', 'trapezoidal' or 'gaussian'.", sep=""))
   }
   
   if (is.null(sigma)) {
