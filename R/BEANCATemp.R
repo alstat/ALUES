@@ -1,6 +1,6 @@
-#' BeanCa temp requirement for land evaluation
+#' Castor Beans temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming BeanCa.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Castor Beans.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

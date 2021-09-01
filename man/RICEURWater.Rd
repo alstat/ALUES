@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEURWater}
 \alias{RICEURWater}
-\title{RiceUR water requirement for land evaluation}
+\title{Rainfed Upland Rice water requirement for land evaluation}
 \format{
 A data frame with 7 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming RiceUR.
+A dataset containing the water characteristics of the crop requirements for farming Rainfed Upland Rice.
 }
 \details{
 The following are the factors for evaluation: 

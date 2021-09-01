@@ -3,12 +3,12 @@
 \docType{data}
 \name{OILPALMTemp}
 \alias{OILPALMTemp}
-\title{OilPalm temp requirement for land evaluation}
+\title{Oil Palm temp requirement for land evaluation}
 \format{
 A data frame with 3 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming OilPalm.
+A dataset containing the temp characteristics of the crop requirements for farming Oil Palm.
 }
 \details{
 The following are the factors for evaluation: 

@@ -1,6 +1,6 @@
-#' CoffeeRo soil requirement for land evaluation
+#' Robusta Coffee soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming CoffeeRo.
+    #' A dataset containing the soil characteristics of the crop requirements for farming Robusta Coffee.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

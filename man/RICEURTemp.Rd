@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEURTemp}
 \alias{RICEURTemp}
-\title{RiceUR temp requirement for land evaluation}
+\title{Rainfed Upland Rice temp requirement for land evaluation}
 \format{
 A data frame with 4 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming RiceUR.
+A dataset containing the temp characteristics of the crop requirements for farming Rainfed Upland Rice.
 }
 \details{
 The following are the factors for evaluation: 

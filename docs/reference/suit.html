@@ -309,7 +309,7 @@ trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) 
 #&gt; </div><div class='input'><span class='va'>rice_suit</span> <span class='op'>&lt;-</span> <span class='fu'>suit</span><span class='op'>(</span><span class='st'>"ricebr"</span>, terrain<span class='op'>=</span><span class='va'>MarinduqueLT</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January</span></div><div class='output co'>#&gt; <span class='warning'>Warning: max is set to 16 for factor CECc since all suitability class intervals are equal.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>rice_suit</span><span class='op'>[[</span><span class='st'>"terrain"</span><span class='op'>]</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "No factor(s) to be evaluated, since none matches with the crop requirements."
+#&gt; [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements."
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>rice_suit</span><span class='op'>[[</span><span class='st'>"soil"</span><span class='op'>]</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $`Actual Factors Evaluated`
 #&gt; [1] "CFragm" "CECc"   "pHH2O" 
@@ -345,6 +345,9 @@ trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) 
 #&gt; 
 #&gt; $`Crop Evaluated`
 #&gt; [1] "RICEBRSoil"
+#&gt; 
+#&gt; $Warning
+#&gt; [1] "max is set to 16 for factor CECc since all suitability class intervals are equal."
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

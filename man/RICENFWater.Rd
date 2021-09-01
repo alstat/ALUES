@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICENFWater}
 \alias{RICENFWater}
-\title{RiceNF water requirement for land evaluation}
+\title{Rice Cultivation under Natural Floods water requirement for land evaluation}
 \format{
 A data frame with 7 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming RiceNF.
+A dataset containing the water characteristics of the crop requirements for farming Rice Cultivation under Natural Floods.
 }
 \details{
 The following are the factors for evaluation: 

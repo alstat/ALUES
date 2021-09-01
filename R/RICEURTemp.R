@@ -1,6 +1,6 @@
-#' RiceUR temp requirement for land evaluation
+#' Rainfed Upland Rice temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming RiceUR.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Rainfed Upland Rice.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

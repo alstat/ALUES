@@ -1,6 +1,6 @@
-#' PepperGr temp requirement for land evaluation
+#' Green Pepper temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming PepperGr.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Green Pepper.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

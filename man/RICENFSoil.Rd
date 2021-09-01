@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICENFSoil}
 \alias{RICENFSoil}
-\title{RiceNF soil requirement for land evaluation}
+\title{Rice Cultivation under Natural Floods soil requirement for land evaluation}
 \format{
 A data frame with 11 rows and 8 columns
 }
 \description{
-A dataset containing the soil characteristics of the crop requirements for farming RiceNF.
+A dataset containing the soil characteristics of the crop requirements for farming Rice Cultivation under Natural Floods.
 }
 \details{
 The following are the factors for evaluation: 

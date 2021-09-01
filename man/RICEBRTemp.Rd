@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEBRTemp}
 \alias{RICEBRTemp}
-\title{RiceBR temp requirement for land evaluation}
+\title{Rainfed Bunded Rice temp requirement for land evaluation}
 \format{
 A data frame with 4 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming RiceBR.
+A dataset containing the temp characteristics of the crop requirements for farming Rainfed Bunded Rice.
 }
 \details{
 The following are the factors for evaluation: 

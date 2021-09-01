@@ -3,12 +3,12 @@
 \docType{data}
 \name{COFFEEARSoil}
 \alias{COFFEEARSoil}
-\title{CoffeeAr soil requirement for land evaluation}
+\title{Arabica Coffee soil requirement for land evaluation}
 \format{
 A data frame with 11 rows and 8 columns
 }
 \description{
-A dataset containing the soil characteristics of the crop requirements for farming CoffeeAr.
+A dataset containing the soil characteristics of the crop requirements for farming Arabica Coffee.
 }
 \details{
 The following are the factors for evaluation: 

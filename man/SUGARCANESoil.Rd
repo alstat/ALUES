@@ -3,12 +3,12 @@
 \docType{data}
 \name{SUGARCANESoil}
 \alias{SUGARCANESoil}
-\title{SugarCane soil requirement for land evaluation}
+\title{Sugar Cane soil requirement for land evaluation}
 \format{
 A data frame with 15 rows and 8 columns
 }
 \description{
-A dataset containing the soil characteristics of the crop requirements for farming SugarCane.
+A dataset containing the soil characteristics of the crop requirements for farming Sugar Cane.
 }
 \details{
 The following are the factors for evaluation: 

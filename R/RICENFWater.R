@@ -1,6 +1,6 @@
-#' RiceNF water requirement for land evaluation
+#' Rice Cultivation under Natural Floods water requirement for land evaluation
     #' 
-    #' A dataset containing the water characteristics of the crop requirements for farming RiceNF.
+    #' A dataset containing the water characteristics of the crop requirements for farming Rice Cultivation under Natural Floods.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

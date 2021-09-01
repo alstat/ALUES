@@ -1,6 +1,6 @@
-#' RiceBR terrain requirement for land evaluation
+#' Rainfed Bunded Rice terrain requirement for land evaluation
     #' 
-    #' A dataset containing the terrain characteristics of the crop requirements for farming RiceBR.
+    #' A dataset containing the terrain characteristics of the crop requirements for farming Rainfed Bunded Rice.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

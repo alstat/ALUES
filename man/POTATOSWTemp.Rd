@@ -3,12 +3,12 @@
 \docType{data}
 \name{POTATOSWTemp}
 \alias{POTATOSWTemp}
-\title{PotatoSw temp requirement for land evaluation}
+\title{Sweet Potato temp requirement for land evaluation}
 \format{
 A data frame with 2 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming PotatoSw.
+A dataset containing the temp characteristics of the crop requirements for farming Sweet Potato.
 }
 \details{
 The following are the factors for evaluation: 

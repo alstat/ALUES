@@ -1,6 +1,6 @@
-#' CoffeeRo temp requirement for land evaluation
+#' Robusta Coffee temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming CoffeeRo.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Robusta Coffee.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEBRSoil}
 \alias{RICEBRSoil}
-\title{RiceBR soil requirement for land evaluation}
+\title{Rainfed Bunded Rice soil requirement for land evaluation}
 \format{
 A data frame with 6 rows and 8 columns
 }
 \description{
-A dataset containing the soil characteristics of the crop requirements for farming RiceBR.
+A dataset containing the soil characteristics of the crop requirements for farming Rainfed Bunded Rice.
 }
 \details{
 The following are the factors for evaluation: 

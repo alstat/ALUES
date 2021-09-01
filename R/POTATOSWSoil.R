@@ -1,6 +1,6 @@
-#' PotatoSw soil requirement for land evaluation
+#' Sweet Potato soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming PotatoSw.
+    #' A dataset containing the soil characteristics of the crop requirements for farming Sweet Potato.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

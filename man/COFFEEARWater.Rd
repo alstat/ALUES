@@ -3,12 +3,12 @@
 \docType{data}
 \name{COFFEEARWater}
 \alias{COFFEEARWater}
-\title{CoffeeAr water requirement for land evaluation}
+\title{Arabica Coffee water requirement for land evaluation}
 \format{
 A data frame with 4 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming CoffeeAr.
+A dataset containing the water characteristics of the crop requirements for farming Arabica Coffee.
 }
 \details{
 The following are the factors for evaluation: 

@@ -3,12 +3,12 @@
 \docType{data}
 \name{BEANCAWater}
 \alias{BEANCAWater}
-\title{BeanCa water requirement for land evaluation}
+\title{Castor Beans water requirement for land evaluation}
 \format{
 A data frame with 2 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming BeanCa.
+A dataset containing the water characteristics of the crop requirements for farming Castor Beans.
 }
 \details{
 The following are the factors for evaluation: 

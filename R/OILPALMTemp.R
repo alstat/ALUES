@@ -1,6 +1,6 @@
-#' OilPalm temp requirement for land evaluation
+#' Oil Palm temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming OilPalm.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Oil Palm.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

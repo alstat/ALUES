@@ -1,6 +1,6 @@
-#' CoffeeAr water requirement for land evaluation
+#' Arabica Coffee water requirement for land evaluation
     #' 
-    #' A dataset containing the water characteristics of the crop requirements for farming CoffeeAr.
+    #' A dataset containing the water characteristics of the crop requirements for farming Arabica Coffee.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

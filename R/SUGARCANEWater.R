@@ -1,6 +1,6 @@
-#' SugarCane water requirement for land evaluation
+#' Sugar Cane water requirement for land evaluation
     #' 
-    #' A dataset containing the water characteristics of the crop requirements for farming SugarCane.
+    #' A dataset containing the water characteristics of the crop requirements for farming Sugar Cane.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

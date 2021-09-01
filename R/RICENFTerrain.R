@@ -1,6 +1,6 @@
-#' RiceNF terrain requirement for land evaluation
+#' Rice Cultivation under Natural Floods terrain requirement for land evaluation
     #' 
-    #' A dataset containing the terrain characteristics of the crop requirements for farming RiceNF.
+    #' A dataset containing the terrain characteristics of the crop requirements for farming Rice Cultivation under Natural Floods.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

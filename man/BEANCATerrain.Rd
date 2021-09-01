@@ -3,12 +3,12 @@
 \docType{data}
 \name{BEANCATerrain}
 \alias{BEANCATerrain}
-\title{BeanCa terrain requirement for land evaluation}
+\title{Castor Beans terrain requirement for land evaluation}
 \format{
 A data frame with 6 rows and 8 columns
 }
 \description{
-A dataset containing the terrain characteristics of the crop requirements for farming BeanCa.
+A dataset containing the terrain characteristics of the crop requirements for farming Castor Beans.
 }
 \details{
 The following are the factors for evaluation: 

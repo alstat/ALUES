@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEIWWater}
 \alias{RICEIWWater}
-\title{RiceIW water requirement for land evaluation}
+\title{Irrigated Rice water requirement for land evaluation}
 \format{
 A data frame with 7 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming RiceIW.
+A dataset containing the water characteristics of the crop requirements for farming Irrigated Rice.
 }
 \details{
 The following are the factors for evaluation: 

@@ -1,6 +1,6 @@
-#' PotatoSw temp requirement for land evaluation
+#' Sweet Potato temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming PotatoSw.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Sweet Potato.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

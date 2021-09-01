@@ -1,6 +1,6 @@
-#' PepperGr soil requirement for land evaluation
+#' Green Pepper soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming PepperGr.
+    #' A dataset containing the soil characteristics of the crop requirements for farming Green Pepper.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

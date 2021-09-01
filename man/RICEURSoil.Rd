@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEURSoil}
 \alias{RICEURSoil}
-\title{RiceUR soil requirement for land evaluation}
+\title{Rainfed Upland Rice soil requirement for land evaluation}
 \format{
 A data frame with 8 rows and 8 columns
 }
 \description{
-A dataset containing the soil characteristics of the crop requirements for farming RiceUR.
+A dataset containing the soil characteristics of the crop requirements for farming Rainfed Upland Rice.
 }
 \details{
 The following are the factors for evaluation: 

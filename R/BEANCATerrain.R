@@ -1,6 +1,6 @@
-#' BeanCa terrain requirement for land evaluation
+#' Castor Beans terrain requirement for land evaluation
     #' 
-    #' A dataset containing the terrain characteristics of the crop requirements for farming BeanCa.
+    #' A dataset containing the terrain characteristics of the crop requirements for farming Castor Beans.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

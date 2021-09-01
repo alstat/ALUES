@@ -1,6 +1,6 @@
-#' BeanCa soil requirement for land evaluation
+#' Castor Beans soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming BeanCa.
+    #' A dataset containing the soil characteristics of the crop requirements for farming Castor Beans.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

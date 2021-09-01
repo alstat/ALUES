@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICENFTemp}
 \alias{RICENFTemp}
-\title{RiceNF temp requirement for land evaluation}
+\title{Rice Cultivation under Natural Floods temp requirement for land evaluation}
 \format{
 A data frame with 4 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming RiceNF.
+A dataset containing the temp characteristics of the crop requirements for farming Rice Cultivation under Natural Floods.
 }
 \details{
 The following are the factors for evaluation: 

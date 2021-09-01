@@ -1,6 +1,6 @@
-#' CoffeeAr temp requirement for land evaluation
+#' Arabica Coffee temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming CoffeeAr.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Arabica Coffee.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

@@ -1,6 +1,6 @@
-#' OilPalm soil requirement for land evaluation
+#' Oil Palm soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming OilPalm.
+    #' A dataset containing the soil characteristics of the crop requirements for farming Oil Palm.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

@@ -1,6 +1,6 @@
-#' SugarCane terrain requirement for land evaluation
+#' Sugar Cane terrain requirement for land evaluation
     #' 
-    #' A dataset containing the terrain characteristics of the crop requirements for farming SugarCane.
+    #' A dataset containing the terrain characteristics of the crop requirements for farming Sugar Cane.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

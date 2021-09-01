@@ -1,6 +1,6 @@
-#' PotatoSw water requirement for land evaluation
+#' Sweet Potato water requirement for land evaluation
     #' 
-    #' A dataset containing the water characteristics of the crop requirements for farming PotatoSw.
+    #' A dataset containing the water characteristics of the crop requirements for farming Sweet Potato.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

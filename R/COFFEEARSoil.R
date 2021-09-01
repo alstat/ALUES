@@ -1,6 +1,6 @@
-#' CoffeeAr soil requirement for land evaluation
+#' Arabica Coffee soil requirement for land evaluation
     #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming CoffeeAr.
+    #' A dataset containing the soil characteristics of the crop requirements for farming Arabica Coffee.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

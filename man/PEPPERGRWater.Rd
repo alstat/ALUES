@@ -3,12 +3,12 @@
 \docType{data}
 \name{PEPPERGRWater}
 \alias{PEPPERGRWater}
-\title{PepperGr water requirement for land evaluation}
+\title{Green Pepper water requirement for land evaluation}
 \format{
 A data frame with 1 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming PepperGr.
+A dataset containing the water characteristics of the crop requirements for farming Green Pepper.
 }
 \details{
 The following are the factors for evaluation: 

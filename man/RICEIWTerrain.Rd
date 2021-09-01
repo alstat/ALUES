@@ -3,12 +3,12 @@
 \docType{data}
 \name{RICEIWTerrain}
 \alias{RICEIWTerrain}
-\title{RiceIW terrain requirement for land evaluation}
+\title{Irrigated Rice terrain requirement for land evaluation}
 \format{
 A data frame with 4 rows and 8 columns
 }
 \description{
-A dataset containing the terrain characteristics of the crop requirements for farming RiceIW.
+A dataset containing the terrain characteristics of the crop requirements for farming Irrigated Rice.
 }
 \details{
 The following are the factors for evaluation: 

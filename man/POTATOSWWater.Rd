@@ -3,12 +3,12 @@
 \docType{data}
 \name{POTATOSWWater}
 \alias{POTATOSWWater}
-\title{PotatoSw water requirement for land evaluation}
+\title{Sweet Potato water requirement for land evaluation}
 \format{
 A data frame with 5 rows and 8 columns
 }
 \description{
-A dataset containing the water characteristics of the crop requirements for farming PotatoSw.
+A dataset containing the water characteristics of the crop requirements for farming Sweet Potato.
 }
 \details{
 The following are the factors for evaluation: 

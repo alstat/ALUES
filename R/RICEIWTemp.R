@@ -1,6 +1,6 @@
-#' RiceIW temp requirement for land evaluation
+#' Irrigated Rice temp requirement for land evaluation
     #' 
-    #' A dataset containing the temp characteristics of the crop requirements for farming RiceIW.
+    #' A dataset containing the temp characteristics of the crop requirements for farming Irrigated Rice.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

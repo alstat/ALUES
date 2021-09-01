@@ -1,6 +1,6 @@
-#' RiceBR water requirement for land evaluation
+#' Rainfed Bunded Rice water requirement for land evaluation
     #' 
-    #' A dataset containing the water characteristics of the crop requirements for farming RiceBR.
+    #' A dataset containing the water characteristics of the crop requirements for farming Rainfed Bunded Rice.
     #' 
     #' @details 
     #' The following are the factors for evaluation: 

@@ -3,12 +3,12 @@
 \docType{data}
 \name{SUGARCANETemp}
 \alias{SUGARCANETemp}
-\title{SugarCane temp requirement for land evaluation}
+\title{Sugar Cane temp requirement for land evaluation}
 \format{
 A data frame with 4 rows and 8 columns
 }
 \description{
-A dataset containing the temp characteristics of the crop requirements for farming SugarCane.
+A dataset containing the temp characteristics of the crop requirements for farming Sugar Cane.
 }
 \details{
 The following are the factors for evaluation: 

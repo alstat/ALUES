@@ -3,12 +3,12 @@
 \docType{data}
 \name{PEPPERGRTerrain}
 \alias{PEPPERGRTerrain}
-\title{PepperGr terrain requirement for land evaluation}
+\title{Green Pepper terrain requirement for land evaluation}
 \format{
 A data frame with 7 rows and 8 columns
 }
 \description{
-A dataset containing the terrain characteristics of the crop requirements for farming PepperGr.
+A dataset containing the terrain characteristics of the crop requirements for farming Green Pepper.
 }
 \details{
 The following are the factors for evaluation: 
