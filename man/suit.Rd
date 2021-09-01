@@ -76,12 +76,15 @@ This function calculates the suitability scores and class of the land units.
 \details{
 There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 For triangular case. If a given factor has values equal for all suitabilities, then the class will 
-trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with single tone domain \{0\}.
+trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with singleton domain \{0\}.
 }
 \examples{
 library(ALUES)
 
 rice_suit <- suit("ricebr", water=MarinduqueWater, temp=MarinduqueTemp, sow_month = 1)
-rice_suit[["water"]] # access results for water suitability
-rice_suit[["temp"]] # access results for temperature suitability
+lapply(rice_suit[["water"]], function(x) head(x)) # access results for water suitability
+lapply(rice_suit[["temp"]], function(x) head(x)) # access results for temperature suitability
+rice_suit <- suit("ricebr", terrain=MarinduqueLT)
+lapply(rice_suit[["terrain"]], function(x) head(x))
+lapply(rice_suit[["soil"]], function(x) head(x))
 }

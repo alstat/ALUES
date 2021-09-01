@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Suitability Scores/Class of the Land Units — suitability • ALUES</title>
+<title>Suitability Scores/Class of the Land Units — suit • ALUES</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Suitability Scores/Class of the Land Units — suitability" />
+<meta property="og:title" content="Suitability Scores/Class of the Land Units — suit" />
 <meta property="og:description" content="This function calculates the suitability scores and class of the land units." />
 <meta property="og:image" content="/logo.svg" />
 <meta property="og:image:alt" content="ALUES logo" />
@@ -130,17 +130,19 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Suitability Scores/Class of the Land Units</h1>
-    <small class="dont-index">Source: <a href='https://github.com/alstat/ALUES/blob/master/R/suitability.R'><code>R/suitability.R</code></a></small>
-    <div class="hidden name"><code>suitability.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/alstat/ALUES/blob/master/R/suit.R'><code>R/suit.R</code></a></small>
+    <div class="hidden name"><code>suit.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>This function calculates the suitability scores and class of the land units.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>suitability</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  <span class='va'>y</span>,
+    <pre class="usage"><span class='fu'>suit</span><span class='op'>(</span>
+  <span class='va'>crop</span>,
+  terrain <span class='op'>=</span> <span class='cn'>NULL</span>,
+  water <span class='op'>=</span> <span class='cn'>NULL</span>,
+  temp <span class='op'>=</span> <span class='cn'>NULL</span>,
   mf <span class='op'>=</span> <span class='st'>"triangular"</span>,
   sow_month <span class='op'>=</span> <span class='cn'>NULL</span>,
   min <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -153,14 +155,20 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a data frame consisting the properties of the land units;</p></td>
+      <th>crop</th>
+      <td><p>a string for the name of the crop;</p></td>
     </tr>
     <tr>
-      <th>y</th>
-      <td><p>a data frame consisting the requirements of a given 
-characteristics (terrain, soil, water and temperature) for a 
-given crop (e.g. coconut, cassava, etc.);</p></td>
+      <th>terrain</th>
+      <td><p>a data frame for the terrain characteristics of the input land units;</p></td>
+    </tr>
+    <tr>
+      <th>water</th>
+      <td><p>a data frame for the water characteristics of the input land units;</p></td>
+    </tr>
+    <tr>
+      <th>temp</th>
+      <td><p>a data frame for the temp characteristics of the input land units;</p></td>
     </tr>
     <tr>
       <th>mf</th>
@@ -222,8 +230,122 @@ gaussian formula, which is often times referred as the variance.</p></td>
 
     <p>There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 For triangular case. If a given factor has values equal for all suitabilities, then the class will 
-trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with single tone domain {0}.</p>
+trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with singleton domain {0}.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/alstat/ALUES'>ALUES</a></span><span class='op'>)</span>
+
+<span class='va'>rice_suit</span> <span class='op'>&lt;-</span> <span class='fu'>suit</span><span class='op'>(</span><span class='st'>"ricebr"</span>, water<span class='op'>=</span><span class='va'>MarinduqueWater</span>, temp<span class='op'>=</span><span class='va'>MarinduqueTemp</span>, sow_month <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>rice_suit</span><span class='op'>[[</span><span class='st'>"water"</span><span class='op'>]</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># access results for water suitability</span>
+</div><div class='output co'>#&gt; $`Actual Factors Evaluated`
+#&gt; [1] "Jan" "Feb" "Mar" "Apr"
+#&gt; 
+#&gt; $`Suitability Score`
+#&gt;         Jan       Feb       Mar       Apr
+#&gt; 1 0.3051852 0.1925926 0.1629630 0.3542857
+#&gt; 2 0.3081481 0.1925926 0.1629630 0.3485714
+#&gt; 3 0.3081481 0.1955556 0.1659259 0.3485714
+#&gt; 4 0.3111111 0.1925926 0.1688889 0.3371429
+#&gt; 5 0.3111111 0.1925926 0.1718519 0.3371429
+#&gt; 6 0.3140741 0.1955556 0.1748148 0.3257143
+#&gt; 
+#&gt; $`Suitability Class`
+#&gt;   Jan Feb Mar Apr
+#&gt; 1  S3   N   N  S3
+#&gt; 2  S3   N   N  S3
+#&gt; 3  S3   N   N  S3
+#&gt; 4  S3   N   N  S3
+#&gt; 5  S3   N   N  S3
+#&gt; 6  S3   N   N  S3
+#&gt; 
+#&gt; $`Factors' Minimum Values`
+#&gt; Jan Feb Mar Apr 
+#&gt;   0   0   0   0 
+#&gt; 
+#&gt; $`Factors' Maximum Values`
+#&gt;   Jan   Feb   Mar   Apr 
+#&gt; 880.0 880.0 880.0 714.2 
+#&gt; 
+#&gt; $`Factors' Weights`
+#&gt; [1] NA NA NA NA
+#&gt; 
+#&gt; $`Crop Evaluated`
+#&gt; [1] "RICEBRWater"
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>rice_suit</span><span class='op'>[[</span><span class='st'>"temp"</span><span class='op'>]</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># access results for temperature suitability</span>
+</div><div class='output co'>#&gt; $`Actual Factors Evaluated`
+#&gt; [1] "Feb"
+#&gt; 
+#&gt; $`Suitability Score`
+#&gt;         Feb
+#&gt; 1 0.8366667
+#&gt; 2 0.8333333
+#&gt; 3 0.8400000
+#&gt; 4 0.8366667
+#&gt; 5 0.8366667
+#&gt; 6 0.8500000
+#&gt; 
+#&gt; $`Suitability Class`
+#&gt;   Feb
+#&gt; 1  S1
+#&gt; 2  S1
+#&gt; 3  S1
+#&gt; 4  S1
+#&gt; 5  S1
+#&gt; 6  S1
+#&gt; 
+#&gt; $`Factors' Minimum Values`
+#&gt; Feb 
+#&gt;   0 
+#&gt; 
+#&gt; $`Factors' Maximum Values`
+#&gt; Feb 
+#&gt;  52 
+#&gt; 
+#&gt; $`Factors' Weights`
+#&gt; [1] 2
+#&gt; 
+#&gt; $`Crop Evaluated`
+#&gt; [1] "RICEBRTemp"
+#&gt; </div><div class='input'><span class='va'>rice_suit</span> <span class='op'>&lt;-</span> <span class='fu'>suit</span><span class='op'>(</span><span class='st'>"ricebr"</span>, terrain<span class='op'>=</span><span class='va'>MarinduqueLT</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January</span></div><div class='output co'>#&gt; <span class='warning'>Warning: max is set to 16 for factor CECc since all suitability class intervals are equal.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>rice_suit</span><span class='op'>[[</span><span class='st'>"terrain"</span><span class='op'>]</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
+#&gt; [1] "No factor(s) to be evaluated, since none matches with the crop requirements."
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>rice_suit</span><span class='op'>[[</span><span class='st'>"soil"</span><span class='op'>]</span><span class='op'>]</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $`Actual Factors Evaluated`
+#&gt; [1] "CFragm" "CECc"   "pHH2O" 
+#&gt; 
+#&gt; $`Suitability Score`
+#&gt;      CFragm   CECc pHH2O
+#&gt; 1 0.7843137 0.7500     0
+#&gt; 2 0.8235294 0.7500     0
+#&gt; 3 0.8039216 0.7500     0
+#&gt; 4 0.8039216 0.7500     0
+#&gt; 5 0.7647059 0.7500     0
+#&gt; 6 0.7843137 0.8125     0
+#&gt; 
+#&gt; $`Suitability Class`
+#&gt;   CFragm CECc pHH2O
+#&gt; 1     S1   S1     N
+#&gt; 2     S1   S1     N
+#&gt; 3     S1   S1     N
+#&gt; 4     S1   S1     N
+#&gt; 5     S1   S1     N
+#&gt; 6     S1   S1     N
+#&gt; 
+#&gt; $`Factors' Minimum Values`
+#&gt; CFragm   CECc  pHH2O 
+#&gt;      0      0      0 
+#&gt; 
+#&gt; $`Factors' Maximum Values`
+#&gt; CFragm   CECc  pHH2O 
+#&gt;   51.0   16.0    9.9 
+#&gt; 
+#&gt; $`Factors' Weights`
+#&gt; [1] NA NA NA
+#&gt; 
+#&gt; $`Crop Evaluated`
+#&gt; [1] "RICEBRSoil"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

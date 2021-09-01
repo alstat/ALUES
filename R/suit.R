@@ -50,14 +50,17 @@
 #' @details
 #' There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 #' For triangular case. If a given factor has values equal for all suitabilities, then the class will 
-#' trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with single tone domain \{0\}.
+#' trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with singleton domain \{0\}.
 #' 
 #' @examples
 #' library(ALUES)
 #' 
 #' rice_suit <- suit("ricebr", water=MarinduqueWater, temp=MarinduqueTemp, sow_month = 1)
-#' rice_suit[["water"]] # access results for water suitability
-#' rice_suit[["temp"]] # access results for temperature suitability
+#' lapply(rice_suit[["water"]], function(x) head(x)) # access results for water suitability
+#' lapply(rice_suit[["temp"]], function(x) head(x)) # access results for temperature suitability
+#' rice_suit <- suit("ricebr", terrain=MarinduqueLT)
+#' lapply(rice_suit[["terrain"]], function(x) head(x))
+#' lapply(rice_suit[["soil"]], function(x) head(x))
 suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", sow_month = NULL, min = NULL, max = "average", interval = NULL, sigma = NULL) {
   if (is.null(terrain) && is.null(water) && is.null(temp)) {
     stop("Please specify at least one land characteristics: terrain, water, or temp.")
@@ -77,9 +80,6 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
     } else if (crop == "coffee") {
       warning("Defaulting to 'coffeear', other options for coffee: 'coffeero'. Specify accordingly.")
       crop <- toupper("coffeear")
-    } else if (crop == "potato") {
-      warning("Defaulting to 'potato', other options for potato: 'potatosw'")
-      crop <- toupper("potato")
     } else {
       stop(paste("Input crop='", crop, "' is not available in the database, see docs for list of ALUES data.", sep=""))
     }
@@ -97,8 +97,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
         suit_terrain
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+              suit_terrain 
+            })
+          } else {
+            
+            suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+            suit_terrain[["Warning"]] <- w$message
+            suit_terrain
+          }
+        } else {
+          
+          suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+          suit_terrain[["Warning"]] <- w$message
+          suit_terrain
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     suit_soil <- tryCatch(
@@ -107,8 +131,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
         suit_soil
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+              suit_soil  
+            })
+          } else {
+            
+            suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+            suit_soil[["Warning"]] <- w$message
+            suit_soil
+          }
+        } else {
+          
+          suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+          suit_soil[["Warning"]] <- w$message
+          suit_soil
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     
@@ -132,8 +180,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
         suit_terrain
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+              suit_terrain
+            })
+          } else {
+            
+            suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+            suit_terrain[["Warning"]] <- w$message
+            suit_terrain
+          }
+        } else {
+          
+          suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+          suit_terrain[["Warning"]] <- w$message
+          suit_terrain
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     suit_soil <- tryCatch(
@@ -142,8 +214,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
         suit_soil
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+              suit_soil
+            })
+          } else {
+            
+            suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+            suit_soil[["Warning"]] <- w$message
+            suit_soil
+          }
+        } else {
+          
+          suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+          suit_soil[["Warning"]] <- w$message
+          suit_soil
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     
@@ -163,8 +259,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
         suit_terrain
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+              suit_terrain
+            })
+          } else {
+            
+            suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+            suit_terrain[["Warning"]] <- w$message
+            suit_terrain
+          }
+        } else {
+          
+          suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+          suit_terrain[["Warning"]] <- w$message
+          suit_terrain
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     suit_soil <- tryCatch(
@@ -173,8 +293,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
         suit_soil
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+              suit_soil
+            })
+          } else {
+            
+            suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+            suit_soil[["Warning"]] <- w$message
+            suit_soil
+          }
+        } else {
+          
+          suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+          suit_soil[["Warning"]] <- w$message
+          suit_soil
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     
@@ -203,8 +347,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
         suit_terrain
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+              suit_terrain
+            })
+          } else {
+            
+            suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+            suit_terrain[["Warning"]] <- w$message
+            suit_terrain
+          }
+        } else {
+          
+          suit_terrain <- suitability(terrain, crop_terrain, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_terrain[["Crop Evaluated"]] <- paste(crop, "Terrain", sep="")
+          suit_terrain[["Warning"]] <- w$message
+          suit_terrain
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     suit_soil <- tryCatch(
@@ -213,8 +381,32 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
         suit_soil
       },
+      warning=function(w) {
+        warn <- "For water characteristic, make sure to input sowing month (sow_month), say 1, w/c implies January"
+        if (w$message == warn) {
+          if (!is.null(sow_month) && is.numeric(sow_month)) {
+            suppressWarnings({
+              suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+              suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+              suit_soil
+            })
+          } else {
+            
+            suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+            suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+            suit_soil[["Warning"]] <- w$message
+            suit_soil
+          }
+        } else {
+          
+          suit_soil <- suitability(terrain, crop_soil, mf=mf, sow_month=NULL, min=min, max=max, interval=interval, sigma=sigma)
+          suit_soil[["Crop Evaluated"]] <- paste(crop, "Soil", sep="")
+          suit_soil[["Warning"]] <- w$message
+          suit_soil
+        }
+      },
       error = function(x) {
-        return(x)
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("terrain" = suit_terrain, "soil" = suit_soil))

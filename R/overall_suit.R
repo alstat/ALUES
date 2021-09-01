@@ -16,28 +16,35 @@
 #'        80\% - 100\% (Highly Suitable, S1), is equivalent to \code{interval = c(0, 0.2, 0.5, 0.8, 1)}.
 #'        
 #' @seealso
-#' \code{\link{suitability}}
+#' \code{\link{suit}}
 #' 
 #' @examples
 #' library(ALUES)
-#' x <- LaoCaiLT
-#' y <- COCONUTSoil
+#' out <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
+#' out[["terrain"]]
 #' 
-#' # Compute the suitability of the land units of the Lao Cai land
-#' # terrain characteristics using the 
-#' # coconut_tersuit <- suitability(x = x, y = y)
+#' # Soil Overall Suitability
+#' head(overall_suit(out[["soil"]]))
+#' head(overall_suit(out[["soil"]], "average"))
+#' head(overall_suit(out[["soil"]], "maximum"))
+#' head(overall_suit(out[["soil"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 #' 
-#' # Return the first 10 of the observations
-#' # lapply(coconut_tersuit, function(x) head(x, n = 10))
+#' # Water Overall Suitability
+#' head(overall_suit(out[["water"]], "average"))
+#' head(overall_suit(out[["water"]], "maximum"))
+#' head(overall_suit(out[["water"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 #' 
-#' # Compute the overall suitability of the characteristics
-#' # head(overall_suit(coconut_tersuit))
+#' # Temperature Overall Suitability
+#' head(overall_suit(out[["temp"]], "average"))
+#' head(overall_suit(out[["temp"]], "maximum"))
+#' head(overall_suit(out[["temp"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 overall_suit <- function(suit, method = NULL, interval = NULL) {
   if (class(suit) != "suitability") 
     stop("suit should be an object of class suitability.")
   
   if (ncol(suit[[2L]]) == 1L) {
-    return (data.frame(suit[[2L]], suit[[3L]]))
+    warning("No overall suitability computed since there is only one factor.")
+    return(data.frame("Score" = suit[[2L]][,1], "Class" = suit[[3L]][,1]))
   }
   
   x <- suit[[2L]]; wts <- suit[[6L]]
@@ -76,7 +83,7 @@ overall_suit <- function(suit, method = NULL, interval = NULL) {
     } else {
       if (interval[1] != 0) {
         stop("minimum limit should be 0.")
-      } else if (interval[1] != 1) {
+      } else if (interval[5] != 1) {
         stop("maximum limit should be 1.")
       } else {
         l1 = interval[1L]; l2 = interval[2L]; l3 = interval[3L]; l4 = interval[4L]; l5 = interval[5L] 
@@ -97,5 +104,5 @@ overall_suit <- function(suit, method = NULL, interval = NULL) {
 
   suitClass <- sapply(suitScore, sclassFun)
   
-  return(data.frame("Scores" = suitScore, "Class" = suitClass))
+  return(data.frame("Score" = suitScore, "Class" = suitClass))
 }

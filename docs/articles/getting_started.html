@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2021-07-24</h4>
+            <h4 class="date">2021-09-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/getting_started.Rmd"><code>vignettes/getting_started.Rmd</code></a></small>
       <div class="hidden name"><code>getting_started.Rmd</code></div>
@@ -102,119 +102,6 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>In this illustration, the overall suitability of the Marinduque province is assessed for farming banana.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## Loading required package: Rcpp</code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">MarinduqueLT</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">BANANASoil</span>
-<span class="va">suitability_of_LUs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suitability.html">suitability</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(x, y): max is set to 16 for factor CECc since all
-## suitability class intervals are equal.</code></pre>
-<p>Line 1 in the code above simply loads the package to the workspace. Line 2 assigns the data frame <code>MarinduqueLT</code>, containing the land and terrain characteristics of the units in the Marinduque province to the variable <code>x</code>. Line 3 assigns the crop requirements for the soil characteristics of the land units to the variable <code>y</code>. And line 4 evaluates the suitability scores and classes of the land units. The output returns a warning since the CECc factor in the soil requirement has the same values across all suitability classes as seen in Table 6. So the function assumes the maximum point at the domain of the membership function as 16. The output of the above code is a list with structure extracted through the <code>str</code> function as shown below.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">suitability_of_LUs</span><span class="op">)</span></code></pre></div>
-<pre><code>## List of 6
-##  $ Actual Factors Evaluated: chr [1:4] "CFragm" "CECc" "pHH2O" "SoilTe"
-##  $ Suitability Score       :'data.frame':    881 obs. of  4 variables:
-##   ..$ CFragm: num [1:881] 0.853 0.88 0.867 0.867 0.84 ...
-##   ..$ CECc  : num [1:881] 0.75 0.75 0.75 0.75 0.75 ...
-##   ..$ pHH2O : num [1:881] 0 0 0 0 0 0 0 0 0 0 ...
-##   ..$ SoilTe: num [1:881] 0.96 0.96 0.96 0.96 0.96 0.96 0.96 0.64 0.64 0.64 ...
-##  $ Suitability Class       :'data.frame':    881 obs. of  4 variables:
-##   ..$ CFragm: chr [1:881] "S1" "S1" "S1" "S1" ...
-##   ..$ CECc  : chr [1:881] "S1" "S1" "S1" "S1" ...
-##   ..$ pHH2O : chr [1:881] "N" "N" "N" "N" ...
-##   ..$ SoilTe: chr [1:881] "S1" "S1" "S1" "S1" ...
-##  $ Factors' Minimum Values : Named num [1:4] 0 0 0 0
-##   ..- attr(*, "names")= chr [1:4] "CFragm" "CECc" "pHH2O" "SoilTe"
-##  $ Factors' Maximum Values : Named num [1:4] 75 16 8.94 12.5
-##   ..- attr(*, "names")= chr [1:4] "CFragm" "CECc" "pHH2O" "SoilTe"
-##  $ Factors' Weights        : num [1:4] 3 3 3 2
-##  - attr(*, "class")= chr "suitability"</code></pre>
-<p>In the output above, the suitability_of_LUs object contains a list of 5, and these are: (a) Actual Factors Evaluated, (b) Suitability Score, (c) Suitability Class, (d) Factors’ Minimum Values, and (e) Factors’ Maximum Values. To view the first five observations for each list, execute the following code:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">suitability_of_LUs</span>, <span class="va">head</span><span class="op">)</span></code></pre></div>
-<pre><code>## $`Actual Factors Evaluated`
-## [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"
-## 
-## $`Suitability Score`
-##      CFragm   CECc pHH2O SoilTe
-## 1 0.8533333 0.7500     0   0.96
-## 2 0.8800000 0.7500     0   0.96
-## 3 0.8666667 0.7500     0   0.96
-## 4 0.8666667 0.7500     0   0.96
-## 5 0.8400000 0.7500     0   0.96
-## 6 0.8533333 0.8125     0   0.96
-## 
-## $`Suitability Class`
-##   CFragm CECc pHH2O SoilTe
-## 1     S1   S1     N     S1
-## 2     S1   S1     N     S1
-## 3     S1   S1     N     S1
-## 4     S1   S1     N     S1
-## 5     S1   S1     N     S1
-## 6     S1   S1     N     S1
-## 
-## $`Factors' Minimum Values`
-## CFragm   CECc  pHH2O SoilTe 
-##      0      0      0      0 
-## 
-## $`Factors' Maximum Values`
-## CFragm   CECc  pHH2O SoilTe 
-##  75.00  16.00   8.94  12.50 
-## 
-## $`Factors' Weights`
-## [1] 3 3 3 2</code></pre>
-<p>The output shows that there are only three factors evaluated namely: CFragm, CECc and SoilTe. Now suppose the membership function is changed from triangular (default) to Gaussian with unbiased interval for the suitability class, and further suppose the land units is taken from the Lao Cai province of Vietnam, then this is done as follows:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">LaoCaiLT</span>
-<span class="va">suitability_of_LUs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suitability.html">suitability</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, mf<span class="op">=</span><span class="st">"gaussian"</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(x, y, mf = "gaussian", interval = "unbias"): max is set
-## to 16 for factor CECc since all suitability class intervals are equal.</code></pre>
-<p>So that the suitability of the last ten land units in the Lao Cai province is summarized by running the following codes:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">suitability_of_LUs</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## $`Actual Factors Evaluated`
-## [1] "CFragm"  "SoilDpt" "CECc"    "BS"      "SumBCs"  "pHH2O"   "OC"     
-## [8] "SoilTe" 
-## 
-## $`Suitability Score`
-##            CFragm SoilDpt CECc BS SumBCs     pHH2O        OC       SoilTe
-## 2919 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2920 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2921 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2922 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2923 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2924 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2925 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2926 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2927 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 2928 3.152517e-67       0    0  0      0 0.8824969 0.8735412 2.526164e-20
-## 
-## $`Suitability Class`
-##      CFragm SoilDpt CECc BS SumBCs pHH2O OC SoilTe
-## 2919     S2      S2    N  N      N    S1 S2     S3
-## 2920     S2      S2    N  N      N    S1 S2     S3
-## 2921     S2      S2    N  N      N    S1 S2     S3
-## 2922     S2      S2    N  N      N    S1 S2     S3
-## 2923     S2      S2    N  N      N    S1 S2     S3
-## 2924     S2      S2    N  N      N    S1 S2     S3
-## 2925     S2      S2    N  N      N    S1 S2     S3
-## 2926     S2      S2    N  N      N    S1 S2     S3
-## 2927     S2      S2    N  N      N    S1 S2     S3
-## 2928     S2      S2    N  N      N    S1 S2     S3
-## 
-## $`Factors' Minimum Values`
-##  CFragm SoilDpt    CECc      BS  SumBCs   pHH2O      OC  SoilTe 
-##       0       0       0       0       0       0       0       0 
-## 
-## $`Factors' Maximum Values`
-##  CFragm SoilDpt    CECc      BS  SumBCs   pHH2O      OC  SoilTe 
-##   75.00  125.00   16.00   42.55    4.60    8.94    1.90   12.50 
-## 
-## $`Factors' Weights`
-## [1] 3 2 3 3 3 3 2 2</code></pre>
 </div>
   </div>
 

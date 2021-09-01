@@ -25,19 +25,25 @@ This function computes the overall suitability scores and class of the land unit
 }
 \examples{
 library(ALUES)
-x <- LaoCaiLT
-y <- COCONUTSoil
+out <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
+out[["terrain"]]
 
-# Compute the suitability of the land units of the Lao Cai land
-# terrain characteristics using the 
-# coconut_tersuit <- suitability(x = x, y = y)
+# Soil Overall Suitability
+head(overall_suit(out[["soil"]]))
+head(overall_suit(out[["soil"]], "average"))
+head(overall_suit(out[["soil"]], "maximum"))
+head(overall_suit(out[["soil"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 
-# Return the first 10 of the observations
-# lapply(coconut_tersuit, function(x) head(x, n = 10))
+# Water Overall Suitability
+head(overall_suit(out[["water"]], "average"))
+head(overall_suit(out[["water"]], "maximum"))
+head(overall_suit(out[["water"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 
-# Compute the overall suitability of the characteristics
-# head(overall_suit(coconut_tersuit))
+# Temperature Overall Suitability
+head(overall_suit(out[["temp"]], "average"))
+head(overall_suit(out[["temp"]], "maximum"))
+head(overall_suit(out[["temp"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 }
 \seealso{
-\code{\link{suitability}}
+\code{\link{suit}}
 }

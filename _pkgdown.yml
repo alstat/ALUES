@@ -2,7 +2,7 @@ reference:
 - title: "Suitability Scoring Functions"
   desc: "Functions for computing suitability scores and classes."
 - contents:
-  - suitability
+  - suit
   - overall_suit
 - title: "Land Characteristics of Marinduque, Philippines"
   desc: "R data for used as input for evaluating suitability scores/classes."
@@ -16,19 +16,19 @@ reference:
   - LaoCaiLT
   - LaoCaiWater
   - LaoCaiTemp
-- title: "Crop Requirements: Terrain Characteristics"
+- title: "Crop's Terrain Characteristics"
   desc: "R data for Terrain characterics for different crops."
 - contents:
   - ends_with("Terrain")
-- title: "Crop Requirements: Soil Characteristics"
+- title: "Crop's Soil Characteristics"
   desc: "R data for Soil characterics for different crops."
 - contents:
   - ends_with("Soil")
-- title: "Crop Requirements: Water Characteristics"
+- title: "Crop's Water Characteristics"
   desc: "R data for Water characterics for different crops."
 - contents:
   - ends_with("Water")
-- title: "Crop Requirements: Temperature Characteristics"
+- title: "Crop's Temperature Characteristics"
   desc: "R data for Temperature characterics for different crops."
 - contents:
   - ends_with("Temp")
