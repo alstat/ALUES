@@ -24,7 +24,7 @@ suit(
 
 \item{water}{a data frame for the water characteristics of the input land units;}
 
-\item{temp}{a data frame for the temp characteristics of the input land units;}
+\item{temp}{a data frame for the temperature characteristics of the input land units;}
 
 \item{mf}{membership function with default assigned to \code{"triangular"} 
 fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and

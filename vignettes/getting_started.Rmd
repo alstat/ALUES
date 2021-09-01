@@ -12,7 +12,40 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Example
+# Datasets
 
-In this illustration, the overall suitability of the Marinduque province is assessed for farming
-banana.
+## Input Land Units
+In calculating land suitability, there are two main inputs: *land units characteristics* and *target crop requirements*. Users can input their own land units characteristics as data frame, by following the format of the land units data in ALUES, which are `MarinduqueLT` (for land and soil characteristics), `MarinduqueWater` (for water characteristics), `MarinduqueTemp` (for temperature characteristics). Another input land units data is also available in ALUES, from the province of Vietnam, Lao Cai (`LaoCaiLT`, `LaoCaiWater`, and `LaoCaiTemp`). 
+
+## Crop Requirements
+Another required input for computing the suitability of the land is the target crop requirements. In ALUES, there are 56 crops each encoded as 4 data frames, for the four characteristics, namely terrain, soil, water and temperature. For example, for avocado, the corresponding data frames are `AVOCADOTerrain`, `AVOCADOSoil`, `AVOCADOWater` and `AVOCADOTemp`. The suffixes (`Terrain`, `Soil`, `Water`, `Temp`) are consistent across crops, and and the name of the crops are consistently uppercase. So that, the naming convention is formulated as `CROPNAME` + `Suffix`.
+
+## Computing Suitability 
+To compute the suitability, the `suit` function is used. For example, to compute the suitability of the Marinduque land units for rainfed bunded rice is done as follows
+```{r}
+library(ALUES)
+ricebr_suit <- suit("ricebr", terrain=MarinduqueLT)
+```
+Check the available names of the output
+```{r}
+names(ricebr_suit)
+```
+Extract scores for terrain, if any
+```{r}
+ricebr_suit[["terrain"]]
+```
+Extract scores for soil
+```{r}
+lapply(ricebr_suit[["soil"]], function(x) head(x))
+```
+
+## Computing  Overall Suitability  
+Overall suitability can be computed across factors evluated. Example, for soil suitability computed above, the overall suitability is computed as follows
+```{r}
+head(overall_suit(ricebr_suit[["soil"]]))
+```
+There are three methods for aggregating the factors to obtain the overall suitability, and these are `minimum` (default), `average` and `maximum`.
+```{r}
+head(overall_suit(ricebr_suit[["soil"]], "average"))
+head(overall_suit(ricebr_suit[["soil"]], "maximum"))
+```
