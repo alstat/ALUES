@@ -12,39 +12,62 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Datasets
-
-## Input Land Units
-In calculating land suitability, there are two main inputs: *land units characteristics* and *target crop requirements*. Users can input their own land units characteristics as data frame, by following the format of the land units data in ALUES, which are `MarinduqueLT` (for land and soil characteristics), `MarinduqueWater` (for water characteristics), `MarinduqueTemp` (for temperature characteristics). Another input land units data is also available in ALUES, from the province of Vietnam, Lao Cai (`LaoCaiLT`, `LaoCaiWater`, and `LaoCaiTemp`). 
-
-## Crop Requirements
-Another required input for computing the suitability of the land is the target crop requirements. In ALUES, there are 56 crops each encoded as 4 data frames, for the four characteristics, namely terrain, soil, water and temperature. For example, for avocado, the corresponding data frames are `AVOCADOTerrain`, `AVOCADOSoil`, `AVOCADOWater` and `AVOCADOTemp`. The suffixes (`Terrain`, `Soil`, `Water`, `Temp`) are consistent across crops, and and the name of the crops are consistently uppercase. So that, the naming convention is formulated as `CROPNAME` + `Suffix`.
-
-## Computing Suitability 
-To compute the suitability, the `suit` function is used. For example, to compute the suitability of the Marinduque land units for rainfed bunded rice is done as follows
+## Datasets
+In calculating land suitability, there are two main inputs: *land units characteristics* and *target crop requirements*; both discussed below.
+### Input Land Units
+Users can input their own land units characteristics as data frame, by following the format of the land units data in ALUES, which are `MarinduqueLT` (for land and soil characteristics), `MarinduqueWater` (for water characteristics), `MarinduqueTemp` (for temperature characteristics). Another input land units data is also available in ALUES, from the province of Vietnam, Lao Cai (`LaoCaiLT`, `LaoCaiWater`, and `LaoCaiTemp`).
 ```{r}
 library(ALUES)
+head(MarinduqueLT)
+head(MarinduqueWater)
+head(MarinduqueTemp)
+```
+For details, simply run `?`+`DATANAME` on each of the data frame to access the documentation.
+
+### Crop Requirements
+Another required input for computing the suitability of the land is the target crop requirements. In ALUES, there are 56 crops each encoded as 4 data frames for the four characteristics, namely terrain, soil, water and temperature. For example, for avocado, the corresponding data frames are `AVOCADOTerrain`, `AVOCADOSoil`, `AVOCADOWater` and `AVOCADOTemp`. The suffixes (`Terrain`, `Soil`, `Water`, `Temp`) are consistent across crops, and and the naming convention of the crops are consistently uppercase. So that, each data is named following the formula `CROPNAME` + `Suffix`. Users can add their own crop requirements data, for crops not available in the 56 crops of ALUES by following the format of the available data in the package.
+```{r}
+BANANATerrain
+BANANASoil
+BANANAWater
+BANANATemp
+```
+For details, simply run `?`+`DATANAME` on each of the data frame to access the documentation.
+
+## Suitability Functions
+There are two functions for computing the suitability, `suit` and `overall_suit`.
+
+### Computing Suitability 
+To compute the suitability, the `suit` function is used. For example, to compute the suitability of the Marinduque land units for rainfed bunded rice is done as follows
+```{r}
 ricebr_suit <- suit("ricebr", terrain=MarinduqueLT)
 ```
-Check the available names of the output
+The above code can be read as _rainfed bunded rice_ `suit`(s) _Marinduque land units_, which can be read easily in pipes (>R 4.0.0):
 ```{r}
+ricebr_suit <- "ricebr" |> suit(terrain=MarinduqueLT)
+```
+Note that the input `"ricebr"` is the lower case of the cropname of the data `RICEBRTerrain`. When using the `suit` function, users simply inputs the crop name in lower case as a string. For example, for sweer potato the data frames are `POTATOSWTerrain`, `POTATOSWSoil`, `POTATOSWWater` and `POTATOSWTemp`; and users simply inputs `"potatosw"` as the target crop in the `suit` function, and the function will call the corresponding data frames (`POTATOSWTerrain`, `POTATOSWSoil`, `POTATOSWWater` and/or `POTATOSWTemp`) depending on the input characteristics of the land units (terrain, water, and/or temperature).
+
+As hinted above, the `suit` function can take multiple input for land units characteristics, for example:
+```{r}
+library(ALUES)
+ricebr_suit <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
 names(ricebr_suit)
 ```
-Extract scores for terrain, if any
+`sow_month` for sowing month is required for water and temperature characteristics. Access the results as previously shown above:
 ```{r}
 ricebr_suit[["terrain"]]
-```
-Extract scores for soil
-```{r}
 lapply(ricebr_suit[["soil"]], function(x) head(x))
+lapply(ricebr_suit[["water"]], function(x) head(x))
+lapply(ricebr_suit[["temp"]], function(x) head(x))
 ```
 
-## Computing  Overall Suitability  
-Overall suitability can be computed across factors evluated. Example, for soil suitability computed above, the overall suitability is computed as follows
+### Computing  Overall Suitability  
+Overall suitability can be computed across factors evaluated using the `overall_suit`. Example, for soil suitability computed above, the overall suitability is computed as follows
 ```{r}
 head(overall_suit(ricebr_suit[["soil"]]))
 ```
-There are three methods for aggregating the factors to obtain the overall suitability, and these are `minimum` (default), `average` and `maximum`.
+There are three methods for aggregating the factors to obtain the overall suitability, and these are `minimum` (default), `average` and `maximum`. The `average` in particular uses weighted average if the crops requirements has weights specified.
 ```{r}
 head(overall_suit(ricebr_suit[["soil"]], "average"))
 head(overall_suit(ricebr_suit[["soil"]], "maximum"))
