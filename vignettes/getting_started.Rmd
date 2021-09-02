@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Datasets
 In calculating land suitability, there are two main inputs: *land units characteristics* and *target crop requirements*; both discussed below.
+
 ### Input Land Units
 Users can input their own land units characteristics as data frame, by following the format of the land units data in ALUES, which are `MarinduqueLT` (for land and soil characteristics), `MarinduqueWater` (for water characteristics), `MarinduqueTemp` (for temperature characteristics). Another input land units data is also available in ALUES, from the province of Vietnam, Lao Cai (`LaoCaiLT`, `LaoCaiWater`, and `LaoCaiTemp`).
 ```{r}
