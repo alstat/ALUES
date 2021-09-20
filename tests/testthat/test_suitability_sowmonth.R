@@ -6,20 +6,20 @@ x1 <- LaoCaiWater
 y1 <- RICEIWWater
 
 suit <- suitability(x1, y1, interval = "unbias", sow_month = 3)
-test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Mar", "Apr", "May", "Jun")))
+test_that("Sowing Month:", expect_equal(suit$`Factors Evaluated`, c("Mar", "Apr", "May", "Jun")))
 
 suit <- suitability(x1, y1, interval = "unbias", sow_month = 11)
-test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Nov", "Dec", "Jan", "Feb")))
+test_that("Sowing Month:", expect_equal(suit$`Factors Evaluated`, c("Nov", "Dec", "Jan", "Feb")))
 
 # Temperature
 x1 <- LaoCaiTemp
 y1 <- BARLEYTemp
 
 suit <- suitability(x1, y1, interval = "unbias", sow_month = 6)
-test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Jul", "Aug", "Sep")))
+test_that("Sowing Month:", expect_equal(suit$`Factors Evaluated`, c("Jul", "Aug", "Sep")))
 
 suit <- suitability(x1, y1, interval = "unbias", sow_month = 11)
-test_that("Sowing Month:", expect_equal(suit$`Actual Factors Evaluated`, c("Dec", "Jan", "Feb")))
+test_that("Sowing Month:", expect_equal(suit$`Factors Evaluated`, c("Dec", "Jan", "Feb")))
 
 # library(testthat)
 # Water
@@ -28,7 +28,7 @@ library(ALUES)
 
 # NA PRESENCE
 suit <- suitability(LaoCaiLT, ALFALFASoil, interval="unbias")
-test_that("Parameter name present:", expect_equal(suit$`Actual Factors Evaluated`[1], "SoilTe"))
+test_that("Parameter name present:", expect_equal(suit$`Factors Evaluated`[1], "SoilTe"))
 test_that("Parameter scores NA all:",
           expect_equal(sum(is.na(suit$`Suitability Score`["SoilTe"])),
           nrow(suit$`Suitability Score`["SoilTe"])))

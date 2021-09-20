@@ -3,7 +3,7 @@ library(ALUES)
 
 # NA PRESENCE
 suit <- suitability(LaoCaiLT, ALFALFASoil)
-test_that("Parameter name present:", expect_equal(suit$`Actual Factors Evaluated`[1], "SoilTe"))
+test_that("Parameter name present:", expect_equal(suit$`Factors Evaluated`[1], "SoilTe"))
 test_that("Parameter scores NA all:", 
           expect_equal(sum(is.na(suit$`Suitability Score`["SoilTe"])), 
           nrow(suit$`Suitability Score`["SoilTe"])))
