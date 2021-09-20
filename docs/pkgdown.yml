@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   getting_started: getting_started.html
-last_built: 2021-09-02T01:52Z
+  tutorial_suit_score: tutorial_suit_score.html
+last_built: 2021-09-20T13:47Z
 
