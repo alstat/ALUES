@@ -2,7 +2,14 @@ pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  getting_started: getting_started.html
-  tutorial_suit_score: tutorial_suit_score.html
-last_built: 2021-09-20T13:47Z
+  ALUES: ALUES.html
+  a01_datasets: a01_datasets.html
+  a01_theory_of_suit: a01_theory_of_suit.html
+  a02_understanding_suit: a02_understanding_suit.html
+  a03_understanding_overall_suit: a03_understanding_overall_suit.html
+  a04_custom_land_units_input: a04_custom_land_units_input.html
+  a05_custom_crop_input: a05_custom_crop_input.html
+  a06_visual_maps: a06_visual_maps.html
+  a07_tutorial_suit_score: a07_tutorial_suit_score.html
+last_built: 2021-09-21T14:45Z
 

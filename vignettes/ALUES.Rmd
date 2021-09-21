@@ -1,0 +1,27 @@
+---
+title: "Getting Started"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Getting Started}
+  %\usepackage[UTF-8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Show me the code
+To evaluate the soil characteristics of the land units of Marinduque, Philippines, for farming banana, use the `suit` function as follows:
+```{r}
+library(ALUES)
+suit_banana <- suit("banana", terrain=MarinduqueLT)
+head(suit_banana[["soil"]]$`Suitability Score`)
+head(suit_banana[["soil"]]$`Suitability Class`)
+```
+To compute the overall suitability of the land units by averaging across factors, use the `overall_suit` as follows:
+```{r}
+osuit <- overall_suit(suit_banana[["soil"]], method="average")
+head(osuit)
+```

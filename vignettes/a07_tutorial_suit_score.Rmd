@@ -4,7 +4,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Getting Started}
+  %\VignetteIndexEntry{Evaluating land units of Marinduque}
   %\usepackage[UTF-8]{inputenc}
 ---
 

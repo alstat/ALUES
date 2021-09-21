@@ -62,6 +62,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/datasets.html">ALUES datasets</a>
+    </li>
+    <li>
       <a href="../articles/getting_started.html">Getting Started</a>
     </li>
     <li>
@@ -92,7 +95,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2021-09-20</h4>
+            <h4 class="date">2021-09-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/getting_started.Rmd"><code>vignettes/getting_started.Rmd</code></a></small>
       <div class="hidden name"><code>getting_started.Rmd</code></div>
@@ -101,264 +104,46 @@
 
     
     
-<div id="datasets" class="section level2">
+<div id="show-me-the-code" class="section level2">
 <h2 class="hasAnchor">
-<a href="#datasets" class="anchor"></a>Datasets</h2>
-<p>In calculating land suitability, there are two main inputs: <em>land units characteristics</em> and <em>target crop requirements</em>; both discussed below.</p>
-<div id="input-land-units" class="section level3">
-<h3 class="hasAnchor">
-<a href="#input-land-units" class="anchor"></a>Input Land Units</h3>
-<p>Users can input their own land units characteristics as data frame, by following the format of the land units data in ALUES, which are <code>MarinduqueLT</code> (for land and soil characteristics), <code>MarinduqueWater</code> (for water characteristics), <code>MarinduqueTemp</code> (for temperature characteristics). Another input land units data is also available in ALUES, from the province of Vietnam, Lao Cai (<code>LaoCaiLT</code>, <code>LaoCaiWater</code>, and <code>LaoCaiTemp</code>).</p>
+<a href="#show-me-the-code" class="anchor"></a>Show me the code</h2>
+<p>To evaluate the soil characteristics land units of Marinduque, Philippines, for farming banana, run the following:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required package: Rcpp</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>##        Lat      Lon CECc pHH2O CFragm SoilTe
-## 1 121.8792 13.52084   12    53     11     12
-## 2 121.8875 13.52084   12    52      9     12
-## 3 121.8958 13.52084   12    53     10     12
-## 4 121.9375 13.52084   12    52     10     12
-## 5 121.9458 13.52084   12    54     12     12
-## 6 121.9542 13.52084   13    54     11     12</code></pre>
+<code class="sourceCode R"><span class="va">suit_banana</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
+## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">MarinduqueWater</span><span class="op">)</span></code></pre></div>
-<pre><code>##        Lat      Lon Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
-## 1 121.8792 13.52084 103  65  55  62 136 197 221 191 199 308 277 248
-## 2 121.8875 13.52084 104  65  55  61 135 196 220 190 197 307 276 247
-## 3 121.8958 13.52084 104  66  56  61 134 195 218 187 195 306 275 247
-## 4 121.9375 13.52084 105  65  57  59 131 195 218 189 195 308 273 245
-## 5 121.9458 13.52084 105  65  58  59 131 196 219 190 196 309 272 245
-## 6 121.9542 13.52084 106  66  59  57 128 191 210 179 185 302 268 241</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Score`</span><span class="op">)</span></code></pre></div>
+<pre><code>##      CFragm   CECc pHH2O SoilTe
+## 1 0.8533333 0.7500     0   0.96
+## 2 0.8800000 0.7500     0   0.96
+## 3 0.8666667 0.7500     0   0.96
+## 4 0.8666667 0.7500     0   0.96
+## 5 0.8400000 0.7500     0   0.96
+## 6 0.8533333 0.8125     0   0.96</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">MarinduqueTemp</span><span class="op">)</span></code></pre></div>
-<pre><code>##        Lat      Lon  Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec
-## 1 121.8792 13.52084 24.7 25.1 25.9 27.1 27.7 27.4 26.8 26.8 26.7 26.3 25.9 25.1
-## 2 121.8875 13.52084 24.8 25.0 26.0 27.2 27.8 27.5 26.8 26.8 26.6 26.5 26.0 25.3
-## 3 121.8958 13.52084 24.9 25.2 26.1 27.3 27.9 27.6 26.9 27.0 26.8 26.6 26.2 25.4
-## 4 121.9375 13.52084 24.7 25.1 26.0 27.2 27.7 27.5 26.8 26.8 26.6 26.5 26.0 25.3
-## 5 121.9458 13.52084 24.7 25.1 25.9 27.0 27.7 27.4 26.8 26.8 26.6 26.4 26.0 25.2
-## 6 121.9542 13.52084 25.0 25.5 26.4 27.5 28.2 27.9 27.4 27.3 27.2 26.9 26.4 25.6</code></pre>
-<p>For details, simply run <code><a href="https://rdrr.io/r/utils/Question.html">?</a></code>+<code>DATANAME</code> on each of the data frame to access the documentation.</p>
-</div>
-<div id="crop-requirements" class="section level3">
-<h3 class="hasAnchor">
-<a href="#crop-requirements" class="anchor"></a>Crop Requirements</h3>
-<p>Another required input for computing the suitability of the land is the target crop requirements. In ALUES, there are 56 crops each encoded as 4 data frames for the four characteristics, namely terrain, soil, water and temperature. For example, for avocado, the corresponding data frames are <code>AVOCADOTerrain</code>, <code>AVOCADOSoil</code>, <code>AVOCADOWater</code> and <code>AVOCADOTemp</code>. The suffixes (<code>Terrain</code>, <code>Soil</code>, <code>Water</code>, <code>Temp</code>) are consistent across crops, and and the naming convention of the crops are consistently uppercase. So that, each data is named following the formula <code>CROPNAME</code> + <code>Suffix</code>. Users can add their own crop requirements data, for crops not available in the 56 crops of ALUES by following the format of the available data in the package.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Class`</span><span class="op">)</span></code></pre></div>
+<pre><code>##   CFragm CECc pHH2O SoilTe
+## 1     S1   S1     N     S1
+## 2     S1   S1     N     S1
+## 3     S1   S1     N     S1
+## 4     S1   S1     N     S1
+## 5     S1   S1     N     S1
+## 6     S1   S1     N     S1</code></pre>
+<p>To compute the overall suitability of the land units by averaging across factors, use the <code>overall_suit</code> as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">BANANATerrain</span></code></pre></div>
-<pre><code>##       code s3_a s2_a s1_a s1_b s2_b s3_b  wts
-## 1   Slope1  6.0    4    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 2   Slope2 16.0    8    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 3   Slope3 30.0   16    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 4    Flood  2.5    2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1
-## 5 Drainage  4.0    3    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2
-## 6   SlopeD  3.0    2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1</code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">BANANASoil</span></code></pre></div>
-<pre><code>##       code s3_a s2_a  s1_a s1_b s2_b s3_b wts
-## 1   CFragm 55.0 35.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 2  SoilDpt 50.0 75.0 100.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2
-## 3    CaCO3 15.0 10.0   0.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 4     Gyps 10.0  4.0   0.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 5     CECc 16.0 16.0  16.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 6       BS 19.9 20.0  35.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 7   SumBCs  2.8  2.8   4.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 8    pHH2O  4.5  5.2   5.6  7.5    8  8.2   3
-## 9       OC  0.7  0.8   1.5 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2
-## 10   ECedS  6.0  4.0   2.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 11     ESP 12.0  8.0   4.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
-## 12  SoilTe  2.0  4.0   9.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2</code></pre>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">BANANAWater</span></code></pre></div>
-<pre><code>##       code s3_a s2_a s1_a s1_b s2_b s3_b  wts
-## 1     WyAv 1000 1250 1500 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 2 WmDryLen    6    4    3 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">BANANATemp</span></code></pre></div>
-<pre><code>##        code s3_a s2_a s1_a s1_b s2_b s3_b  wts
-## 1   TyMaxAv   14   16   18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2
-## 2   TmMinXm    2    8   15 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2
-## 3 TmMinXmAb   -2    0    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
-<p>For details, simply run <code><a href="https://rdrr.io/r/utils/Question.html">?</a></code>+<code>DATANAME</code> on each of the data frame to access the documentation.</p>
-</div>
-</div>
-<div id="suitability-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#suitability-functions" class="anchor"></a>Suitability Functions</h2>
-<p>There are two functions for computing the suitability, <code>suit</code> and <code>overall_suit</code>.</p>
-<div id="computing-suitability" class="section level3">
-<h3 class="hasAnchor">
-<a href="#computing-suitability" class="anchor"></a>Computing Suitability</h3>
-<p>To compute the suitability, the <code>suit</code> function is used. For example, to compute the suitability of the Marinduque land units for rainfed bunded rice is done as follows</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ricebr_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"ricebr"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
-<p>The above code can be read as <em>rainfed bunded rice</em> <code>suit</code>(s) <em>Marinduque land units</em>, which can be read easily in pipes (&gt;R 4.0.0):</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ricebr_suit</span> <span class="op">&lt;-</span> <span class="st">"ricebr"</span> |&gt; <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span>terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
-<p>Note that the input <code>"ricebr"</code> is the lower case of the cropname of the data <code>RICEBRTerrain</code>. When using the <code>suit</code> function, users simply inputs the crop name in lower case as a string. For example, for sweer potato the data frames are <code>POTATOSWTerrain</code>, <code>POTATOSWSoil</code>, <code>POTATOSWWater</code> and <code>POTATOSWTemp</code>; and users simply inputs <code>"potatosw"</code> as the target crop in the <code>suit</code> function, and the function will call the corresponding data frames (<code>POTATOSWTerrain</code>, <code>POTATOSWSoil</code>, <code>POTATOSWWater</code> and/or <code>POTATOSWTemp</code>) depending on the input characteristics of the land units (terrain, water, and/or temperature).</p>
-<p>As hinted above, the <code>suit</code> function can take multiple input for land units characteristics, for example:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span>
-<span class="va">ricebr_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"ricebr"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, water<span class="op">=</span><span class="va">MarinduqueWater</span>, temp<span class="op">=</span><span class="va">MarinduqueTemp</span>, sow_month<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "terrain" "soil"    "water"   "temp"</code></pre>
-<p><code>sow_month</code> for sowing month is required for water and temperature characteristics. Access the results as previously shown above:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then it might be you forgot to specify the sow_month argument, read doc for suit."</code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## $`Factors Evaluated`
-## [1] "CFragm" "CECc"   "pHH2O" 
-## 
-## $`Suitability Score`
-##      CFragm   CECc pHH2O
-## 1 0.7843137 0.7500     0
-## 2 0.8235294 0.7500     0
-## 3 0.8039216 0.7500     0
-## 4 0.8039216 0.7500     0
-## 5 0.7647059 0.7500     0
-## 6 0.7843137 0.8125     0
-## 
-## $`Suitability Class`
-##   CFragm CECc pHH2O
-## 1     S1   S1     N
-## 2     S1   S1     N
-## 3     S1   S1     N
-## 4     S1   S1     N
-## 5     S1   S1     N
-## 6     S1   S1     N
-## 
-## $`Factors' Minimum Values`
-## CFragm   CECc  pHH2O 
-##      0      0      0 
-## 
-## $`Factors' Maximum Values`
-## CFragm   CECc  pHH2O 
-##   51.0   16.0    9.9 
-## 
-## $`Factors' Weights`
-## [1] NA NA NA
-## 
-## $`Crop Evaluated`
-## [1] "RICEBRSoil"
-## 
-## $Warning
-## [1] "max is set to 16 for factor CECc since all parameter intervals are equal."</code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"water"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## $`Factors Evaluated`
-## [1] "Jan" "Feb" "Mar" "Apr"
-## 
-## $`Suitability Score`
-##         Jan       Feb       Mar       Apr
-## 1 0.3051852 0.1925926 0.1629630 0.3542857
-## 2 0.3081481 0.1925926 0.1629630 0.3485714
-## 3 0.3081481 0.1955556 0.1659259 0.3485714
-## 4 0.3111111 0.1925926 0.1688889 0.3371429
-## 5 0.3111111 0.1925926 0.1718519 0.3371429
-## 6 0.3140741 0.1955556 0.1748148 0.3257143
-## 
-## $`Suitability Class`
-##   Jan Feb Mar Apr
-## 1  S3   N   N  S3
-## 2  S3   N   N  S3
-## 3  S3   N   N  S3
-## 4  S3   N   N  S3
-## 5  S3   N   N  S3
-## 6  S3   N   N  S3
-## 
-## $`Factors' Minimum Values`
-## Jan Feb Mar Apr 
-##   0   0   0   0 
-## 
-## $`Factors' Maximum Values`
-##   Jan   Feb   Mar   Apr 
-## 880.0 880.0 880.0 714.2 
-## 
-## $`Factors' Weights`
-## [1] NA NA NA NA
-## 
-## $`Crop Evaluated`
-## [1] "RICEBRWater"</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"temp"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## $`Factors Evaluated`
-## [1] "Feb"
-## 
-## $`Suitability Score`
-##         Feb
-## 1 0.8366667
-## 2 0.8333333
-## 3 0.8400000
-## 4 0.8366667
-## 5 0.8366667
-## 6 0.8500000
-## 
-## $`Suitability Class`
-##   Feb
-## 1  S1
-## 2  S1
-## 3  S1
-## 4  S1
-## 5  S1
-## 6  S1
-## 
-## $`Factors' Minimum Values`
-## Feb 
-##   0 
-## 
-## $`Factors' Maximum Values`
-## Feb 
-##  52 
-## 
-## $`Factors' Weights`
-## [1] 2
-## 
-## $`Crop Evaluated`
-## [1] "RICEBRTemp"</code></pre>
-</div>
-<div id="computing-overall-suitability" class="section level3">
-<h3 class="hasAnchor">
-<a href="#computing-overall-suitability" class="anchor"></a>Computing Overall Suitability</h3>
-<p>Overall suitability can be computed across factors evaluated using the <code>overall_suit</code>. Example, for soil suitability computed above, the overall suitability is computed as follows</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##   Score Class
-## 1     0     N
-## 2     0     N
-## 3     0     N
-## 4     0     N
-## 5     0     N
-## 6     0     N</code></pre>
-<p>There are three methods for aggregating the factors to obtain the overall suitability, and these are <code>minimum</code> (default), <code>average</code> and <code>maximum</code>. The <code>average</code> in particular uses weighted average if the crops requirements has weights specified.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="st">"average"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">osuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">osuit</span><span class="op">)</span></code></pre></div>
 <pre><code>##       Score Class
-## 1 0.5114379    S2
-## 2 0.5245098    S2
-## 3 0.5179739    S2
-## 4 0.5179739    S2
-## 5 0.5049020    S2
-## 6 0.5322712    S2</code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">ricebr_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="st">"maximum"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##       Score Class
-## 1 0.7843137    S1
-## 2 0.8235294    S1
-## 3 0.8039216    S1
-## 4 0.8039216    S1
-## 5 0.7647059    S1
-## 6 0.8125000    S1</code></pre>
-</div>
+## 1 0.6505051    S2
+## 2 0.6569697    S2
+## 3 0.6537374    S2
+## 4 0.6537374    S2
+## 5 0.6472727    S2
+## 6 0.6656566    S2</code></pre>
 </div>
   </div>
 
