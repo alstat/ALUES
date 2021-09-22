@@ -136,6 +136,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_water[["Crop Evaluated"]] <- paste(crop, "Water", sep="")
         suit_water[["Warning"]]  <- w$message
         suit_water
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     suit_temp <- tryCatch(
@@ -149,6 +152,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_temp[["Crop Evaluated"]] <- paste(crop, "Temp", sep="")
         suit_temp[["Warning"]] <- w$message
         suit_temp
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("terrain" = suit_terrain, "soil" = suit_soil, "water" = suit_water, "temp" = suit_temp))
@@ -202,6 +208,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_water[["Crop Evaluated"]] <- paste(crop, "Water", sep="")
         suit_water[["Warning"]]  <- w$message
         suit_water
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("terrain" = suit_terrain, "soil" = suit_soil, "water" = suit_water))
@@ -255,6 +264,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_temp[["Crop Evaluated"]] <- paste(crop, "Temp", sep="")
         suit_temp[["Warning"]] <- w$message
         suit_temp
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("terrain" = suit_terrain, "soil" = suit_soil, "temp" = suit_temp))
@@ -274,6 +286,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_water[["Crop Evaluated"]] <- paste(crop, "Water", sep="")
         suit_water[["Warning"]]  <- w$message
         suit_water
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     crop_temp <- eval(parse(text=paste(crop, "Temp", sep="")), envir=.GlobalEnv)
@@ -288,6 +303,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_temp[["Crop Evaluated"]] <- paste(crop, "Temp", sep="")
         suit_temp[["Warning"]] <- w$message
         suit_temp
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("water" = suit_water, "temp" = suit_temp))
@@ -343,6 +361,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_water[["Crop Evaluated"]] <- paste(crop, "Water", sep="")
         suit_water[["Warning"]]  <- w$message
         suit_water
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("water" = suit_water))
@@ -362,6 +383,9 @@ suit <- function (crop, terrain=NULL, water=NULL, temp=NULL, mf = "triangular", 
         suit_temp[["Crop Evaluated"]] <- paste(crop, "Temp", sep="")
         suit_temp[["Warning"]] <- w$message
         suit_temp
+      },
+      error = function(x) {
+        return(paste("Error: ", x$message, sep=""))
       }
     )
     return(list("temp" = suit_temp))

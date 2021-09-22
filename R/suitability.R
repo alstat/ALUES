@@ -141,7 +141,7 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
   colnames(LU) <- names(x)[f1[stats::complete.cases(f1)]]
   
   if (ncol(LU) == 0) {
-    stop("No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then it might be you forgot to specify the sow_month argument, read doc for suit.")
+    stop("No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit.")
   }
   
   # define empty matrix for score and class

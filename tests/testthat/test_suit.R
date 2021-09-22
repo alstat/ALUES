@@ -97,7 +97,7 @@ test_that("suit: error", expect_warning(suit("potato", terrain=LaoCaiLT)))
 test_that("suit: error", expect_error(suit("sdfa", terrain=LaoCaiLT)))
 test_that("suit: error", expect_error(suit("ricebr", water=MarinduqueWater)))
 test_that("suit: error", expect_error(suit("ricebr", temp=MarinduqueTemp)))
-test_that("suit: error", expect_error(suit("coconut", water=LaoCaiWater, sow_month=1)))
+test_that("suit: error", expect_equal(suit("coconut", water=LaoCaiWater, sow_month=1)$water, "Error: No factor(s) to be evaluated, since none matches with the crop requirements."))
 test_that("suit: error", expect_equal(suit("coconut", terrain=LaoCaiLT, mf="sdf")$terrain, "Error: Unrecognized mf='sdf', please choose either 'triangular', 'trapezoidal' or 'gaussian'."))
 test_that("suit: error", expect_equal(suit("coconut", terrain=LaoCaiLT, mf="sdf")$soil, "Error: Unrecognized mf='sdf', please choose either 'triangular', 'trapezoidal' or 'gaussian'."))
 

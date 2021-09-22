@@ -11,5 +11,87 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Introduction
+The `suit` function is used for computing the suitability score of the land units for a given target crop. The function has the following usage:
+```{r, eval=FALSE}
+suit(
+  crop,
+  terrain = NULL,
+  water = NULL,
+  temp = NULL,
+  mf = "triangular",
+  sow_month = NULL,
+  min = NULL,
+  max = "average",
+  interval = NULL,
+  sigma = NULL
+)
+```
+Check the documentation for details on the argument. This article will focus on how to use this. To evaluate the suitability score of the Marinduque land units for terrain, soil, water and temperature characteristics is done as follows:
+```{r}
+library(ALUES)
+banana_suit <- suit("banana", terrain=MarinduqueLT)
+names(banana_suit)
+```
+The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value to assign to max constant used for computing the suitability score. For more, please refer to the article, Methodology used in ALUES. 
 
-under development
+The output of the `suit` function is a list of output of target characteristics, in this case `terrain` and `soil`. To access the output for `terrain` and `soil` simply use:
+```{r, eval=FALSE}
+banana_suit[["terrain"]]
+banana_suit[["soil"]]
+```
+The output of the codes above are lists, with the following names:
+```{r}
+names(banana_suit[["soil"]])
+```
+Therefore, one can access any of those names. For example, to access the factors evaluated, simply run the following
+```{r}
+banana_suit[["soil"]][["Factors Evaluated"]]
+```
+
+## Targetting Crop
+There are 56 crops available in ALUES, and what we've illustrated above are for banana only. The other crops are listed below:
+```{r}
+d <- utils::data(package = "ALUES")
+alues_data <- d$results[, "Item"]
+crop_data <- regmatches(alues_data, gregexpr(paste0("^[A-Z]{2,}", collapse = "|"), alues_data))
+crop_data <- unique(unlist(lapply(crop_data, function(x) substr(x, 1, nchar(x)-1))))
+crop_data
+```
+These are the names for the input string for the `suit` function. For example, to target sweet potato the input string is not `"sweet potato"` but rather `potatosw`. That is,
+```{r, error=TRUE}
+potato_suit1 <- suit("sweet potato", terrain=MarinduqueLT)
+potato_suit2 <- suit("potatosw", terrain=MarinduqueLT)
+```
+
+## Targetting Crop Factors
+The idea of evaluating a land unit is to match quality of the land against the standard value of the target factor. Therefore, if the crop does not include the factor you are targeting, then there won't be any matching to be done. For example, the land units evaluated above are those in Marindque, which has the following soil and terrain characteristics:
+```{r}
+head(MarinduqueLT)
+```
+The crop that we are trying to target is banana. The `suit` function simply require the user to input a string name for the target crop, and the function will look for the corresponding crop datasets. For example, for banana these are the crop requirements datasets for the four characteristics:
+```{r}
+BANANATerrain
+BANANASoil
+BANANAWater
+BANANATemp
+```
+These datasets are used by the `suit` function depending on the specified characteristics of the input land units. So for `banana_suit` object above, the targetted crop datasets are `BANANATerrain` and `BANANASoil` since the input land unit specified is `terrain=MarinduqueLT`. However, input land unit only targetted the soil factors and not the terrain factors, since none of the factors in `MarinduqueLT` matched with the factors in `BANANATerrain`. That is why, accessing the output for the terrain characteristics for the `banana_suit` object will return the following:
+```{r}
+banana_suit[["terrain"]]
+```
+
+## Targetting Multiple Characteristics
+The example above only targetted the terrain and soil characteristics, but the `suit` function allows user to also target water and temp simultaneously. This is done as follows:
+```{r}
+banana_multi <- suit("banana", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=2)
+names(banana_multi)
+```
+It is necessary to specify the sowing month when specifying the water and temperature characteristics of the input land units. In this case, we are saying that the first sowing month in the water and temperature characteristics correspond to February. No factors were targetted by input land unit for banana for terrain, water and temperature characteristics.
+```{r}
+banana_suit[["terrain"]]
+banana_suit[["water"]]
+banana_suit[["temp"]]
+lapply(banana_suit[["soil"]], function(x) head(x))
+```
+Only the head (first six) of the output of the items in the soil characteristics are shown.
