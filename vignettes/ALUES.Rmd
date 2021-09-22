@@ -25,3 +25,14 @@ To compute the overall suitability of the land units by averaging across factors
 osuit <- overall_suit(suit_banana[["soil"]], method="average")
 head(osuit)
 ```
+## Show me the speed
+The elapsed time for computing the suitability scores and classes are recorded for the land units of Marinduque, which has 881 units (or observations) in total; and, for the region of Lao Cai, Vietnam, which has 2928 land units.
+```{r}
+library(microbenchmark)
+microbenchmark(
+  suppressWarnings(suit("banana", terrain=MarinduqueLT, interval="unbias"))
+)
+microbenchmark(
+  suppressWarnings(suit("banana", terrain=LaoCaiLT, interval="unbias"))
+)
+```
