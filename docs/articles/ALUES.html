@@ -113,7 +113,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2021-09-22</h4>
+            <h4 class="date">2021-09-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/ALUES.Rmd"><code>vignettes/ALUES.Rmd</code></a></small>
       <div class="hidden name"><code>ALUES.Rmd</code></div>
@@ -175,8 +175,8 @@
 <pre><code>## Unit: milliseconds
 ##                                                                           expr
 ##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))
-##       min       lq     mean  median       uq      max neval
-##  6.869128 7.229572 8.361986 7.48557 8.249606 19.12159   100</code></pre>
+##       min       lq     mean   median      uq      max neval
+##  6.703892 7.050222 8.075239 7.335959 8.05932 19.00934   100</code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
@@ -184,8 +184,8 @@
 <pre><code>## Unit: milliseconds
 ##                                                                       expr
 ##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))
-##      min       lq     mean   median       uq      max neval
-##  10.9598 11.77125 12.92212 12.35746 13.60695 17.93013   100</code></pre>
+##       min       lq     mean   median       uq      max neval
+##  10.52622 11.52832 12.37528 11.81691 12.60109 15.75181   100</code></pre>
 </div>
   </div>
 
