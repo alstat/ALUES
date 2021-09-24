@@ -214,7 +214,7 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
         } else if (is.null(min)) {
           Min <- 0
         }
-        if (max == "average" && (!is.numeric(max))) {
+        if ((!is.numeric(max)) && (max == "average")) {
           Max <- reqScore[3] + ((diff(reqScore[1:2]) + diff(reqScore[2:3])) / 2)
         } else if (is.numeric(max)) {
           if (length(max) == 1) {
@@ -223,7 +223,7 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
             if (length(max) == ncol(x)) {
               Max <- max[f1[stats::complete.cases(f1)][j]] 
             } else if (length(max) != ncol(x)) {
-              stop("max length should be equal to the number of factors in x.")
+              stop("max length should be equal to the number of factors in the input land units.")
             }
           }            
         }
@@ -320,7 +320,7 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
         Min <- 0
       }
       Mid <- mean(reqScore[3:4])
-      if (max == "average" && (!is.numeric(max))) {
+      if ((!is.numeric(max)) && (max == "average")) {
         Max <- reqScore[6] + ((diff(reqScore[1:2]) + diff(reqScore[2:3]) + diff(reqScore[3:4]) + diff(reqScore[4:5]) + diff(reqScore[5:6])) / 5)
       } else if (is.numeric(max)) {
         if (length(max) == 1) {
@@ -354,7 +354,7 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
         Min <- 0
       }
       Mid <- mean(reqScore[3:4])
-      if (max == "average" && (!is.numeric(max))) {
+      if ((!is.numeric(max)) && (max == "average")) {
         Max <- reqScore[5]
         warning(paste("max is set to", reqScore[5], "for factor", colnames(score)[j],
                       "since there is a missing value on S3 class above optimum, run ?suit for more."))
@@ -394,7 +394,7 @@ suitability <- function (x, y, mf = "triangular", sow_month = NULL, min = NULL, 
         Min <- 0
       }
       Mid <- mean(reqScore[3:4])
-      if (max == "average" && (!is.numeric(max))) {
+      if ((!is.numeric(max)) && (max == "average")) {
         Max <- reqScore[4]
         warning(paste("max is set to", reqScore[4], "for factor", colnames(score)[j],
                       "since there is a missing value on S2 class above optimum, run ?suit for more."))

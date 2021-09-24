@@ -95,3 +95,42 @@ banana_suit[["temp"]]
 lapply(banana_suit[["soil"]], function(x) head(x))
 ```
 Only the head (first six) of the output of the items in the soil characteristics are shown.
+
+## Membership Function
+There are three membership function (MF) available in `suit` function, namely *triangular*, *trapezoidal* and *Gaussian*. For example, the following computes the suitability scores and classes using Guassian MF.
+```{r}
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal")
+head(banana_suit[["soil"]][["Suitability Score"]])
+head(banana_suit[["soil"]][["Suitability Class"]])
+```
+
+## Interval
+Another option available in the `suit` function is the `interval`. By default, ALUES uses an equally spaced suitability class intervals for deriving the suitability class. That is, for N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), and S1 [0.75, 1].
+```{r}
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias")
+head(banana_suit[["soil"]][["Suitability Score"]])
+head(banana_suit[["soil"]][["Suitability Class"]])
+```
+By setting the `interval="unbias"`, will generate a different likely unequally spaced suitability class intervals. Notice how the suitability class have changed for CFragm. This is because, unlike the default interval mentioned earlier, the unbias interval takes into account the shape of the membership function and the intervals of the parameter intervals. *See* Article 2 (Methodology used in ALUES).
+
+## Maximum and Minimum
+Another parameter that can be set for `suit` are the `min` and `max`. These are the constants used by the membership function for computing the suitability score.
+```{r}
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias")
+banana_suit[["soil"]][["Factors Evaluated"]]
+```
+From the above result, there are four factors targetted by the input land unit, these are CFragm, CECc, pHH2O and SoilTe. Suppose we know the maximum value that these factors can take, say 60 for CFragm, 20 for CECc, 9 for pHH2O, and 10 for SoilTe. We can specify these as follows:
+```{r}
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias", max=c(60, 20, 9, 10))
+banana_suit
+```
+The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument max must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the `MarinduqueLT` also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to remove other columns that are not the target factors when specifing `min` or `max` constants. Thus, it should be:
+```{r}
+MarinduqueLT2 <- MarinduqueLT[, 3:ncol(MarinduqueLT)]
+banana_suit <- suit("banana", terrain=MarinduqueLT2, mf="trapezoidal", interval="unbias", max=c(60, 20, 9, 10))
+head(banana_suit[["soil"]][["Suitability Score"]])
+head(banana_suit[["soil"]][["Suitability Class"]])
+```
+
+## Sigma of Gaussian
+The `sigma` argument is used to specify scale of the Gaussian membership function. That is, it is only applicable for `mf="gaussian"`.
