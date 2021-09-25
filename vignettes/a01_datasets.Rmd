@@ -1,10 +1,10 @@
 ---
-title: "ALUES datasets"
+title: "Article 1: ALUES datasets"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{ALUES datasets}
+  %\VignetteIndexEntry{Article 1: ALUES datasets}
   %\usepackage[UTF-8]{inputenc}
 ---
 

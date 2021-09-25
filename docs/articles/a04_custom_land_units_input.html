@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom land units input • ALUES</title>
+<title>Article 5: Custom input land units • ALUES</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Custom land units input">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Article 5: Custom input land units">
 <meta property="og:description" content="ALUES">
 <meta property="og:image" content="/logo.svg">
 <meta property="og:image:alt" content="ALUES logo">
@@ -65,28 +65,28 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/a01_datasets.html">ALUES datasets</a>
+      <a href="../articles/a01_datasets.html">Article 1: ALUES datasets</a>
     </li>
     <li>
-      <a href="../articles/a01_theory_of_suit.html">Methodology used in ALUES</a>
+      <a href="../articles/a01_theory_of_suit.html">Article 2: Methodology used in ALUES</a>
     </li>
     <li>
-      <a href="../articles/a02_understanding_suit.html">Understanding the suit function</a>
+      <a href="../articles/a02_understanding_suit.html">Article 3: Understanding the suit function</a>
     </li>
     <li>
-      <a href="../articles/a03_understanding_overall_suit.html">Understanding the overall_suit function</a>
+      <a href="../articles/a03_understanding_overall_suit.html">Article 4: Understanding the overall_suit function</a>
     </li>
     <li>
-      <a href="../articles/a04_custom_land_units_input.html">Custom land units input</a>
+      <a href="../articles/a04_custom_land_units_input.html">Article 5: Custom input land units</a>
     </li>
     <li>
-      <a href="../articles/a05_custom_crop_input.html">Custom crop requirements input</a>
+      <a href="../articles/a05_custom_crop_input.html">Article 6: Custom crop requirements input</a>
     </li>
     <li>
-      <a href="../articles/a06_visual_maps.html">Visualizing with maps</a>
+      <a href="../articles/a06_visual_maps.html">Article 7: Visualizing with maps</a>
     </li>
     <li>
-      <a href="../articles/a07_tutorial_suit_score.html">Evaluating land units of Marinduque</a>
+      <a href="../articles/a07_tutorial_suit_score.html">Article 8: Evaluating land units of Marinduque</a>
     </li>
   </ul>
 </li>
@@ -111,9 +111,9 @@
       </header><script src="a04_custom_land_units_input_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Custom land units input</h1>
+      <h1 data-toc-skip>Article 5: Custom input land units</h1>
             
-            <h4 class="date">2021-09-24</h4>
+            <h4 class="date">2021-09-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a04_custom_land_units_input.Rmd"><code>vignettes/a04_custom_land_units_input.Rmd</code></a></small>
       <div class="hidden name"><code>a04_custom_land_units_input.Rmd</code></div>
@@ -122,12 +122,100 @@
 
     
     
-<p>under development</p>
+<p>ALUES comes with two datasets for input land units. These are the land units of Marinduque, Philippines; and, Lao Cai, Vietnam. Likely users will have their own region of interest. As such, this article will illustrate how to prepare the data.</p>
+<p>For any region of interest, users must specify the properties of the land units into three categories:</p>
+<ul>
+<li>terrain and soil</li>
+<li>water</li>
+<li>temperature</li>
+</ul>
+<p>Note that both terrain and soil factors must be specified as one dataframe, not separate. Suppose there are 5 units under study, the three characteristics can be specified as discussed in the succeeding sections.</p>
+<div id="terrain-and-soil" class="section level2">
+<h2 class="hasAnchor">
+<a href="#terrain-and-soil" class="anchor"></a>Terrain and soil</h2>
+<p>Suppose for terrain, the factors targetted were: Flood and SlopeD; and, suppose for soil we have CFragm and SoilDpt. The dataframe can be prepared as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">terrain_input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  Flood <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,
+  SlopeD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
+  CFragm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">30</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">40</span><span class="op">)</span>,
+  SoilDpt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">45</span>, <span class="fl">60</span>, <span class="fl">90</span>, <span class="fl">70</span>, <span class="fl">30</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<p>So that, if this input is assessed for avocado, then the suitability score for these land units computed as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Loading required package: Rcpp</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">AVOCADOTerrain</span></code></pre></div>
+<pre><code>##       code s3_a s2_a s1_a s1_b s2_b s3_b  wts
+## 1   Slope1  6.0  4.0    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 2   Slope2 16.0  8.0    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 3   Slope3 30.0 16.0    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 4    Flood  1.5  1.2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 5 Drainage  3.0  2.0    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">AVOCADOSoil</span></code></pre></div>
+<pre><code>##       code s3_a s2_a  s1_a s1_b s2_b s3_b  wts
+## 1   CFragm 55.0 33.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 2  SoilDpt 50.0 75.0 100.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 3    CaCO3 10.0  4.0   1.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 4     CECc 16.0 16.0  16.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 5       BS 19.9 20.0  35.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 6   SumBCs  1.5  1.6   2.8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 7    pHH2O  4.3  4.6   5.0  6.5  7.5  8.3 &lt;NA&gt;
+## 8       OC  0.7  0.8   1.2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 9    ECedS  5.0  4.0   3.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 10     ESP 20.0 15.0  10.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">avocado_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"avocado"</span>, terrain<span class="op">=</span><span class="va">terrain_input</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">avocado_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>##       Flood
+## 1 0.4285714
+## 2 0.0000000
+## 3 0.0000000
+## 4 0.0000000
+## 5 0.0000000</code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">avocado_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>##   Flood
+## 1    S3
+## 2     N
+## 3     N
+## 4     N
+## 5     N</code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">avocado_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>##      CFragm SoilDpt
+## 1 0.8666667    0.36
+## 2 0.6000000    0.48
+## 3 0.3333333    0.72
+## 4 0.2000000    0.56
+## 5 0.4666667    0.24</code></pre>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">avocado_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>##   CFragm SoilDpt
+## 1     S1      S3
+## 2     S2      S3
+## 3     S3      S2
+## 4      N      S2
+## 5     S3       N</code></pre>
+</div>
+<div id="water" class="section level2">
+<h2 class="hasAnchor">
+<a href="#water" class="anchor"></a>Water</h2>
+<p>For water characteristics, suppose the average rainfall for the first month (WmAv1) is 90, for second month (WmAv2) is 110, third month (WmAv3) is 150, and fourth month (WmAv4) is 160. This can be specified as follows:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">water_input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  WmAv1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

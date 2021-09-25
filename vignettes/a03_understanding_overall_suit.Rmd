@@ -1,15 +1,38 @@
 ---
-title: "Understanding the overall_suit function"
+title: "Article 4: Understanding the overall_suit function"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Understanding the overall_suit function}
+  %\VignetteIndexEntry{Article 4: Understanding the overall_suit function}
   %\usepackage[UTF-8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+The overall suitability can be computed using the `overall_suit` function, which takes an object of class suitability. For example,
+```{r}
+library(ALUES)
+banana_suit <- suit("banana", terrain=MarinduqueLT)
+class(banana_suit[["terrain"]])
+class(banana_suit[["soil"]])
+```
+There are no factors that were targetted for the terrain characteristics, hence the returned value is a string error. Thus, only the soil characteristics can have an overall suitability, and is computed as follows:
+```{r}
+ovsuit <- overall_suit(banana_suit[["soil"]])
+head(ovsuit)
+```
+By default, the `overall_suit` function uses minimum as a summary statistics, hence the 0 scores and N classes across land units. To adjust this to average aggregation, use the `method` argument to specify.
+```{r}
+ovsuit <- overall_suit(banana_suit[["soil"]], method="average")
+head(ovsuit)
+```
 
-under development
+## Intervals
+By default, the `overall_suit` uses an equally spaced interval for the suitability classes, that is, N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), and S1 [0.75, 1]. This can be changed using the `interval` argument, for example
+```{r}
+ovsuit <- overall_suit(banana_suit[["soil"]], method="average", interval=c(0, 0.6, 0.7, 0.9, 1))
+head(ovsuit)
+```
+The above code sets the suitability class intervals into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), and S1 [0.90, 1]. It should be emphasized that the `interval` argument cannot be set to `unbias` as in the case of the `interval` argument of the `suit` function. This follows from the fact that the `overall_suit` function is not using a membership function for computing the score, but an aggregation function.

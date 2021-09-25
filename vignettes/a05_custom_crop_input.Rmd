@@ -1,10 +1,10 @@
 ---
-title: "Custom crop requirements input"
+title: "Article 6: Custom crop requirements input"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Custom crop requirements input}
+  %\VignetteIndexEntry{Article 6: Custom crop requirements input}
   %\usepackage[UTF-8]{inputenc}
 ---
 

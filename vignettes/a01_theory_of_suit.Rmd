@@ -1,10 +1,10 @@
 ---
-title: "Methodology used in ALUES"
+title: "Article 2: Methodology used in ALUES"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Methodology used in ALUES}
+  %\VignetteIndexEntry{Article 2: Methodology used in ALUES}
   %\usepackage[UTF-8]{inputenc}
 ---
 

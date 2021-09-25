@@ -1,10 +1,10 @@
 ---
-title: "Understanding the suit function"
+title: "Article 3: Understanding the suit function"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Understanding the suit function}
+  %\VignetteIndexEntry{Article 3: Understanding the suit function}
   %\usepackage[UTF-8]{inputenc}
 ---
 
@@ -104,14 +104,26 @@ head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
 ```
 
-## Interval
+## Intervals
 Another option available in the `suit` function is the `interval`. By default, ALUES uses an equally spaced suitability class intervals for deriving the suitability class. That is, for N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), and S1 [0.75, 1].
+
+### Custom Intervals
+Users can modify the default equally spaced intervals, for example:
+```{r}
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval=c(0, 0.3, 0.6, 0.9, 1))
+head(banana_suit[["soil"]][["Suitability Score"]])
+head(banana_suit[["soil"]][["Suitability Class"]])
+```
+The above code sets the new suitability class intervals into: N [0, 0.3), S3 [0.3, 0.6), S2 [0.6, 0.9), and S1 [0.9, 1].
+
+### Unbias Intervals
+The problem with the fixed interval is that the said intervals does not take into account the shape of the membership function and the spacing of the parameter interval limits (*See* Article 2 for parameter intervals). Custom intervals might be able to capture this if the user computed the interval limits manually, but ALUES provides an option just for this, by setting `interval="unbias"`. That is,
 ```{r}
 banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias")
 head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
 ```
-By setting the `interval="unbias"`, will generate a different likely unequally spaced suitability class intervals. Notice how the suitability class have changed for CFragm. This is because, unlike the default interval mentioned earlier, the unbias interval takes into account the shape of the membership function and the intervals of the parameter intervals. *See* Article 2 (Methodology used in ALUES).
+By setting the `interval="unbias"`, will generate a different likely unequally spaced suitability class intervals, but the interval limits are mathematically correct mapping of the parameter interval limits to suitability class limits via the membership function.
 
 ## Maximum and Minimum
 Another parameter that can be set for `suit` are the `min` and `max`. These are the constants used by the membership function for computing the suitability score.
