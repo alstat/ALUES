@@ -1,0 +1,60 @@
+---
+title: "Article 6: Custom crop requirements input"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Article 6: Custom crop requirements input}
+  %\usepackage[UTF-8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+As already emphasized in Article 2, the following are the crop datasets available in ALUES:
+```{r}
+d <- utils::data(package = "ALUES")
+alues_data <- d$results[, "Item"]
+crop_data <- regmatches(alues_data, gregexpr(paste0("^[A-Z]{2,}", collapse = "|"), alues_data))
+crop_data <- unique(unlist(lapply(crop_data, function(x) substr(x, 1, nchar(x)-1))))
+crop_data
+```
+In cases were the target crop is not available in the ALUES database, users can specify their own by following the template of a crop requirement dataset. For example, 
+```{r}
+library(ALUES)
+COFFEEARSoil
+```
+The above data frame shows us the first column as the code of the target factors, and the remaining of the columns are the suitability classes with the last column for the weights if any.
+
+## Crop Characteristics
+It should be noted that apart from the proper templating of the dataframe for any new target crop, the categorization of the characteristics must be observed as well. That is, for any new crop the four characteristics, terrain, soil, water, and temp, must be encoded separately as one dataframe. That is, for any target crop there will be four dataframes to expect for the four characteristics mentioned.
+
+## Creating from a template
+To create a custom crop dataset, use the following code to generate an empty row data frame with the appropriate column name
+```{r}
+new_crop <- data.frame(matrix(nrow=0, ncol=ncol(COFFEEARSoil)))
+names(new_crop) <- names(COFFEEARSoil)
+new_crop
+```
+Needless to say, any ALUES crop dataset can be used above in place of `COFFEEARSoil`, since all crop datasets have the same column names.
+
+Next is to enter the name of the factors in the first column, and then the corresponding standard values for suitability classes. Suppose for example, the new crop demands a factor CFragm to be S3 (marginally suitable) if it is 60, S2 if it is 40, and S1 if it is 20; then this can be entered as follows:
+```{r}
+new_crop[1, "code"] <- "CFragm"
+new_crop[1, 2:4] <- c(60, 40, 20)
+new_crop
+```
+New factors can be added further in the succeeding rows, say for row 2 we have pHH2O with the following data
+```{r}
+new_crop[2, "code"] <- "pHH2O"
+new_crop[2, 2:7] <- c(4.5, 5.0, 5.1, 5.6, 6.2, 6.9)
+new_crop
+```
+Adding weight to pHH2O is done as follows:
+```{r}
+new_crop[2, "wts"] <- 2
+new_crop
+```
+Now suppose we want to evaluate Marinduque land units for this new crop, we can do this as follows:
+```{r}
+```

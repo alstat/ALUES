@@ -44,9 +44,41 @@ head(avocado_suit[["soil"]][["Suitability Class"]])
 ```
 
 ## Water
-For water characteristics, suppose the average rainfall for the first month (WmAv1) is 90, for second month (WmAv2) is 110, third month (WmAv3) is 150, and fourth month (WmAv4) is 160. This can be specified as follows:
+For water characteristics, suppose the average rainfall for 3 land units were recorded for four months with the following data:
 ```{r}
 water_input <- data.frame(
-  WmAv1 = c()
+  Apr = c(150, 140, 120),
+  May = c(70, 90, 100),
+  Jun = c(85, 90, 105)
 )
+water_input
+```
+Note that when specifying the factors for water chacteristics, the month must be specified in three characters (correct case) only, that is, it shouldn't be specified as January, February, etc. 
+
+The suitability scores for rainfed bunded rice water requirement are computed as follows:
+```{r}
+RICEBRWater
+water_suit <- suit("ricebr", water=water_input, sow_month=1)
+water_suit
+```
+Setting the `sow_month=1` indicates that the factors for `RICEBRWater`'s `WmAv1` to January, `WmAv2` to February, `WmAv3` to March, and `WmAv4` to April. Thus, the only factors that were targetted by the `water_input` is April. Thus, setting the `sow_month=3`, would make `WmAv1` of `RICEBRWater` is March, `WmAv2` is April, etc. This in turn targets the months April to Jun.
+```{r}
+water_suit <- suit("ricebr", water=water_input, sow_month=3)
+water_suit
+```
+
+## Temperature
+Another characteristics that can be targetted is the temperature.
+```{r}
+temp_input <- data.frame(
+  Sep = c(34.2, 35.5, 33.4),
+  Oct = c(32.5, 34.2, 32.0),
+  Nov = c(30.3, 32.2, 31.1)
+)
+RICEBRTemp
+temp_suit <- suit("ricebr", temp=temp_input, sow_month=9)
+```
+The `RICEBRTemp` crop requirement has factor `TmAv2`, which is the mean temperature for the 2nd month. Thus, setting the sowing month to 9 suggest that the sowing month started at September, and thus sets `TmAv2` to October. Hence, the factor that was targetted by the input land units is the October as seen below:
+```{r}
+temp_suit
 ```
