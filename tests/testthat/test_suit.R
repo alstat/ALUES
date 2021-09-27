@@ -57,7 +57,7 @@ test_that("suit: catch terrain", expect_equal(out[["terrain"]]$`Factors Evaluate
 test_that("suit: catch water", expect_equal(out[["water"]]$`Factors Evaluated`, c("Jan", "Feb", "Mar", "Apr")))
 
 out <- suit("ricebr", terrain=LaoCaiLT)
-test_that("suit: warning soil", expect_equal(out[["soil"]]$Warning, "max is set to 16 for factor CECc since all parameter intervals are equal."))
+test_that("suit: warning soil", expect_equal(out[["soil"]]$Warning, "maximum is set to 16 for factor CECc since all parameter intervals are equal."))
 
 out <- suit("ricebr", terrain=LaoCaiLT, water=LaoCaiWater, temp=LaoCaiTemp, sow_month=1, sigma=1)
 test_that("suit: warning terrain", expect_equal(out[["terrain"]]$Warning, "sigma is only use for gaussian membership function. It defines the spread of the gaussian model."))

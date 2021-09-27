@@ -57,4 +57,6 @@ new_crop
 ```
 Now suppose we want to evaluate Marinduque land units for this new crop, we can do this as follows:
 ```{r}
+newcrop_suit <- suit(new_crop, terrain=MarinduqueLT)
+lapply(newcrop_suit[["terrain"]], function (x) head(x))
 ```

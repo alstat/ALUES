@@ -21,8 +21,8 @@ suit(
   temp = NULL,
   mf = "triangular",
   sow_month = NULL,
-  min = NULL,
-  max = "average",
+  minimum = NULL,
+  maximum = "average",
   interval = NULL,
   sigma = NULL
 )
@@ -33,7 +33,7 @@ library(ALUES)
 banana_suit <- suit("banana", terrain=MarinduqueLT)
 names(banana_suit)
 ```
-The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value to assign to max constant used for computing the suitability score. For more, please refer to the article, Methodology used in ALUES. 
+The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value to assign to maximum constant used for computing the suitability score. For more, please refer to the article, Methodology used in ALUES. 
 
 The output of the `suit` function is a list of output of target characteristics, in this case `terrain` and `soil`. To access the output for `terrain` and `soil` simply use:
 ```{r, eval=FALSE}
@@ -126,20 +126,20 @@ head(banana_suit[["soil"]][["Suitability Class"]])
 By setting the `interval="unbias"`, will generate a different likely unequally spaced suitability class intervals, but the interval limits are mathematically correct mapping of the parameter interval limits to suitability class limits via the membership function.
 
 ## Maximum and Minimum
-Another parameter that can be set for `suit` are the `min` and `max`. These are the constants used by the membership function for computing the suitability score.
+Another parameter that can be set for `suit` are the `minimum` and `maximum`. These are the constants used by the membership function for computing the suitability score.
 ```{r}
 banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias")
 banana_suit[["soil"]][["Factors Evaluated"]]
 ```
 From the above result, there are four factors targetted by the input land unit, these are CFragm, CECc, pHH2O and SoilTe. Suppose we know the maximum value that these factors can take, say 60 for CFragm, 20 for CECc, 9 for pHH2O, and 10 for SoilTe. We can specify these as follows:
 ```{r}
-banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias", max=c(60, 20, 9, 10))
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias", maximum=c(60, 20, 9, 10))
 banana_suit
 ```
-The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument max must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the `MarinduqueLT` also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to remove other columns that are not the target factors when specifing `min` or `max` constants. Thus, it should be:
+The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument maximum must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the `MarinduqueLT` also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to remove other columns that are not the target factors when specifing `minimum` or `maximum` constants. Thus, it should be:
 ```{r}
 MarinduqueLT2 <- MarinduqueLT[, 3:ncol(MarinduqueLT)]
-banana_suit <- suit("banana", terrain=MarinduqueLT2, mf="trapezoidal", interval="unbias", max=c(60, 20, 9, 10))
+banana_suit <- suit("banana", terrain=MarinduqueLT2, mf="trapezoidal", interval="unbias", maximum=c(60, 20, 9, 10))
 head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
 ```

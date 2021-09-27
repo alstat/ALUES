@@ -45,6 +45,9 @@ For those who prefer to look at it mathematically, this section presents the com
 *Remark 2*. $v_i$ is the interval limit of the factor or parameter. $v_0$ and $v_p$ are the minimum and maximum factor limits, respectively, both needs to be computed.
 
 ### Triangular Membership Function
+```{r, out.width="100%", echo=FALSE}
+knitr::include_graphics("../vignettes/img/trimf.jpg")
+```
 **Definition 4 (Left Triangular)**. Let $x_{jk}\in\mathscr{X}$ be the $j$th land unit's actual value for any target factor $k$, $\forall j \in \mathbb{Z}_{[1,n]}$ and  $\forall k \in \mathbb{Z}_{[1,m]}$, and let $[v_{i},v_{i+1})\in\mathscr{V}$ be the crop's parameter intervals, $\forall i\in\mathbb{Z}_{[0,p-1]}$, then the *lower* or *left triangular* MF, herein notated as $\mu_{\triangle_{\downarrow}}$, is defined as follows:
 \begin{equation}
     \mu_{\triangle_{\downarrow}}(x_{jk}):=
@@ -79,6 +82,9 @@ where $\mathrm{min}:= v_0:= v_1-\gamma$, $\mathrm{max}:= v_p:= v_{p-1}+\gamma$, 
 where $\mathrm{m}:= \frac{v_{i}^{*}+v_{i+1}^*}{2}$ such that $v_i^*<\mathrm{m}<v_{i+1}^*$, and $v_i^{*}$ and $v_{i+1}^*$ are interval limits right next to m.
 
 ### Trapezoidal Membership Function
+```{r, out.width="100%", echo=FALSE}
+knitr::include_graphics("../vignettes/img/tramf.jpg")
+```
 **Definition 7 (Left Trapezoidal)**. From Definition 4, the *lower* or *left trapezoidal* MF, herein notated as $\mu_{\bigtriangledown_{\downarrow}}$, is defined as follows:
 \begin{equation}
     \mu_{\bigtriangledown_{\downarrow}}(x_{jk}):=
@@ -112,6 +118,10 @@ where $\mathrm{min},\mathrm{max}$ and $\gamma$ are the same as in Definition 4.
 where $v_i^*$ and $v_{i+1}^*$ are defined in Definition \ref{def:trimf}.
 
 ### Gaussain Membership Function
+```{r, out.width="100%", echo=FALSE}
+knitr::include_graphics("../vignettes/img/gaumf.jpg")
+```
+
 **Definition 10 (Gaussian MF)**. From Definition 4, the *full Gaussian* MF, herein notated as $\mu_{\curlywedge}$, is defined as follows:
 \begin{equation}
     \mu_{\curlywedge}(x_{jk}):=\exp\left[-\frac{(x_{jk}-\alpha)^2}{2\sigma^2}\right],

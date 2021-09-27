@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 4: Understanding the overall_suit function</h1>
             
-            <h4 class="date">2021-09-26</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a04_understanding_overall_suit.Rmd"><code>vignettes/a04_understanding_overall_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a04_understanding_overall_suit.Rmd</code></div>
@@ -125,8 +125,9 @@
 <pre><code>## Loading required package: Rcpp</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>

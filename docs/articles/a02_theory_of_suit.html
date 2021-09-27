@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 2: Methodology used in ALUES</h1>
             
-            <h4 class="date">2021-09-26</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a02_theory_of_suit.Rmd"><code>vignettes/a02_theory_of_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a02_theory_of_suit.Rmd</code></div>
@@ -157,7 +157,7 @@
 <div id="triangular-membership-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#triangular-membership-function" class="anchor"></a>Triangular Membership Function</h3>
-<p><strong>Definition 4 (Left Triangular)</strong>. Let <span class="math inline">\(x_{jk}\in\mathscr{X}\)</span> be the <span class="math inline">\(j\)</span>th land unit’s actual value for any target factor <span class="math inline">\(k\)</span>, <span class="math inline">\(\forall j \in \mathbb{Z}_{[1,n]}\)</span> and <span class="math inline">\(\forall k \in \mathbb{Z}_{[1,m]}\)</span>, and let <span class="math inline">\([v_{i},v_{i+1})\in\mathscr{V}\)</span> be the crop’s parameter intervals, <span class="math inline">\(\forall i\in\mathbb{Z}_{[0,p-1]}\)</span>, then the <em>lower</em> or <em>left triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+<p><img src="../vignettes/img/trimf.jpg" width="100%"><strong>Definition 4 (Left Triangular)</strong>. Let <span class="math inline">\(x_{jk}\in\mathscr{X}\)</span> be the <span class="math inline">\(j\)</span>th land unit’s actual value for any target factor <span class="math inline">\(k\)</span>, <span class="math inline">\(\forall j \in \mathbb{Z}_{[1,n]}\)</span> and <span class="math inline">\(\forall k \in \mathbb{Z}_{[1,m]}\)</span>, and let <span class="math inline">\([v_{i},v_{i+1})\in\mathscr{V}\)</span> be the crop’s parameter intervals, <span class="math inline">\(\forall i\in\mathbb{Z}_{[0,p-1]}\)</span>, then the <em>lower</em> or <em>left triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\triangle_{\downarrow}}(x_{jk}):=
     \begin{cases}
         \displaystyle\frac{x_{jk}-\mathrm{min}}{\mathrm{max}-\mathrm{min}},&amp;\mathrm{min}\leq x_{jk}\leq\mathrm{max}\\
@@ -182,7 +182,7 @@
 <div id="trapezoidal-membership-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#trapezoidal-membership-function" class="anchor"></a>Trapezoidal Membership Function</h3>
-<p><strong>Definition 7 (Left Trapezoidal)</strong>. From Definition 4, the <em>lower</em> or <em>left trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+<p><img src="../vignettes/img/tramf.jpg" width="100%"><strong>Definition 7 (Left Trapezoidal)</strong>. From Definition 4, the <em>lower</em> or <em>left trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\bigtriangledown_{\downarrow}}(x_{jk}):=
     \begin{cases}
         \displaystyle\frac{x_{jk}-\mathrm{min}}{\mathrm{max}-\mathrm{min}},&amp;\mathrm{min}\leq x_{jk}\leq v_{p-1}\\
@@ -208,6 +208,7 @@
 <div id="gaussain-membership-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#gaussain-membership-function" class="anchor"></a>Gaussain Membership Function</h3>
+<p><img src="../vignettes/img/gaumf.jpg" width="100%"></p>
 <p><strong>Definition 10 (Gaussian MF)</strong>. From Definition 4, the <em>full Gaussian</em> MF, herein notated as <span class="math inline">\(\mu_{\curlywedge}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\curlywedge}(x_{jk}):=\exp\left[-\frac{(x_{jk}-\alpha)^2}{2\sigma^2}\right],
 \end{equation}\]</span> where <span class="math inline">\(\alpha\in(-\infty,\infty)\)</span> and <span class="math inline">\(\sigma\in(0,\infty)\)</span>. <em>Remark 4</em>. For partial Gaussian MF, however, the adjustment is done using the location hyperparameter. In particular, if <span class="math inline">\(\alpha=\mathrm{min}\)</span>, then the model is right Gaussian function. However, if <span class="math inline">\(\alpha=\mathrm{max}\)</span>, then the model is left Gaussian function.</p>

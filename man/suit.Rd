@@ -11,8 +11,8 @@ suit(
   temp = NULL,
   mf = "triangular",
   sow_month = NULL,
-  min = NULL,
-  max = "average",
+  minimum = NULL,
+  maximum = "average",
   interval = NULL,
   sigma = NULL
 )
@@ -35,13 +35,13 @@ fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
 So if sets to 1, the function assumes sowing month on 
 January.}
 
-\item{min}{factor's minimum value. If \code{NULL} (default), \code{min} is
+\item{minimum}{factor's minimum value. If \code{NULL} (default), \code{minimum} is
 set to 0. But if numeric of length one, say 0.5, then minimum 
 is set to 0.5, for all factors. If factors on land units 
 (\code{x}) have different minimum, then these can be concatenated
-to vector of \code{min}s, the length of this vector should be equal
+to vector of \code{minimum}s, the length of this vector should be equal
 to the number of factors in \code{x}. However, if set to \code{"average"},
-then \code{min} is computed from different conditions:
+then \code{minimum} is computed from different conditions:
 
 If for example, using \code{ALUES::COCONUTSoil} (coconut terrain requirements), 
 as shown below,
@@ -54,11 +54,11 @@ as shown below,
 \code{5      OC  0.7  0.7   0.8   NA   NA   NA           NA}\cr
 \code{6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA}}
 
-\item{max}{maximum value for factors. Default is to \code{"average"}, check on
+\item{maximum}{maximum value for factors. Default is to \code{"average"}, check on
 the details for this option. Assignment on maximum can also be done by
-simply entering any real numbers, say 55, then max is 55, we say this is homogeneous,
-since the maximum value for all factors then is set to 55. But for heterogeneous. For  \code{max}
-on every factor, simply concatenate the different \code{max} for each factor. 
+simply entering any real numbers, say 55, then maximum is 55, we say this is homogeneous,
+since the maximum value for all factors then is set to 55. But for heterogeneous. For  \code{maximum}
+on every factor, simply concatenate the different \code{maximum} for each factor. 
 If set to \code{"average"}, check on details below for more.}
 
 \item{interval}{domains for every suitability class (S1, S2, S3). If fixed (\code{NULL}), the
@@ -76,7 +76,7 @@ This function calculates the suitability scores and class of the land units.
 \details{
 There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 For triangular case. If a given factor has values equal for all suitabilities, then the class will 
-trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with singleton domain \{0\}.
+trimmed down to N (not suitable) with domain [0, maximum), and S1 (highly suitable) with singleton domain \{0\}.
 }
 \examples{
 library(ALUES)

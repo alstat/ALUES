@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 3: Understanding the suit function</h1>
             
-            <h4 class="date">2021-09-26</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a03_understanding_suit.Rmd"><code>vignettes/a03_understanding_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a03_understanding_suit.Rmd</code></div>
@@ -131,8 +131,8 @@
   temp <span class="op">=</span> <span class="cn">NULL</span>,
   mf <span class="op">=</span> <span class="st">"triangular"</span>,
   sow_month <span class="op">=</span> <span class="cn">NULL</span>,
-  min <span class="op">=</span> <span class="cn">NULL</span>,
-  max <span class="op">=</span> <span class="st">"average"</span>,
+  minimum <span class="op">=</span> <span class="cn">NULL</span>,
+  maximum <span class="op">=</span> <span class="st">"average"</span>,
   interval <span class="op">=</span> <span class="cn">NULL</span>,
   sigma <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
@@ -142,12 +142,13 @@
 <pre><code>## Loading required package: Rcpp</code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "terrain" "soil"</code></pre>
-<p>The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value to assign to max constant used for computing the suitability score. For more, please refer to the article, Methodology used in ALUES.</p>
+<p>The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value to assign to maximum constant used for computing the suitability score. For more, please refer to the article, Methodology used in ALUES.</p>
 <p>The output of the <code>suit</code> function is a list of output of target characteristics, in this case <code>terrain</code> and <code>soil</code>. To access the output for <code>terrain</code> and <code>soil</code> simply use:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>
@@ -192,8 +193,9 @@
 <pre><code>## Error in suit("sweet potato", terrain = MarinduqueLT): Input crop='sweet potato' is not available in the database, see docs for list of ALUES data.</code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">potato_suit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"potatosw"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 </div>
 <div id="targetting-crop-factors" class="section level2">
 <h2 class="hasAnchor">
@@ -255,8 +257,9 @@
 <p>The example above only targetted the terrain and soil characteristics, but the <code>suit</code> function allows user to also target water and temp simultaneously. This is done as follows:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, water<span class="op">=</span><span class="va">MarinduqueWater</span>, temp<span class="op">=</span><span class="va">MarinduqueTemp</span>, sow_month<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">banana_multi</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "terrain" "soil"    "water"   "temp"</code></pre>
@@ -308,7 +311,7 @@
 ## [1] "BANANASoil"
 ## 
 ## $Warning
-## [1] "max is set to 16 for factor CECc since all parameter intervals are equal."</code></pre>
+## [1] "maximum is set to 16 for factor CECc since all parameter intervals are equal."</code></pre>
 <p>Only the head (first six) of the output of the items in the soil characteristics are shown.</p>
 </div>
 <div id="membership-function" class="section level2">
@@ -317,8 +320,9 @@
 <p>There are three membership function (MF) available in <code>suit</code> function, namely <em>triangular</em>, <em>trapezoidal</em> and <em>Gaussian</em>. For example, the following computes the suitability scores and classes using Guassian MF.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>##   CFragm   CECc pHH2O SoilTe
@@ -348,8 +352,9 @@
 <p>Users can modify the default equally spaced intervals, for example:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>##   CFragm   CECc pHH2O SoilTe
@@ -376,8 +381,9 @@
 <p>The problem with the fixed interval is that the said intervals does not take into account the shape of the membership function and the spacing of the parameter interval limits (<em>See</em> Article 2 for parameter intervals). Custom intervals might be able to capture this if the user computed the interval limits manually, but ALUES provides an option just for this, by setting <code>interval="unbias"</code>. That is,</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>##   CFragm   CECc pHH2O SoilTe
@@ -402,31 +408,29 @@
 <div id="maximum-and-minimum" class="section level2">
 <h2 class="hasAnchor">
 <a href="#maximum-and-minimum" class="anchor"></a>Maximum and Minimum</h2>
-<p>Another parameter that can be set for <code>suit</code> are the <code>min</code> and <code>max</code>. These are the constants used by the membership function for computing the suitability score.</p>
+<p>Another parameter that can be set for <code>suit</code> are the <code>minimum</code> and <code>maximum</code>. These are the constants used by the membership function for computing the suitability score.</p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Factors Evaluated"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"</code></pre>
 <p>From the above result, there are four factors targetted by the input land unit, these are CFragm, CECc, pHH2O and SoilTe. Suppose we know the maximum value that these factors can take, say 60 for CFragm, 20 for CECc, 9 for pHH2O, and 10 for SoilTe. We can specify these as follows:</p>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span>, max<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span>, maximum<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 <span class="va">banana_suit</span></code></pre></div>
 <pre><code>## $terrain
 ## [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."
 ## 
 ## $soil
-## [1] "Error: max length should be equal to the number of factors in the input land units."</code></pre>
-<p>The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument max must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the <code>MarinduqueLT</code> also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to remove other columns that are not the target factors when specifing <code>min</code> or <code>max</code> constants. Thus, it should be:</p>
+## [1] "Error: maximum length should be equal to the number of factors in the input land units."</code></pre>
+<p>The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument maximum must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the <code>MarinduqueLT</code> also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to remove other columns that are not the target factors when specifing <code>minimum</code> or <code>maximum</code> constants. Thus, it should be:</p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">MarinduqueLT2</span> <span class="op">&lt;-</span> <span class="va">MarinduqueLT</span><span class="op">[</span>, <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span><span class="op">]</span>
-<span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT2</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span>, max<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in if (max == "average") {: the condition has length &gt; 1 and only the
-## first element will be used</code></pre>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT2</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span>, maximum<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>##   CFragm   CECc pHH2O SoilTe
 ## 1      0 0.7500     0      0
 ## 2      1 0.7500     0      0
@@ -434,7 +438,7 @@
 ## 4      0 0.7500     0      0
 ## 5      0 0.7500     0      0
 ## 6      0 0.8125     0      0</code></pre>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>##   CFragm CECc pHH2O SoilTe
 ## 1      N    N     N      N

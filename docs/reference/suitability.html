@@ -164,8 +164,8 @@
   <span class='va'>y</span>,
   mf <span class='op'>=</span> <span class='st'>"triangular"</span>,
   sow_month <span class='op'>=</span> <span class='cn'>NULL</span>,
-  min <span class='op'>=</span> <span class='cn'>NULL</span>,
-  max <span class='op'>=</span> <span class='st'>"average"</span>,
+  minimum <span class='op'>=</span> <span class='cn'>NULL</span>,
+  maximum <span class='op'>=</span> <span class='st'>"average"</span>,
   interval <span class='op'>=</span> <span class='cn'>NULL</span>,
   sigma <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
@@ -197,14 +197,14 @@ So if sets to 1, the function assumes sowing month on
 January.</p></td>
     </tr>
     <tr>
-      <th>min</th>
-      <td><p>factor's minimum value. If <code>NULL</code> (default), <code>min</code> is
+      <th>minimum</th>
+      <td><p>factor's minimum value. If <code>NULL</code> (default), <code>minimum</code> is
 set to 0. But if numeric of length one, say 0.5, then minimum 
 is set to 0.5, for all factors. If factors on land units 
 (<code>x</code>) have different minimum, then these can be concatenated
-to vector of <code>min</code>s, the length of this vector should be equal
+to vector of <code>minimum</code>s, the length of this vector should be equal
 to the number of factors in <code>x</code>. However, if set to <code>"average"</code>,
-then <code>min</code> is computed from different conditions:</p>
+then <code>minimum</code> is computed from different conditions:</p>
 <p>If for example, using <code><a href='COCONUTSoil.html'>ALUES::COCONUTSoil</a></code> (coconut terrain requirements), 
 as shown below,</p>
 <p><code>     code s3_a s2_a  s1_a s1_b s2_b s3_b          wts</code><br />
@@ -216,12 +216,12 @@ as shown below,</p>
 <code>6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA</code></p></td>
     </tr>
     <tr>
-      <th>max</th>
+      <th>maximum</th>
       <td><p>maximum value for factors. Default is to <code>"average"</code>, check on
 the details for this option. Assignment on maximum can also be done by
-simply entering any real numbers, say 55, then max is 55, we say this is homogeneous,
-since the maximum value for all factors then is set to 55. But for heterogeneous. For  <code>max</code>
-on every factor, simply concatenate the different <code>max</code> for each factor. 
+simply entering any real numbers, say 55, then maximum is 55, we say this is homogeneous,
+since the maximum value for all factors then is set to 55. But for heterogeneous. For  <code>maximum</code>
+on every factor, simply concatenate the different <code>maximum</code> for each factor. 
 If set to <code>"average"</code>, check on details below for more.</p></td>
     </tr>
     <tr>
@@ -243,7 +243,7 @@ gaussian formula, which is often times referred as the variance.</p></td>
 
     <p>There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
 For triangular case. If a given factor has values equal for all suitabilities, then the class will 
-trimmed down to N (not suitable) with domain [0, max), and S1 (highly suitable) with single tone domain {0}.</p>
+trimmed down to N (not suitable) with domain [0, maximum), and S1 (highly suitable) with single tone domain {0}.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

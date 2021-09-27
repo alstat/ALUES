@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 7: Visualizing with maps</h1>
             
-            <h4 class="date">2021-09-26</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a07_visual_maps.Rmd"><code>vignettes/a07_visual_maps.Rmd</code></a></small>
       <div class="hidden name"><code>a07_visual_maps.Rmd</code></div>
@@ -130,8 +130,9 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">MarinduqueLT</span>
 <span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">y</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_ovsuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span><span class="op">)</span></code></pre></div>
 </div>

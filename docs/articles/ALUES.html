@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2021-09-26</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/ALUES.Rmd"><code>vignettes/ALUES.Rmd</code></a></small>
       <div class="hidden name"><code>ALUES.Rmd</code></div>
@@ -128,8 +128,9 @@
 <pre><code>## Loading required package: Rcpp</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">suit_banana</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, min =
-## min, : max is set to 16 for factor CECc since all parameter intervals are equal.</code></pre>
+<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
+## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
+## are equal.</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Score`</span><span class="op">)</span></code></pre></div>
 <pre><code>##      CFragm   CECc pHH2O SoilTe
@@ -173,7 +174,7 @@
 ##                                                                           expr
 ##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))
 ##       min       lq     mean   median       uq      max neval
-##  6.797661 7.065716 8.782843 7.404833 8.701226 48.45251   100</code></pre>
+##  6.784262 7.470126 9.993839 9.938144 12.04998 17.94192   100</code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
@@ -182,7 +183,7 @@
 ##                                                                       expr
 ##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))
 ##       min       lq     mean   median       uq      max neval
-##  10.58049 11.50985 12.63971 12.06647 12.97368 21.28665   100</code></pre>
+##  10.67876 12.56786 15.90495 15.01147 18.73148 29.46334   100</code></pre>
 </div>
   </div>
 

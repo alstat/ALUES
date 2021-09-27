@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 6: Custom crop requirements input</h1>
             
-            <h4 class="date">2021-09-26</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a06_custom_crop_input.Rmd"><code>vignettes/a06_custom_crop_input.Rmd</code></a></small>
       <div class="hidden name"><code>a06_custom_crop_input.Rmd</code></div>
@@ -196,6 +196,43 @@
 ## 1 CFragm 60.0   40 20.0   NA   NA   NA  NA
 ## 2  pHH2O  4.5    5  5.1  5.6  6.2  6.9   2</code></pre>
 <p>Now suppose we want to evaluate Marinduque land units for this new crop, we can do this as follows:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">newcrop_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="va">new_crop</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">newcrop_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $`Factors Evaluated`
+## [1] "CFragm" "pHH2O" 
+## 
+## $`Suitability Score`
+##   CFragm pHH2O
+## 1 0.8625     0
+## 2 0.8875     0
+## 3 0.8750     0
+## 4 0.8750     0
+## 5 0.8500     0
+## 6 0.8625     0
+## 
+## $`Suitability Class`
+##   CFragm pHH2O
+## 1     S1     N
+## 2     S1     N
+## 3     S1     N
+## 4     S1     N
+## 5     S1     N
+## 6     S1     N
+## 
+## $`Factors' Minimum Values`
+## CFragm  pHH2O 
+##      0      0 
+## 
+## $`Factors' Maximum Values`
+## CFragm  pHH2O 
+##  80.00   7.38 
+## 
+## $`Factors' Weights`
+## [1] NA  2
+## 
+## $`Crop Evaluated`
+## [1] "Custom Crop for Terrain"</code></pre>
 </div>
   </div>
 
