@@ -18,21 +18,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Agricultural Land Use Evaluation System">
-<meta property="og:description" content="Agricultural Land Use Evaluation System (ALUES) is an R package
-    that evaluates land suitability for different crop production.
-    The package is based on the Food and Agriculture Organization
-    (FAO) and the International Rice Research Institute (IRRI)
-    methodology for land evaluation. Development of ALUES is
-    inspired by similar tool for land evaluation, Land Use
-    Suitability Evaluation Tool (LUSET). The package uses fuzzy
-    logic approach to evaluate land suitability of a particular
-    area based on inputs such as rainfall, temperature, topography,
-    and soil properties. The membership functions used for fuzzy
-    modeling are the following: Triangular, Trapezoidal and Gaussian.
-    The methods for computing the overall suitability of a particular
-    area are also included, and these are the Minimum, Maximum, Product,
-    Sum, Average, Exponential and Gamma. Finally, ALUES utilizes the
-    power of Rcpp library for efficient computation.">
+<meta property="og:description" content="An R package that evaluates land suitability for different crops production. 
+  The package is based on the Food and Agriculture Organization (FAO) and the 
+  International Rice Research Institute (IRRI) methodology for land evaluation. 
+  Development of ALUES is inspired by similar tool for land evaluation, Land Use 
+  Suitability Evaluation Tool (LUSET). The package uses fuzzy logic approach to evaluate 
+  land suitability of a particular area based on inputs such as rainfall, temperature, 
+  topography, and soil properties. The membership functions used for fuzzy modeling are 
+  the following: Triangular, Trapezoidal and Gaussian. The methods for computing the 
+  overall suitability of a particular area are also included, and these are the Minimum, 
+  Maximum and Average. Finally, ALUES is a highly optimized library with core algorithms 
+  written in C++.">
 <meta property="og:image" content="/logo.svg">
 <meta property="og:image:alt" content="ALUES logo">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -162,6 +158,7 @@ install_github("alstat/ALUES")</a></code></pre>
 <ul class="list-unstyled">
 <li>Al-Ahmadgaid B. Asaad <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3784-8593" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Arnold R. Salvacion <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8868-2226" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Bui Tan Yen <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -179,7 +176,7 @@ install_github("alstat/ALUES")</a></code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Al-Ahmadgaid B. Asaad, Arnold R. Salvacion.</p>
+  <p>Developed by Al-Ahmadgaid B. Asaad, Arnold R. Salvacion, Bui Tan Yen.</p>
 </div>
 
 <div class="pkgdown">
