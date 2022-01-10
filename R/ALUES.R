@@ -24,7 +24,7 @@
 #' 
 #' @author Al-Ahmadgaid B. Asaad <alahmadgaid@@gmail.com> (maintainer)
 #' @author Arnold R. Salvacion <arsalvacion@@gmail.com>
-#' 
+#' @author Bui Tan Yen
 #' 
 #' @import Rcpp
 #' @docType package

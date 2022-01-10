@@ -31,4 +31,6 @@ the power of Rcpp library for efficient computation.
 Al-Ahmadgaid B. Asaad <alahmadgaid@gmail.com> (maintainer)
 
 Arnold R. Salvacion <arsalvacion@gmail.com>
+
+Bui Tan Yen
 }
