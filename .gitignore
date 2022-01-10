@@ -48,3 +48,5 @@ po/*~
 .Rproj.user
 .Rdata
 .DS_Store
+/doc/
+/Meta/

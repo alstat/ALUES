@@ -11,10 +11,7 @@ A data frame with 0 rows and 8 columns
 A dataset containing the terrain characteristics of the crop requirements for farming Papaya.
 }
 \details{
-The following are the factors for evaluation: 
-
-\itemize{
-}
+The following are the factors for evaluation:
 }
 \seealso{
 \itemize{

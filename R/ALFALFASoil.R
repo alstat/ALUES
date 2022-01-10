@@ -1,11 +1,11 @@
 #' Alfalfa soil requirement for land evaluation
-    #' 
-    #' A dataset containing the soil characteristics of the crop requirements for farming Alfalfa.
-    #' 
-    #' @details 
-    #' The following are the factors for evaluation: 
+#' 
+#' A dataset containing the soil characteristics of the crop requirements for farming Alfalfa.
+#' 
+#' @details 
+#' The following are the factors for evaluation: 
 #'
-    #' \itemize{
+#' \itemize{
 #' \item SoilTe - 12 classes of soil texture (Soil Taxonomy)
 #' \item CFragm - Coarse fragment (Vol.\%)
 #' \item SoilDpt - Soil depth (cm)
@@ -19,13 +19,13 @@
 #' \item ECedS - ECe (dS/m)
 #' \item ESP - ESP (\%)
 #' }
-    #' @seealso 
-    #' \itemize{
-    #'  \item Yen, B. T., Pheng, K. S., and Hoanh, C. T. (2006). \emph{LUSET: Land Use Suitability Evaluation Tool User's Guide}. International Rice Research Institute.
-    #'  }
-    #' 
-    #' @docType data
-    #' @keywords dataset
-    #' @format A data frame with 12 rows and 8 columns
+#' @seealso 
+#' \itemize{
+#'  \item Yen, B. T., Pheng, K. S., and Hoanh, C. T. (2006). \emph{LUSET: Land Use Suitability Evaluation Tool User's Guide}. International Rice Research Institute.
+#'  }
+#' 
+#' @docType data
+#' @keywords dataset
+#' @format A data frame with 12 rows and 8 columns
 #' @name ALFALFASoil
 NULL
