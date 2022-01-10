@@ -7,11 +7,10 @@ vignette: >
   %\VignetteIndexEntry{Article 7: Visualizing with maps}
   %\usepackage[UTF-8]{inputenc}
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-While ALUES can generate tables of suitability scores and classes, it would be best to look at it from a big picture by visualizing the scores and classes computed through maps. The main requirement of course in here is the availability of the longitude and latitude of each land unit. This is possible for the land units of the region of Marinduque which has spatial locations in the encoded dataset that comes with ALUES.
+While ALUES can generate tables for suitability scores and classes, it would be best to visualize it via maps. The main requirement of course is the availability of the longitude and latitude for each of the land units. This is possible for Marinduque as it has spatial variables (longitude and latitude).
 
 ## Suitability scores and classes
 Suppose we want to evaluate the land units for banana, then:
@@ -67,7 +66,7 @@ p1 <- ggplot() + geom_polygon(data = prov, aes(long + 0.008, lat - 0.005, group 
 p1
 ```
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/scores.jpg")
+knitr::include_graphics("../vignettes/img/scores1.jpg")
 ```
 And for suitability classes:
 ```{r, eval=FALSE}
@@ -100,5 +99,5 @@ p1 <- ggplot() + geom_polygon(data = prov, aes(long + 0.008, lat - 0.005, group 
 p1
 ```
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/classes.jpg")
+knitr::include_graphics("../vignettes/img/classes1.jpg")
 ```

@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 7: Visualizing with maps</h1>
             
-            <h4 class="date">2021-09-27</h4>
+            <h4 class="date">2022-01-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a07_visual_maps.Rmd"><code>vignettes/a07_visual_maps.Rmd</code></a></small>
       <div class="hidden name"><code>a07_visual_maps.Rmd</code></div>
@@ -119,7 +119,7 @@
 
     
     
-<p>While ALUES can generate tables of suitability scores and classes, it would be best to look at it from a big picture by visualizing the scores and classes computed through maps. The main requirement of course in here is the availability of the longitude and latitude of each land unit. This is possible for the land units of the region of Marinduque which has spatial locations in the encoded dataset that comes with ALUES.</p>
+<p>While ALUES can generate tables for suitability scores and classes, it would be best to visualize it via maps. The main requirement of course is the availability of the longitude and latitude for each of the land units. This is possible for Marinduque as it has spatial variables (longitude and latitude).</p>
 <div id="suitability-scores-and-classes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#suitability-scores-and-classes" class="anchor"></a>Suitability scores and classes</h2>
@@ -181,7 +181,7 @@
         legend.title<span class="op">=</span><span class="fu">element_text</span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span>, legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p1</span></code></pre></div>
-<p><img src="../vignettes/img/scores.jpg" width="100%"> And for suitability classes:</p>
+<p><img src="../vignettes/img/scores1.jpg" width="100%"> And for suitability classes:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">val</span> <span class="op">&lt;-</span> <span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>
 <span class="va">val</span><span class="op">[</span><span class="st">"Overall Suitability"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">banana_ovsuit</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>
@@ -210,7 +210,7 @@
         legend.title<span class="op">=</span><span class="fu">element_text</span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span>, legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p1</span></code></pre></div>
-<p><img src="../vignettes/img/classes.jpg" width="100%"></p>
+<p><img src="../vignettes/img/classes1.jpg" width="100%"></p>
 </div>
   </div>
 

@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 3: Understanding the suit function</h1>
             
-            <h4 class="date">2021-09-27</h4>
+            <h4 class="date">2022-01-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a03_understanding_suit.Rmd"><code>vignettes/a03_understanding_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a03_understanding_suit.Rmd</code></div>
@@ -122,7 +122,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>The <code>suit</code> function is used for computing the suitability score of the land units for a given target crop. The function has the following usage:</p>
+<p>The <code>suit</code> function is used for computing the suitability score and class of the land units for a given target crop. The function has the following usage:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span>
   <span class="va">crop</span>,
@@ -136,7 +136,7 @@
   interval <span class="op">=</span> <span class="cn">NULL</span>,
   sigma <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
-<p>Check the documentation for details on the argument. This article will focus on how to use this. To evaluate the suitability score of the Marinduque land units for terrain, soil, water and temperature characteristics is done as follows:</p>
+<p>Check the documentation for details of the arguments. This article will focus on how to use this function. To evaluate the suitability score of Marinduque land units for terrain, soil, water and temperature characteristics, simply run the <code>suit</code> function for each of these characteristics. That is,</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required package: Rcpp</code></pre>
@@ -148,19 +148,19 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "terrain" "soil"</code></pre>
-<p>The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value to assign to maximum constant used for computing the suitability score. For more, please refer to the article, Methodology used in ALUES.</p>
-<p>The output of the <code>suit</code> function is a list of output of target characteristics, in this case <code>terrain</code> and <code>soil</code>. To access the output for <code>terrain</code> and <code>soil</code> simply use:</p>
+<p>The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value as the maximum constant for computing the suitability scores. For more, please refer to the <strong>Article 2: Methodology used in ALUES</strong> of the documentation.</p>
+<p>The <code>suit</code> function returns a list of output of target characteristics, in this case <code>"terrain"</code> and <code>"soil"</code>. To access the output, simply run the following:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>
 <span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p>The output of the codes above are lists, with the following names:</p>
+<p>Each of these are lists, with the following names:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Factors Evaluated"       "Suitability Score"      
 ## [3] "Suitability Class"       "Factors' Minimum Values"
 ## [5] "Factors' Maximum Values" "Factors' Weights"       
 ## [7] "Crop Evaluated"          "Warning"</code></pre>
-<p>Therefore, one can access any of those names. For example, to access the factors evaluated, simply run the following</p>
+<p>So that, to access the factors evaluated, simply run the following:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Factors Evaluated"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"</code></pre>
@@ -168,7 +168,7 @@
 <div id="targetting-crop" class="section level2">
 <h2 class="hasAnchor">
 <a href="#targetting-crop" class="anchor"></a>Targetting Crop</h2>
-<p>There are 56 crops available in ALUES, and what we’ve illustrated above are for banana only. The other crops are listed below:</p>
+<p>There are 56 crops available in ALUES, and what we’ve illustrated above are for banana only. Other crops are listed below:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"ALUES"</span><span class="op">)</span>
 <span class="va">alues_data</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">results</span><span class="op">[</span>, <span class="st">"Item"</span><span class="op">]</span>
@@ -246,7 +246,7 @@
 ## 1   TyMaxAv   14   16   18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2
 ## 2   TmMinXm    2    8   15 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2
 ## 3 TmMinXmAb   -2    0    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
-<p>These datasets are used by the <code>suit</code> function depending on the specified characteristics of the input land units. So for <code>banana_suit</code> object above, the targetted crop datasets are <code>BANANATerrain</code> and <code>BANANASoil</code> since the input land unit specified is <code>terrain=MarinduqueLT</code>. However, input land unit only targetted the soil factors and not the terrain factors, since none of the factors in <code>MarinduqueLT</code> matched with the factors in <code>BANANATerrain</code>. That is why, accessing the output for the terrain characteristics for the <code>banana_suit</code> object will return the following:</p>
+<p>These datasets are used by the <code>suit</code> function depending on the specified characteristics of the input land units. So for <code>banana_suit</code> object above, the target crop datasets were <code>BANANATerrain</code> and <code>BANANASoil</code> since the input land unit specified is <code>terrain=MarinduqueLT</code>. However, input land unit only targetted the soil factors and not the terrain factors, since none of the factors in <code>MarinduqueLT</code> matched with the factors in <code>BANANATerrain</code>. That is why, accessing the output for the terrain characteristics for the <code>banana_suit</code> object will return the following:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</code></pre>
@@ -263,7 +263,7 @@
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">banana_multi</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "terrain" "soil"    "water"   "temp"</code></pre>
-<p>It is necessary to specify the sowing month when specifying the water and temperature characteristics of the input land units. In this case, we are saying that the first sowing month in the water and temperature characteristics correspond to February. No factors were targetted by input land unit for banana for terrain, water and temperature characteristics.</p>
+<p>It is necessary to specify the sowing month when specifying the water and temperature characteristics of the input land units. In this case, we are saying that the first sowing month for both water and temperature characteristics correspond to February. No factors were targetted by input land unit for banana for terrain, water and temperature characteristics.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</code></pre>
@@ -317,7 +317,7 @@
 <div id="membership-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#membership-function" class="anchor"></a>Membership Function</h2>
-<p>There are three membership function (MF) available in <code>suit</code> function, namely <em>triangular</em>, <em>trapezoidal</em> and <em>Gaussian</em>. For example, the following computes the suitability scores and classes using Guassian MF.</p>
+<p>There are three membership functions (MFs) available in the <code>suit</code> function, namely <em>triangular</em>, <em>trapezoidal</em> and <em>Gaussian</em>. For example, the following computes the suitability scores and classes using trapezoidal MF.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
@@ -402,7 +402,7 @@
 ## 4     S1    N     N     S1
 ## 5     S1    N     N     S1
 ## 6     S1    N     N     S1</code></pre>
-<p>By setting the <code>interval="unbias"</code>, will generate a different likely unequally spaced suitability class intervals, but the interval limits are mathematically correct mapping of the parameter interval limits to suitability class limits via the membership function.</p>
+<p>By setting the <code>interval="unbias"</code>, the <code>suit</code> function will generate a different likely unequally spaced suitability class intervals, but the interval limits are mathematically correct, in terms of the mapping of the parameter interval limits to suitability class limits via the membership function.</p>
 </div>
 </div>
 <div id="maximum-and-minimum" class="section level2">
@@ -426,7 +426,7 @@
 ## 
 ## $soil
 ## [1] "Error: maximum length should be equal to the number of factors in the input land units."</code></pre>
-<p>The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument maximum must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the <code>MarinduqueLT</code> also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to remove other columns that are not the target factors when specifing <code>minimum</code> or <code>maximum</code> constants. Thus, it should be:</p>
+<p>The result gave us an error. We understand the error for terrain characteristics, but for soil it says the argument maximum must be equal in length with the target factors specified in the input land units dataset. We know that there should be 4 factors, but upon checking we see that the <code>MarinduqueLT</code> also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to exclude these columns (those that are not the target factors) when specifying <code>minimum</code> or <code>maximum</code> constants. Thus, it should be:</p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">MarinduqueLT2</span> <span class="op">&lt;-</span> <span class="va">MarinduqueLT</span><span class="op">[</span>, <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span><span class="op">]</span>
 <span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT2</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span>, maximum<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>

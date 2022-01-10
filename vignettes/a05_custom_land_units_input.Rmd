@@ -11,7 +11,7 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-ALUES comes with two datasets for input land units. These are the land units of Marinduque, Philippines; and, Lao Cai, Vietnam. Likely users will have their own region of interest. As such, this article will illustrate how to prepare the data.
+ALUES comes with two datasets for input land units. These are the land units of Marinduque, Philippines; and, Lao Cai, Vietnam. However, users will likely have their own region of interest. As such, this article will illustrate how to prepare the data.
 
 For any region of interest, users must specify the properties of the land units into three categories:
 
@@ -19,10 +19,10 @@ For any region of interest, users must specify the properties of the land units 
 - water
 - temperature
 
-Note that both terrain and soil factors must be specified as one dataframe, not separate. Suppose there are 5 units under study, the three characteristics can be specified as discussed in the succeeding sections.
+Note that both terrain and soil factors must be specified as one dataframe, not separate. Suppose there are 5 units under study, the three characteristics can be specified as follows:
 
 ## Terrain and soil
-Suppose for terrain, the factors targetted were: Flood and SlopeD; and, suppose for soil we have CFragm and SoilDpt. The dataframe can be prepared as follows:
+Suppose for terrain, we want to target the following factors: Flood and SlopeD; and, suppose for soil we have CFragm and SoilDpt. The dataframe can be prepared as follows:
 ```{r}
 terrain_input <- data.frame(
   Flood = c(1, 2, 2, 2, 3),
@@ -31,7 +31,9 @@ terrain_input <- data.frame(
   SoilDpt = c(45, 60, 90, 70, 30)
 )
 ```
-So that, if this input is assessed for avocado, then the suitability score for these land units computed as follows:
+**Note: the column names must be the same with the naming convention used by the crop requirements datasets.**
+
+So that, if this input is assessed for avocado, then the suitability score for these land units are computed as follows:
 ```{r}
 library(ALUES)
 AVOCADOTerrain
@@ -61,7 +63,7 @@ RICEBRWater
 water_suit <- suit("ricebr", water=water_input, sow_month=1)
 water_suit
 ```
-Setting the `sow_month=1` indicates that the factors for `RICEBRWater`'s `WmAv1` to January, `WmAv2` to February, `WmAv3` to March, and `WmAv4` to April. Thus, the only factors that were targetted by the `water_input` is April. Thus, setting the `sow_month=3`, would make `WmAv1` of `RICEBRWater` is March, `WmAv2` is April, etc. This in turn targets the months April to Jun.
+Setting the `sow_month=1` indicates that the factors for `RICEBRWater`'s `WmAv1` correspond to January, `WmAv2` to February, `WmAv3` to March, and `WmAv4` to April. Thus, the only factors that were targetted by the `water_input` is April. So that, setting the `sow_month=3`, would make `WmAv1` of `RICEBRWater` as March, `WmAv2` as April, etc. This in turn targets the months April to Jun.
 ```{r}
 water_suit <- suit("ricebr", water=water_input, sow_month=3)
 water_suit
