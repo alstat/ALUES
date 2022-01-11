@@ -47,9 +47,9 @@ To present it more formally, this section presents the complete definitions of t
 <br>
 *Remark 1*. In the context of land evaluation, $\mathscr{X}$ is the space of the parameter values of the input land unit, and $\mathscr{Y}$ is the space of the suitability scores.
 <br><br>
-**Definition 2 (Class Intervals)**. Let $u_i\in\mathbb{R}, \forall i\in\mathbb{Z}_{[0,p-1]}$, then the partitions $[u_i,u_{i+1})\in\mathscr{U}$ are defined as the *suitability class intervals*.
+**Definition 2 (Class Intervals)**. Let $u_i\in\mathbb{R}, \forall i\in\mathbb{N}_{[0,p-1]}$, then the partitions $[u_i,u_{i+1})\in\mathscr{U}$ are defined as the *suitability class intervals*.
 <br><br>
-**Definition 3 (Parameter Intervals)**. Let $v_i\in\mathbb{R}, \forall i\in\mathbb{Z}_{[0,p-1]}$, then $[v_i,v_{i+1})\in \mathscr{V}$ are defined to be the *crop's parameter intervals*.
+**Definition 3 (Parameter Intervals)**. Let $v_i\in\mathbb{R}, \forall i\in\mathbb{N}_{[0,p-1]}$, then $[v_i,v_{i+1})\in \mathscr{V}$ are defined to be the *crop's parameter intervals*.
 <br>
 *Remark 2*. $v_i$ is the interval limit of the factor or parameter. $v_0$ and $v_p$ are the minimum and maximum factor limits, respectively, both needs to be computed.
 
@@ -57,7 +57,8 @@ To present it more formally, this section presents the complete definitions of t
 ```{r, out.width="100%", echo=FALSE}
 knitr::include_graphics("../vignettes/img/trimf.jpg")
 ```
-**Definition 4 (Left Triangular)**. Let $x_{jk}\in\mathscr{X}$ be the $j$th land unit's actual value for any target factor $k$, $\forall j \in \mathbb{Z}_{[1,n]}$ and  $\forall k \in \mathbb{Z}_{[1,m]}$, and let $[v_{i},v_{i+1})\in\mathscr{V}$ be the crop's parameter intervals, $\forall i\in\mathbb{Z}_{[0,p-1]}$, then the *lower* or *left triangular* MF, herein notated as $\mu_{\triangle_{\downarrow}}$, is defined as follows:
+<br><br>
+**Definition 4 (Left Triangular)**. Let $x_{jk}\in\mathscr{X}$ be the $j$th land unit's actual value for any target factor $k$, $\forall j \in \mathbb{N}_{[1,n]}$ and  $\forall k \in \mathbb{N}_{[1,m]}$, and let $[v_{i},v_{i+1})\in\mathscr{V}$ be the crop's parameter intervals, $\forall i\in\mathbb{N}_{[0,p-1]}$, then the *lower* or *left triangular* MF, herein notated as $\mu_{\triangle_{\downarrow}}$, is defined as follows:
 \begin{equation}
     \mu_{\triangle_{\downarrow}}(x_{jk}):=
     \begin{cases}
@@ -68,7 +69,7 @@ knitr::include_graphics("../vignettes/img/trimf.jpg")
 where $\mathrm{min}:= v_0:= v_1-\gamma$, $\mathrm{max}:= v_p:= v_{p-1}+\gamma$, and $\gamma:=\frac{1}{p-2}\sum_{i=1}^{p-2}(v_{i+1}-v_{i})$.
 <br>
 *Remark 3*. ALUES sets the $\mathrm{min}:=v_0=0$ for all MFs, unless specified by the user explicitly.
-<br><br>
+
 **Definition 5 (Right Triangular)**. From Definition 4, the *upper* or *right triangular* MF, herein notated as $\mu_{\triangle_{\uparrow}}$, is defined as follows:
 \begin{equation}\label{eq:rtri}
     \mu_{\triangle_{\uparrow}}(x_{jk}):=
@@ -77,7 +78,7 @@ where $\mathrm{min}:= v_0:= v_1-\gamma$, $\mathrm{max}:= v_p:= v_{p-1}+\gamma$, 
         0,&\mathrm{otherwise}
     \end{cases}.
 \end{equation}
-<br><br>
+
 **Definition 6 (Full Triangular)**. From Definition 4 and 5, the *full triangular* MF, herein notated as $\mu_{\triangle}$, is defined as follows:
 \begin{equation}
     \mu_{\triangle}(x_{jk}):=
@@ -94,6 +95,7 @@ where $\mathrm{m}:= \frac{v_{i}^{*}+v_{i+1}^*}{2}$ such that $v_i^*<\mathrm{m}<v
 ```{r, out.width="100%", echo=FALSE}
 knitr::include_graphics("../vignettes/img/tramf.jpg")
 ```
+<br><br>
 **Definition 7 (Left Trapezoidal)**. From Definition 4, the *lower* or *left trapezoidal* MF, herein notated as $\mu_{\bigtriangledown_{\downarrow}}$, is defined as follows:
 \begin{equation}
     \mu_{\bigtriangledown_{\downarrow}}(x_{jk}):=
@@ -104,7 +106,7 @@ knitr::include_graphics("../vignettes/img/tramf.jpg")
     \end{cases},
 \end{equation}
 where $\mathrm{min},\mathrm{max}$ and $\gamma$ are the same as in Definition 4.
-<br><br>
+
 **Definition 8 (Right Trapezoidal)**. From Definition 4, the *upper* or *right trapezoidal* MF, herein notated as $\mu_{\bigtriangledown_{\uparrow}}$, is defined as follows:
 \begin{equation}
     \mu_{\bigtriangledown_{\uparrow}}(x_{jk}):=\begin{cases}
@@ -113,7 +115,7 @@ where $\mathrm{min},\mathrm{max}$ and $\gamma$ are the same as in Definition 4.
         0,&\mathrm{otherwise}
     \end{cases}.
 \end{equation}
-<br><br>
+
 **Definition 9 (Full Trapezoidal)**. From Definition 7 and 8, the *full trapezoidal* MF, herein notated as $\mu_{\bigtriangledown}$, is defined as follows:
 \begin{equation}
     \mu_{\bigtriangledown}(x_{jk}):=
@@ -124,13 +126,13 @@ where $\mathrm{min},\mathrm{max}$ and $\gamma$ are the same as in Definition 4.
         0,&\mathrm{otherwise}
     \end{cases},
 \end{equation}
-where $v_i^*$ and $v_{i+1}^*$ are defined in Definition \ref{def:trimf}.
+where $v_i^*$ and $v_{i+1}^*$ are defined in Definition 6.
 
 ### Gaussain Membership Function
 ```{r, out.width="100%", echo=FALSE}
 knitr::include_graphics("../vignettes/img/gaumf.jpg")
 ```
-
+<br><br>
 **Definition 10 (Gaussian MF)**. From Definition 4, the *full Gaussian* MF, herein notated as $\mu_{\curlywedge}$, is defined as follows:
 \begin{equation}
     \mu_{\curlywedge}(x_{jk}):=\exp\left[-\frac{(x_{jk}-\alpha)^2}{2\sigma^2}\right],
@@ -140,7 +142,7 @@ where $\alpha\in(-\infty,\infty)$ and $\sigma\in(0,\infty)$.
 *Remark 4*. For partial Gaussian MF, however, the adjustment is done using the location hyperparameter. In particular, if $\alpha=\mathrm{min}$, then the model is right Gaussian function. However, if $\alpha=\mathrm{max}$, then the model is left Gaussian function. 
 
 ### Overall Suitability
-**Definition 11 (Overall Suitability)**. Let $y_{jk}\in\mathscr{Y}$ be the $j$th land unit's suitability score for any target factor $k$, $\forall j\in \mathbb{Z}_{[1,n]}$ and $\forall k\in\mathbb{Z}_{[1,m]}$; and let $w_{k}\in\mathbb{N}_{[1,3]}$ be the weight of the $k$th factor; then, $\mathbf{y}_{j}:=[y_{j1},\cdots,y_{jm}]^{\text{T}}\in\mathbb{R}^m$ is the vector suitability scores of all target factors, and $\mathbf{w}:=[w_1,\cdots,w_m]^{\text{T}}\in\mathbb{N}^m$ is the corresponding weights vector. The *overall suitability using average aggregation*, herein notated as $\bar{\mu}$, of a given land unit is computed as follows:
+**Definition 11 (Overall Suitability)**. Let $y_{jk}\in\mathscr{Y}$ be the $j$th land unit's suitability score for any target factor $k$, $\forall j\in \mathbb{N}_{[1,n]}$ and $\forall k\in\mathbb{N}_{[1,m]}$; and let $w_{k}\in\mathbb{N}_{[1,3]}$ be the weight of the $k$th factor; then, $\mathbf{y}_{j}:=[y_{j1},\cdots,y_{jm}]^{\text{T}}\in\mathbb{R}^m$ is the vector suitability scores of all target factors, and $\mathbf{w}:=[w_1,\cdots,w_m]^{\text{T}}\in\mathbb{N}^m$ is the corresponding weights vector. The *overall suitability using average aggregation*, herein notated as $\bar{\mu}$, of a given land unit is computed as follows:
 \begin{equation}\label{eq:overallsuit}
 \bar{\mu}(\mathbf{y}_j|\mathbf{w}):= \mathbf{y}_j^{\mathrm{T}}\lambda(\mathbf{w})=\sum_{\forall k}y_{jk}*\lambda (w_k),
 \end{equation}

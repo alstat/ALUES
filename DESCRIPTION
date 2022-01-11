@@ -4,19 +4,19 @@ Title: Agricultural Land Use Evaluation System
 Version: 0.2.1
 Date: 2022-01-10
 Authors@R: c(
-    person("Al-Ahmadgaid", "Asaad", "B.", "alahmadgaid@gmail.com", role = c("aut", "cre"),
+    person("Al-Ahmadgaid B.", "Asaad", , "alahmadgaid@gmail.com", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0003-3784-8593")
     ),
-    person("Arnold", "Salvacion", "R.", "arsalvacion@gmail.com", role = "aut",
+    person("Arnold R.", "Salvacion", , "arsalvacion@gmail.com", role = "aut",
       comment = c(ORCID = "0000-0001-8868-2226")
     ),
-    person("Bui", "Tan Yen", "", "", role = "aut")
+    person("Bui", "Tan Yen", , "", role = "aut")
   )
 Maintainer: Al-Ahmadgaid B. Asaad <alahmadgaid@gmail.com>
-Author: Al-Ahmadgaid B. Asaad [aut, cre],
-  Arnold R. Salvacion [aut],
+Author: Al-Ahmadgaid B. Asaad [aut, cre] (<https://orcid.org/0000-0003-3784-8593>),
+  Arnold R. Salvacion [aut] (<https://orcid.org/0000-0001-8868-2226>),
   Bui Tan Yen [aut]
-Description: An R package that evaluates land suitability for different crops production. 
+Description: Evaluates land suitability for different crops production. 
   The package is based on the Food and Agriculture Organization (FAO) and the 
   International Rice Research Institute (IRRI) methodology for land evaluation. 
   Development of ALUES is inspired by similar tool for land evaluation, Land Use 
@@ -38,5 +38,5 @@ Suggests:
     testthat, markdown, knitr, microbenchmark, ggmap, raster, reshape2
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-URL: https://github.com/alstat/ALUES
-BugReports: https://github.com/alstat/ALUES/issues
+URL: https://github.com/alstat/ALUES/
+BugReports: https://github.com/alstat/ALUES/issues/

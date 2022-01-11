@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2022-01-10</h4>
+            <h4 class="date">2022-01-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/ALUES.Rmd"><code>vignettes/ALUES.Rmd</code></a></small>
       <div class="hidden name"><code>ALUES.Rmd</code></div>
@@ -124,7 +124,7 @@
 <a href="#show-me-the-code" class="anchor"></a>Show me the code</h2>
 <p>To evaluate the soil characteristics of the land units of Marinduque, Philippines, for farming banana, use the <code>suit</code> function as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/">ALUES</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required package: Rcpp</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">suit_banana</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
@@ -173,8 +173,8 @@
 <pre><code>## Unit: milliseconds
 ##                                                                           expr
 ##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))
-##       min       lq     mean  median       uq      max neval
-##  6.848477 7.683667 9.064254 8.40784 9.795127 14.72064   100</code></pre>
+##       min       lq     mean   median      uq      max neval
+##  6.776901 7.114116 8.058304 7.361016 7.96822 14.49735   100</code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
@@ -183,7 +183,7 @@
 ##                                                                       expr
 ##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))
 ##       min       lq     mean   median       uq      max neval
-##  11.29771 12.34995 14.09942 13.06981 15.30556 22.10908   100</code></pre>
+##  11.01522 11.95108 12.84401 12.26448 12.85984 18.26193   100</code></pre>
 </div>
   </div>
 

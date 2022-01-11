@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 2: Methodology used in ALUES</h1>
             
-            <h4 class="date">2022-01-10</h4>
+            <h4 class="date">2022-01-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a02_theory_of_suit.Rmd"><code>vignettes/a02_theory_of_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a02_theory_of_suit.Rmd</code></div>
@@ -124,7 +124,7 @@
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p>It is important to understand the theory used for computing the suitability scores by ALUES, to better interpret the results provided by the APIs. In its simplest form, the task of evaluating land suitability is to map an input characteristics of the land unit into the suitability class of the target parameter or factor. This is done by checking whether the input characteristic is within any of the suitability classes. Consider for example the following data:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES">ALUES</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/">ALUES</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required package: Rcpp</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">BANANATerrain</span></code></pre></div>
@@ -159,23 +159,25 @@
 <div id="mathematical-formulation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mathematical-formulation" class="anchor"></a>Mathematical Formulation</h2>
-<p>To present it more formally, this section presents the complete definitions of the theory used in the core algorithms of the package. <br><br><strong>Definition 1 (Membership Function)</strong>. Let <span class="math inline">\(\mathscr{X}\subseteq \mathbb{R}\)</span> and <span class="math inline">\(\mathscr{Y}\subseteq \mathbb{R}_{[0,1]}\)</span>, then <span class="math inline">\(\mu:\mathscr{X}\rightarrow\mathscr{Y}\)</span> is a <em>membership function</em> (MF). <br><em>Remark 1</em>. In the context of land evaluation, <span class="math inline">\(\mathscr{X}\)</span> is the space of the parameter values of the input land unit, and <span class="math inline">\(\mathscr{Y}\)</span> is the space of the suitability scores. <br><br><strong>Definition 2 (Class Intervals)</strong>. Let <span class="math inline">\(u_i\in\mathbb{R}, \forall i\in\mathbb{Z}_{[0,p-1]}\)</span>, then the partitions <span class="math inline">\([u_i,u_{i+1})\in\mathscr{U}\)</span> are defined as the <em>suitability class intervals</em>. <br><br><strong>Definition 3 (Parameter Intervals)</strong>. Let <span class="math inline">\(v_i\in\mathbb{R}, \forall i\in\mathbb{Z}_{[0,p-1]}\)</span>, then <span class="math inline">\([v_i,v_{i+1})\in \mathscr{V}\)</span> are defined to be the <em>crop’s parameter intervals</em>. <br><em>Remark 2</em>. <span class="math inline">\(v_i\)</span> is the interval limit of the factor or parameter. <span class="math inline">\(v_0\)</span> and <span class="math inline">\(v_p\)</span> are the minimum and maximum factor limits, respectively, both needs to be computed.</p>
+<p>To present it more formally, this section presents the complete definitions of the theory used in the core algorithms of the package. <br><br><strong>Definition 1 (Membership Function)</strong>. Let <span class="math inline">\(\mathscr{X}\subseteq \mathbb{R}\)</span> and <span class="math inline">\(\mathscr{Y}\subseteq \mathbb{R}_{[0,1]}\)</span>, then <span class="math inline">\(\mu:\mathscr{X}\rightarrow\mathscr{Y}\)</span> is a <em>membership function</em> (MF). <br><em>Remark 1</em>. In the context of land evaluation, <span class="math inline">\(\mathscr{X}\)</span> is the space of the parameter values of the input land unit, and <span class="math inline">\(\mathscr{Y}\)</span> is the space of the suitability scores. <br><br><strong>Definition 2 (Class Intervals)</strong>. Let <span class="math inline">\(u_i\in\mathbb{R}, \forall i\in\mathbb{N}_{[0,p-1]}\)</span>, then the partitions <span class="math inline">\([u_i,u_{i+1})\in\mathscr{U}\)</span> are defined as the <em>suitability class intervals</em>. <br><br><strong>Definition 3 (Parameter Intervals)</strong>. Let <span class="math inline">\(v_i\in\mathbb{R}, \forall i\in\mathbb{N}_{[0,p-1]}\)</span>, then <span class="math inline">\([v_i,v_{i+1})\in \mathscr{V}\)</span> are defined to be the <em>crop’s parameter intervals</em>. <br><em>Remark 2</em>. <span class="math inline">\(v_i\)</span> is the interval limit of the factor or parameter. <span class="math inline">\(v_0\)</span> and <span class="math inline">\(v_p\)</span> are the minimum and maximum factor limits, respectively, both needs to be computed.</p>
 <div id="triangular-membership-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#triangular-membership-function" class="anchor"></a>Triangular Membership Function</h3>
-<p><img src="../vignettes/img/trimf.jpg" width="100%"><strong>Definition 4 (Left Triangular)</strong>. Let <span class="math inline">\(x_{jk}\in\mathscr{X}\)</span> be the <span class="math inline">\(j\)</span>th land unit’s actual value for any target factor <span class="math inline">\(k\)</span>, <span class="math inline">\(\forall j \in \mathbb{Z}_{[1,n]}\)</span> and <span class="math inline">\(\forall k \in \mathbb{Z}_{[1,m]}\)</span>, and let <span class="math inline">\([v_{i},v_{i+1})\in\mathscr{V}\)</span> be the crop’s parameter intervals, <span class="math inline">\(\forall i\in\mathbb{Z}_{[0,p-1]}\)</span>, then the <em>lower</em> or <em>left triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+<p><img src="../vignettes/img/trimf.jpg" width="100%"><br><br><strong>Definition 4 (Left Triangular)</strong>. Let <span class="math inline">\(x_{jk}\in\mathscr{X}\)</span> be the <span class="math inline">\(j\)</span>th land unit’s actual value for any target factor <span class="math inline">\(k\)</span>, <span class="math inline">\(\forall j \in \mathbb{N}_{[1,n]}\)</span> and <span class="math inline">\(\forall k \in \mathbb{N}_{[1,m]}\)</span>, and let <span class="math inline">\([v_{i},v_{i+1})\in\mathscr{V}\)</span> be the crop’s parameter intervals, <span class="math inline">\(\forall i\in\mathbb{N}_{[0,p-1]}\)</span>, then the <em>lower</em> or <em>left triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\triangle_{\downarrow}}(x_{jk}):=
     \begin{cases}
         \displaystyle\frac{x_{jk}-\mathrm{min}}{\mathrm{max}-\mathrm{min}},&amp;\mathrm{min}\leq x_{jk}\leq\mathrm{max}\\
         0,&amp;\mathrm{otherwise}
     \end{cases}
-\end{equation}\]</span> where <span class="math inline">\(\mathrm{min}:= v_0:= v_1-\gamma\)</span>, <span class="math inline">\(\mathrm{max}:= v_p:= v_{p-1}+\gamma\)</span>, and <span class="math inline">\(\gamma:=\frac{1}{p-2}\sum_{i=1}^{p-2}(v_{i+1}-v_{i})\)</span>. <br><em>Remark 3</em>. ALUES sets the <span class="math inline">\(\mathrm{min}:=v_0=0\)</span> for all MFs, unless specified by the user explicitly. <br><br><strong>Definition 5 (Right Triangular)</strong>. From Definition 4, the <em>upper</em> or <em>right triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle_{\uparrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}\label{eq:rtri}
+\end{equation}\]</span> where <span class="math inline">\(\mathrm{min}:= v_0:= v_1-\gamma\)</span>, <span class="math inline">\(\mathrm{max}:= v_p:= v_{p-1}+\gamma\)</span>, and <span class="math inline">\(\gamma:=\frac{1}{p-2}\sum_{i=1}^{p-2}(v_{i+1}-v_{i})\)</span>. <br><em>Remark 3</em>. ALUES sets the <span class="math inline">\(\mathrm{min}:=v_0=0\)</span> for all MFs, unless specified by the user explicitly.</p>
+<p><strong>Definition 5 (Right Triangular)</strong>. From Definition 4, the <em>upper</em> or <em>right triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle_{\uparrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}\label{eq:rtri}
     \mu_{\triangle_{\uparrow}}(x_{jk}):=
     \begin{cases}
         \displaystyle\frac{\mathrm{max}-x_{jk}}{\mathrm{max}-\mathrm{min}},&amp;\mathrm{min}\leq x_{jk}\leq\mathrm{max}\\
         0,&amp;\mathrm{otherwise}
     \end{cases}.
-\end{equation}\]</span> <br><br><strong>Definition 6 (Full Triangular)</strong>. From Definition 4 and 5, the <em>full triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+\end{equation}\]</span></p>
+<p><strong>Definition 6 (Full Triangular)</strong>. From Definition 4 and 5, the <em>full triangular</em> MF, herein notated as <span class="math inline">\(\mu_{\triangle}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\triangle}(x_{jk}):=
     \begin{cases}
         0,&amp;x_{jk}\leq 0\\
@@ -188,20 +190,22 @@
 <div id="trapezoidal-membership-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#trapezoidal-membership-function" class="anchor"></a>Trapezoidal Membership Function</h3>
-<p><img src="../vignettes/img/tramf.jpg" width="100%"><strong>Definition 7 (Left Trapezoidal)</strong>. From Definition 4, the <em>lower</em> or <em>left trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+<p><img src="../vignettes/img/tramf.jpg" width="100%"><br><br><strong>Definition 7 (Left Trapezoidal)</strong>. From Definition 4, the <em>lower</em> or <em>left trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown_{\downarrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\bigtriangledown_{\downarrow}}(x_{jk}):=
     \begin{cases}
         \displaystyle\frac{x_{jk}-\mathrm{min}}{\mathrm{max}-\mathrm{min}},&amp;\mathrm{min}\leq x_{jk}\leq v_{p-1}\\
         1,&amp;v_{p-1}&lt;x_{jk}\leq \mathrm{max}\\
         0,&amp;\mathrm{otherwise}
     \end{cases},
-\end{equation}\]</span> where <span class="math inline">\(\mathrm{min},\mathrm{max}\)</span> and <span class="math inline">\(\gamma\)</span> are the same as in Definition 4. <br><br><strong>Definition 8 (Right Trapezoidal)</strong>. From Definition 4, the <em>upper</em> or <em>right trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown_{\uparrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+\end{equation}\]</span> where <span class="math inline">\(\mathrm{min},\mathrm{max}\)</span> and <span class="math inline">\(\gamma\)</span> are the same as in Definition 4.</p>
+<p><strong>Definition 8 (Right Trapezoidal)</strong>. From Definition 4, the <em>upper</em> or <em>right trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown_{\uparrow}}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\bigtriangledown_{\uparrow}}(x_{jk}):=\begin{cases}
         1,&amp;\mathrm{min}\leq x_{jk}\leq v_1\\
         \displaystyle\frac{\mathrm{max}-x_{jk}}{\mathrm{max}-\mathrm{min}},&amp;v_1&lt;x_{jk}\leq\mathrm{max}\\
         0,&amp;\mathrm{otherwise}
     \end{cases}.
-\end{equation}\]</span> <br><br><strong>Definition 9 (Full Trapezoidal)</strong>. From Definition 7 and 8, the <em>full trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+\end{equation}\]</span></p>
+<p><strong>Definition 9 (Full Trapezoidal)</strong>. From Definition 7 and 8, the <em>full trapezoidal</em> MF, herein notated as <span class="math inline">\(\mu_{\bigtriangledown}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\bigtriangledown}(x_{jk}):=
     \begin{cases}
         \mu_{\bigtriangledown_{\downarrow}}(x_{jk}),&amp;\mathrm{min}\leq x_{jk}\leq v_i^*\\
@@ -209,13 +213,12 @@
         \mu_{\bigtriangledown_{\uparrow}}(x_{jk}),&amp;v_{i+1}^*&lt;x_{jk}\leq\mathrm{max}\\
         0,&amp;\mathrm{otherwise}
     \end{cases},
-\end{equation}\]</span> where <span class="math inline">\(v_i^*\)</span> and <span class="math inline">\(v_{i+1}^*\)</span> are defined in Definition .</p>
+\end{equation}\]</span> where <span class="math inline">\(v_i^*\)</span> and <span class="math inline">\(v_{i+1}^*\)</span> are defined in Definition 6.</p>
 </div>
 <div id="gaussain-membership-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#gaussain-membership-function" class="anchor"></a>Gaussain Membership Function</h3>
-<p><img src="../vignettes/img/gaumf.jpg" width="100%"></p>
-<p><strong>Definition 10 (Gaussian MF)</strong>. From Definition 4, the <em>full Gaussian</em> MF, herein notated as <span class="math inline">\(\mu_{\curlywedge}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
+<p><img src="../vignettes/img/gaumf.jpg" width="100%"><br><br><strong>Definition 10 (Gaussian MF)</strong>. From Definition 4, the <em>full Gaussian</em> MF, herein notated as <span class="math inline">\(\mu_{\curlywedge}\)</span>, is defined as follows: <span class="math display">\[\begin{equation}
     \mu_{\curlywedge}(x_{jk}):=\exp\left[-\frac{(x_{jk}-\alpha)^2}{2\sigma^2}\right],
 \end{equation}\]</span> where <span class="math inline">\(\alpha\in(-\infty,\infty)\)</span> and <span class="math inline">\(\sigma\in(0,\infty)\)</span>.</p>
 <p><em>Remark 4</em>. For partial Gaussian MF, however, the adjustment is done using the location hyperparameter. In particular, if <span class="math inline">\(\alpha=\mathrm{min}\)</span>, then the model is right Gaussian function. However, if <span class="math inline">\(\alpha=\mathrm{max}\)</span>, then the model is left Gaussian function.</p>
@@ -223,7 +226,7 @@
 <div id="overall-suitability" class="section level3">
 <h3 class="hasAnchor">
 <a href="#overall-suitability" class="anchor"></a>Overall Suitability</h3>
-<p><strong>Definition 11 (Overall Suitability)</strong>. Let <span class="math inline">\(y_{jk}\in\mathscr{Y}\)</span> be the <span class="math inline">\(j\)</span>th land unit’s suitability score for any target factor <span class="math inline">\(k\)</span>, <span class="math inline">\(\forall j\in \mathbb{Z}_{[1,n]}\)</span> and <span class="math inline">\(\forall k\in\mathbb{Z}_{[1,m]}\)</span>; and let <span class="math inline">\(w_{k}\in\mathbb{N}_{[1,3]}\)</span> be the weight of the <span class="math inline">\(k\)</span>th factor; then, <span class="math inline">\(\mathbf{y}_{j}:=[y_{j1},\cdots,y_{jm}]^{\text{T}}\in\mathbb{R}^m\)</span> is the vector suitability scores of all target factors, and <span class="math inline">\(\mathbf{w}:=[w_1,\cdots,w_m]^{\text{T}}\in\mathbb{N}^m\)</span> is the corresponding weights vector. The <em>overall suitability using average aggregation</em>, herein notated as <span class="math inline">\(\bar{\mu}\)</span>, of a given land unit is computed as follows: <span class="math display">\[\begin{equation}\label{eq:overallsuit}
+<p><strong>Definition 11 (Overall Suitability)</strong>. Let <span class="math inline">\(y_{jk}\in\mathscr{Y}\)</span> be the <span class="math inline">\(j\)</span>th land unit’s suitability score for any target factor <span class="math inline">\(k\)</span>, <span class="math inline">\(\forall j\in \mathbb{N}_{[1,n]}\)</span> and <span class="math inline">\(\forall k\in\mathbb{N}_{[1,m]}\)</span>; and let <span class="math inline">\(w_{k}\in\mathbb{N}_{[1,3]}\)</span> be the weight of the <span class="math inline">\(k\)</span>th factor; then, <span class="math inline">\(\mathbf{y}_{j}:=[y_{j1},\cdots,y_{jm}]^{\text{T}}\in\mathbb{R}^m\)</span> is the vector suitability scores of all target factors, and <span class="math inline">\(\mathbf{w}:=[w_1,\cdots,w_m]^{\text{T}}\in\mathbb{N}^m\)</span> is the corresponding weights vector. The <em>overall suitability using average aggregation</em>, herein notated as <span class="math inline">\(\bar{\mu}\)</span>, of a given land unit is computed as follows: <span class="math display">\[\begin{equation}\label{eq:overallsuit}
 \bar{\mu}(\mathbf{y}_j|\mathbf{w}):= \mathbf{y}_j^{\mathrm{T}}\lambda(\mathbf{w})=\sum_{\forall k}y_{jk}*\lambda (w_k),
 \end{equation}\]</span> where <span class="math inline">\(\lambda(w_k):= \frac{\eta-w_k}{\delta}, \eta:=\sum_{\forall k} w_k\)</span> and <span class="math inline">\(\delta:=\sum_{\forall k}(\eta - w_k)\)</span>. For <em>minimum</em> (notated as <span class="math inline">\(\tilde{\mu}\)</span>) and <em>maximum</em> (notated as <span class="math inline">\(\hat{\mu}\)</span>) aggragation functions, the following are the definitions: <span class="math display">\[\begin{equation}
     \tilde{\mu}(\mathbf{y}_j):=\min(\{y_{j1}, \cdots,y_{jm}\}),
