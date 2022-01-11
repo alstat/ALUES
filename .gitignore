@@ -50,3 +50,6 @@ po/*~
 .DS_Store
 /doc/
 /Meta/
+
+# produced paper
+paper/*.html
