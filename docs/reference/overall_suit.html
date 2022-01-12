@@ -170,7 +170,7 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>the method for computing the overall suitability, choices are:
+      <td><p>a character for the method for computing the overall suitability, choices are:
 <code>"minimum"</code>, <code>"maximum"</code>, and
 <code>"average"</code>. If <code>NULL</code>, method is set to <code>"minimum"</code>.</p></td>
     </tr>
@@ -185,9 +185,16 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with columns:</p><ul>
+<li><p><code>Score</code> - the overall suitability scores</p></li>
+<li><p><code>Class</code> - the overall suitability classes</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='suit.html'>suit</a></code></p></div>
+    <div class='dont-index'><p><code><a href='suit.html'>suit</a></code>, <code>https://alstat.github.io/ALUES/</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/alstat/ALUES/'>ALUES</a></span><span class='op'>)</span>

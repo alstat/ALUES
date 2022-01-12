@@ -5,7 +5,7 @@
 #' This function computes the overall suitability scores and class of the land units.
 #' 
 #' @param suit an object of class suitability.
-#' @param method the method for computing the overall suitability, choices are:
+#' @param method a character for the method for computing the overall suitability, choices are:
 #'        \code{"minimum"}, \code{"maximum"}, and
 #'        \code{"average"}. If \code{NULL}, method is set to \code{"minimum"}.
 #' @param interval if \code{NULL}, the interval of the suitability class are the following: 0\% - 25\% (Not
@@ -15,8 +15,16 @@
 #'        suitable, N), 20\% - 50\% (Marginally Suitable, S3), 50\% - 80\% (Moderately Suitable, S2), and
 #'        80\% - 100\% (Highly Suitable, S1), is equivalent to \code{interval = c(0, 0.2, 0.5, 0.8, 1)}.
 #'        
+#' @return 
+#' A data frame with columns:
+#' \itemize{
+#'  \item \code{Score} - the overall suitability scores
+#'  \item \code{Class} - the overall suitability classes
+#' }
+#' 
 #' @seealso
-#' \code{\link{suit}}
+#' \code{\link{suit}}, \code{https://alstat.github.io/ALUES/}
+
 #' 
 #' @examples
 #' library(ALUES)

@@ -31,52 +31,59 @@ fuzzy model. Other fuzzy models included are \code{"trapezoidal"} and
 \code{"gaussian"}.}
 
 \item{sow_month}{sowing month of the crop. Takes integers from 1 to 12 
-(inclusive), representing the twelve months of a year. 
-So if sets to 1, the function assumes sowing month on 
+(inclusive), representing the twelve months of the year. 
+So if sets to 1, the function assumes sowing month to be 
 January.}
 
 \item{minimum}{factor's minimum value. If \code{NULL} (default), \code{minimum} is
 set to 0. But if numeric of length one, say 0.5, then minimum 
-is set to 0.5, for all factors. If factors on land units 
-(\code{x}) have different minimum, then these can be concatenated
-to vector of \code{minimum}s, the length of this vector should be equal
-to the number of factors in \code{x}. However, if set to \code{"average"},
-then \code{minimum} is computed from different conditions:
+is set to 0.5, for all factors. To set multiple minimums for multiple factors,
+simply concatenate these into a numeric vector, the length of this vector should be equal
+to the number of factors in input land units parameters. However, it can also be set to
+\code{"average"}, please refer to the online documentation for more, link in the "See Also" section below.}
 
-If for example, using \code{ALUES::COCONUTSoil} (coconut terrain requirements), 
-as shown below,
-
-\code{     code s3_a s2_a  s1_a s1_b s2_b s3_b          wts}\cr
-\code{1  CFragm 55.0 35.0  15.0   NA   NA   NA           NA}\cr
-\code{2 SoilDpt 50.0 75.0 100.0   NA   NA   NA           NA}\cr
-\code{3      BS 19.9 19.9  20.0   NA   NA   NA           NA}\cr
-\code{4  SumBCs  1.5  1.5   1.6   NA   NA   NA           NA}\cr
-\code{5      OC  0.7  0.7   0.8   NA   NA   NA           NA}\cr
-\code{6   ECemh 20.0 16.0  12.0   NA   NA   NA           NA}}
-
-\item{maximum}{maximum value for factors. Default is to \code{"average"}, check on
-the details for this option. Assignment on maximum can also be done by
-simply entering any real numbers, say 55, then maximum is 55, we say this is homogeneous,
-since the maximum value for all factors then is set to 55. But for heterogeneous. For  \code{maximum}
-on every factor, simply concatenate the different \code{maximum} for each factor. 
-If set to \code{"average"}, check on details below for more.}
+\item{maximum}{maximum value for factors. To set multiple maximums for multiple factors,
+simply concatenate these into a numeric vector, the length of this vector should be equal
+to the number of factors in input land units parameters. However, it can also be set to
+\code{"average"}, please refer to the online documentation for more, link in the "See Also" section below.}
 
 \item{interval}{domains for every suitability class (S1, S2, S3). If fixed (\code{NULL}), the
 interval would be 0 to 25\% for N (Not Suitable), 25\% to 50\% for S3 (Marginally Suitable),
 50\% to 75\% for S2 (Moderately Suitable), and 75\% to 100\% for (Highly Suitable). If \code{"unbias"},
 the package will take into account the shape of the membership function, and provide the 
-appropriate suitability class intervals.}
+appropriate suitability class intervals. However, it can also be customized by specifying the 
+limits of the suitability classes. Please refer to the online documentation for more, link in the "See Also" section below.}
 
 \item{sigma}{If \code{mf = "gaussian"}, then sigma represents the constant sigma in the
-gaussian formula, which is often times referred as the variance.}
+Gaussian formula.}
+}
+\value{
+A list of outputs of target characteristics, with the following components: 
+\itemize{
+\item \code{"terrain"} - a list of outputs for terrain characteristics
+\item \code{"soil"} - a list of outputs for soil characteristics
+\item \code{"water"} - a list of outputs for water characteristics
+\item \code{"temp"} - a list of outputs for temperature characteristics
+}
+These components are only available when specified as the target characteristics in either 
+of the arguments above, that is, if \code{terrain} argument is specified above, then the \code{"terrain"}
+and \code{"soil"} components will be available in the output list. This is also true if \code{water} and \code{temp}
+are specified in the arguments above. 
+
+Each of the components returned above contains a list of outputs as well
+with the following components: 
+\itemize{
+\item \code{"Factors Evaluated"} - a character of factors that matched between the input land units factor and the targetted crop requirement factor
+\item \code{"Suitability Score"} - a data frame of suitability scores for each of the matched factors
+\item \code{"Suitability Class"} - a data frame of suitability classes for each of the matched factors
+\item \code{"Factors' Minimum Values"} - a numeric of minimum values used in the membership function for computing the suitability scores
+\item \code{"Factors' Minimum Values"} - a numeric of maximum values used in the membership function for computing the suitability scores
+\item \code{"Factors' Weights"} - a numeric of weights of the factors specified in the input crop requirements
+\item \code{"Crop Evaluated"} - a character of the name of the targetted crop requirement dataset
+}
 }
 \description{
 This function calculates the suitability scores and class of the land units.
-}
-\details{
-There are four membership functions and these are triangular, trapezoidal, gaussian, and sigmoidal.
-For triangular case. If a given factor has values equal for all suitabilities, then the class will 
-trimmed down to N (not suitable) with domain [0, maximum), and S1 (highly suitable) with singleton domain \{0\}.
 }
 \examples{
 library(ALUES)
@@ -87,4 +94,7 @@ lapply(rice_suit[["temp"]], function(x) head(x)) # access results for temperatur
 rice_suit <- suit("ricebr", terrain=MarinduqueLT)
 lapply(rice_suit[["terrain"]], function(x) head(x))
 lapply(rice_suit[["soil"]], function(x) head(x))
+}
+\seealso{
+\code{https://alstat.github.io/ALUES/}
 }
