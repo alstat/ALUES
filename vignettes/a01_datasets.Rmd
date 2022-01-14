@@ -15,13 +15,13 @@ knitr::opts_chunk$set(echo = TRUE)
 There are two categories of datasets available in ALUES, *land units* and *crop requirements*. 
 
 ## Input Land Units
-The *land units* datasets are input land units with properties meant for evaluation for crop production. Two regions are available for these datasets: *Marinduque, Philippines*; and, *Lao Cai, Vietnam*. Further, these datasets are encoded into three characteristics: *land or soil and terrain* (LT),  *water* and *temp* (for temperature). So that, for Marinduque, the following are the datasets:
+The *land units* datasets are input land units with properties meant for evaluation for crop production. Two regions are available for these datasets: *Marinduque, Philippines*; and, *Lao Cai, Vietnam*. These datasets are encoded into three characteristics: i. *land or soil and terrain* (LT); ii. *water*; and, iii. *temp* (for temperature). So that, for Marinduque, the following are the datasets:
 
 - `MarinduqueLT`
 - `MarinduqueWater`
 - `MarinduqueTemp`
 
-And for Lao Cai, Vietnam, the following are the datasets:
+For Lao Cai, Vietnam, the following are the datasets:
 
 - `LaoCaiLT`
 - `LaoCaiWater`
@@ -36,7 +36,7 @@ head(LaoCaiLT)
 The columns of the datasets correspond to the factors or parameters measured from the land units. These parameters are used to compare to the standard values required for the target crop. The score of the comparison is referred to as the suitability score.
 
 ## Crop Requirements
-There are 56 crops available in ALUES, each of which encodes standard properties of the target crop. These crop datasets are further categorized into four characteristics: *terrain*, *soil*, *water* and *temp*. So that, for avocado, the datasets are encoded as
+There are 56 crops available in ALUES, each encodes standard properties of the target crop. These crop datasets are further categorized into four characteristics: *terrain*, *soil*, *water* and *temp*. So that, for avocado, the datasets are encoded as
 `AVOCADOTerrain`, `AVOCADOSoil`, `AVOCADOWater` and `AVOCADOTemp`. The list of crop datasets can be extracted as follows:
 ```{r}
 d <- utils::data(package = "ALUES")
@@ -52,4 +52,4 @@ GUAVATemp
 CINNAMONTerrain
 CINNAMONWater
 ```
-Each datasets are well documented, so make sure to check it for details and descriptions of the parameters used.
+For details on each of the datasets, simply access the documentation via the `?` prefix.

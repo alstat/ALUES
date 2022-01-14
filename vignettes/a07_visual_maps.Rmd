@@ -10,7 +10,7 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-While ALUES can generate tables for suitability scores and classes, it would be best to visualize it via maps. The main requirement of course is the availability of the longitude and latitude for each of the land units. This is possible for Marinduque as it has spatial variables (longitude and latitude).
+While ALUES can generate tables for suitability scores and classes, it can also take advantage of the rich mapping library of R. The main requirement of course is the availability of the longitude and latitude for each of the land units. This is possible for Marinduque as it has spatial variables.
 
 ## Suitability scores and classes
 Suppose we want to evaluate the land units for banana, then:

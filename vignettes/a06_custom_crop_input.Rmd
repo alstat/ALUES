@@ -24,13 +24,13 @@ In cases were the target crop is not available in the ALUES database, users can 
 library(ALUES)
 COFFEEARSoil
 ```
-The above data frame shows us the first column as the code of the target factors, and the remaining of the columns are the suitability classes with the last column for the weights if any.
+The above dataframe shows us the first column as the code of the target factors, and the remaining of the columns are the suitability classes with the last column for the weights if any.
 
 ## Crop Characteristics
 It should be noted that apart from the proper templating of the dataframe for any new target crop, the categorization of the characteristics must be observed as well. That is, for any new crop, the four characteristics: terrain, soil, water, and temp, must be encoded separately as one dataframe. That is, for any target crop there will be four dataframes to expect for the four characteristics mentioned.
 
 ## Creating from a template
-To create a custom crop dataset, use the following code to generate an empty row data frame with the appropriate column name
+To create a custom crop dataset, use the following code to generate an empty row dataframe with the appropriate column name
 ```{r}
 new_crop <- data.frame(matrix(nrow=0, ncol=ncol(COFFEEARSoil)))
 names(new_crop) <- names(COFFEEARSoil)
