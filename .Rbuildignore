@@ -10,5 +10,8 @@
 ^img$
 ^doc$
 ^Meta$
-^paper$
+paper.md
+paper.bib
+scores.jpg
+classes.jpg
 CONTRIBUTING.md
