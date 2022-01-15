@@ -21,7 +21,7 @@ The package is available on CRAN, and can be installed as follows:
 ```{r}
 install.packages("ALUES")
 ```
-To install the development version instead, run the following:
+To install the development version, run the following instead:
 ```{r}
 install.packages("devtools")
 
