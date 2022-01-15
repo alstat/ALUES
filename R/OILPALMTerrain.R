@@ -7,9 +7,9 @@
 #'
     #' \itemize{
 #' \item Slope - Slope
-#' \item Flood - Flooding
-#' \item Drainage4 - Drainage (4) Medium & fine textured soils
-#' \item Drainage5 - Drainage (5) Coarse textured soils
+#' \item Flood - Flooding (1 - No Flood, 2 - short time, 3 - Long time)
+#' \item Drainage4 - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor (4) Medium & fine textured soils
+#' \item Drainage5 - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor (5) Coarse textured soils
 #' }
     #' @seealso 
     #' \itemize{

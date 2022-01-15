@@ -6,7 +6,7 @@
     #' The following are the factors for evaluation: 
 #'
     #' \itemize{
-#' \item SlopeD - Slope (degree, 6 classes)
+#' \item SlopeD - Slope (1: 0-3, 2: 3-8, 3: 8-15, 4: 15-20, 5: 20-25, 6: >25) (degree, 6 classes)
 #' }
     #' @seealso 
     #' \itemize{

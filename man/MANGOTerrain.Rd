@@ -17,8 +17,8 @@ The following are the factors for evaluation:
 \item Slope1 - Slope (\%) (1) Basin furrow irrigation
 \item Slope2 - Slope (\%) (2) Mechanized, high management level
 \item Slope3 - Slope (\%) (3) Manual, low management level
-\item Flood - Flooding
-\item Drainage - Drainage
+\item Flood - Flooding (1 - No Flood, 2 - short time, 3 - Long time)
+\item Drainage 1-good, 2-moderate, 3-imperfect, 4-poor - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor
 \item SlopeD - 6 classes of slope (Degree)
 }
 }

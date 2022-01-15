@@ -7,8 +7,8 @@
 #'
     #' \itemize{
 #' \item Slope1 - Slope (\%) (1. Irrigrated agriculture, basin furrow irrigation)
-#' \item Flood - Flooding
-#' \item Drainage - Drainage
+#' \item Flood - Flooding (1 - No Flood, 2 - short time, 3 - Long time)
+#' \item Drainage 1-good, 2-moderate, 3-imperfect, 4-poor - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor
 #' }
     #' @seealso 
     #' \itemize{

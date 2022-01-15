@@ -14,8 +14,8 @@ A dataset containing the terrain characteristics of the crop requirements for fa
 The following are the factors for evaluation: 
 
 \itemize{
-\item Flood - Flooding
-\item Drainage - Drainage
+\item Flood - Flooding (1 - No Flood, 2 - short time, 3 - Long time)
+\item Drainage 1-good, 2-moderate, 3-imperfect, 4-poor - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor
 }
 }
 \seealso{

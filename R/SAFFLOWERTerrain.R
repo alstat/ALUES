@@ -9,9 +9,9 @@
 #' \item Slope1 - Slope (\%) (1. Irrigrated agriculture, basin furrow irrigation)
 #' \item Slope2 - Slope (\%) (2. High level of managemnet with full mechanization. )
 #' \item Slope3 - Slope (\%) (3. Low level of managemnet animal traction or handwork.)
-#' \item Flood - Flooding
-#' \item Drainage4 - Drainage (Medium and fine textured soils)
-#' \item Drainage5 - Drainage (Coarse textured soils - Sandy families)
+#' \item Flood - Flooding (1 - No Flood, 2 - short time, 3 - Long time)
+#' \item Drainage4 - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor (Medium and fine textured soils)
+#' \item Drainage5 - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor (Coarse textured soils - Sandy families)
 #' }
     #' @seealso 
     #' \itemize{

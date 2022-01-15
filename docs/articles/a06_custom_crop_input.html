@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 6: Custom crop requirements input</h1>
             
-            <h4 class="date">2022-01-12</h4>
+            <h4 class="date">2022-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a06_custom_crop_input.Rmd"><code>vignettes/a06_custom_crop_input.Rmd</code></a></small>
       <div class="hidden name"><code>a06_custom_crop_input.Rmd</code></div>
@@ -156,7 +156,7 @@
 ## 9       OC  0.7  0.8   1.2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
 ## 10   ECedS  2.0  0.5   0.5 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3
 ## 11  SoilTe  3.0  4.0   9.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2</code></pre>
-<p>The above data frame shows us the first column as the code of the target factors, and the remaining of the columns are the suitability classes with the last column for the weights if any.</p>
+<p>The above dataframe shows us the first column as the code of the target factors, and the remaining of the columns are the suitability classes with the last column for the weights if any.</p>
 <div id="crop-characteristics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#crop-characteristics" class="anchor"></a>Crop Characteristics</h2>
@@ -165,7 +165,7 @@
 <div id="creating-from-a-template" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-from-a-template" class="anchor"></a>Creating from a template</h2>
-<p>To create a custom crop dataset, use the following code to generate an empty row data frame with the appropriate column name</p>
+<p>To create a custom crop dataset, use the following code to generate an empty row dataframe with the appropriate column name</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_crop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow<span class="op">=</span><span class="fl">0</span>, ncol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">COFFEEARSoil</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new_crop</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">COFFEEARSoil</span><span class="op">)</span>

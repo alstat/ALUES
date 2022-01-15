@@ -16,27 +16,29 @@ temperature, topography, and soil properties. The membership functions used for 
 following: _Triangular_, _Trapezoidal_ and _Gaussian_. The methods for computing the overall suitability of a particular area are also included, and these are the _Minimum_, _Maximum_ and _Average_. Finally, ALUES is a highly optimized library with core algorithms written in C++.
 
 ## Installation
-The package is not yet on CRAN, and is currently under development on github. To install it, run the following:
+The package is available on CRAN, and can be installed as follows:
 
+```{r}
+install.packages("ALUES")
+```
+To install the development version instead, run the following:
 ```{r}
 install.packages("devtools")
 
 library(devtools)
 install_github("alstat/ALUES")
 ```
-We want to hear some feedbacks, so if you have any suggestion or issues regarding this package, please do submit it [here](https://github.com/alstat/ALUES/issues/).
+We want to hear some feedbacks, so if you have any suggestion or issues regarding this package, please do submit it [here](https://github.com/alstat/ALUES/issues/). As for those who would want to contribute please read the [CONTRIBUTING.md](https://github.com/alstat/ALUES/blob/master/CONTRIBUTING.md) file.
 
 ## Authors
 1. [Al-Ahmadgaid B. Asaad](https://github.com/alstat/) (Maintainer)
     * email: alahmadgaid@gmail.com
     * website: https://al-asaad.github.io/
 <br><br>
-
 2. [Arnold R. Salvacion](https://github.com/arsalvacion/)
     * email: arsalvacion@gmail.com
     * blog: http://r-nold.blogspot.com/
 <br><br>
-
 3. Bui Tan Yen
     
 

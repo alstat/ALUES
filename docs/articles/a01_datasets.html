@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 1: ALUES datasets</h1>
             
-            <h4 class="date">2022-01-12</h4>
+            <h4 class="date">2022-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a01_datasets.Rmd"><code>vignettes/a01_datasets.Rmd</code></a></small>
       <div class="hidden name"><code>a01_datasets.Rmd</code></div>
@@ -123,13 +123,13 @@
 <div id="input-land-units" class="section level2">
 <h2 class="hasAnchor">
 <a href="#input-land-units" class="anchor"></a>Input Land Units</h2>
-<p>The <em>land units</em> datasets are input land units with properties meant for evaluation for crop production. Two regions are available for these datasets: <em>Marinduque, Philippines</em>; and, <em>Lao Cai, Vietnam</em>. Further, these datasets are encoded into three characteristics: <em>land or soil and terrain</em> (LT), <em>water</em> and <em>temp</em> (for temperature). So that, for Marinduque, the following are the datasets:</p>
+<p>The <em>land units</em> datasets are input land units with properties meant for evaluation for crop production. Two regions are available for these datasets: <em>Marinduque, Philippines</em>; and, <em>Lao Cai, Vietnam</em>. These datasets are encoded into three characteristics: i. <em>land or soil and terrain</em> (LT); ii. <em>water</em>; and, iii. <em>temp</em> (for temperature). So that, for Marinduque, the following are the datasets:</p>
 <ul>
 <li><code>MarinduqueLT</code></li>
 <li><code>MarinduqueWater</code></li>
 <li><code>MarinduqueTemp</code></li>
 </ul>
-<p>And for Lao Cai, Vietnam, the following are the datasets:</p>
+<p>For Lao Cai, Vietnam, the following are the datasets:</p>
 <ul>
 <li><code>LaoCaiLT</code></li>
 <li><code>LaoCaiWater</code></li>
@@ -162,7 +162,7 @@
 <div id="crop-requirements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#crop-requirements" class="anchor"></a>Crop Requirements</h2>
-<p>There are 56 crops available in ALUES, each of which encodes standard properties of the target crop. These crop datasets are further categorized into four characteristics: <em>terrain</em>, <em>soil</em>, <em>water</em> and <em>temp</em>. So that, for avocado, the datasets are encoded as <code>AVOCADOTerrain</code>, <code>AVOCADOSoil</code>, <code>AVOCADOWater</code> and <code>AVOCADOTemp</code>. The list of crop datasets can be extracted as follows:</p>
+<p>There are 56 crops available in ALUES, each encodes standard properties of the target crop. These crop datasets are further categorized into four characteristics: <em>terrain</em>, <em>soil</em>, <em>water</em> and <em>temp</em>. So that, for avocado, the datasets are encoded as <code>AVOCADOTerrain</code>, <code>AVOCADOSoil</code>, <code>AVOCADOWater</code> and <code>AVOCADOTemp</code>. The list of crop datasets can be extracted as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"ALUES"</span><span class="op">)</span>
 <span class="va">alues_data</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">results</span><span class="op">[</span>, <span class="st">"Item"</span><span class="op">]</span>
@@ -208,7 +208,7 @@
 <pre><code>##    code s3_a s2_a s1_a s1_b s2_b s3_b  wts
 ## 1  WgAv &lt;NA&gt; &lt;NA&gt; 1000 2000 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
 ## 2 WghAv &lt;NA&gt; &lt;NA&gt;   85   90 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
-<p>Each datasets are well documented, so make sure to check it for details and descriptions of the parameters used.</p>
+<p>For details on each of the datasets, simply access the documentation via the <code><a href="https://rdrr.io/r/utils/Question.html">?</a></code> prefix.</p>
 </div>
   </div>
 

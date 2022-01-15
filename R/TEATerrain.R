@@ -7,9 +7,9 @@
 #'
     #' \itemize{
 #' \item Slope2 - Slope (\%) (2. High level of managemnet with full mechanization. )
-#' \item Flood - Flooding
-#' \item Drainage - Drainage
-#' \item SlopeD - Slope (degree, 6 classes)
+#' \item Flood - Flooding (1 - No Flood, 2 - short time, 3 - Long time)
+#' \item Drainage 1-good, 2-moderate, 3-imperfect, 4-poor - Drainage 1-good, 2-moderate, 3-imperfect, 4-poor
+#' \item SlopeD - Slope (1: 0-3, 2: 3-8, 3: 8-15, 4: 15-20, 5: 20-25, 6: >25) (degree, 6 classes)
 #' }
     #' @seealso 
     #' \itemize{

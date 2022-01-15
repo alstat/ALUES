@@ -110,7 +110,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 4: Understanding the overall_suit function</h1>
             
-            <h4 class="date">2022-01-12</h4>
+            <h4 class="date">2022-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a04_understanding_overall_suit.Rmd"><code>vignettes/a04_understanding_overall_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a04_understanding_overall_suit.Rmd</code></div>
@@ -134,7 +134,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "suitability"</code></pre>
-<p>There are no factors that were targetted for the terrain characteristics, hence the returned value is a string error. Thus, only the soil characteristics can have an overall suitability, and is computed as follows:</p>
+<p>There are no factors targetted for the terrain characteristics, that is why the returned value is a string error. Thus, only the soil characteristics can have an overall suitability, and is computed as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></code></pre></div>
@@ -170,7 +170,7 @@
 ## 4 0.6537374    S3
 ## 5 0.6472727    S3
 ## 6 0.6656566    S3</code></pre>
-<p>The above code sets the suitability class intervals into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), and S1 [0.90, 1]. It should be emphasized that the <code>interval</code> argument cannot be set to <code>unbias</code> as in the case of the <code>interval</code> argument of the <code>suit</code> function. This follows from the fact that the <code>overall_suit</code> function is not using a membership function for computing the score, but an aggregation function.</p>
+<p>The above code sets the suitability class intervals into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), and S1 [0.90, 1]. It should be emphasized that the <code>interval</code> argument cannot be set to <code>unbias</code> as in the case of the <code>interval</code> argument of the <code>suit</code> function. This follows from the fact that the <code>overall_suit</code> function does not use a membership function for computing the score, but an aggregation function.</p>
 </div>
   </div>
 
