@@ -49,8 +49,8 @@ ALUES comes with 56 crop requirements datasets, each are encoded into three sepa
 # Functionality
 There  are  two  main  APIs  (Application  Programming Interfaces) defined in the package, these are: `suit`, used for computing the suitability scores and classes of the land units for particular crop of a particular characteristics; and, `overall_suit`, used for computing the overall suitability of the land units for a given characteristics. Further, while ALUES does not necessarily have its own APIs for GIS, its results can be visualized through maps using the extensive libraries of R. Examples of these are shown in \autoref{fig:scores} for suitability scores, and \autoref{fig:classes} for suitability classes. The code is available in the documentation.
 
-![Suitability scores of the land units of the Marinduque, Philippines for terrain characteristics of banana.\label{fig:scores}](scores.jpg)
+![Suitability scores of the land units of the Marinduque, Philippines for terrain characteristics of banana.\label{fig:scores}](scores.jpg){ width=80% }
 
-![Suitability classes (N - not suitable, S3 - marginally suitable, S2 - suitable, S1 - highly suitable) of the land units of the Marinduque, Philippines for terrain characteristics of banana.\label{fig:classes}](classes.jpg)
+![Suitability classes (N - not suitable, S3 - marginally suitable, S2 - suitable, S1 - highly suitable) of the land units of the Marinduque, Philippines for terrain characteristics of banana.\label{fig:classes}](classes.jpg){ width=80% }
 
 # References
