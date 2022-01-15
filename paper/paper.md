@@ -28,7 +28,7 @@ bibliography: paper.bib
 
 # Summary
 
-The Agricultural Land Use Evaluation System (ALUES) is an R [@Ihaka] library developed for evaluating land suitability on different crops. The suitability is assessed based on the 
+The Agricultural Land Use Evaluation System (ALUES) is an R [@rmanual] library developed for evaluating land suitability on different crops. The suitability is assessed based on the 
 standard requirements specified in @SysLand. In particular, it evaluates
 the land units using the concept of fuzzy logic approach [@ZADEH1965338]. The input data are the 
 characteristics of the land units, sub-grouped into rainfall, temperature, 
@@ -51,26 +51,34 @@ There  are  two  main  APIs  (Application  Programming Interfaces) defined in th
 ![Soil suitability classes (N - not suitable, S3 - marginally suitable, S2 - suitable, S1 - highly suitable) of the land units of Marinduque, Philippines  for farming banana. \label{fig:classes}](classes.jpg){ width=100% }
 
 # Speed
-ALUES core algorithms are written in C++ making it efficient in evaluating large sets of land units. The following shows the elapsed time for computing the suitability scores and classes for the land units of Marinduque, which has 881 units (or observations) in total; and, for the region of Lao Cai, Vietnam, which has 2928 land units.
+The core algorithms of the library are written in C++, which means ALUES is efficient enough in evaluating large sets of land units. The following shows the elapsed time of computing the suitability scores and classes for the land units of Marinduque, which has 881 units (or observations) in total; and, for the region of Lao Cai, Vietnam, which has 2928 land units.
 ```{r}
 > library(microbenchmark)
 > microbenchmark(
-+   suppressWarnings(suit("banana", terrain=MarinduqueLT, interval="unbias"))
++   suppressWarnings(
++     suit("banana", terrain=MarinduqueLT, interval="unbias")
++   )
 > )
 ## Unit: milliseconds
-##                                                                           expr
-##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))
+##                                                                           
+##  suppressWarnings(
+##    suit("banana", terrain = MarinduqueLT, interval = "unbias")
+##  )
 ##       min       lq     mean  median       uq      max neval
 ##  6.743769 7.201492 8.565446 7.63077 9.120762 20.10044   100
 ```
 For Lao Cai, Vietnam:
 ```{r}
 > microbenchmark(
-+   suppressWarnings(suit("banana", terrain=LaoCaiLT, interval="unbias"))
++   suppressWarnings(
++     suit("banana", terrain=LaoCaiLT, interval="unbias")
++   )
 > )
 ## Unit: milliseconds
-##                                                                       expr
-##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))
+##                                                                       
+##  suppressWarnings(
+##    suit("banana", terrain = LaoCaiLT, interval = "unbias")
+##  )
 ##       min       lq     mean   median       uq     max neval
 ##  10.53675 11.80469 13.01701 12.29996 13.46417 21.7674   100
 ```
