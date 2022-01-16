@@ -9,8 +9,7 @@
 
 Agricultural Land Use Evaluation System (ALUES) is an R package that evaluates land suitability for
 different crops production. The package is based on the Food and Agriculture Organization ([FAO](https://www.fao.org/home/en/)) and the
-International Rice Research Institute ([IRRI](https://www.irri.org/)) methodology for land evaluation. Development of ALUES is
-inspired by similar tool for land evaluation, Land Use Suitability Evaluation Tool (LUSET). The package
+International Rice Research Institute ([IRRI](https://www.irri.org/)) methodology for land evaluation. Development of ALUES is inspired by similar tool for land evaluation, Land Use Suitability Evaluation Tool (LUSET). The package
 uses fuzzy logic approach to evaluate land suitability of a particular area based on inputs such as rainfall,
 temperature, topography, and soil properties. The membership functions used for fuzzy modeling are the
 following: _Triangular_, _Trapezoidal_ and _Gaussian_. The methods for computing the overall suitability of a particular area are also included, and these are the _Minimum_, _Maximum_ and _Average_. Finally, ALUES is a highly optimized library with core algorithms written in C++.
