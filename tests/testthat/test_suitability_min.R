@@ -7,7 +7,7 @@ library(ALUES)
 # Right Face Triangular MF
 
 LaoCaiLT2 <- LaoCaiLT[5:6,]
-suit <- suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = "average", max = 20)
+suit_ <- suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = "average", max = 20)
 right_tri <- function (r) {
   x <- LaoCaiLT2[r,"CFragm"]
   reqScore <- as.numeric(SOYASoil[1,2:7])
@@ -17,14 +17,14 @@ right_tri <- function (r) {
   return(c(Min, 20))
 }
 
-test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["CFragm"]), right_tri(1)[1]))
-test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Maximum Values`["CFragm"]), right_tri(1)[2]))
+test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["CFragm"]), right_tri(1)[1]))
+test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Maximum Values`["CFragm"]), right_tri(1)[2]))
 
-suit <- suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = -1)
-test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["CFragm"]), -1))
+suit_ <- suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = -1)
+test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["CFragm"]), -1))
 # 
-# suit <- suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = rep(-1, 10))
-# test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`), rep(-1, 7)))
+# suit_ <- suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = rep(-1, 10))
+# test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`), rep(-1, 7)))
 # test_that("Case A: Triangular", expect_error(suitability(LaoCaiLT2, SOYASoil, interval="unbias", min = rep(-1, 5))))
 
 # ------------------------------
@@ -34,7 +34,7 @@ test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 
 LaoCaiLT3 <- LaoCaiLT[5:6,]
 LaoCaiLT3[1,2] <- 80
-suit <- suitability(LaoCaiLT3, SOYASoil[8:nrow(SOYASoil),], interval = "unbias", min = "average", max = 20)
+suit_ <- suitability(LaoCaiLT3, SOYASoil[8:nrow(SOYASoil),], interval = "unbias", min = "average", max = 20)
 left_tri <- function(r) {
   x <- LaoCaiLT3[r,"OC"]
   reqScore <- as.numeric(SOYASoil[8,2:7])
@@ -44,21 +44,21 @@ left_tri <- function(r) {
   return(c(Min, Max))
 }
 
-test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["OC"]), left_tri(1)[1]))
-test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Maximum Values`["OC"]), left_tri(1)[2]))
+test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["OC"]), left_tri(1)[1]))
+test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Maximum Values`["OC"]), left_tri(1)[2]))
 
-suit <- suitability(LaoCaiLT3, SOYASoil[8:nrow(SOYASoil),], interval = "unbias", min = -1)
-test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["OC"]),-1))
+suit_ <- suitability(LaoCaiLT3, SOYASoil[8:nrow(SOYASoil),], interval = "unbias", min = -1)
+test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["OC"]),-1))
 # 
-# suit <- suitability(LaoCaiLT3, SOYASoil[8:nrow(SOYASoil),], interval = "unbias", min = rep(-1,10))
-# test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`), rep(-1, 2)))
+# suit_ <- suitability(LaoCaiLT3, SOYASoil[8:nrow(SOYASoil),], interval = "unbias", min = rep(-1,10))
+# test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`), rep(-1, 2)))
 # test_that("Case A: Triangular", expect_error(suitability(LaoCaiLT3, SOYASoil, interval="unbias", min = rep(-1, 5))))
 
 # ------------------------------
 # CASE C
 # ------------------------------
 # Full Triangular
-suit <- suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = "average", max = 30)
+suit_ <- suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = "average", max = 30)
 full_tri <- function () {
   x <- MarinduqueLT[6,"pHH2O"]; 
   reqScore <- as.numeric(SAFFLOWERSoil[6,2:7])
@@ -68,14 +68,14 @@ full_tri <- function () {
   Max <- 30
   return(c(Min, Max))
 }
-test_that("Case C: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["pHH2O"]), full_tri()[1]))
-test_that("Case C: Triangular", expect_equal(as.numeric(suit$`Factors' Maximum Values`["pHH2O"]), full_tri()[2]))
+test_that("Case C: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["pHH2O"]), full_tri()[1]))
+test_that("Case C: Triangular", expect_equal(as.numeric(suit_$`Factors' Maximum Values`["pHH2O"]), full_tri()[2]))
 
-suit <- suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = -1)
-test_that("Case C: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["pHH2O"]), -1))
+suit_ <- suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = -1)
+test_that("Case C: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["pHH2O"]), -1))
 # 
-# suit <- suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = rep(-1,6))
-# test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`), rep(-1, 1)))
+# suit_ <- suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = rep(-1,6))
+# test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`), rep(-1, 1)))
 # test_that("Case A: Triangular", expect_error(suitability(MarinduqueLT[1:6,], SAFFLOWERSoil[6, ], interval = "unbias", min = rep(-1,9))))
 
 # ------------------------------
@@ -83,7 +83,7 @@ test_that("Case C: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 # ------------------------------
 # Triangular
 MarinduqueLTNew <- MarinduqueLT[7:8,]
-suit <- suitability(MarinduqueLTNew, ALUES::BAMBOOSoil, interval = "unbias", min = "average", max = 40)
+suit_ <- suitability(MarinduqueLTNew, ALUES::BAMBOOSoil, interval = "unbias", min = "average", max = 40)
 full_tri <- function (r) {
   x <- MarinduqueLTNew[r,"SoilTe"]
   reqScore <- as.numeric(ALUES::BAMBOOSoil[3,2:7])
@@ -94,14 +94,14 @@ full_tri <- function (r) {
   Min <- clnScore[1] - ((diff(clnScore[1:2]) + diff(clnScore[2:3]) + diff(clnScore[3:4]) + diff(clnScore[4:5])) / 4)
   return(c(Min, Max))
 }
-test_that("Case D: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["SoilTe"]), full_tri(1)[1]))
-test_that("Case D: Triangular", expect_equal(as.numeric(suit$`Factors' Maximum Values`["SoilTe"]), full_tri(1)[2]))
+test_that("Case D: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["SoilTe"]), full_tri(1)[1]))
+test_that("Case D: Triangular", expect_equal(as.numeric(suit_$`Factors' Maximum Values`["SoilTe"]), full_tri(1)[2]))
 
-suit <- suitability(MarinduqueLTNew, ALUES::BAMBOOSoil, interval = "unbias", min = -1)
-test_that("Case D: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["SoilTe"]), -1))
+suit_ <- suitability(MarinduqueLTNew, ALUES::BAMBOOSoil, interval = "unbias", min = -1)
+test_that("Case D: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["SoilTe"]), -1))
 # 
-# suit <- suitability(MarinduqueLT[1:6,],  ALUES::BAMBOOSoil, interval = "unbias", min = rep(-1,6))
-# test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`), rep(-1, 2)))
+# suit_ <- suitability(MarinduqueLT[1:6,],  ALUES::BAMBOOSoil, interval = "unbias", min = rep(-1,6))
+# test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`), rep(-1, 2)))
 # test_that("Case A: Triangular", expect_error(suitability(MarinduqueLT[1:6,],  ALUES::BAMBOOSoil, interval = "unbias", min = rep(-1,3))))
 
 # ------------------------------
@@ -112,7 +112,7 @@ MarinduqueLTNew <- MarinduqueLT[7:8,]
 BAMBOOSoil[3, 6] <- NA
 BAMBOOSoil[3, 5] <- 9.0
 BAMBOOSoilNew <- BAMBOOSoil
-suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, interval="unbias", min = "average", max = 50)
+suit_ <- suitability(MarinduqueLTNew, BAMBOOSoilNew, interval="unbias", min = "average", max = 50)
 full_tri <- function (r) {
   x <- MarinduqueLTNew[r,"SoilTe"]; 
   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
@@ -123,26 +123,26 @@ full_tri <- function (r) {
   Min <- clnScore[1] - ((diff(clnScore[1:2]) + diff(clnScore[2:3]) + diff(clnScore[3:4])) / 3)
   return(c(Min, Max))
 }
-test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["SoilTe"]), full_tri(1)[1]))
-test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Maximum Values`["SoilTe"]), full_tri(1)[2]))
+test_that("Case E: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["SoilTe"]), full_tri(1)[1]))
+test_that("Case E: Triangular", expect_equal(as.numeric(suit_$`Factors' Maximum Values`["SoilTe"]), full_tri(1)[2]))
 
-suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, interval="unbias", min = -1)
-test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`["SoilTe"]), -1))
+suit_ <- suitability(MarinduqueLTNew, BAMBOOSoilNew, interval="unbias", min = -1)
+test_that("Case E: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`["SoilTe"]), -1))
 # 
-# suit <- suitability(MarinduqueLTNew,  BAMBOOSoilNew, interval = "unbias", min = rep(-1,6))
-# test_that("Case A: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum Values`), rep(-1, 2)))
+# suit_ <- suitability(MarinduqueLTNew,  BAMBOOSoilNew, interval = "unbias", min = rep(-1,6))
+# test_that("Case A: Triangular", expect_equal(as.numeric(suit_$`Factors' Minimum Values`), rep(-1, 2)))
 # test_that("Case A: Triangular", expect_error(suitability(MarinduqueLTNew,  BAMBOOSoilNew, interval = "unbias", min = rep(-1,3))))
 # 
 # # 
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "N"))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tri(1)))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tri(2)))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Class`["SoilTe"][1,], "N"))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Class`["SoilTe"][2,], "S1"))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Score`["SoilTe"][1,], full_tri(1)))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Score`["SoilTe"][2,], full_tri(2)))
 # 
 # # Triangular
 # MarinduqueLTNew2 <- MarinduqueLT[7:8,]
 # MarinduqueLTNew2[1, 6] <- 5
-# suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, interval="unbias")
+# suit_ <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, interval="unbias")
 # full_tri <- function (r) {
 #   x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0
 #   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
@@ -161,13 +161,13 @@ test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 # 
 #   return(score)
 # }
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tri(1)))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "S2"))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tri(2)))
-# test_that("Case E: Triangular", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Score`["SoilTe"][1,], full_tri(1)))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Class`["SoilTe"][1,], "S2"))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Score`["SoilTe"][2,], full_tri(2)))
+# test_that("Case E: Triangular", expect_equal(suit_$`Suitability Class`["SoilTe"][2,], "S1"))
 # 
 # # Trapezoidal
-# suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="trapezoidal", interval="unbias")
+# suit_ <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="trapezoidal", interval="unbias")
 # full_tra <- function (r) {
 #   x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0
 #   reqScore <- as.numeric(BAMBOOSoil[3,2:7])
@@ -187,15 +187,15 @@ test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 # 
 #   return(score)
 # }
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tra(1)))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "N"))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tra(2)))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Score`["SoilTe"][1,], full_tra(1)))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Class`["SoilTe"][1,], "N"))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Score`["SoilTe"][2,], full_tra(2)))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Class`["SoilTe"][2,], "S1"))
 # 
 # MarinduqueLTNew2 <- MarinduqueLT[7:8,]
 # MarinduqueLTNew2[1, 6] <- 5
 # 
-# suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="trapezoidal", interval="unbias")
+# suit_ <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="trapezoidal", interval="unbias")
 # full_tra <- function (r) {
 #   x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0
 #   reqScore <- as.numeric(BAMBOOSoil[3,2:7])
@@ -216,13 +216,13 @@ test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 # 
 #   return(score)
 # }
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_tra(1)))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "S2"))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_tra(2)))
-# test_that("Case E: Trapezoidal", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Score`["SoilTe"][1,], full_tra(1)))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Class`["SoilTe"][1,], "S2"))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Score`["SoilTe"][2,], full_tra(2)))
+# test_that("Case E: Trapezoidal", expect_equal(suit_$`Suitability Class`["SoilTe"][2,], "S1"))
 # 
 # # Gaussian
-# suit <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="gaussian", interval="unbias")
+# suit_ <- suitability(MarinduqueLTNew, BAMBOOSoilNew, mf="gaussian", interval="unbias")
 # full_gau <- function (r) {
 #   x <- MarinduqueLTNew[r,"SoilTe"]; Min <- 0; sigma <- 1
 #   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
@@ -233,12 +233,12 @@ test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
 #   return(score)
 # }
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_gau(1)))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "N"))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Score`["SoilTe"][1,], full_gau(1)))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Class`["SoilTe"][1,], "N"))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Score`["SoilTe"][2,], full_gau(2)))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Class`["SoilTe"][2,], "S1"))
 # 
-# suit <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="gaussian", interval="unbias")
+# suit_ <- suitability(MarinduqueLTNew2, BAMBOOSoilNew, mf="gaussian", interval="unbias")
 # full_gau <- function (r) {
 #   x <- MarinduqueLTNew2[r,"SoilTe"]; Min <- 0; sigma <- 1
 #   reqScore <- as.numeric(BAMBOOSoilNew[3,2:7])
@@ -249,7 +249,7 @@ test_that("Case E: Triangular", expect_equal(as.numeric(suit$`Factors' Minimum V
 #   score <- exp((-1 / 2) * (((x - Mid) / sigma)^2))
 #   return(score)
 # }
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][1,], full_gau(1)))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][1,], "S2"))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Score`["SoilTe"][2,], full_gau(2)))
-# test_that("Case E: Gaussian", expect_equal(suit$`Suitability Class`["SoilTe"][2,], "S1"))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Score`["SoilTe"][1,], full_gau(1)))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Class`["SoilTe"][1,], "S2"))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Score`["SoilTe"][2,], full_gau(2)))
+# test_that("Case E: Gaussian", expect_equal(suit_$`Suitability Class`["SoilTe"][2,], "S1"))

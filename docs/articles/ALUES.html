@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ALUES</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/ALUES.html">Get started</a>
 </li>
@@ -58,7 +54,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -90,7 +86,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/alstat/ALUES/">
+  <a href="https://github.com/alstat/ALUES/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,85 +101,92 @@
 
       
 
-      </header><script src="ALUES_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 class="date">2022-01-15</h4>
+            <h4 data-toc-skip class="date">2022-04-27</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/ALUES.Rmd"><code>vignettes/ALUES.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/HEAD/vignettes/ALUES.Rmd" class="external-link"><code>vignettes/ALUES.Rmd</code></a></small>
       <div class="hidden name"><code>ALUES.Rmd</code></div>
 
     </div>
 
     
     
-<div id="show-me-the-code" class="section level2">
-<h2 class="hasAnchor">
-<a href="#show-me-the-code" class="anchor"></a>Show me the code</h2>
-<p>To evaluate the soil characteristics of the land units of Marinduque, Philippines, for farming banana, use the <code>suit</code> function as follows:</p>
+<div class="section level2">
+<h2 id="show-me-the-code">Show me the code<a class="anchor" aria-label="anchor" href="#show-me-the-code"></a>
+</h2>
+<p>To evaluate the soil characteristics of the land units of Marinduque,
+Philippines, for farming banana, use the <code>suit</code> function as
+follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/">ALUES</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## Loading required package: Rcpp</code></pre>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/" class="external-link">ALUES</a></span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Loading required package: Rcpp</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">suit_banana</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum
-## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals
-## are equal.</code></pre>
+<pre><code><span class="co">## Warning in suitability(terrain, crop_soil, mf = mf, sow_month = NULL, minimum</span>
+<span class="co">## = minimum, : maximum is set to 16 for factor CECc since all parameter intervals</span>
+<span class="co">## are equal.</span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Score`</span><span class="op">)</span></code></pre></div>
-<pre><code>##      CFragm   CECc pHH2O SoilTe
-## 1 0.8533333 0.7500     0   0.96
-## 2 0.8800000 0.7500     0   0.96
-## 3 0.8666667 0.7500     0   0.96
-## 4 0.8666667 0.7500     0   0.96
-## 5 0.8400000 0.7500     0   0.96
-## 6 0.8533333 0.8125     0   0.96</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Score`</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##      CFragm   CECc pHH2O SoilTe</span>
+<span class="co">## 1 0.8533333 0.7500     0   0.96</span>
+<span class="co">## 2 0.8800000 0.7500     0   0.96</span>
+<span class="co">## 3 0.8666667 0.7500     0   0.96</span>
+<span class="co">## 4 0.8666667 0.7500     0   0.96</span>
+<span class="co">## 5 0.8400000 0.7500     0   0.96</span>
+<span class="co">## 6 0.8533333 0.8125     0   0.96</span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Class`</span><span class="op">)</span></code></pre></div>
-<pre><code>##   CFragm CECc pHH2O SoilTe
-## 1     S1   S1     N     S1
-## 2     S1   S1     N     S1
-## 3     S1   S1     N     S1
-## 4     S1   S1     N     S1
-## 5     S1   S1     N     S1
-## 6     S1   S1     N     S1</code></pre>
-<p>To compute the overall suitability of the land units by averaging across factors, use the <code>overall_suit</code> function as follows:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Suitability Class`</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   CFragm CECc pHH2O SoilTe</span>
+<span class="co">## 1     S1   S1     N     S1</span>
+<span class="co">## 2     S1   S1     N     S1</span>
+<span class="co">## 3     S1   S1     N     S1</span>
+<span class="co">## 4     S1   S1     N     S1</span>
+<span class="co">## 5     S1   S1     N     S1</span>
+<span class="co">## 6     S1   S1     N     S1</span></code></pre>
+<p>To compute the overall suitability of the land units by averaging
+across factors, use the <code>overall_suit</code> function as
+follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">osuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">suit_banana</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">osuit</span><span class="op">)</span></code></pre></div>
-<pre><code>##       Score Class
-## 1 0.6505051    S2
-## 2 0.6569697    S2
-## 3 0.6537374    S2
-## 4 0.6537374    S2
-## 5 0.6472727    S2
-## 6 0.6656566    S2</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">osuit</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##       Score Class</span>
+<span class="co">## 1 0.6505051    S2</span>
+<span class="co">## 2 0.6569697    S2</span>
+<span class="co">## 3 0.6537374    S2</span>
+<span class="co">## 4 0.6537374    S2</span>
+<span class="co">## 5 0.6472727    S2</span>
+<span class="co">## 6 0.6656566    S2</span></code></pre>
 </div>
-<div id="show-me-the-speed" class="section level2">
-<h2 class="hasAnchor">
-<a href="#show-me-the-speed" class="anchor"></a>Show me the speed</h2>
-<p>We’ve recorded below the elapsed time for computing the suitability scores and classes for the land units of Marinduque, which has 881 units (or observations) in total; and, for the region of Lao Cai, Vietnam, which has 2928 land units.</p>
+<div class="section level2">
+<h2 id="show-me-the-speed">Show me the speed<a class="anchor" aria-label="anchor" href="#show-me-the-speed"></a>
+</h2>
+<p>We’ve recorded below the elapsed time for computing the suitability
+scores and classes for the land units of Marinduque, which has 881 units
+(or observations) in total; and, for the region of Lao Cai, Vietnam,
+which has 2928 land units.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/" class="external-link">microbenchmark</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>## Unit: milliseconds
-##                                                                           expr
-##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))
-##       min       lq     mean  median       uq      max neval
-##  6.743769 7.201492 8.565446 7.63077 9.120762 20.10044   100</code></pre>
+<pre><code><span class="co">## Unit: milliseconds</span>
+<span class="co">##                                                                           expr</span>
+<span class="co">##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))</span>
+<span class="co">##       min       lq    mean   median       uq      max neval</span>
+<span class="co">##  6.679375 8.576932 12.7122 11.13664 15.24485 37.84498   100</span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>## Unit: milliseconds
-##                                                                       expr
-##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))
-##       min       lq     mean   median       uq     max neval
-##  10.53675 11.80469 13.01701 12.29996 13.46417 21.7674   100</code></pre>
+<pre><code><span class="co">## Unit: milliseconds</span>
+<span class="co">##                                                                       expr</span>
+<span class="co">##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))</span>
+<span class="co">##      min       lq     mean   median       uq      max neval</span>
+<span class="co">##  11.7762 17.27869 28.03413 22.28016 29.45658 147.9877   100</span></code></pre>
 </div>
   </div>
 
@@ -198,11 +201,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Al-Ahmadgaid B. Asaad, Arnold R. Salvacion, Bui Tan Yen.</p>
+  <p></p>
+<p>Developed by Al-Ahmadgaid B. Asaad, Arnold R. Salvacion, Bui Tan Yen.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -210,6 +215,8 @@
 
   
 
+
+  
 
   </body>
 </html>

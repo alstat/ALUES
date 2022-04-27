@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ALUES</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/ALUES.html">Get started</a>
 </li>
@@ -58,7 +54,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -90,7 +86,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/alstat/ALUES/">
+  <a href="https://github.com/alstat/ALUES/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,25 +101,32 @@
 
       
 
-      </header><script src="a01_datasets_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Article 1: ALUES datasets</h1>
             
-            <h4 class="date">2022-01-15</h4>
+            <h4 data-toc-skip class="date">2022-04-27</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/master/vignettes/a01_datasets.Rmd"><code>vignettes/a01_datasets.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/HEAD/vignettes/a01_datasets.Rmd" class="external-link"><code>vignettes/a01_datasets.Rmd</code></a></small>
       <div class="hidden name"><code>a01_datasets.Rmd</code></div>
 
     </div>
 
     
     
-<p>There are two categories of datasets available in ALUES, <em>land units</em> and <em>crop requirements</em>.</p>
-<div id="input-land-units" class="section level2">
-<h2 class="hasAnchor">
-<a href="#input-land-units" class="anchor"></a>Input Land Units</h2>
-<p>The <em>land units</em> datasets are input land units with properties meant for evaluation for crop production. Two regions are available for these datasets: <em>Marinduque, Philippines</em>; and, <em>Lao Cai, Vietnam</em>. These datasets are encoded into three characteristics: i. <em>land or soil and terrain</em> (LT); ii. <em>water</em>; and, iii. <em>temp</em> (for temperature). So that, for Marinduque, the following are the datasets:</p>
+<p>There are two categories of datasets available in ALUES, <em>land
+units</em> and <em>crop requirements</em>.</p>
+<div class="section level2">
+<h2 id="input-land-units">Input Land Units<a class="anchor" aria-label="anchor" href="#input-land-units"></a>
+</h2>
+<p>The <em>land units</em> datasets are input land units with properties
+meant for evaluation for crop production. Two regions are available for
+these datasets: <em>Marinduque, Philippines</em>; and, <em>Lao Cai,
+Vietnam</em>. These datasets are encoded into three characteristics: i.
+<em>land or soil and terrain</em> (LT); ii. <em>water</em>; and, iii.
+<em>temp</em> (for temperature). So that, for Marinduque, the following
+are the datasets:</p>
 <ul>
 <li><code>MarinduqueLT</code></li>
 <li><code>MarinduqueWater</code></li>
@@ -137,78 +140,88 @@
 </ul>
 <p>Sample head of the datasets are as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/">ALUES</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## Loading required package: Rcpp</code></pre>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/" class="external-link">ALUES</a></span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Loading required package: Rcpp</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
-<pre><code>##        Lat      Lon CECc pHH2O CFragm SoilTe
-## 1 121.8792 13.52084   12    53     11     12
-## 2 121.8875 13.52084   12    52      9     12
-## 3 121.8958 13.52084   12    53     10     12
-## 4 121.9375 13.52084   12    52     10     12
-## 5 121.9458 13.52084   12    54     12     12
-## 6 121.9542 13.52084   13    54     11     12</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##        Lat      Lon CECc pHH2O CFragm SoilTe</span>
+<span class="co">## 1 121.8792 13.52084   12    53     11     12</span>
+<span class="co">## 2 121.8875 13.52084   12    52      9     12</span>
+<span class="co">## 3 121.8958 13.52084   12    53     10     12</span>
+<span class="co">## 4 121.9375 13.52084   12    52     10     12</span>
+<span class="co">## 5 121.9458 13.52084   12    54     12     12</span>
+<span class="co">## 6 121.9542 13.52084   13    54     11     12</span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">LaoCaiLT</span><span class="op">)</span></code></pre></div>
-<pre><code>##   SlopeD CFragm SoilDpt SoilTe CECc SumBCs pHH2O    BS   OC Flood
-## 1      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3
-## 2      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3
-## 3      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3
-## 4      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3
-## 5      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3
-## 6      1      5      65      3 19.8   3.13   5.3 34.72 1.21     2</code></pre>
-<p>The columns of the datasets correspond to the factors or parameters measured from the land units. These parameters are used to compare to the standard values required for the target crop. The score of the comparison is referred to as the suitability score.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">LaoCaiLT</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   SlopeD CFragm SoilDpt SoilTe CECc SumBCs pHH2O    BS   OC Flood</span>
+<span class="co">## 1      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3</span>
+<span class="co">## 2      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3</span>
+<span class="co">## 3      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3</span>
+<span class="co">## 4      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3</span>
+<span class="co">## 5      1      0      45      9 18.6   3.30   5.4 50.00 1.40     3</span>
+<span class="co">## 6      1      5      65      3 19.8   3.13   5.3 34.72 1.21     2</span></code></pre>
+<p>The columns of the datasets correspond to the factors or parameters
+measured from the land units. These parameters are used to compare to
+the standard values required for the target crop. The score of the
+comparison is referred to as the suitability score.</p>
 </div>
-<div id="crop-requirements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#crop-requirements" class="anchor"></a>Crop Requirements</h2>
-<p>There are 56 crops available in ALUES, each encodes standard properties of the target crop. These crop datasets are further categorized into four characteristics: <em>terrain</em>, <em>soil</em>, <em>water</em> and <em>temp</em>. So that, for avocado, the datasets are encoded as <code>AVOCADOTerrain</code>, <code>AVOCADOSoil</code>, <code>AVOCADOWater</code> and <code>AVOCADOTemp</code>. The list of crop datasets can be extracted as follows:</p>
+<div class="section level2">
+<h2 id="crop-requirements">Crop Requirements<a class="anchor" aria-label="anchor" href="#crop-requirements"></a>
+</h2>
+<p>There are 56 crops available in ALUES, each encodes standard
+properties of the target crop. These crop datasets are further
+categorized into four characteristics: <em>terrain</em>, <em>soil</em>,
+<em>water</em> and <em>temp</em>. So that, for avocado, the datasets are
+encoded as <code>AVOCADOTerrain</code>, <code>AVOCADOSoil</code>,
+<code>AVOCADOWater</code> and <code>AVOCADOTemp</code>. The list of crop
+datasets can be extracted as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"ALUES"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"ALUES"</span><span class="op">)</span>
 <span class="va">alues_data</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">results</span><span class="op">[</span>, <span class="st">"Item"</span><span class="op">]</span>
-<span class="va">crop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/regmatches.html">regmatches</a></span><span class="op">(</span><span class="va">alues_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gregexpr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"^[A-Z]{2,}"</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>, <span class="va">alues_data</span><span class="op">)</span><span class="op">)</span>
-<span class="va">crop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">crop_data</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">crop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/regmatches.html" class="external-link">regmatches</a></span><span class="op">(</span><span class="va">alues_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gregexpr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"^[A-Z]{2,}"</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>, <span class="va">alues_data</span><span class="op">)</span><span class="op">)</span>
+<span class="va">crop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">crop_data</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">crop_data</span></code></pre></div>
-<pre><code>##  [1] "ALFALFA"    "AVOCADO"    "BAMBOO"     "BANANA"     "BARLEY"    
-##  [6] "BEANCA"     "BEANS"      "CABBAGE"    "CARROTS"    "CASHEW"    
-## [11] "CASSAVA"    "CHICKPEA"   "CINNAMON"   "CITRUS"     "COCOA"     
-## [16] "COCONUT"    "COFFEEAR"   "COFFEERO"   "COTTON"     "COWPEA"    
-## [21] "CUCUMBER"   "GROUNDNUTS" "GUAVA"      "LONGAN"     "MAIZE"     
-## [26] "MANGO"      "MILLETS"    "OILPALM"    "OLIVES"     "ONION"     
-## [31] "PAPAYA"     "PEACH"      "PEAR"       "PEA"        "PEPPERGR"  
-## [36] "PERSIMMON"  "PINEAPPLE"  "PLUM"       "POTATOSW"   "POTATO"    
-## [41] "RICEBR"     "RICEIW"     "RICENF"     "RICEUR"     "RUBBER"    
-## [46] "SAFFLOWER"  "SESAME"     "SORGHUM"    "SOYA"       "SUGARCANE" 
-## [51] "SUNFLOWER"  "TEA"        "TOBACCO"    "TOMATO"     "WATERMELON"
-## [56] "WHEAT"</code></pre>
+<pre><code><span class="co">##  [1] "ALFALFA"    "AVOCADO"    "BAMBOO"     "BANANA"     "BARLEY"    </span>
+<span class="co">##  [6] "BEANCA"     "BEANS"      "CABBAGE"    "CARROTS"    "CASHEW"    </span>
+<span class="co">## [11] "CASSAVA"    "CHICKPEA"   "CINNAMON"   "CITRUS"     "COCOA"     </span>
+<span class="co">## [16] "COCONUT"    "COFFEEAR"   "COFFEERO"   "COTTON"     "COWPEA"    </span>
+<span class="co">## [21] "CUCUMBER"   "GROUNDNUTS" "GUAVA"      "LONGAN"     "MAIZE"     </span>
+<span class="co">## [26] "MANGO"      "MILLETS"    "OILPALM"    "OLIVES"     "ONION"     </span>
+<span class="co">## [31] "PAPAYA"     "PEACH"      "PEAR"       "PEA"        "PEPPERGR"  </span>
+<span class="co">## [36] "PERSIMMON"  "PINEAPPLE"  "PLUM"       "POTATOSW"   "POTATO"    </span>
+<span class="co">## [41] "RICEBR"     "RICEIW"     "RICENF"     "RICEUR"     "RUBBER"    </span>
+<span class="co">## [46] "SAFFLOWER"  "SESAME"     "SORGHUM"    "SOYA"       "SUGARCANE" </span>
+<span class="co">## [51] "SUNFLOWER"  "TEA"        "TOBACCO"    "TOMATO"     "WATERMELON"</span>
+<span class="co">## [56] "WHEAT"</span></code></pre>
 <p>Sample crop requirement datasets are given below:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">GUAVASoil</span></code></pre></div>
-<pre><code>##      code s3_a s2_a  s1_a s1_b s2_b s3_b  wts
-## 1  CFragm 55.0 35.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 2 SoilDpt 30.0 50.0 100.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 3    CECc 16.0 16.0  16.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 4      BS 19.9 20.0  35.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 5  SumBCs  1.5  1.6   2.8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 6   pHH2O  4.5  5.2   5.5  7.8    8  8.2 &lt;NA&gt;
-## 7      OC  0.7  0.8   1.2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 8   ECedS  4.0  3.0   2.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 9     ESP 25.0 20.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
+<pre><code><span class="co">##      code s3_a s2_a  s1_a s1_b s2_b s3_b  wts</span>
+<span class="co">## 1  CFragm 55.0 35.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 2 SoilDpt 30.0 50.0 100.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 3    CECc 16.0 16.0  16.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 4      BS 19.9 20.0  35.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 5  SumBCs  1.5  1.6   2.8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 6   pHH2O  4.5  5.2   5.5  7.8    8  8.2 &lt;NA&gt;</span>
+<span class="co">## 7      OC  0.7  0.8   1.2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 8   ECedS  4.0  3.0   2.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 9     ESP 25.0 20.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">GUAVATemp</span></code></pre></div>
-<pre><code>##   code s3_a s2_a s1_a s1_b s2_b s3_b  wts
-## 1 TyAv   10   15   20   28   34 34.1 &lt;NA&gt;</code></pre>
+<pre><code><span class="co">##   code s3_a s2_a s1_a s1_b s2_b s3_b  wts</span>
+<span class="co">## 1 TyAv   10   15   20   28   34 34.1 &lt;NA&gt;</span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CINNAMONTerrain</span></code></pre></div>
-<pre><code>##     code s3_a s2_a s1_a s1_b s2_b s3_b wts
-## 1 SlopeD  6.0  4.0    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2
-## 2  Flood  1.5  1.2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   1</code></pre>
+<pre><code><span class="co">##     code s3_a s2_a s1_a s1_b s2_b s3_b wts</span>
+<span class="co">## 1 SlopeD  6.0  4.0    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2</span>
+<span class="co">## 2  Flood  1.5  1.2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   1</span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CINNAMONWater</span></code></pre></div>
-<pre><code>##    code s3_a s2_a s1_a s1_b s2_b s3_b  wts
-## 1  WgAv &lt;NA&gt; &lt;NA&gt; 1000 2000 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 2 WghAv &lt;NA&gt; &lt;NA&gt;   85   90 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
-<p>For details on each of the datasets, simply access the documentation via the <code><a href="https://rdrr.io/r/utils/Question.html">?</a></code> prefix.</p>
+<pre><code><span class="co">##    code s3_a s2_a s1_a s1_b s2_b s3_b  wts</span>
+<span class="co">## 1  WgAv &lt;NA&gt; &lt;NA&gt; 1000 2000 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="co">## 2 WghAv &lt;NA&gt; &lt;NA&gt;   85   90 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span></code></pre>
+<p>For details on each of the datasets, simply access the documentation
+via the <code>?</code> prefix.</p>
 </div>
   </div>
 
@@ -223,11 +236,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Al-Ahmadgaid B. Asaad, Arnold R. Salvacion, Bui Tan Yen.</p>
+  <p></p>
+<p>Developed by Al-Ahmadgaid B. Asaad, Arnold R. Salvacion, Bui Tan Yen.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -235,6 +250,8 @@
 
   
 
+
+  
 
   </body>
 </html>
