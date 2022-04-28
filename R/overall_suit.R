@@ -23,7 +23,7 @@
 #' }
 #' 
 #' @seealso
-#' \code{\link{suit}}, \code{https://alstat.github.io/ALUES/}
+#' \code{https://alstat.github.io/ALUES/}; \code{\link{suit}}
 
 #' 
 #' @examples

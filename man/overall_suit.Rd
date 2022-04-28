@@ -52,5 +52,5 @@ head(overall_suit(out[["temp"]], "maximum"))
 head(overall_suit(out[["temp"]], "average", c(0, 0.3, 0.35, 0.6, 1.0)))
 }
 \seealso{
-\code{\link{suit}}, \code{https://alstat.github.io/ALUES/}
+\code{https://alstat.github.io/ALUES/}; \code{\link{suit}}
 }

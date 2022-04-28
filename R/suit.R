@@ -62,7 +62,7 @@
 #' }
 #' 
 #' @seealso 
-#' \code{https://alstat.github.io/ALUES/}
+#' \code{https://alstat.github.io/ALUES/}; \code{\link{overall_suit}}
 #' 
 #' @examples
 #' library(ALUES)

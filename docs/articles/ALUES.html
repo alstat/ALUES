@@ -106,7 +106,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 data-toc-skip class="date">2022-04-27</h4>
+            <h4 data-toc-skip class="date">2022-04-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/HEAD/vignettes/ALUES.Rmd" class="external-link"><code>vignettes/ALUES.Rmd</code></a></small>
       <div class="hidden name"><code>ALUES.Rmd</code></div>
@@ -176,8 +176,8 @@ which has 2928 land units.</p>
 <pre><code><span class="co">## Unit: milliseconds</span>
 <span class="co">##                                                                           expr</span>
 <span class="co">##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))</span>
-<span class="co">##       min       lq    mean   median       uq      max neval</span>
-<span class="co">##  6.679375 8.576932 12.7122 11.13664 15.24485 37.84498   100</span></code></pre>
+<span class="co">##       min       lq     mean   median       uq      max neval</span>
+<span class="co">##  7.198086 7.408223 8.736955 7.657087 8.885953 18.83214   100</span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
@@ -185,8 +185,8 @@ which has 2928 land units.</p>
 <pre><code><span class="co">## Unit: milliseconds</span>
 <span class="co">##                                                                       expr</span>
 <span class="co">##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))</span>
-<span class="co">##      min       lq     mean   median       uq      max neval</span>
-<span class="co">##  11.7762 17.27869 28.03413 22.28016 29.45658 147.9877   100</span></code></pre>
+<span class="co">##       min       lq     mean   median      uq     max neval</span>
+<span class="co">##  14.77936 15.64855 17.51056 16.27146 18.7238 31.4859   100</span></code></pre>
 </div>
   </div>
 

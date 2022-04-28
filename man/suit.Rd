@@ -96,5 +96,5 @@ lapply(rice_suit[["terrain"]], function(x) head(x))
 lapply(rice_suit[["soil"]], function(x) head(x))
 }
 \seealso{
-\code{https://alstat.github.io/ALUES/}
+\code{https://alstat.github.io/ALUES/}; \code{\link{overall_suit}}
 }

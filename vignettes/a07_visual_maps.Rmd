@@ -66,7 +66,7 @@ p1 <- ggplot() + geom_polygon(data = prov, aes(long + 0.008, lat - 0.005, group 
 p1
 ```
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/scores1.jpg")
+knitr::include_graphics("../man/figures/scores1.jpg")
 ```
 And for suitability classes:
 ```{r, eval=FALSE}
@@ -99,5 +99,5 @@ p1 <- ggplot() + geom_polygon(data = prov, aes(long + 0.008, lat - 0.005, group 
 p1
 ```
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/classes1.jpg")
+knitr::include_graphics("../man/figures/classes1.jpg")
 ```

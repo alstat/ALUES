@@ -55,7 +55,7 @@ This section presents the complete definitions of the theory used in the core al
 
 ### Triangular Membership Function
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/trimf.jpg")
+knitr::include_graphics("../man/figures/trimf.jpg")
 ```
 <br><br>
 **Definition 4 (Left Triangular)**. Let $x_{jk}\in\mathscr{X}$ be the $j$th land unit's actual value for any target factor $k$, $\forall j \in \mathbb{N}_{[1,n]}$ and  $\forall k \in \mathbb{N}_{[1,m]}$, and let $[v_{i},v_{i+1})\in\mathscr{V}$ be the crop's parameter intervals, $\forall i\in\mathbb{N}_{[0,p-1]}$, then the *lower* or *left triangular* MF, herein notated as $\mu_{\triangle_{\downarrow}}$, is defined as follows:
@@ -93,7 +93,7 @@ where $\mathrm{m}:= \frac{v_{i}^{*}+v_{i+1}^*}{2}$ such that $v_i^*<\mathrm{m}<v
 
 ### Trapezoidal Membership Function
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/tramf.jpg")
+knitr::include_graphics("../man/figures/tramf.jpg")
 ```
 <br><br>
 **Definition 7 (Left Trapezoidal)**. From Definition 4, the *lower* or *left trapezoidal* MF, herein notated as $\mu_{\bigtriangledown_{\downarrow}}$, is defined as follows:
@@ -130,7 +130,7 @@ where $v_i^*$ and $v_{i+1}^*$ are defined in Definition 6.
 
 ### Gaussain Membership Function
 ```{r, out.width="100%", echo=FALSE}
-knitr::include_graphics("../vignettes/img/gaumf.jpg")
+knitr::include_graphics("../man/figures/gaumf.jpg")
 ```
 <br><br>
 **Definition 10 (Gaussian MF)**. From Definition 4, the *full Gaussian* MF, herein notated as $\mu_{\curlywedge}$, is defined as follows:
