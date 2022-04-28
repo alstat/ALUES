@@ -26,7 +26,7 @@ test_that("Expecting Warning", expect_warning(suitability(LaoCaiLT, ALFALFASoil)
 # bias intervals
 l1 <- 0; l2 <- 0.25; l3 <- 0.5; l4 <- 0.75; l5 <- 1
 
-suit_ <- ALUES::suitability(LaoCaiLT, SOYASoil)
+suit_ <- suitability(LaoCaiLT, SOYASoil)
 right_tri <- function () {
   x <- LaoCaiLT[6,"CFragm"]; Min <- 0
   reqScore <- as.numeric(SOYASoil[1,2:7])
