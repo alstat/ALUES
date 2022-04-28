@@ -30,6 +30,7 @@
 #' library(ALUES)
 #' out <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
 #' out[["terrain"]]
+#' out[["water"]]
 #' 
 #' # Soil Overall Suitability
 #' head(overall_suit(out[["soil"]]))
