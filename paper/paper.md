@@ -50,8 +50,8 @@ There  are  two  main  APIs  (Application  Programming Interfaces) defined in th
 
 ![Soil suitability classes (N - not suitable, S3 - marginally suitable, S2 - suitable, S1 - highly suitable) of the land units of Marinduque, Philippines  for farming banana. \label{fig:classes}](classes.jpg){ width=100% }
 
-# Speed
-The core algorithms of the library are written in C++, which means ALUES is efficient enough in evaluating large sets of land units. The following shows the elapsed time of computing the suitability scores and classes for the land units of Marinduque, which has 881 units (or observations) in total; and, for the region of Lao Cai, Vietnam, which has 2928 land units.
+# Benchmark
+The core algorithms of the library are written in C++. The following shows the elapsed time of computing the suitability scores and classes for the land units of Marinduque, which has 881 units (or observations) in total; and, for the region of Lao Cai, Vietnam, which has 2928 land units.
 ```{r}
 > library(microbenchmark)
 > microbenchmark(
