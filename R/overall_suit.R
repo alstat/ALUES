@@ -27,34 +27,57 @@
 
 #' 
 #' @examples
-#' # The overall suitability can be computed using the `overall_suit` function, which takes an object of class suitability. For example,
+#' # The overall suitability can be computed using the `overall_suit` 
+#' # function, which takes an object of class suitability. For example,
 #' library(ALUES)
 #' banana_suit <- suit("banana", terrain=MarinduqueLT)
 #' class(banana_suit[["terrain"]])
 #' class(banana_suit[["soil"]])
 #' 
-#' # If we take a look at the output of both terrain and soil characteristics, we have:
-#' lapply(banana_suit[["terrain"]], function(x) head(x)) # lapply is used to show the head of each item in the list
+#' # If we take a look at the output of both terrain and soil 
+#' # characteristics, we have:
+#' 
+#' # lapply is used to show the head of each item in the list
+#' lapply(banana_suit[["terrain"]], function(x) head(x)) 
 #' lapply(banana_suit[["soil"]], function(x) head(x)) 
 #' 
-#' # There are no factors targetted for the terrain characteristics, that is why the returned value is a string error. Thus, only the soil characteristics can have an overall suitability, and is computed as follows:
+#' # There are no factors targetted for the terrain 
+#' # characteristics, that is why the returned value is a 
+#' # string error. Thus, only the soil characteristics can 
+#' # have an overall suitability, and is computed as follows:
 #' ovsuit <- overall_suit(banana_suit[["soil"]])
 #' head(ovsuit)
 #' 
-#' # By default, the `overall_suit` function uses minimum as a summary statistics, hence the 0 scores and N classes across land units. To adjust this to average aggregation, use the `method` argument to specify.
+#' # By default, the `overall_suit` function uses minimum 
+#' # as a summary statistics, hence the 0 scores and N 
+#' # classes across land units. To adjust this to average 
+#' # aggregation, use the `method` argument to specify.
 #' ovsuit <- overall_suit(banana_suit[["soil"]], method="average")
 #' head(ovsuit)
 #' 
 #' ## Intervals
-#' # By default, the `overall_suit` uses an equally spaced interval for the suitability classes, that is, N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), and S1 [0.75, 1]. This can be changed using the `interval` argument, for example
-#' ovsuit <- overall_suit(banana_suit[["soil"]], method="average", interval=c(0, 0.6, 0.7, 0.9, 1))
+#' # By default, the `overall_suit` uses an equally spaced 
+#' # interval for the suitability classes, that is, 
+#' # N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), 
+#' # and S1 [0.75, 1]. This can be changed using the 
+#' # `interval` argument, for example
+#' ovsuit <- overall_suit(banana_suit[["soil"]], method="average", 
+#' interval=c(0, 0.6, 0.7, 0.9, 1))
 #' head(ovsuit)
 #' 
-#' # The above code sets the suitability class intervals into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), and S1 [0.90, 1]. It should be emphasized that the `interval` argument cannot be set to `unbias` as in the case of the `interval` argument of the `suit` function. This follows from the fact that the `overall_suit` function does not use a membership function for computing the score, but an aggregation function.
+#' # The above code sets the suitability class intervals 
+#' # into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), 
+#' # and S1 [0.90, 1]. It should be emphasized that the 
+#' # `interval` argument cannot be set to `unbias` as in 
+#' # the case of the `interval` argument of the `suit` 
+#' # function. This follows from the fact that the 
+#' # `overall_suit` function does not use a membership 
+#' # function for computing the score, but an aggregation function.
 #' 
 #' # Other examples
 #' library(ALUES)
-#' out <- suit("ricebr", terrain=MarinduqueLT, water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
+#' out <- suit("ricebr", terrain=MarinduqueLT, 
+#' water=MarinduqueWater, temp=MarinduqueTemp, sow_month=1)
 #' lapply(out[["terrain"]], function(x) head(x))
 #' lapply(out[["water"]], function(x) head(x))
 #' 

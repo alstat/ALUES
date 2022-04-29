@@ -89,92 +89,186 @@ This function calculates the suitability scores and class of the land units.
 library(ALUES)
 banana_suit <- suit("banana", terrain=MarinduqueLT)
 names(banana_suit)
-# The warning above simply tells the user that one of the factor, CECc, in the target crop requirement, has parameter intervals for all suitability classes equal to 16, and the package used this value as the maximum constant for computing the suitability scores. For more, please refer to the **Article 2: Methodology used in ALUES** of the documentation.
-# The `suit` function returns a list of output of target characteristics, in this case `"terrain"` and `"soil"`. To access the output, simply run the following:
-lapply(banana_suit[["terrain"]], function(x) head(x)) # lapply is used to display the head of each items in the list
-lapply(banana_suit[["soil"]], function(x) head(x)
+
+# The warning above simply tells the user that one of the factor, 
+# CECc, in the target crop requirement, has parameter intervals for 
+# all suitability classes equal to 16, and the package used this value 
+# as the maximum constant for computing the suitability scores. For more,
+# please refer to the **Article 2: Methodology used in ALUES** of the documentation.
+# The `suit` function returns a list of output of target 
+# characteristics, in this case `"terrain"` and `"soil"`. To access 
+# the output, simply run the following:
+
+# lapply is used to display the head of each items in the list
+lapply(banana_suit[["terrain"]], function(x) head(x)) 
+lapply(banana_suit[["soil"]], function(x) head(x))
+
 # Each of these are lists, with the following names:
 names(banana_suit[["soil"]])
+
 # So that, to access the factors evaluated, simply run the following:
 banana_suit[["soil"]][["Factors Evaluated"]]
 
 ## Targetting Crop
-# There are 56 crops available in ALUES, and what we've illustrated above is for banana only. Other crops are listed below:
+# There are 56 crops available in ALUES, and what we've illustrated 
+# above is for banana only. Other crops are listed below:
 d <- utils::data(package = "ALUES")
 alues_data <- d$results[, "Item"]
-crop_data <- regmatches(alues_data, gregexpr(paste0("^[A-Z]{2,}", collapse = "|"), alues_data))
-crop_data <- unique(unlist(lapply(crop_data, function(x) substr(x, 1, nchar(x)-1))))
+crop_data <- regmatches(alues_data, gregexpr(paste0("^[A-Z]{2,}", 
+collapse = "|"), alues_data))
+crop_data <- unique(unlist(lapply(crop_data, 
+function(x) substr(x, 1, nchar(x)-1))))
 crop_data
 
-# These are the names for the input string for the `suit` function. For example, to target sweet potato the input string is not `"sweet potato"` but rather `potatosw`. That is,
-potato_suit1 <- suit("sweet potato", terrain=MarinduqueLT)
+# These are the names for the input string for the 
+# `suit` function. For example, to target sweet potato the 
+# input string is not `"sweet potato"` but rather `potatosw`. That is,
+# potato_suit1 <- suit("sweet potato", terrain=MarinduqueLT)
 potato_suit2 <- suit("potatosw", terrain=MarinduqueLT)
 
 ## Targetting Crop Factors
-# The idea of evaluating a land unit is to match the quality of the land against the standard value of the target factor. Therefore, if the crop does not include the factor you are targeting, then there won't be any matching to be done. For example, the land units evaluated above are those in Marindque, which has the following soil and terrain characteristics:
+# The idea of evaluating a land unit is to match the 
+# quality of the land against the standard value of the 
+# target factor. Therefore, if the crop does not include 
+# the factor you are targeting, then there won't be any 
+# matching to be done. For example, the land units evaluated 
+# above are those in Marindque, which has the following soil 
+# and terrain characteristics:
 head(MarinduqueLT)
-# The crop that we are trying to target is banana. The `suit` function simply require the user to input a string name for the target crop, and the function will look for the corresponding crop datasets. For example, for banana these are the crop requirements datasets for the four characteristics:
+# The crop that we are trying to target is banana. The `suit`
+# function simply require the user to input a string name for 
+# the target crop, and the function will look for the corresponding 
+# crop datasets. For example, for banana these are the crop 
+# requirements datasets for the four characteristics:
 BANANATerrain
 BANANASoil
 BANANAWater
 BANANATemp
-# These datasets are used by the `suit` function depending on the targetted characteristics of the input land units (specified by the user) on the said function. So for `banana_suit` object above, the target crop datasets were `BANANATerrain` and `BANANASoil` since the input land unit specified is `terrain=MarinduqueLT`. Further, the input land unit only targetted the soil factors and not the terrain factors, since none of the factors in `MarinduqueLT` matched with the factors in `BANANATerrain`. That is why, accessing the output for the terrain characteristics for the `banana_suit` object will return the following:
+# These datasets are used by the `suit` function depending 
+# on the targetted characteristics of the input land units 
+# (specified by the user) on the said function. So for 
+# `banana_suit` object above, the target crop datasets were 
+# `BANANATerrain` and `BANANASoil` since the input land unit 
+# specified is `terrain=MarinduqueLT`. Further, the input land 
+# unit only targetted the soil factors and not the terrain factors, 
+# since none of the factors in `MarinduqueLT` matched with the 
+# factors in `BANANATerrain`. That is why, accessing the output 
+# for the terrain characteristics for the `banana_suit` object 
+# will return the following:
 banana_suit[["terrain"]]
 
 ## Targetting Multiple Characteristics
-# The example above only targetted the terrain and soil characteristics, but the `suit` function allows user to also target water and temp simultaneously. For examples, we can evaluate the land units of Lao Cai, Vietnam for all three characteristics as follows for irrigated rice (`riceiw``):
-riceiw_multi <- suit("riceiw", terrain=LaoCaiLT, water=LaoCaiWater, temp=LaoCaiTemp, sow_month=10)
+# The example above only targetted the terrain and soil 
+# characteristics, but the `suit` function allows user to 
+# also target water and temp simultaneously. For examples, 
+# we can evaluate the land units of Lao Cai, Vietnam for all 
+# three characteristics as follows for irrigated rice (`riceiw``):
+riceiw_multi <- suit("riceiw", terrain=LaoCaiLT, water=LaoCaiWater, 
+temp=LaoCaiTemp, sow_month=10)
 names(riceiw_multi)
-# It is necessary to specify the sowing month when specifying the water and temperature characteristics of the input land units. In this case, we are saying that the first sowing month for both water and temperature characteristics correspond to October (*See* Article 6 for more on this). No factors were targetted by input land unit for banana for terrain, water and temperature characteristics.
+
+# It is necessary to specify the sowing month when specifying 
+# the water and temperature characteristics of the input land 
+# units. In this case, we are saying that the first sowing 
+# month for both water and temperature characteristics 
+# correspond to October (*See* Article 6 for more on this). 
+# No factors were targetted by input land unit for banana for
+# terrain, water and temperature characteristics.
 lapply(riceiw_multi[["terrain"]], function(x) head(x))
 lapply(riceiw_multi[["soil"]], function(x) head(x))
 lapply(riceiw_multi[["water"]], function(x) head(x))
 lapply(riceiw_multi[["temp"]], function(x) head(x))
+
 # Only the head (first six) of the output of the items are shown.
 
 ## Membership Function
-There are three membership functions (MFs) available in the `suit` function, namely *triangular*, *trapezoidal* and *Gaussian*. For example, the following computes the suitability scores and classes using trapezoidal MF.
+# There are three membership functions (MFs) available in 
+# the `suit` function, namely *triangular*, *trapezoidal* 
+# and *Gaussian*. For example, the following computes the 
+# suitability scores and classes using trapezoidal MF.
 banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal")
 head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
 
 ## Intervals
-# Another option available in the `suit` function is the `interval`. By default, ALUES uses an equally spaced suitability class intervals for deriving the suitability class. That is, for N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), and S1 [0.75, 1].
+# Another option available in the `suit` function is the 
+# `interval`. By default, ALUES uses an equally spaced 
+# suitability class intervals for deriving the suitability 
+# class. That is, for N [0, 0.25), S3 [0.25, 0.50), 
+# S2 [0.50, 0.75), and S1 [0.75, 1].
 
 ### Custom Intervals
 # Users can modify the default equally spaced intervals, for example:
-banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval=c(0, 0.3, 0.6, 0.9, 1))
+banana_suit <- suit("banana", terrain=MarinduqueLT, 
+mf="trapezoidal", interval=c(0, 0.3, 0.6, 0.9, 1))
 head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
-# The above code sets the new suitability class intervals into: N [0, 0.3), S3 [0.3, 0.6), S2 [0.6, 0.9), and S1 [0.9, 1].
+# The above code sets the new suitability class intervals 
+# into: N [0, 0.3), S3 [0.3, 0.6), S2 [0.6, 0.9), and S1 [0.9, 1].
 
 ### Unbias Intervals
-# The problem with the fixed interval is that the said intervals does not take into account the shape of the membership function and the spacing of the parameter interval limits (*See* Article 2 for parameter intervals). Custom intervals might be able to capture this if the user computed the interval limits manually, but ALUES provides an option just for this, by setting `interval="unbias"`. That is,
-banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias")
+# The problem with the fixed interval is that the said 
+# intervals does not take into account the shape of the 
+# membership function and the spacing of the parameter 
+# interval limits (*See* Article 2 for parameter intervals). 
+# Custom intervals might be able to capture this if the user 
+# computed the interval limits manually, but ALUES provides 
+# an option just for this, by setting `interval="unbias"`. 
+# That is,
+banana_suit <- suit("banana", terrain=MarinduqueLT, 
+mf="trapezoidal", interval="unbias")
 head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
-# By setting the `interval="unbias"`, the `suit` function will generate a different likely unequally spaced suitability class intervals, but the interval limits are mathematically correct, in terms of the mapping of the parameter interval limits to suitability class limits via the membership function.
+# By setting the `interval="unbias"`, the `suit` 
+# function will generate a different likely unequally 
+# spaced suitability class intervals, but the interval 
+# limits are mathematically correct, in terms of the mapping
+# of the parameter interval limits to suitability class limits 
+# via the membership function.
 
 ## Maximum and Minimum
-# Another parameter that can be set for `suit` are the `minimum` and `maximum`. These are the constants used by the membership function for computing the suitability score.
-banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias")
+# Another parameter that can be set for `suit` are the 
+# `minimum` and `maximum`. These are the constants used 
+# by the membership function for computing the suitability 
+# score.
+banana_suit <- suit("banana", terrain=MarinduqueLT, 
+mf="trapezoidal", interval="unbias")
 banana_suit[["soil"]][["Factors Evaluated"]]
-# From the above result, there are four factors targetted by the input land unit, these are CFragm, CECc, pHH2O and SoilTe. Suppose we know the maximum value that these factors can take, say 60 for CFragm, 20 for CECc, 9 for pHH2O, and 10 for SoilTe. We can specify these as follows:
-banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal", interval="unbias", maximum=c(60, 20, 9, 10))
+
+# From the above result, there are four factors targetted
+# by the input land unit, these are CFragm, CECc, pHH2O and 
+# SoilTe. Suppose we know the maximum value that these factors 
+# can take, say 60 for CFragm, 20 for CECc, 9 for pHH2O, and 10
+# for SoilTe. We can specify these as follows:
+banana_suit <- suit("banana", terrain=MarinduqueLT, mf="trapezoidal",
+interval="unbias", maximum=c(60, 20, 9, 10))
 banana_suit
-# The result gave us an error. We understand the error for terrain characteristics, but for soil it says that the argument `maximum` must be equal in length with the target factors specified in the input land unit datasets. We know that there should be 4 factors, but upon checking, we see that the `MarinduqueLT` also have Lon and Lat columns, which ALUES assumes to be a target factor as well. Indeed, we need to exclude these columns (those that are not the target factors, rather spatial variables) when specifying `minimum` or `maximum` constants. Thus, it should be:
+# The result gave us an error. We understand the error 
+# for terrain characteristics, but for soil it says that
+# the argument `maximum` must be equal in length with the
+# target factors specified in the input land unit datasets.
+# We know that there should be 4 factors, but upon checking, 
+# we see that the `MarinduqueLT` also have Lon and Lat columns,
+# which ALUES assumes to be a target factor as well. Indeed, we 
+# need to exclude these columns (those that are not the target 
+# factors, rather spatial variables) when specifying `minimum` 
+# or `maximum` constants. Thus, it should be:
 MarinduqueLT2 <- MarinduqueLT[, 3:ncol(MarinduqueLT)]
-banana_suit <- suit("banana", terrain=MarinduqueLT2, mf="trapezoidal", interval="unbias", maximum=c(60, 20, 9, 10))
+banana_suit <- suit("banana", terrain=MarinduqueLT2, 
+mf="trapezoidal", interval="unbias", maximum=c(60, 20, 9, 10))
 head(banana_suit[["soil"]][["Suitability Score"]])
 head(banana_suit[["soil"]][["Suitability Class"]])
 
 ## Sigma of Gaussian
-# The `sigma` argument is used to specify the scale of the Gaussian membership function. That is, it is only applicable for `mf="gaussian"`.
+# The `sigma` argument is used to specify the scale of the 
+# Gaussian membership function. That is, it is only 
+# applicable for `mf="gaussian"`.
 
 # Other examples
 library(ALUES)
 
-rice_suit <- suit("ricebr", water=MarinduqueWater, temp=MarinduqueTemp, sow_month = 1)
+rice_suit <- suit("ricebr", water=MarinduqueWater, 
+temp=MarinduqueTemp, sow_month = 1)
 lapply(rice_suit[["water"]], function(x) head(x)) # access results for water suitability
 lapply(rice_suit[["temp"]], function(x) head(x)) # access results for temperature suitability
 rice_suit <- suit("ricebr", terrain=MarinduqueLT)

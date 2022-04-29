@@ -41,10 +41,10 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
 2. [Arnold R. Salvacion](https://github.com/arsalvacion/)
     * email: arsalvacion@gmail.com
     * blog: http://r-nold.blogspot.com/
-    * role: supervisor and domain experts on agriculture, and provider of all the necessary articles 
+    * role: supervisor and domain expert on agriculture, and provider of all the necessary articles 
 <br><br>
 3. Bui Tan Yen
-    * role: developer of the LUSET, which was the basis of ALUES
+    * role: developer of the LUSET, which is the basis of ALUES
     
 
 
