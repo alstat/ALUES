@@ -18,6 +18,11 @@ banana_suit <- suit("banana", terrain=MarinduqueLT)
 class(banana_suit[["terrain"]])
 class(banana_suit[["soil"]])
 ```
+If we take a look at the output of both terrain and soil characteristics, we have:
+```{r}
+lapply(banana_suit[["terrain"]], function(x) head(x)) # lapply is used to show the head of each item in the list
+lapply(banana_suit[["soil"]], function(x) head(x)) 
+```
 There are no factors targetted for the terrain characteristics, that is why the returned value is a string error. Thus, only the soil characteristics can have an overall suitability, and is computed as follows:
 ```{r}
 ovsuit <- overall_suit(banana_suit[["soil"]])

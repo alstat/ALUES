@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Article 4: Understanding the overall_suit
 function</h1>
             
-            <h4 data-toc-skip class="date">2022-04-28</h4>
+            <h4 data-toc-skip class="date">2022-04-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/HEAD/vignettes/a04_understanding_overall_suit.Rmd" class="external-link"><code>vignettes/a04_understanding_overall_suit.Rmd</code></a></small>
       <div class="hidden name"><code>a04_understanding_overall_suit.Rmd</code></div>
@@ -133,11 +133,56 @@ suitability. For example,</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "suitability"</span></code></pre>
+<p>If we take a look at the output of both terrain and soil
+characteristics, we have:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># lapply is used to show the head of each item in the list</span></code></pre></div>
+<pre><code><span class="co">## [[1]]</span>
+<span class="co">## [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</span></code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<pre><code><span class="co">## $`Factors Evaluated`</span>
+<span class="co">## [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"</span>
+<span class="co">## </span>
+<span class="co">## $`Suitability Score`</span>
+<span class="co">##      CFragm   CECc pHH2O SoilTe</span>
+<span class="co">## 1 0.8533333 0.7500     0   0.96</span>
+<span class="co">## 2 0.8800000 0.7500     0   0.96</span>
+<span class="co">## 3 0.8666667 0.7500     0   0.96</span>
+<span class="co">## 4 0.8666667 0.7500     0   0.96</span>
+<span class="co">## 5 0.8400000 0.7500     0   0.96</span>
+<span class="co">## 6 0.8533333 0.8125     0   0.96</span>
+<span class="co">## </span>
+<span class="co">## $`Suitability Class`</span>
+<span class="co">##   CFragm CECc pHH2O SoilTe</span>
+<span class="co">## 1     S1   S1     N     S1</span>
+<span class="co">## 2     S1   S1     N     S1</span>
+<span class="co">## 3     S1   S1     N     S1</span>
+<span class="co">## 4     S1   S1     N     S1</span>
+<span class="co">## 5     S1   S1     N     S1</span>
+<span class="co">## 6     S1   S1     N     S1</span>
+<span class="co">## </span>
+<span class="co">## $`Factors' Minimum Values`</span>
+<span class="co">## CFragm   CECc  pHH2O SoilTe </span>
+<span class="co">##      0      0      0      0 </span>
+<span class="co">## </span>
+<span class="co">## $`Factors' Maximum Values`</span>
+<span class="co">## CFragm   CECc  pHH2O SoilTe </span>
+<span class="co">##  75.00  16.00   8.94  12.50 </span>
+<span class="co">## </span>
+<span class="co">## $`Factors' Weights`</span>
+<span class="co">## [1] 3 3 3 2</span>
+<span class="co">## </span>
+<span class="co">## $`Crop Evaluated`</span>
+<span class="co">## [1] "BANANASoil"</span>
+<span class="co">## </span>
+<span class="co">## $Warning</span>
+<span class="co">## [1] "maximum is set to 16 for factor CECc since all parameter intervals are equal."</span></code></pre>
 <p>There are no factors targetted for the terrain characteristics, that
 is why the returned value is a string error. Thus, only the soil
 characteristics can have an overall suitability, and is computed as
 follows:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##   Score Class</span>
@@ -151,7 +196,7 @@ follows:</p>
 summary statistics, hence the 0 scores and N classes across land units.
 To adjust this to average aggregation, use the <code>method</code>
 argument to specify.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##       Score Class</span>
@@ -168,7 +213,7 @@ argument to specify.</p>
 interval for the suitability classes, that is, N [0, 0.25), S3 [0.25,
 0.50), S2 [0.50, 0.75), and S1 [0.75, 1]. This can be changed using the
 <code>interval</code> argument, for example</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/overall_suit.html">overall_suit</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span>, interval<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##       Score Class</span>
