@@ -12,7 +12,7 @@ International Rice Research Institute ([IRRI](http://irri.org/)) methodology for
 inspired by similar tool for land evaluation, Land Use Suitability Evaluation Tool (LUSET). The package
 uses fuzzy logic approach to evaluate land suitability of a particular area based on inputs such as rainfall,
 temperature, topography, and soil properties. The membership functions used for fuzzy modeling are the
-following: _Triangular_, _Trapezoidal_ and _Gaussian_. The methods for computing the overall suitability of a particular area are also included, and these are the _Minimum_, _Maximum_ and _Average_. Finally, ALUES is a highly optimized library with core algorithms written in C++.
+following: _Triangular_, _Trapezoidal_ and _Gaussian_. The methods for computing the overall suitability of a particular area are also included, and these are the _Minimum_, _Maximum_ and _Average_. Finally, ALUES is a highly optimized library with core algorithms written in C++. 
 
 ## Statement of Need
 Several computer systems have been developed for agricultural land suitability assessments. Examples of these are ALES ([Johnson & Cramb, 1991](https://doi.org/10.1111/j.1475-2743.1991.tb00881.x)), LEIGIS ([Kalogirou, 2002](https://doi.org/10.1016/S0198-9715(01)00031-X)) and ALSE ([Elsheikh et al., 2013](https://doi.org/10.1016/j.compag.2013.02.003)). However, most of these systems are either proprietary or lacking features for land suitability assessments. It is therefore the goal of this software, ALUES, to address some of the limitations of the aforementioned software.
