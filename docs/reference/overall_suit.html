@@ -112,7 +112,8 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># The overall suitability can be computed using the `overall_suit` function, which takes an object of class suitability. For example,</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># The overall suitability can be computed using the `overall_suit` </span></span>
+<span class="r-in"><span class="co"># function, which takes an object of class suitability. For example,</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/" class="external-link">ALUES</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
@@ -121,8 +122,11 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "suitability"</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># If we take a look at the output of both terrain and soil characteristics, we have:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># lapply is used to show the head of each item in the list</span></span>
+<span class="r-in"><span class="co"># If we take a look at the output of both terrain and soil </span></span>
+<span class="r-in"><span class="co"># characteristics, we have:</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># lapply is used to show the head of each item in the list</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -166,7 +170,10 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "maximum is set to 16 for factor CECc since all parameter intervals are equal."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># There are no factors targetted for the terrain characteristics, that is why the returned value is a string error. Thus, only the soil characteristics can have an overall suitability, and is computed as follows:</span></span>
+<span class="r-in"><span class="co"># There are no factors targetted for the terrain </span></span>
+<span class="r-in"><span class="co"># characteristics, that is why the returned value is a </span></span>
+<span class="r-in"><span class="co"># string error. Thus, only the soil characteristics can </span></span>
+<span class="r-in"><span class="co"># have an overall suitability, and is computed as follows:</span></span>
 <span class="r-in"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu">overall_suit</span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Score Class</span>
@@ -177,7 +184,10 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     0     N</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     0     N</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># By default, the `overall_suit` function uses minimum as a summary statistics, hence the 0 scores and N classes across land units. To adjust this to average aggregation, use the `method` argument to specify.</span></span>
+<span class="r-in"><span class="co"># By default, the `overall_suit` function uses minimum </span></span>
+<span class="r-in"><span class="co"># as a summary statistics, hence the 0 scores and N </span></span>
+<span class="r-in"><span class="co"># classes across land units. To adjust this to average </span></span>
+<span class="r-in"><span class="co"># aggregation, use the `method` argument to specify.</span></span>
 <span class="r-in"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu">overall_suit</span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Score Class</span>
@@ -189,8 +199,13 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6656566    S2</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## Intervals</span></span>
-<span class="r-in"><span class="co"># By default, the `overall_suit` uses an equally spaced interval for the suitability classes, that is, N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), and S1 [0.75, 1]. This can be changed using the `interval` argument, for example</span></span>
-<span class="r-in"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu">overall_suit</span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span>, interval<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="co"># By default, the `overall_suit` uses an equally spaced </span></span>
+<span class="r-in"><span class="co"># interval for the suitability classes, that is, </span></span>
+<span class="r-in"><span class="co"># N [0, 0.25), S3 [0.25, 0.50), S2 [0.50, 0.75), </span></span>
+<span class="r-in"><span class="co"># and S1 [0.75, 1]. This can be changed using the </span></span>
+<span class="r-in"><span class="co"># `interval` argument, for example</span></span>
+<span class="r-in"><span class="va">ovsuit</span> <span class="op">&lt;-</span> <span class="fu">overall_suit</span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, method<span class="op">=</span><span class="st">"average"</span>, </span>
+<span class="r-in">interval<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ovsuit</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Score Class</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.6505051    S3</span>
@@ -200,11 +215,19 @@ suitable, N), 20% - 50% (Marginally Suitable, S3), 50% - 80% (Moderately Suitabl
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6472727    S3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6656566    S3</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># The above code sets the suitability class intervals into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), and S1 [0.90, 1]. It should be emphasized that the `interval` argument cannot be set to `unbias` as in the case of the `interval` argument of the `suit` function. This follows from the fact that the `overall_suit` function does not use a membership function for computing the score, but an aggregation function.</span></span>
+<span class="r-in"><span class="co"># The above code sets the suitability class intervals </span></span>
+<span class="r-in"><span class="co"># into: N [0, 0.60), S3 [0.60, 0.70), S2 [0.70, 0.90), </span></span>
+<span class="r-in"><span class="co"># and S1 [0.90, 1]. It should be emphasized that the </span></span>
+<span class="r-in"><span class="co"># `interval` argument cannot be set to `unbias` as in </span></span>
+<span class="r-in"><span class="co"># the case of the `interval` argument of the `suit` </span></span>
+<span class="r-in"><span class="co"># function. This follows from the fact that the </span></span>
+<span class="r-in"><span class="co"># `overall_suit` function does not use a membership </span></span>
+<span class="r-in"><span class="co"># function for computing the score, but an aggregation function.</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Other examples</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/" class="external-link">ALUES</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="suit.html">suit</a></span><span class="op">(</span><span class="st">"ricebr"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, water<span class="op">=</span><span class="va">MarinduqueWater</span>, temp<span class="op">=</span><span class="va">MarinduqueTemp</span>, sow_month<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="suit.html">suit</a></span><span class="op">(</span><span class="st">"ricebr"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, </span>
+<span class="r-in">water<span class="op">=</span><span class="va">MarinduqueWater</span>, temp<span class="op">=</span><span class="va">MarinduqueTemp</span>, sow_month<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">out</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>

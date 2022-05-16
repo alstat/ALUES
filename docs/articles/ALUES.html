@@ -106,7 +106,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
             
-            <h4 data-toc-skip class="date">2022-04-29</h4>
+            <h4 data-toc-skip class="date">2022-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/alstat/ALUES/blob/HEAD/vignettes/ALUES.Rmd" class="external-link"><code>vignettes/ALUES.Rmd</code></a></small>
       <div class="hidden name"><code>ALUES.Rmd</code></div>
@@ -177,7 +177,7 @@ which has 2928 land units.</p>
 <span class="co">##                                                                           expr</span>
 <span class="co">##  suppressWarnings(suit("banana", terrain = MarinduqueLT, interval = "unbias"))</span>
 <span class="co">##       min       lq     mean   median       uq      max neval</span>
-<span class="co">##  6.965818 7.201322 8.131857 7.536995 8.316707 15.08373   100</span></code></pre>
+<span class="co">##  11.76042 14.06422 18.37052 16.58003 20.66647 40.17528   100</span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/suit.html">suit</a></span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span><span class="op">)</span>
@@ -185,8 +185,8 @@ which has 2928 land units.</p>
 <pre><code><span class="co">## Unit: milliseconds</span>
 <span class="co">##                                                                       expr</span>
 <span class="co">##  suppressWarnings(suit("banana", terrain = LaoCaiLT, interval = "unbias"))</span>
-<span class="co">##       min       lq     mean   median      uq      max neval</span>
-<span class="co">##  14.97354 15.64077 17.03917 16.53847 17.8943 23.32105   100</span></code></pre>
+<span class="co">##       min      lq     mean   median       uq      max neval</span>
+<span class="co">##  26.17411 29.9859 34.07139 32.95897 38.06239 49.65379   100</span></code></pre>
 </div>
   </div>
 

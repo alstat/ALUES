@@ -5,6 +5,7 @@
 [![codecov](https://codecov.io/gh/alstat/ALUES/branch/master/graph/badge.svg?token=UE1J3JZK48)](https://app.codecov.io/gh/alstat/ALUES/)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://alstat.github.io/ALUES/)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/alstat/ALUES/blob/master/LICENSE.md)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.04228/status.svg)](https://doi.org/10.21105/joss.04228)
 <!-- badges: end -->
 
 Agricultural Land Use Evaluation System (ALUES) is an R package that evaluates land suitability for
@@ -31,6 +32,22 @@ library(devtools)
 install_github("alstat/ALUES")
 ```
 We want to hear some feedbacks, so if you have any suggestion or issues regarding this package, please do submit it [here](https://github.com/alstat/ALUES/issues/). As for those who would want to contribute please read the [CONTRIBUTING.md](https://github.com/alstat/ALUES/blob/master/CONTRIBUTING.md) file.
+
+## Citation
+```
+@article{Asaad2022,
+  doi = {10.21105/joss.04228},
+  url = {https://doi.org/10.21105/joss.04228},
+  year = {2022},
+  publisher = {The Open Journal},
+  volume = {7},
+  number = {73},
+  pages = {4228},
+  author = {Al-Ahmadgaid B. Asaad and Arnold R. Salvacion and Bui Tan Yen},
+  title = {ALUES: R package for Agricultural Land Use Evaluation System},
+  journal = {Journal of Open Source Software}
+}
+```
 
 ## Authors (with Contribution)
 1. [Al-Ahmadgaid B. Asaad](https://github.com/alstat/) (Maintainer)

@@ -161,7 +161,611 @@ with the following components:</p><ul><li><p><code>"Factors Evaluated"</code> - 
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/" class="external-link">ALUES</a></span><span class="op">)</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "terrain" "soil"   </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># The warning above simply tells the user that one of the factor, </span></span>
+<span class="r-in"><span class="co"># CECc, in the target crop requirement, has parameter intervals for </span></span>
+<span class="r-in"><span class="co"># all suitability classes equal to 16, and the package used this value </span></span>
+<span class="r-in"><span class="co"># as the maximum constant for computing the suitability scores. For more,</span></span>
+<span class="r-in"><span class="co"># please refer to the **Article 2: Methodology used in ALUES** of the documentation.</span></span>
+<span class="r-in"><span class="co"># The `suit` function returns a list of output of target </span></span>
+<span class="r-in"><span class="co"># characteristics, in this case `"terrain"` and `"soil"`. To access </span></span>
+<span class="r-in"><span class="co"># the output, simply run the following:</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># lapply is used to display the head of each items in the list</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      CFragm   CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8533333 0.7500     0   0.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.8800000 0.7500     0   0.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.8666667 0.7500     0   0.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.8666667 0.7500     0   0.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.8400000 0.7500     0   0.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.8533333 0.8125     0   0.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CFragm   CECc  pHH2O SoilTe </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0      0      0      0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CFragm   CECc  pHH2O SoilTe </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  75.00  16.00   8.94  12.50 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 3 3 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "BANANASoil"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Warning</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "maximum is set to 16 for factor CECc since all parameter intervals are equal."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Each of these are lists, with the following names:</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Factors Evaluated"       "Suitability Score"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Suitability Class"       "Factors' Minimum Values"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "Factors' Maximum Values" "Factors' Weights"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "Crop Evaluated"          "Warning"                </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># So that, to access the factors evaluated, simply run the following:</span></span>
+<span class="r-in"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Factors Evaluated"</span><span class="op">]</span><span class="op">]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Targetting Crop</span></span>
+<span class="r-in"><span class="co"># There are 56 crops available in ALUES, and what we've illustrated </span></span>
+<span class="r-in"><span class="co"># above is for banana only. Other crops are listed below:</span></span>
+<span class="r-in"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"ALUES"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">alues_data</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">results</span><span class="op">[</span>, <span class="st">"Item"</span><span class="op">]</span></span>
+<span class="r-in"><span class="va">crop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/regmatches.html" class="external-link">regmatches</a></span><span class="op">(</span><span class="va">alues_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gregexpr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"^[A-Z]{2,}"</span>, </span>
+<span class="r-in">collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>, <span class="va">alues_data</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">crop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">crop_data</span>, </span>
+<span class="r-in"><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">crop_data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "ALFALFA"    "AVOCADO"    "BAMBOO"     "BANANA"     "BARLEY"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "BEANCA"     "BEANS"      "CABBAGE"    "CARROTS"    "CASHEW"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "CASSAVA"    "CHICKPEA"   "CINNAMON"   "CITRUS"     "COCOA"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "COCONUT"    "COFFEEAR"   "COFFEERO"   "COTTON"     "COWPEA"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "CUCUMBER"   "GROUNDNUTS" "GUAVA"      "LONGAN"     "MAIZE"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "MANGO"      "MILLETS"    "OILPALM"    "OLIVES"     "ONION"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "PAPAYA"     "PEACH"      "PEAR"       "PEA"        "PEPPERGR"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "PERSIMMON"  "PINEAPPLE"  "PLUM"       "POTATOSW"   "POTATO"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "RICEBR"     "RICEIW"     "RICENF"     "RICEUR"     "RUBBER"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "SAFFLOWER"  "SESAME"     "SORGHUM"    "SOYA"       "SUGARCANE" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "SUNFLOWER"  "TEA"        "TOBACCO"    "TOMATO"     "WATERMELON"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "WHEAT"     </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># These are the names for the input string for the </span></span>
+<span class="r-in"><span class="co"># `suit` function. For example, to target sweet potato the </span></span>
+<span class="r-in"><span class="co"># input string is not `"sweet potato"` but rather `potatosw`. That is,</span></span>
+<span class="r-in"><span class="co"># potato_suit1 &lt;- suit("sweet potato", terrain=MarinduqueLT)</span></span>
+<span class="r-in"><span class="va">potato_suit2</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"potatosw"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Targetting Crop Factors</span></span>
+<span class="r-in"><span class="co"># The idea of evaluating a land unit is to match the </span></span>
+<span class="r-in"><span class="co"># quality of the land against the standard value of the </span></span>
+<span class="r-in"><span class="co"># target factor. Therefore, if the crop does not include </span></span>
+<span class="r-in"><span class="co"># the factor you are targeting, then there won't be any </span></span>
+<span class="r-in"><span class="co"># matching to be done. For example, the land units evaluated </span></span>
+<span class="r-in"><span class="co"># above are those in Marindque, which has the following soil </span></span>
+<span class="r-in"><span class="co"># and terrain characteristics:</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Lat      Lon CECc pHH2O CFragm SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 121.8792 13.52084   12    53     11     12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 121.8875 13.52084   12    52      9     12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 121.8958 13.52084   12    53     10     12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 121.9375 13.52084   12    52     10     12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 121.9458 13.52084   12    54     12     12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 121.9542 13.52084   13    54     11     12</span>
+<span class="r-in"><span class="co"># The crop that we are trying to target is banana. The `suit`</span></span>
+<span class="r-in"><span class="co"># function simply require the user to input a string name for </span></span>
+<span class="r-in"><span class="co"># the target crop, and the function will look for the corresponding </span></span>
+<span class="r-in"><span class="co"># crop datasets. For example, for banana these are the crop </span></span>
+<span class="r-in"><span class="co"># requirements datasets for the four characteristics:</span></span>
+<span class="r-in"><span class="va">BANANATerrain</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       code s3_a s2_a s1_a s1_b s2_b s3_b  wts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Slope1  6.0    4    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Slope2 16.0    8    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Slope3 30.0   16    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Flood  2.5    2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Drainage  4.0    3    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   SlopeD  3.0    2    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1</span>
+<span class="r-in"><span class="va">BANANASoil</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       code s3_a s2_a  s1_a s1_b s2_b s3_b wts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CFragm 55.0 35.0  15.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  SoilDpt 50.0 75.0 100.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    CaCO3 15.0 10.0   0.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Gyps 10.0  4.0   0.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     CECc 16.0 16.0  16.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       BS 19.9 20.0  35.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   SumBCs  2.8  2.8   4.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    pHH2O  4.5  5.2   5.6  7.5    8  8.2   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       OC  0.7  0.8   1.5 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   ECedS  6.0  4.0   2.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     ESP 12.0  8.0   4.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  SoilTe  2.0  4.0   9.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   2</span>
+<span class="r-in"><span class="va">BANANAWater</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       code s3_a s2_a s1_a s1_b s2_b s3_b  wts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     WyAv 1000 1250 1500 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 WmDryLen    6    4    3 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="r-in"><span class="va">BANANATemp</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        code s3_a s2_a s1_a s1_b s2_b s3_b  wts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   TyMaxAv   14   16   18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   TmMinXm    2    8   15 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 TmMinXmAb   -2    0    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+<span class="r-in"><span class="co"># These datasets are used by the `suit` function depending </span></span>
+<span class="r-in"><span class="co"># on the targetted characteristics of the input land units </span></span>
+<span class="r-in"><span class="co"># (specified by the user) on the said function. So for </span></span>
+<span class="r-in"><span class="co"># `banana_suit` object above, the target crop datasets were </span></span>
+<span class="r-in"><span class="co"># `BANANATerrain` and `BANANASoil` since the input land unit </span></span>
+<span class="r-in"><span class="co"># specified is `terrain=MarinduqueLT`. Further, the input land </span></span>
+<span class="r-in"><span class="co"># unit only targetted the soil factors and not the terrain factors, </span></span>
+<span class="r-in"><span class="co"># since none of the factors in `MarinduqueLT` matched with the </span></span>
+<span class="r-in"><span class="co"># factors in `BANANATerrain`. That is why, accessing the output </span></span>
+<span class="r-in"><span class="co"># for the terrain characteristics for the `banana_suit` object </span></span>
+<span class="r-in"><span class="co"># will return the following:</span></span>
+<span class="r-in"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Targetting Multiple Characteristics</span></span>
+<span class="r-in"><span class="co"># The example above only targetted the terrain and soil </span></span>
+<span class="r-in"><span class="co"># characteristics, but the `suit` function allows user to </span></span>
+<span class="r-in"><span class="co"># also target water and temp simultaneously. For examples, </span></span>
+<span class="r-in"><span class="co"># we can evaluate the land units of Lao Cai, Vietnam for all </span></span>
+<span class="r-in"><span class="co"># three characteristics as follows for irrigated rice (`riceiw``):</span></span>
+<span class="r-in"><span class="va">riceiw_multi</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"riceiw"</span>, terrain<span class="op">=</span><span class="va">LaoCaiLT</span>, water<span class="op">=</span><span class="va">LaoCaiWater</span>, </span>
+<span class="r-in">temp<span class="op">=</span><span class="va">LaoCaiTemp</span>, sow_month<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">riceiw_multi</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "terrain" "soil"    "water"   "temp"   </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># It is necessary to specify the sowing month when specifying </span></span>
+<span class="r-in"><span class="co"># the water and temperature characteristics of the input land </span></span>
+<span class="r-in"><span class="co"># units. In this case, we are saying that the first sowing </span></span>
+<span class="r-in"><span class="co"># month for both water and temperature characteristics </span></span>
+<span class="r-in"><span class="co"># correspond to October (*See* Article 6 for more on this). </span></span>
+<span class="r-in"><span class="co"># No factors were targetted by input land unit for banana for</span></span>
+<span class="r-in"><span class="co"># terrain, water and temperature characteristics.</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">riceiw_multi</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Flood"  "SlopeD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Flood SlopeD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.75   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.75   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.75   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.75   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.75   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.50   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Flood SlopeD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    S2     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Flood SlopeD </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0      0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Flood SlopeD </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      4      4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEIWTerrain"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">riceiw_multi</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CFragm"  "SoilDpt" "CECc"    "BS"      "SumBCs"  "OC"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      CFragm   SoilDpt      CECc        BS    SumBCs        OC     pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.0000000 0.4390244 0.9789474 0.7692308 0.6346154 0.7368421 0.7883212   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.0000000 0.4390244 0.9789474 0.7692308 0.6346154 0.7368421 0.7883212   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1.0000000 0.4390244 0.9789474 0.7692308 0.6346154 0.7368421 0.7883212   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1.0000000 0.4390244 0.9789474 0.7692308 0.6346154 0.7368421 0.7883212   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1.0000000 0.4390244 0.9789474 0.7692308 0.6346154 0.7368421 0.7883212   0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.9019608 0.6341463 0.0000000 0.5341538 0.6019231 0.6368421 0.7737226   0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm SoilDpt CECc BS SumBCs OC pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     S1      S3   S1 S1     S2 S2    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1      S3   S1 S1     S2 S2    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     S1      S3   S1 S1     S2 S2    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     S1      S3   S1 S1     S2 S2    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     S1      S3   S1 S1     S2 S2    S1     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     S1      S2    N S2     S2 S2    S1     S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  CFragm SoilDpt    CECc      BS  SumBCs      OC </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       0       0       0       0       0       0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  CFragm SoilDpt    CECc      BS  SumBCs      OC </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    51.0   102.5    19.0    65.0     5.2     1.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 3 3 2 3 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEIWSoil"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">riceiw_multi</span><span class="op">[[</span><span class="st">"water"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Oct" "Nov" "Dec" "Jan"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Oct       Nov        Dec       Jan</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.3665481 0.1949630 0.06068148 0.1170857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4050074 0.2246519 0.09386667 0.2040571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.3820444 0.2175704 0.08654815 0.1921714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.2256000 0.2367111 0.03573333 0.1185143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.2422222 0.2302519 0.04157037 0.1266857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.3205333 0.2062222 0.07051852 0.1724000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Oct Nov Dec Jan</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  S3   N   N   N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  S3   N   N   N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  S3   N   N   N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   N   N   N   N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   N   N   N   N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  S3   N   N   N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Oct Nov Dec Jan </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0   0   0   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Oct   Nov   Dec   Jan </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 880.0 880.0 880.0 714.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEIWWater"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">riceiw_multi</span><span class="op">[[</span><span class="st">"temp"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nov"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Nov</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5283333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.5330000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.5410000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6453333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6306667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.5653333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Nov</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  S2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  S2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  S2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  S2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  S2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  S2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nov </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nov </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  52 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEIWTemp"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Only the head (first six) of the output of the items are shown.</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Membership Function</span></span>
+<span class="r-in"><span class="co"># There are three membership functions (MFs) available in </span></span>
+<span class="r-in"><span class="co"># the `suit` function, namely *triangular*, *trapezoidal* </span></span>
+<span class="r-in"><span class="co"># and *Gaussian*. For example, the following computes the </span></span>
+<span class="r-in"><span class="co"># suitability scores and classes using trapezoidal MF.</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm   CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      1 0.8125     0      1</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     S1   S1     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     S1   S1     N     S1</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Intervals</span></span>
+<span class="r-in"><span class="co"># Another option available in the `suit` function is the </span></span>
+<span class="r-in"><span class="co"># `interval`. By default, ALUES uses an equally spaced </span></span>
+<span class="r-in"><span class="co"># suitability class intervals for deriving the suitability </span></span>
+<span class="r-in"><span class="co"># class. That is, for N [0, 0.25), S3 [0.25, 0.50), </span></span>
+<span class="r-in"><span class="co"># S2 [0.50, 0.75), and S1 [0.75, 1].</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">### Custom Intervals</span></span>
+<span class="r-in"><span class="co"># Users can modify the default equally spaced intervals, for example:</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, </span>
+<span class="r-in">mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm   CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      1 0.8125     0      1</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     S1   S2     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1   S2     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     S1   S2     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     S1   S2     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     S1   S2     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     S1   S2     N     S1</span>
+<span class="r-in"><span class="co"># The above code sets the new suitability class intervals </span></span>
+<span class="r-in"><span class="co"># into: N [0, 0.3), S3 [0.3, 0.6), S2 [0.6, 0.9), and S1 [0.9, 1].</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">### Unbias Intervals</span></span>
+<span class="r-in"><span class="co"># The problem with the fixed interval is that the said </span></span>
+<span class="r-in"><span class="co"># intervals does not take into account the shape of the </span></span>
+<span class="r-in"><span class="co"># membership function and the spacing of the parameter </span></span>
+<span class="r-in"><span class="co"># interval limits (*See* Article 2 for parameter intervals). </span></span>
+<span class="r-in"><span class="co"># Custom intervals might be able to capture this if the user </span></span>
+<span class="r-in"><span class="co"># computed the interval limits manually, but ALUES provides </span></span>
+<span class="r-in"><span class="co"># an option just for this, by setting `interval="unbias"`. </span></span>
+<span class="r-in"><span class="co"># That is,</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, </span>
+<span class="r-in">mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm   CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      1 0.7500     0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      1 0.8125     0      1</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     S1    N     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1    N     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     S1    N     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     S1    N     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     S1    N     N     S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     S1    N     N     S1</span>
+<span class="r-in"><span class="co"># By setting the `interval="unbias"`, the `suit` </span></span>
+<span class="r-in"><span class="co"># function will generate a different likely unequally </span></span>
+<span class="r-in"><span class="co"># spaced suitability class intervals, but the interval </span></span>
+<span class="r-in"><span class="co"># limits are mathematically correct, in terms of the mapping</span></span>
+<span class="r-in"><span class="co"># of the parameter interval limits to suitability class limits </span></span>
+<span class="r-in"><span class="co"># via the membership function.</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Maximum and Minimum</span></span>
+<span class="r-in"><span class="co"># Another parameter that can be set for `suit` are the </span></span>
+<span class="r-in"><span class="co"># `minimum` and `maximum`. These are the constants used </span></span>
+<span class="r-in"><span class="co"># by the membership function for computing the suitability </span></span>
+<span class="r-in"><span class="co"># score.</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, </span>
+<span class="r-in">mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Factors Evaluated"</span><span class="op">]</span><span class="op">]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CFragm" "CECc"   "pHH2O"  "SoilTe"</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># From the above result, there are four factors targetted</span></span>
+<span class="r-in"><span class="co"># by the input land unit, these are CFragm, CECc, pHH2O and </span></span>
+<span class="r-in"><span class="co"># SoilTe. Suppose we know the maximum value that these factors </span></span>
+<span class="r-in"><span class="co"># can take, say 60 for CFragm, 20 for CECc, 9 for pHH2O, and 10</span></span>
+<span class="r-in"><span class="co"># for SoilTe. We can specify these as follows:</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span>, mf<span class="op">=</span><span class="st">"trapezoidal"</span>,</span>
+<span class="r-in">interval<span class="op">=</span><span class="st">"unbias"</span>, maximum<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">banana_suit</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $terrain</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $soil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: maximum length should be equal to the number of factors in the input land units."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="co"># The result gave us an error. We understand the error </span></span>
+<span class="r-in"><span class="co"># for terrain characteristics, but for soil it says that</span></span>
+<span class="r-in"><span class="co"># the argument `maximum` must be equal in length with the</span></span>
+<span class="r-in"><span class="co"># target factors specified in the input land unit datasets.</span></span>
+<span class="r-in"><span class="co"># We know that there should be 4 factors, but upon checking, </span></span>
+<span class="r-in"><span class="co"># we see that the `MarinduqueLT` also have Lon and Lat columns,</span></span>
+<span class="r-in"><span class="co"># which ALUES assumes to be a target factor as well. Indeed, we </span></span>
+<span class="r-in"><span class="co"># need to exclude these columns (those that are not the target </span></span>
+<span class="r-in"><span class="co"># factors, rather spatial variables) when specifying `minimum` </span></span>
+<span class="r-in"><span class="co"># or `maximum` constants. Thus, it should be:</span></span>
+<span class="r-in"><span class="va">MarinduqueLT2</span> <span class="op">&lt;-</span> <span class="va">MarinduqueLT</span><span class="op">[</span>, <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">MarinduqueLT</span><span class="op">)</span><span class="op">]</span></span>
+<span class="r-in"><span class="va">banana_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"banana"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT2</span>, </span>
+<span class="r-in">mf<span class="op">=</span><span class="st">"trapezoidal"</span>, interval<span class="op">=</span><span class="st">"unbias"</span>, maximum<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">20</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Score"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm   CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      0 0.7500     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      1 0.7500     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      0 0.7500     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      0 0.7500     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      0 0.7500     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      0 0.8125     0      0</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">banana_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"Suitability Class"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm CECc pHH2O SoilTe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      N    N     N      N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1    N     N      N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      N    N     N      N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      N    N     N      N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      N    N     N      N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      N    N     N      N</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Sigma of Gaussian</span></span>
+<span class="r-in"><span class="co"># The `sigma` argument is used to specify the scale of the </span></span>
+<span class="r-in"><span class="co"># Gaussian membership function. That is, it is only </span></span>
+<span class="r-in"><span class="co"># applicable for `mf="gaussian"`.</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Other examples</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alstat/ALUES/" class="external-link">ALUES</a></span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">rice_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"ricebr"</span>, water<span class="op">=</span><span class="va">MarinduqueWater</span>, </span>
+<span class="r-in">temp<span class="op">=</span><span class="va">MarinduqueTemp</span>, sow_month <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">rice_suit</span><span class="op">[[</span><span class="st">"water"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># access results for water suitability</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Jan" "Feb" "Mar" "Apr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Jan       Feb       Mar       Apr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.3051852 0.1925926 0.1629630 0.3542857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.3081481 0.1925926 0.1629630 0.3485714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.3081481 0.1955556 0.1659259 0.3485714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.3111111 0.1925926 0.1688889 0.3371429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.3111111 0.1925926 0.1718519 0.3371429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.3140741 0.1955556 0.1748148 0.3257143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Jan Feb Mar Apr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  S3   N   N  S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  S3   N   N  S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  S3   N   N  S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  S3   N   N  S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  S3   N   N  S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  S3   N   N  S3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan Feb Mar Apr </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0   0   0   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Jan   Feb   Mar   Apr </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 880.0 880.0 880.0 714.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEBRWater"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">rice_suit</span><span class="op">[[</span><span class="st">"temp"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># access results for temperature suitability</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Feb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Feb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8366667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.8333333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.8400000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.8366667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.8366667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.8500000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Feb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  S1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  52 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEBRTemp"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="va">rice_suit</span> <span class="op">&lt;-</span> <span class="fu">suit</span><span class="op">(</span><span class="st">"ricebr"</span>, terrain<span class="op">=</span><span class="va">MarinduqueLT</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>maximum is set to 16 for factor CECc since all parameter intervals are equal.</span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">rice_suit</span><span class="op">[[</span><span class="st">"terrain"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: No factor(s) to be evaluated, since none matches with the crop requirements. If water or temp characteristics was specified then maybe you forgot to specify the sow_month argument, read doc for suit."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">rice_suit</span><span class="op">[[</span><span class="st">"soil"</span><span class="op">]</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CFragm" "CECc"   "pHH2O" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Score`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      CFragm   CECc pHH2O</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.7843137 0.7500     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.8235294 0.7500     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.8039216 0.7500     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.8039216 0.7500     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.7647059 0.7500     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.7843137 0.8125     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Suitability Class`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CFragm CECc pHH2O</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     S1   S1     N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     S1   S1     N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     S1   S1     N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     S1   S1     N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     S1   S1     N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     S1   S1     N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Minimum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CFragm   CECc  pHH2O </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0      0      0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Maximum Values`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CFragm   CECc  pHH2O </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   51.0   16.0    9.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Factors' Weights`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Crop Evaluated`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RICEBRSoil"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Warning</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "maximum is set to 16 for factor CECc since all parameter intervals are equal."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
