@@ -61,7 +61,7 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
     * role: supervisor and domain expert on agriculture, and provider of all the necessary articles 
 <br><br>
 3. Bui Tan Yen
-    * role: developer of the LUSET, which is the basis of ALUES
+    * role: LUSET main developer, which is the basis of ALUES
     
 
 
