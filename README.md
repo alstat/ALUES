@@ -53,7 +53,7 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
 1. [Al-Ahmadgaid B. Asaad](https://github.com/alstat/) (Maintainer)
     * email: alahmadgaid@gmail.com
     * website: https://al-asaad.github.io/
-    * role: main developer of the package, responsible on the mathematical theory
+    * role: main developer of the package, responsible for the mathematical theory
 <br><br>
 2. [Arnold R. Salvacion](https://github.com/arsalvacion/)
     * email: arsalvacion@gmail.com
