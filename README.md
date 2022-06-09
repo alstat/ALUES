@@ -53,7 +53,7 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
 1. [Al-Ahmadgaid B. Asaad](https://github.com/alstat/) (Maintainer)
     * email: alahmadgaid@gmail.com
     * website: https://al-asaad.github.io/
-    * role: main developer of the package
+    * role: main developer of the package, responsible for the mathematical theory
 <br><br>
 2. [Arnold R. Salvacion](https://github.com/arsalvacion/)
     * email: arsalvacion@gmail.com
@@ -61,7 +61,7 @@ We want to hear some feedbacks, so if you have any suggestion or issues regardin
     * role: supervisor and domain expert on agriculture, and provider of all the necessary articles 
 <br><br>
 3. Bui Tan Yen
-    * role: developer of the LUSET, which is the basis of ALUES
+    * role: LUSET main developer, which is the basis of ALUES
     
 
 
